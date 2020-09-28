@@ -57,6 +57,15 @@ update_status ModuleSceneIntro::Update(float dt)
     p.axis = true;
     p.Render();
 
+    //CLOSING WINDOW
+    
+    ImGui::Text("Closing Window");
+    if (ImGui::Button("Exit"))
+    {
+        return UPDATE_STOP;
+    }
+
+
     return UPDATE_CONTINUE;
 }
 
@@ -83,3 +92,4 @@ bool ModuleSceneIntro::CleanUp()
 
     return true;
 }
+
