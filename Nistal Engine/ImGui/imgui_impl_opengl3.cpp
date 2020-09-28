@@ -100,7 +100,7 @@
 #if defined(IMGUI_IMPL_OPENGL_LOADER_GL3W)
 #include <GL/gl3w.h>
 #elif defined(IMGUI_IMPL_OPENGL_LOADER_GLEW)
-#include "C:\Users\alber\Documents\GitHub\Solo-Engine\SoloEngine\Glew\include\glew.h"
+#include "../Glew/include/glew.h"
 #elif defined(IMGUI_IMPL_OPENGL_LOADER_GLAD)
 #include <glad/glad.h>  // Needs to be initialized with gladLoadGL() in user's code
 #else
