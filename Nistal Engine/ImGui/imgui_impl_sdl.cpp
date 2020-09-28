@@ -42,8 +42,8 @@
 
 #include "imgui.h"
 #include "imgui_impl_sdl.h"
-#include "C:\Users\alber\Documents\GitHub\Solo-Engine\SoloEngine\SDL\include\SDL.h"
-#include "C:\Users\alber\Documents\GitHub\Solo-Engine\SoloEngine\SDL\include\SDL_syswm.h"
+#include "../SDL/include/SDL.h"
+#include "../SDL/include/SDL_syswm.h"
 
 // SDL
 //#include <SDL.h>
