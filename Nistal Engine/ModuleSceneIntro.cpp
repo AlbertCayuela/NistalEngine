@@ -63,6 +63,12 @@ update_status ModuleSceneIntro::Update(float dt)
     p.Render();
 
     //CLOSING WINDOW
+
+    math::Sphere x({ 0,0,0 }, 4);
+    math::Sphere y({ 0,0,0 }, 7);
+
+    if (x.Intersects(y))
+        LOG("BEEP BEEP!!");
     
     ImGui::Text("Closing Window");
     if (ImGui::Button("Exit"))
