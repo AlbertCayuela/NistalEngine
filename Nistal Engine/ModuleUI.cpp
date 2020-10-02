@@ -59,11 +59,21 @@ update_status ModuleUI::Update(float dt)
 	if (x.Intersects(y))
 		LOG("BEEP BEEP!!");
 
-	ImGui::Text("Closing Window");
-	if (ImGui::Button("Exit"))
+	if (ImGui::Begin("Configuration"))
 	{
-		return UPDATE_STOP;
+		ImGui::Text("We'll write our configuration down below here :)");
 	}
+	ImGui::End();
+
+	//CLOSING WINDOW
+	if (ImGui::Begin("Closing Window"))
+	{
+		if (ImGui::Button("Exit"))
+		{
+			return UPDATE_STOP;
+		}
+	}
+	ImGui::End();
 
 	return UPDATE_CONTINUE;
 }
