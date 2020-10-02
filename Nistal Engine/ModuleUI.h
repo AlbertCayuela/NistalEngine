@@ -18,6 +18,8 @@ public:
 	update_status PostUpdate(float dt);
 	bool CleanUp();
 
+	bool show_window = false;
+
 private:
 	//UI functions
 };

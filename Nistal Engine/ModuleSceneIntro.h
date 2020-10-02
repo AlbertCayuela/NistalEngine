@@ -23,5 +23,5 @@ public:
     update_status PostUpdate(float dt);
     bool CleanUp();
 
-    bool show_window = false;
+    //bool show_window = false;
 };
