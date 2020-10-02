@@ -4,6 +4,9 @@
 #include "Primitive.h"
 #include "ImGui/imconfig.h"
 
+#include "MathGeoLib/include/MathGeoLib.h"
+#include "MathGeoLib/include/MathBuildConfig.h"
+#include "MathGeoLib/include/MathGeoLibFwd.h"
 
 struct PhysBody3D;
 struct PhysMotor3D;

@@ -13,6 +13,11 @@
 #include "SDL/include/SDL_opengl.h"
 
 #pragma comment (lib, "Glew/lib/glew32.lib")
+#ifdef NDEBUG
+#pragma comment (lib, "MathGeoLib/libx86/Release/MathGeoLib.lib") 
+#else
+#pragma comment (lib, "MathGeoLib/libx86/Debug/MathGeoLib.lib") 
+#endif
 
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
@@ -52,8 +57,8 @@ update_status ModuleSceneIntro::PreUpdate(float dt)
 
 // Update
 update_status ModuleSceneIntro::Update(float dt)
-{
-    Plane p(0, 1, 0, 0);
+{    
+    PlanePrimitive p(0, 1, 0, 0);
     p.axis = true;
     p.Render();
 
