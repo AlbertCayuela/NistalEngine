@@ -86,19 +86,19 @@ update_status ModuleUI::Update(float dt)
 		{
 			if (MenuItem("ImGui Demo"))
 			{
-				//TODO SHOW/HIDE DEMOWINDOW
+				show_demo = !show_demo;
 			}
 			if (MenuItem("Documentation"))
 			{
-				//TODO GO TO WIKI
+				App->RequestBrowser("https://github.com/AlbertCayuela/NistalEngine/wiki");
 			}
 			if (MenuItem("Download latest")) 
 			{
-				//TODO GO TO RELEASES
+				App->RequestBrowser("https://github.com/AlbertCayuela/NistalEngine/releases");
 			}
 			if (MenuItem("Report a bug"))
 			{
-				//TODO GO TO ISSUES
+				App->RequestBrowser("https://github.com/AlbertCayuela/NistalEngine/issues");
 			}
 			if (MenuItem("About"))
 			{
@@ -106,6 +106,11 @@ update_status ModuleUI::Update(float dt)
 			}
 			ImGui::EndMenu();
 		}
+
+		//show demo window
+		if (show_demo)
+			ShowDemoWindow(&show_demo);
+
 		EndMainMenuBar();
 	}
 

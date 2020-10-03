@@ -105,9 +105,6 @@
     <ClInclude Include="MathGeoLib\include\Geometry\AABB2D.h">
       <Filter>Sources\MathGeoLib</Filter>
     </ClInclude>
-    <ClInclude Include="Application.h">
-      <Filter>Sources\MathGeoLib</Filter>
-    </ClInclude>
     <ClInclude Include="MathGeoLib\include\Math\assume.h">
       <Filter>Sources\MathGeoLib</Filter>
     </ClInclude>
@@ -294,6 +291,9 @@
     <ClInclude Include="MathGeoLib\include\Geometry\TriangleMesh.h">
       <Filter>Sources\MathGeoLib</Filter>
     </ClInclude>
+    <ClInclude Include="Application.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -351,9 +351,6 @@
       <Filter>Sources\Modules</Filter>
     </ClCompile>
     <ClCompile Include="MathGeoLib\include\Geometry\AABB.cpp">
-      <Filter>Sources\MathGeoLib</Filter>
-    </ClCompile>
-    <ClCompile Include="Application.cpp">
       <Filter>Sources\MathGeoLib</Filter>
     </ClCompile>
     <ClCompile Include="MathGeoLib\include\Math\BitOps.cpp">
@@ -451,6 +448,9 @@
     </ClCompile>
     <ClCompile Include="MathGeoLib\include\Geometry\TriangleMesh.cpp">
       <Filter>Sources\MathGeoLib</Filter>
+    </ClCompile>
+    <ClCompile Include="Application.cpp">
+      <Filter>Sources\Modules</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
