@@ -18,6 +18,7 @@
 #pragma comment (lib, "MathGeoLib/libx86/Debug/MathGeoLib.lib") 
 #endif
 
+using namespace ImGui;
 
 ModuleUI::ModuleUI(Application* app, bool start_enabled) : Module(app, start_enabled)
 {}
@@ -31,10 +32,10 @@ bool ModuleUI::Start()
 	bool ret = true;
 
 	glewInit();
-	ImGui::CreateContext();
+	CreateContext();
 	ImGui_ImplSDL2_InitForOpenGL(App->window->window, App->renderer3D->context);
 	ImGui_ImplOpenGL3_Init();
-	ImGui::StyleColorsDark();
+	StyleColorsDark();
 
 	return ret;
 }
@@ -43,9 +44,9 @@ update_status ModuleUI::PreUpdate(float dt)
 {
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplSDL2_NewFrame(App->window->window);
-	ImGui::NewFrame();
+	NewFrame();
 
-	ImGui::ShowDemoWindow(&show_window);
+	//ImGui::ShowDemoWindow(&show_window);
 
 
 	return UPDATE_CONTINUE;
@@ -53,35 +54,84 @@ update_status ModuleUI::PreUpdate(float dt)
 
 update_status ModuleUI::Update(float dt)
 {
-	math::Sphere x({ 0,0,0 }, 4);
-	math::Sphere y({ 0,0,0 }, 7);
+	//math::Sphere x({ 0,0,0 }, 4);
+	//math::Sphere y({ 0,0,0 }, 7);
 
-	if (x.Intersects(y))
-		LOG("BEEP BEEP!!");
+	//if (x.Intersects(y))
+	//	LOG("BEEP BEEP!!");
 
-	if (ImGui::Begin("Configuration"))
+	if (BeginMainMenuBar())
 	{
-		ImGui::Text("We'll write our configuration down below here :)");
-	}
-	ImGui::End();
-
-	//CLOSING WINDOW
-	if (ImGui::Begin("Closing Window"))
-	{
-		if (ImGui::Button("Exit"))
+		if (BeginMenu("File"))
 		{
-			return UPDATE_STOP;
+			if (MenuItem("Exit","Alt+F4"))
+			{
+				return UPDATE_STOP;
+			}
+			ImGui::EndMenu();
 		}
+		if (BeginMenu("View"))
+		{
+			if (MenuItem("Configuration"))
+			{
+				//TODO SHOW/HIDE CONFIG PANEL
+			}
+			if (MenuItem("Console"))
+			{
+				//TODO SHOW/HIDE CONSOLE PANEL
+			}
+			ImGui::EndMenu();
+		}
+		if (BeginMenu("Help"))
+		{
+			if (MenuItem("ImGui Demo"))
+			{
+				//TODO SHOW/HIDE DEMOWINDOW
+			}
+			if (MenuItem("Documentation"))
+			{
+				//TODO GO TO WIKI
+			}
+			if (MenuItem("Download latest")) 
+			{
+				//TODO GO TO RELEASES
+			}
+			if (MenuItem("Report a bug"))
+			{
+				//TODO GO TO ISSUES
+			}
+			if (MenuItem("About"))
+			{
+				//TODO ABOUT TEXT
+			}
+			ImGui::EndMenu();
+		}
+		EndMainMenuBar();
 	}
-	ImGui::End();
+
+	//if (ImGui::Begin("Configuration"))
+	//{
+	//	ImGui::Text("We'll write our configuration down below here :)");
+	//}
+	//ImGui::End();
+
+	////CLOSING WINDOW
+	//if (ImGui::Begin("Closing Window"))
+	//{
+	//	if (ImGui::Button("Exit"))
+	//	{
+	//		return UPDATE_STOP;
+	//	}
+	//}
+	//ImGui::End();
 
 	return UPDATE_CONTINUE;
 }
 
 update_status ModuleUI::PostUpdate(float dt)
 {
-	ImGui::Render();
-	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+	Render();
+	ImGui_ImplOpenGL3_RenderDrawData(GetDrawData());
 
 	return UPDATE_CONTINUE;
 }
@@ -90,7 +140,7 @@ bool ModuleUI::CleanUp()
 {
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplSDL2_Shutdown();
-	ImGui::DestroyContext();
+	DestroyContext();
 
 	SDL_GL_DeleteContext(App->renderer3D->context);
 	SDL_DestroyWindow(App->window->window);
