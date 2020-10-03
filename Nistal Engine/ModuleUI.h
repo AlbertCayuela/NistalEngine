@@ -20,6 +20,7 @@ public:
 
 	bool show_demo = false;
 	bool show_configuration = false;
+	bool show_about = false;
 
 private:
 	//UI functions
