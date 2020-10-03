@@ -22,6 +22,18 @@ public:
 	bool show_configuration = false;
 	bool show_about = false;
 
+	char fps_accumulated[100];
+
+	//Configuration Window bool
+	bool configuration_window = false;
+	bool fullScreen = false;
+	bool resizable = false;
+	bool borderless = false;
+	bool fullDesktop = false;
+
+	bool hardwareActive = false;
+	char* RDTSC = nullptr;
+
 private:
 	//UI functions
 };

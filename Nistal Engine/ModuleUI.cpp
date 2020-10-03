@@ -1,6 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleUI.h"
+#include "ModuleWindow.h"
 
 #include "ImGui/imconfig.h"
 #include "ImGui/imgui.h"
@@ -75,6 +76,7 @@ update_status ModuleUI::Update(float dt)
 			if (MenuItem("Configuration"))
 			{
 				//TODO SHOW/HIDE CONFIG PANEL
+				show_configuration = !show_configuration;
 			}
 			if (MenuItem("Console"))
 			{
@@ -105,68 +107,98 @@ update_status ModuleUI::Update(float dt)
 				show_about = !show_about;
 			}
 			ImGui::EndMenu();
-		}
-
-		if (ImGui::Begin("Configuration"), &show_configuration)
-		{
-			show_configuration = !show_configuration;
-
-			if (TreeNode("Options"))
-			{
-				TreePop();
-			}
-
-			if (CollapsingHeader("Application"))
-			{
-				//static char str0[128] = "Nistal Engine";
-				ImGui::InputText("App Name", "Nistal Engine", NULL);
-				InputText("Organization", "UPC CITM", NULL);
-				//Change int to real PC values
-				int zero = 0;
-				//PROFRESS BAR FPS
-				SliderInt("Max FPS", &zero, 0, 100, "0");
-				Text("Limit Framerate: %d", zero);
-
-				struct Funcs
-				{
-					static float Sin(void*, int i) { return sinf(i * 0.1f); }
-					static float Saw(void*, int i) { return (i & 1) ? 1.0f : -1.0f; }
-				};
-				static int func_type = 0, display_count = 70;
-
-				float (*func)(void*, int) = (func_type == 0) ? Funcs::Sin : Funcs::Saw;
-				ImGui::PlotHistogram("", func, NULL, display_count, 0, NULL, -1.0f, 1.0f, ImVec2(0, 80));
-				//ImGui::Separator();
-
-
-			}
-
-			if (CollapsingHeader("Window"))
-			{
-				//hello
-			}
-
-			if (CollapsingHeader("File System"))
-			{
-				//hello
-			}
-
-			if (CollapsingHeader("Input"))
-			{
-				//hello
-			}
-
-			if (CollapsingHeader("Hardware"))
-			{
-				//hello
-			}
-
-		}
-		ImGui::End();		
+		}	
 
 		//show demo window
 		if (show_demo)
 			ShowDemoWindow(&show_demo);
+
+		//show configuration window
+		if (show_configuration)
+		{
+			if (ImGui::Begin("Configuration"), &show_configuration)
+			{
+				if (TreeNode("Options"))
+				{
+					TreePop();
+				}
+
+				if (CollapsingHeader("Application"))
+				{
+					//static char str0[128] = "Nistal Engine";
+					ImGui::InputText("App Name", "Nistal Engine", NULL);
+					InputText("Organization", "UPC CITM", NULL);
+					//Change int to real PC values
+					int zero = 0;
+					//PROGRESS BAR FPS
+					SliderInt("Max FPS", &zero, 0, 100, "0");
+					Text("Limit Framerate: %d", zero);
+
+					struct Funcs
+					{
+						static float Sin(void*, int i) { return sinf(i * 0.1f); }
+						static float Saw(void*, int i) { return (i & 1) ? 1.0f : -1.0f; }
+					};
+					static int func_type = 0, display_count = 70;
+
+					float (*func)(void*, int) = (func_type == 0) ? Funcs::Sin : Funcs::Saw;
+					ImGui::PlotHistogram("Framerate", func, NULL, display_count, 0, NULL, -1.0f, 1.0f, ImVec2(0, 100));
+					//ImGui::Separator();
+					ImGui::PlotHistogram("Milliseconds", func, 0, display_count, 0, NULL, -1.0f, 1.0f, ImVec2(0, 100));
+				}
+
+				if (CollapsingHeader("Window"))
+				{
+					int values = 1.000;
+
+					Checkbox("Active", &configuration_window);
+					Text("Icon: *default*");
+					SliderInt("Brightness", &values, 0, 100, "0");
+					SliderInt("Width", &values, 0, 100, "0");
+					SliderInt("Height", &values, 0, 100, "0");
+					Text("Refresh rate: %d", values);
+					SameLine();
+					if (Checkbox("Fullscreen", &fullScreen))
+						WIN_FULLSCREEN;
+					Checkbox("Resizable", &resizable);
+					SameLine();
+					Checkbox("Borderless", &borderless);
+					Checkbox("Full desktop", &fullDesktop);
+				}
+
+				if (CollapsingHeader("File System"))
+				{
+					//hello
+				}
+
+				if (CollapsingHeader("Input"))
+				{
+					//hello
+				}
+
+				if (CollapsingHeader("Hardware"))
+				{
+					Checkbox("Active", &hardwareActive);
+					Text("SDL Version: 0");
+					Separator();
+					Text("CPUs: %d (Cache: %dkb)", SDL_GetCPUCount(), SDL_GetCPUCacheLineSize());
+					Text("System RAM: %dGb", SDL_GetSystemRAM());
+					if (SDL_HasRDTSC())
+						RDTSC = "RDTSC";
+					Text("Caps: %s", RDTSC);
+					Separator();
+					Text("GPU: ");
+					Text("Brand: ");
+					Text("VRAM Budget: ");
+					Text("VRAM Usage: ");
+					Text("VRAM Available: ");
+					Text("VRAM Reserved: ");
+				}
+
+			}
+			ImGui::End();
+		}
+
 		//show about window
 		if (show_about)
 		{
