@@ -107,28 +107,69 @@ update_status ModuleUI::Update(float dt)
 			ImGui::EndMenu();
 		}
 
+		if (ImGui::Begin("Configuration"), &show_configuration)
+		{
+			show_configuration = !show_configuration;
+
+			if (TreeNode("Options"))
+			{
+				TreePop();
+			}
+
+			if (CollapsingHeader("Application"))
+			{
+				//static char str0[128] = "Nistal Engine";
+				ImGui::InputText("App Name", "Nistal Engine", NULL);
+				InputText("Organization", "UPC CITM", NULL);
+				//Change int to real PC values
+				int zero = 0;
+				//PROFRESS BAR FPS
+				SliderInt("Max FPS", &zero, 0, 100, "0");
+				Text("Limit Framerate: %d", zero);
+
+				struct Funcs
+				{
+					static float Sin(void*, int i) { return sinf(i * 0.1f); }
+					static float Saw(void*, int i) { return (i & 1) ? 1.0f : -1.0f; }
+				};
+				static int func_type = 0, display_count = 70;
+
+				float (*func)(void*, int) = (func_type == 0) ? Funcs::Sin : Funcs::Saw;
+				ImGui::PlotHistogram("", func, NULL, display_count, 0, NULL, -1.0f, 1.0f, ImVec2(0, 80));
+				//ImGui::Separator();
+
+
+			}
+
+			if (CollapsingHeader("Window"))
+			{
+				//hello
+			}
+
+			if (CollapsingHeader("File System"))
+			{
+				//hello
+			}
+
+			if (CollapsingHeader("Input"))
+			{
+				//hello
+			}
+
+			if (CollapsingHeader("Hardware"))
+			{
+				//hello
+			}
+
+		}
+		ImGui::End();		
+
 		//show demo window
 		if (show_demo)
 			ShowDemoWindow(&show_demo);
 
 		EndMainMenuBar();
 	}
-
-	//if (ImGui::Begin("Configuration"))
-	//{
-	//	ImGui::Text("We'll write our configuration down below here :)");
-	//}
-	//ImGui::End();
-
-	////CLOSING WINDOW
-	//if (ImGui::Begin("Closing Window"))
-	//{
-	//	if (ImGui::Button("Exit"))
-	//	{
-	//		return UPDATE_STOP;
-	//	}
-	//}
-	//ImGui::End();
 
 	return UPDATE_CONTINUE;
 }

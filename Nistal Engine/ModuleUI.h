@@ -19,6 +19,7 @@ public:
 	bool CleanUp();
 
 	bool show_demo = false;
+	bool show_configuration = false;
 
 private:
 	//UI functions
