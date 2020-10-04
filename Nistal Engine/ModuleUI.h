@@ -31,8 +31,16 @@ public:
 	bool borderless = false;
 	bool fullDesktop = false;
 
+	//hardware
 	bool hardwareActive = false;
 	char* RDTSC = nullptr;
+	int cpu_cache = 0;
+	int cpu_count = 0;
+	int ram = 0;
+	SDL_version version;
+
+	std::vector<float> vector_ms;
+	std::vector<float> vector_fps;
 
 private:
 	//UI functions

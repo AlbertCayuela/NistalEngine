@@ -38,6 +38,11 @@ bool ModuleUI::Start()
 	ImGui_ImplOpenGL3_Init();
 	StyleColorsDark();
 
+	SDL_VERSION(&version);
+	cpu_cache = SDL_GetCPUCacheLineSize();
+	cpu_count = SDL_GetCPUCount();
+	ram = SDL_GetSystemRAM() / 1000;
+
 	return ret;
 }
 
@@ -60,6 +65,17 @@ update_status ModuleUI::Update(float dt)
 
 	//if (x.Intersects(y))
 	//	LOG("BEEP BEEP!!");
+	GLint total_memory = 0;
+	GLint memory_usage = 0;
+	GLint dedicated_memory = 0;
+	GLint available_memory = 0;
+
+	//hardaware
+	glGetIntegerv(GL_GPU_MEMORY_INFO_TOTAL_AVAILABLE_MEMORY_NVX, &total_memory);
+	glGetIntegerv(GL_GPU_MEMORY_INFO_CURRENT_AVAILABLE_VIDMEM_NVX, &available_memory);
+	glGetIntegerv(GL_GPU_MEMORY_INFO_DEDICATED_VIDMEM_NVX, &dedicated_memory);
+	memory_usage = total_memory - available_memory;
+
 
 	if (BeginMainMenuBar())
 	{
@@ -126,12 +142,27 @@ update_status ModuleUI::Update(float dt)
 				if (CollapsingHeader("Application"))
 				{
 					//static char str0[128] = "Nistal Engine";
-					ImGui::InputText("App Name", "Nistal Engine", NULL);
+					InputText("App Name", "Nistal Engine", NULL);
 					InputText("Organization", "UPC CITM", NULL);
+
+					if (vector_fps.size() != 100)
+					{
+						vector_fps.push_back(App->GetFPS());
+						vector_ms.push_back(App->GetMS());
+					}
+					else
+					{
+						vector_fps.erase(vector_fps.begin());
+						vector_fps.push_back(App->GetFPS());
+
+						vector_ms.erase(vector_ms.begin());
+						vector_ms.push_back(App->GetMS());
+					}
+
 					//Change int to real PC values
 					int zero = 0;
 					//PROGRESS BAR FPS
-					SliderInt("Max FPS", &zero, 0, 100, "0");
+				/*	SliderInt("Max FPS", &zero, 0, 100, "0");
 					Text("Limit Framerate: %d", zero);
 
 					struct Funcs
@@ -141,10 +172,16 @@ update_status ModuleUI::Update(float dt)
 					};
 					static int func_type = 0, display_count = 70;
 
-					float (*func)(void*, int) = (func_type == 0) ? Funcs::Sin : Funcs::Saw;
-					ImGui::PlotHistogram("Framerate", func, NULL, display_count, 0, NULL, -1.0f, 1.0f, ImVec2(0, 100));
+					float (*func)(void*, int) = (func_type == 0) ? Funcs::Sin : Funcs::Saw;*/
+
+					//char title_fps[25];
+					//title_fps=("Framerate %.1f", vector_fps[vector_fps.size() - 1]);
+					Text("Framerate %.1f", vector_fps[vector_fps.size() - 1]);
+					PlotHistogram("##framerate", &vector_fps[0], vector_fps.size(), 0, NULL, 0.0f, 100.0f, ImVec2(310, 100));
+					Text("Milliseconds %.1f", vector_ms[vector_ms.size() - 1]);
+					PlotHistogram("##milliseconds", &vector_ms[0], vector_ms.size(), 0, NULL, 0.0f, 40.0f, ImVec2(310, 100));
 					//ImGui::Separator();
-					ImGui::PlotHistogram("Milliseconds", func, 0, display_count, 0, NULL, -1.0f, 1.0f, ImVec2(0, 100));
+					//ImGui::PlotHistogram("Milliseconds", func, 0, display_count, 0, NULL, -1.0f, 1.0f, ImVec2(0, 100));
 				}
 
 				if (CollapsingHeader("Window"))

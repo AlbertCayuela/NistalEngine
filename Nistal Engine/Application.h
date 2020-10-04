@@ -26,6 +26,8 @@ private:
 
 	Timer	ms_timer;
 	float	dt;
+	float last_FPS = 0.0f;
+	float last_ms = 0.0f;
 	std::list<Module*> list_modules;
 
 public:
@@ -37,6 +39,8 @@ public:
 	update_status Update();
 	bool CleanUp();
 	void RequestBrowser(const char* url);
+	float GetMS();
+	float GetFPS();
 
 private:
 
