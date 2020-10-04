@@ -26,6 +26,8 @@ public:
 
 	//The surface contained by the window
 	SDL_Surface* screen_surface;
+
+	float brightness = 0;
 };
 
 #endif // __ModuleWindow_H__

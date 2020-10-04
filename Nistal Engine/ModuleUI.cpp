@@ -190,7 +190,13 @@ update_status ModuleUI::Update(float dt)
 
 					Checkbox("Active", &configuration_window);
 					Text("Icon: *default*");
-					SliderInt("Brightness", &values, 0, 100, "0");
+					//SliderInt("Brightness", &values, 0, 100, "0");
+					if (SliderFloat("Brightness", &App->window->brightness, 0.0f, 1.0f)) 
+					{
+						int ll = SDL_SetWindowBrightness(App->window->window, App->window->brightness);
+						SDL_UpdateWindowSurface(App->window->window);
+					}
+
 					SliderInt("Width", &values, 0, 100, "0");
 					SliderInt("Height", &values, 0, 100, "0");
 					Text("Refresh rate: %d", values);

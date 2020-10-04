@@ -69,6 +69,8 @@ bool ModuleWindow::Init()
 		}
 	}
 
+	brightness = SDL_GetWindowBrightness(App->window->window);
+
 	return ret;
 }
 
@@ -76,6 +78,8 @@ bool ModuleWindow::Init()
 bool ModuleWindow::CleanUp()
 {
 	LOG("Destroying SDL window and quitting all SDL systems");
+
+	SDL_SetWindowBrightness(window, 1.0f);
 
 	//Destroy window
 	if(window != NULL)
