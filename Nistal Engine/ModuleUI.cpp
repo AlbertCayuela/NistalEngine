@@ -204,14 +204,33 @@ update_status ModuleUI::Update(float dt)
 						SDL_UpdateWindowSurface(App->window->window);
 					}
 					//SliderInt("Height", &values, 0, 100, "0");
+					if (Checkbox("Fullscreen", &App->window->fullscreen)) 
+					{
+						if (App->window->fullscreen)
+							SDL_SetWindowFullscreen(App->window->window, SDL_WINDOW_FULLSCREEN);
+						else
+							SDL_SetWindowFullscreen(App->window->window, App->window->flags);
+					}
+					if (Checkbox("Borderless", &App->window->borderless)) 
+					{
+						SDL_SetWindowBordered(App->window->window,(SDL_bool)!App->window->borderless);
+					}
+					SameLine();
+					if (Checkbox("Fullscreen Desktop", &App->window->fullscreen_desktop))
+					{
+						if (App->window->fullscreen_desktop)
+							SDL_SetWindowFullscreen(App->window->window, SDL_WINDOW_FULLSCREEN_DESKTOP);
+						else
+							SDL_SetWindowFullscreen(App->window->window, App->window->flags);
+					}
 					//Text("Refresh rate: %d", values);
 					//SameLine();
-					if (Checkbox("Fullscreen", &fullScreen))
-						WIN_FULLSCREEN;
-					Checkbox("Resizable", &resizable);
+					/*if (Checkbox("Fullscreen", &fullScreen))
+						WIN_FULLSCREEN;*/
+					/*Checkbox("Resizable", &resizable);
 					SameLine();
 					Checkbox("Borderless", &borderless);
-					Checkbox("Full desktop", &fullDesktop);
+					Checkbox("Full desktop", &fullDesktop);*/
 				}
 
 				if (CollapsingHeader("File System"))
