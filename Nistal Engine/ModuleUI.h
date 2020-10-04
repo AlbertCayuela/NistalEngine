@@ -31,9 +31,16 @@ public:
 	bool borderless = false;
 	bool fullDesktop = false;
 
+	//file system
+	bool fileSystemActive = true;
+
+	//input
+	bool inputActive = true;
+	int mouse_x = 0;
+	int mouse_y = 0;
+
 	//hardware
 	bool hardwareActive = false;
-	char* RDTSC = nullptr;
 	int cpu_cache = 0;
 	int cpu_count = 0;
 	int ram = 0;

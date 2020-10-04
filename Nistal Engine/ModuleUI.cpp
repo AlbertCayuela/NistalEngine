@@ -223,62 +223,93 @@ update_status ModuleUI::Update(float dt)
 						else
 							SDL_SetWindowFullscreen(App->window->window, App->window->flags);
 					}
-					//Text("Refresh rate: %d", values);
-					//SameLine();
-					/*if (Checkbox("Fullscreen", &fullScreen))
-						WIN_FULLSCREEN;*/
-					/*Checkbox("Resizable", &resizable);
-					SameLine();
-					Checkbox("Borderless", &borderless);
-					Checkbox("Full desktop", &fullDesktop);*/
 				}
 
 				if (CollapsingHeader("File System"))
 				{
-					//hello
+					Text("Base Path:");
+					TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "%s", SDL_GetBasePath());
+					Text("Read Paths:");
+					TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), ".");
+					Text("Write Paths:");
+					TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), ".");
 				}
 
 				if (CollapsingHeader("Input"))
 				{
-					//hello
+					Checkbox("Active", &inputActive);
+					Text("Mouse Position:");
+					SameLine();
+					TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "%i,%i", App->input->GetMouseX(), App->input->GetMouseY());
+					Text("Mouse Motion:");
+					SameLine();
+					TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "%i,%i", App->input->GetMouseXMotion(), App->input->GetMouseYMotion());
+					Text("Mouse Wheel:");
+					SameLine();
+					TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "%i", App->input->GetMouseZ());
+					Separator();
+					Text("Show Mouse Historial");
 				}
 
 				if (CollapsingHeader("Hardware"))
 				{
-					Text("SDL Version: %d.%d.%d.", version.major, version.minor, version.patch);
-					Text("CPUs: %i (Cache:%ikb)", cpu_count, cpu_cache);
-					Text("System RAM: %iGb", ram);
+					Checkbox("Active", &hardwareActive);
+					Text("SDL Version:");
+					SameLine();
+					TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "%d.%d.%d", version.major, version.minor, version.patch);
+					
+					Separator();
+					Text("CPUs:");
+					SameLine();
+					TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "%i (Cache:%ikb)", cpu_count, cpu_cache);
+					Text("System RAM:");
+					SameLine();
+					TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "%iGb", ram);
 					Text("Caps: ");
 					SameLine();
 					if (SDL_HasAVX)
-						Text("AVX ");
+						TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "AVX");
 					SameLine();
 					if (SDL_HasMMX)
-						Text("MMX ");
+						TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "MMX");
 					SameLine();
 					if (SDL_HasSSE)
-						Text("SSE ");
+						TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "SSE");
 					SameLine();
 					if (SDL_HasSSE2)
-						Text("SSE2 ");
+						TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "SSE2");
 					SameLine();
 					if (SDL_HasSSE3)
-						Text("SSE3 ");
+						TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "SSE3");
 					SameLine();
 					if (SDL_HasSSE41)
-						Text("SSE41 ");
+						TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "SSE4");
 					SameLine();
 					if (SDL_HasSSE42)
-						Text("SSE42 ");
+						TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "SSE42");
 					SameLine();
 					if (SDL_HasRDTSC)
-						Text("RDTSC ");
-					Text("GPU: %s", glGetString(GL_VENDOR));
-					Text("Brand: %s", glGetString(GL_RENDERER));
-					Text("VRAM Budget: %.1f Mb", (total_memory * 0.001));
-					Text("VRAM Usage: %.1f Mb", (memory_usage * 0.001));
-					Text("VRAM Available: %.1f Mb", (available_memory * 0.001));
-					Text("VRAM Reserved: %.1f Mb", (dedicated_memory * 0.001));
+						TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "RDTSC");
+
+					Separator();
+					Text("GPU:");
+					SameLine();
+					TextColored(ImVec4(1.0, 1.0f, 0.5f, 1.0f), "%s", glGetString(GL_VENDOR));
+					Text("Brand:");
+					SameLine();
+					TextColored(ImVec4(1.0, 1.0f, 0.5f, 1.0f), "%s", glGetString(GL_RENDERER));
+					Text("VRAM Budget:");
+					SameLine();
+					TextColored(ImVec4(1.0, 1.0f, 0.5f, 1.0f), "%.1f Mb", (total_memory * 0.001));
+					Text("VRAM Usage:");
+					SameLine();
+					TextColored(ImVec4(1.0, 1.0f, 0.5f, 1.0f), "%.1f Mb", (memory_usage * 0.001));
+					Text("VRAM Available:");
+					SameLine();
+					TextColored(ImVec4(1.0, 1.0f, 0.5f, 1.0f), "%.1f Mb", (available_memory * 0.001));
+					Text("GPU:");
+					SameLine();
+					TextColored(ImVec4(1.0, 1.0f, 0.5f, 1.0f), "%.1f Mb", (dedicated_memory * 0.001));
 				}
 			}
 			ImGui::End();
