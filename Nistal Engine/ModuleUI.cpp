@@ -193,14 +193,19 @@ update_status ModuleUI::Update(float dt)
 					//SliderInt("Brightness", &values, 0, 100, "0");
 					if (SliderFloat("Brightness", &App->window->brightness, 0.0f, 1.0f)) 
 					{
-						int ll = SDL_SetWindowBrightness(App->window->window, App->window->brightness);
+						SDL_SetWindowBrightness(App->window->window, App->window->brightness);
 						SDL_UpdateWindowSurface(App->window->window);
 					}
 
-					SliderInt("Width", &values, 0, 100, "0");
-					SliderInt("Height", &values, 0, 100, "0");
-					Text("Refresh rate: %d", values);
-					SameLine();
+					//SliderInt("Width", &values, 0, 100, "0");
+					if (SliderInt("Width", &App->window->width, 1, 2000) || SliderInt("Height", &App->window->height, 1, 2000))
+					{
+						SDL_SetWindowSize(App->window->window, App->window->width, App->window->height);
+						SDL_UpdateWindowSurface(App->window->window);
+					}
+					//SliderInt("Height", &values, 0, 100, "0");
+					//Text("Refresh rate: %d", values);
+					//SameLine();
 					if (Checkbox("Fullscreen", &fullScreen))
 						WIN_FULLSCREEN;
 					Checkbox("Resizable", &resizable);

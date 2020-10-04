@@ -28,6 +28,8 @@ public:
 	SDL_Surface* screen_surface;
 
 	float brightness = 0;
+	int height = 0;
+	int width = 0;
 };
 
 #endif // __ModuleWindow_H__
