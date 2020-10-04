@@ -245,23 +245,41 @@ update_status ModuleUI::Update(float dt)
 
 				if (CollapsingHeader("Hardware"))
 				{
-					Checkbox("Active", &hardwareActive);
-					Text("SDL Version: 0");
-					Separator();
-					Text("CPUs: %d (Cache: %dkb)", SDL_GetCPUCount(), SDL_GetCPUCacheLineSize());
-					Text("System RAM: %dGb", SDL_GetSystemRAM());
-					if (SDL_HasRDTSC())
-						RDTSC = "RDTSC";
-					Text("Caps: %s", RDTSC);
-					Separator();
-					Text("GPU: ");
-					Text("Brand: ");
-					Text("VRAM Budget: ");
-					Text("VRAM Usage: ");
-					Text("VRAM Available: ");
-					Text("VRAM Reserved: ");
+					Text("SDL Version: %d.%d.%d.", version.major, version.minor, version.patch);
+					Text("CPUs: %i (Cache:%ikb)", cpu_count, cpu_cache);
+					Text("System RAM: %iGb", ram);
+					Text("Caps: ");
+					SameLine();
+					if (SDL_HasAVX)
+						Text("AVX ");
+					SameLine();
+					if (SDL_HasMMX)
+						Text("MMX ");
+					SameLine();
+					if (SDL_HasSSE)
+						Text("SSE ");
+					SameLine();
+					if (SDL_HasSSE2)
+						Text("SSE2 ");
+					SameLine();
+					if (SDL_HasSSE3)
+						Text("SSE3 ");
+					SameLine();
+					if (SDL_HasSSE41)
+						Text("SSE41 ");
+					SameLine();
+					if (SDL_HasSSE42)
+						Text("SSE42 ");
+					SameLine();
+					if (SDL_HasRDTSC)
+						Text("RDTSC ");
+					Text("GPU: %s", glGetString(GL_VENDOR));
+					Text("Brand: %s", glGetString(GL_RENDERER));
+					Text("VRAM Budget: %.1f Mb", (total_memory * 0.001));
+					Text("VRAM Usage: %.1f Mb", (memory_usage * 0.001));
+					Text("VRAM Available: %.1f Mb", (available_memory * 0.001));
+					Text("VRAM Reserved: %.1f Mb", (dedicated_memory * 0.001));
 				}
-
 			}
 			ImGui::End();
 		}
