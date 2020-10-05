@@ -43,13 +43,6 @@ bool ModuleUI::Start()
 	ImGui_ImplOpenGL3_Init();
 	StyleColorsDark();
 
-	//SDL_VERSION(&version);
-	//cpu_cache = SDL_GetCPUCacheLineSize();
-	//cpu_count = SDL_GetCPUCount();
-	//ram = SDL_GetSystemRAM() / 1000;
-
-	//ui_windows.push_back(ui_configuration = new UIConfiguration());
-
 	ui_configuration->Start();
 	ui_about->Start();
 
@@ -61,10 +54,7 @@ update_status ModuleUI::PreUpdate(float dt)
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplSDL2_NewFrame(App->window->window);
 	NewFrame();
-
-	//ImGui::ShowDemoWindow(&show_window);
-
-
+ 
 	return UPDATE_CONTINUE;
 }
 
@@ -116,7 +106,6 @@ update_status ModuleUI::Update(float dt)
 			}
 			if (MenuItem("About"))
 			{
-				//show_about = !show_about;
 				ui_about->is_on = !ui_about->is_on;
 			}
 			ImGui::EndMenu();
