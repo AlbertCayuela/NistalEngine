@@ -86,6 +86,7 @@
     <ClInclude Include="Globals.h" />
     <ClInclude Include="UIAbout.h" />
     <ClInclude Include="UIConfiguration.h" />
+    <ClInclude Include="UIConsole.h" />
     <ClInclude Include="UIWindow.h" />
     <ClInclude Include="ImGui\imconfig.h" />
     <ClInclude Include="ImGui\imgui.h" />
@@ -224,6 +225,7 @@
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="UIAbout.cpp" />
     <ClCompile Include="UIConfiguration.cpp" />
+    <ClCompile Include="UIConsole.cpp" />
     <ClCompile Include="UIWindow.cpp" />
   </ItemGroup>
   <ItemGroup>

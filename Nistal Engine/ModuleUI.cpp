@@ -4,6 +4,7 @@
 #include "ModuleWindow.h"
 #include "UIConfiguration.h"
 #include "UIAbout.h"
+#include "UIConsole.h"
 
 #include "ImGui/imconfig.h"
 #include "ImGui/imgui.h"
@@ -27,6 +28,7 @@ ModuleUI::ModuleUI(Application* app, bool start_enabled) : Module(app, start_ena
 {
 	ui_windows.push_back(ui_configuration = new UIConfiguration());
 	ui_windows.push_back(ui_about = new UIAbout());
+	ui_windows.push_back(ui_console = new UIConsole());
 }
 
 ModuleUI::~ModuleUI()
@@ -45,6 +47,7 @@ bool ModuleUI::Start()
 
 	ui_configuration->Start();
 	ui_about->Start();
+	ui_console->Start();
 
 	return ret;
 }
@@ -78,7 +81,7 @@ update_status ModuleUI::Update(float dt)
 		{
 			if (MenuItem("Console"))
 			{
-				//TODO SHOW/HIDE CONSOLE PANEL
+				ui_console->is_on = !ui_console->is_on;
 			}
 			if (MenuItem("Configuration"))
 			{

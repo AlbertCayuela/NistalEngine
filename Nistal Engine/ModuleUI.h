@@ -6,6 +6,7 @@
 class UIWindow;
 class UIConfiguration;
 class UIAbout;
+class UIConsole;
 
 class ModuleUI : public Module
 {
@@ -28,4 +29,6 @@ private:
 
 	UIConfiguration* ui_configuration = nullptr;
 	UIAbout* ui_about = nullptr;
+	UIConsole* ui_console = nullptr;
+
 };
