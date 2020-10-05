@@ -3,6 +3,7 @@
 #include "ModuleUI.h"
 #include "ModuleWindow.h"
 #include "UIConfiguration.h"
+#include "UIAbout.h"
 
 #include "ImGui/imconfig.h"
 #include "ImGui/imgui.h"
@@ -25,6 +26,7 @@ using namespace ImGui;
 ModuleUI::ModuleUI(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 	ui_windows.push_back(ui_configuration = new UIConfiguration());
+	ui_windows.push_back(ui_about = new UIAbout());
 }
 
 ModuleUI::~ModuleUI()
@@ -49,6 +51,7 @@ bool ModuleUI::Start()
 	//ui_windows.push_back(ui_configuration = new UIConfiguration());
 
 	ui_configuration->Start();
+	ui_about->Start();
 
 	return ret;
 }
@@ -113,54 +116,12 @@ update_status ModuleUI::Update(float dt)
 			}
 			if (MenuItem("About"))
 			{
-				show_about = !show_about;
+				//show_about = !show_about;
+				ui_about->is_on = !ui_about->is_on;
 			}
 			ImGui::EndMenu();
 		}
-
 		EndMainMenuBar();
-		//show about window
-	}
-
-	if (show_about)
-	{
-		if (Begin("About Nistal Engine"))
-		{
-			//TODO ADD LIBRARY VERSIONS
-			Separator();
-
-			TextWrapped("Nistal Engine");
-
-			Separator();
-
-			TextWrapped("3D Game Engine");
-
-			Separator();
-
-			TextWrapped("By Albert Cayuela and Nadine Gutierrez");
-
-			Separator();
-
-			TextWrapped("Libraries used:");
-
-			Separator();
-
-			TextWrapped("MIT License Copyright (c) 2020 Albert Cayuela and Nadine"
-				"Permission is hereby granted, free of charge, to any person obtaining a copy of this software"
-				"and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify,"
-				"merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:");
-
-			NewLine();
-
-			TextWrapped("The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.");
-
-			NewLine();
-
-			TextWrapped("THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A"
-				"PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,"
-				"WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.");
-		}
-		ImGui::End();
 	}
 
 	for (int i = 0; i < ui_windows.capacity(); i++)

@@ -53,8 +53,8 @@ void UIConfiguration::Draw()
 
 
 	
-	if (ImGui::Begin("Configuration"))
-	{
+	Begin("Configuration", &is_on);
+	
 		if (TreeNode("Options"))
 		{
 			TreePop();
@@ -215,7 +215,6 @@ void UIConfiguration::Draw()
 			SameLine();
 			TextColored(ImVec4(1.0, 1.0f, 0.5f, 1.0f), "%.1f Mb", (dedicated_memory * 0.001));
 		}
-	}
 
 	ImGui::End();
 }

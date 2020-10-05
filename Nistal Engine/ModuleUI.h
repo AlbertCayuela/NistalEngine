@@ -5,6 +5,7 @@
 
 class UIWindow;
 class UIConfiguration;
+class UIAbout;
 
 //#include "imgui/imgui.h"
 //#include "imgui/examples/imgui_impl_sdl.h"
@@ -58,5 +59,5 @@ public:
 private:
 
 	UIConfiguration* ui_configuration = nullptr;
-	//UI functions
+	UIAbout* ui_about = nullptr;
 };
