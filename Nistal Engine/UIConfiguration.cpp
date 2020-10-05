@@ -54,6 +54,8 @@ void UIConfiguration::Draw()
 
 	
 	Begin("Configuration", &is_on);
+	SetNextWindowSize(ImVec2(370, 795), ImGuiCond_Once);
+	SetWindowPos(ImVec2(0, 20), ImGuiCond_Once);
 	
 		if (TreeNode("Options"))
 		{

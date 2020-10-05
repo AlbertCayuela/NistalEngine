@@ -148,6 +148,12 @@ bool ModuleUI::CleanUp()
 	ImGui_ImplSDL2_Shutdown();
 	DestroyContext();
 
+	for (int i = 0; i < ui_windows.capacity(); i++)
+	{
+		ui_windows[i]->~UIWindow();
+	}
+	ui_windows.clear();
+
 	SDL_GL_DeleteContext(App->renderer3D->context);
 	SDL_DestroyWindow(App->window->window);
 	SDL_Quit();
