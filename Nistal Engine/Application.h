@@ -38,6 +38,7 @@ public:
 	bool Init();
 	update_status Update();
 	bool CleanUp();
+
 	void RequestBrowser(const char* url);
 	float GetMS();
 	float GetFPS();
@@ -48,3 +49,4 @@ private:
 	void PrepareUpdate();
 	void FinishUpdate();
 };
+extern Application* App;

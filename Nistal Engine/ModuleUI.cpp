@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "ModuleUI.h"
 #include "ModuleWindow.h"
+#include "UIConfiguration.h"
 
 #include "ImGui/imconfig.h"
 #include "ImGui/imgui.h"
@@ -22,7 +23,9 @@
 using namespace ImGui;
 
 ModuleUI::ModuleUI(Application* app, bool start_enabled) : Module(app, start_enabled)
-{}
+{
+	ui_windows.push_back(ui_configuration = new UIConfiguration());
+}
 
 ModuleUI::~ModuleUI()
 {}
@@ -38,10 +41,14 @@ bool ModuleUI::Start()
 	ImGui_ImplOpenGL3_Init();
 	StyleColorsDark();
 
-	SDL_VERSION(&version);
-	cpu_cache = SDL_GetCPUCacheLineSize();
-	cpu_count = SDL_GetCPUCount();
-	ram = SDL_GetSystemRAM() / 1000;
+	//SDL_VERSION(&version);
+	//cpu_cache = SDL_GetCPUCacheLineSize();
+	//cpu_count = SDL_GetCPUCount();
+	//ram = SDL_GetSystemRAM() / 1000;
+
+	//ui_windows.push_back(ui_configuration = new UIConfiguration());
+
+	ui_configuration->Start();
 
 	return ret;
 }
@@ -60,28 +67,15 @@ update_status ModuleUI::PreUpdate(float dt)
 
 update_status ModuleUI::Update(float dt)
 {
-	//math::Sphere x({ 0,0,0 }, 4);
-	//math::Sphere y({ 0,0,0 }, 7);
-
-	//if (x.Intersects(y))
-	//	LOG("BEEP BEEP!!");
-	GLint total_memory = 0;
-	GLint memory_usage = 0;
-	GLint dedicated_memory = 0;
-	GLint available_memory = 0;
-
-	//hardaware
-	glGetIntegerv(GL_GPU_MEMORY_INFO_TOTAL_AVAILABLE_MEMORY_NVX, &total_memory);
-	glGetIntegerv(GL_GPU_MEMORY_INFO_CURRENT_AVAILABLE_VIDMEM_NVX, &available_memory);
-	glGetIntegerv(GL_GPU_MEMORY_INFO_DEDICATED_VIDMEM_NVX, &dedicated_memory);
-	memory_usage = total_memory - available_memory;
-
+	//show demo window
+	if (show_demo)
+		ShowDemoWindow(&show_demo);
 
 	if (BeginMainMenuBar())
 	{
 		if (BeginMenu("File"))
 		{
-			if (MenuItem("Exit","Alt+F4"))
+			if (MenuItem("Exit", "Alt+F4"))
 			{
 				return UPDATE_STOP;
 			}
@@ -89,14 +83,13 @@ update_status ModuleUI::Update(float dt)
 		}
 		if (BeginMenu("View"))
 		{
-			if (MenuItem("Configuration"))
-			{
-				//TODO SHOW/HIDE CONFIG PANEL
-				show_configuration = !show_configuration;
-			}
 			if (MenuItem("Console"))
 			{
 				//TODO SHOW/HIDE CONSOLE PANEL
+			}
+			if (MenuItem("Configuration"))
+			{
+				ui_configuration->is_on = !ui_configuration->is_on;
 			}
 			ImGui::EndMenu();
 		}
@@ -110,7 +103,7 @@ update_status ModuleUI::Update(float dt)
 			{
 				App->RequestBrowser("https://github.com/AlbertCayuela/NistalEngine/wiki");
 			}
-			if (MenuItem("Download latest")) 
+			if (MenuItem("Download latest"))
 			{
 				App->RequestBrowser("https://github.com/AlbertCayuela/NistalEngine/releases");
 			}
@@ -123,242 +116,59 @@ update_status ModuleUI::Update(float dt)
 				show_about = !show_about;
 			}
 			ImGui::EndMenu();
-		}	
-
-		//show demo window
-		if (show_demo)
-			ShowDemoWindow(&show_demo);
-
-		//show configuration window
-		if (show_configuration)
-		{
-			if (ImGui::Begin("Configuration"), &show_configuration)
-			{
-				if (TreeNode("Options"))
-				{
-					TreePop();
-				}
-
-				if (CollapsingHeader("Application"))
-				{
-					//static char str0[128] = "Nistal Engine";
-					InputText("App Name", "Nistal Engine", NULL);
-					InputText("Organization", "UPC CITM", NULL);
-
-					if (vector_fps.size() != 100)
-					{
-						vector_fps.push_back(App->GetFPS());
-						vector_ms.push_back(App->GetMS());
-					}
-					else
-					{
-						vector_fps.erase(vector_fps.begin());
-						vector_fps.push_back(App->GetFPS());
-
-						vector_ms.erase(vector_ms.begin());
-						vector_ms.push_back(App->GetMS());
-					}
-
-					//Change int to real PC values
-					int zero = 0;
-					//PROGRESS BAR FPS
-				/*	SliderInt("Max FPS", &zero, 0, 100, "0");
-					Text("Limit Framerate: %d", zero);
-
-					struct Funcs
-					{
-						static float Sin(void*, int i) { return sinf(i * 0.1f); }
-						static float Saw(void*, int i) { return (i & 1) ? 1.0f : -1.0f; }
-					};
-					static int func_type = 0, display_count = 70;
-
-					float (*func)(void*, int) = (func_type == 0) ? Funcs::Sin : Funcs::Saw;*/
-
-					//char title_fps[25];
-					//title_fps=("Framerate %.1f", vector_fps[vector_fps.size() - 1]);
-					Text("Framerate %.1f", vector_fps[vector_fps.size() - 1]);
-					PlotHistogram("##framerate", &vector_fps[0], vector_fps.size(), 0, NULL, 0.0f, 100.0f, ImVec2(310, 100));
-					Text("Milliseconds %.1f", vector_ms[vector_ms.size() - 1]);
-					PlotHistogram("##milliseconds", &vector_ms[0], vector_ms.size(), 0, NULL, 0.0f, 40.0f, ImVec2(310, 100));
-					//ImGui::Separator();
-					//ImGui::PlotHistogram("Milliseconds", func, 0, display_count, 0, NULL, -1.0f, 1.0f, ImVec2(0, 100));
-				}
-
-				if (CollapsingHeader("Window"))
-				{
-					int values = 1.000;
-
-					Checkbox("Active", &configuration_window);
-					Text("Icon: *default*");
-					//SliderInt("Brightness", &values, 0, 100, "0");
-					if (SliderFloat("Brightness", &App->window->brightness, 0.0f, 1.0f)) 
-					{
-						SDL_SetWindowBrightness(App->window->window, App->window->brightness);
-						SDL_UpdateWindowSurface(App->window->window);
-					}
-
-					//SliderInt("Width", &values, 0, 100, "0");
-					if (SliderInt("Width", &App->window->width, 1, 2000) || SliderInt("Height", &App->window->height, 1, 2000))
-					{
-						SDL_SetWindowSize(App->window->window, App->window->width, App->window->height);
-						SDL_UpdateWindowSurface(App->window->window);
-					}
-					//SliderInt("Height", &values, 0, 100, "0");
-					if (Checkbox("Fullscreen", &App->window->fullscreen)) 
-					{
-						if (App->window->fullscreen)
-							SDL_SetWindowFullscreen(App->window->window, SDL_WINDOW_FULLSCREEN);
-						else
-							SDL_SetWindowFullscreen(App->window->window, App->window->flags);
-					}
-					if (Checkbox("Borderless", &App->window->borderless)) 
-					{
-						SDL_SetWindowBordered(App->window->window,(SDL_bool)!App->window->borderless);
-					}
-					SameLine();
-					if (Checkbox("Fullscreen Desktop", &App->window->fullscreen_desktop))
-					{
-						if (App->window->fullscreen_desktop)
-							SDL_SetWindowFullscreen(App->window->window, SDL_WINDOW_FULLSCREEN_DESKTOP);
-						else
-							SDL_SetWindowFullscreen(App->window->window, App->window->flags);
-					}
-				}
-
-				if (CollapsingHeader("File System"))
-				{
-					Text("Base Path:");
-					TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "%s", SDL_GetBasePath());
-					Text("Read Paths:");
-					TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), ".");
-					Text("Write Paths:");
-					TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), ".");
-				}
-
-				if (CollapsingHeader("Input"))
-				{
-					Checkbox("Active", &inputActive);
-					Text("Mouse Position:");
-					SameLine();
-					TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "%i,%i", App->input->GetMouseX(), App->input->GetMouseY());
-					Text("Mouse Motion:");
-					SameLine();
-					TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "%i,%i", App->input->GetMouseXMotion(), App->input->GetMouseYMotion());
-					Text("Mouse Wheel:");
-					SameLine();
-					TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "%i", App->input->GetMouseZ());
-					Separator();
-					Text("Show Mouse Historial");
-				}
-
-				if (CollapsingHeader("Hardware"))
-				{
-					Checkbox("Active", &hardwareActive);
-					Text("SDL Version:");
-					SameLine();
-					TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "%d.%d.%d", version.major, version.minor, version.patch);
-					
-					Separator();
-					Text("CPUs:");
-					SameLine();
-					TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "%i (Cache:%ikb)", cpu_count, cpu_cache);
-					Text("System RAM:");
-					SameLine();
-					TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "%iGb", ram);
-					Text("Caps: ");
-					SameLine();
-					if (SDL_HasAVX)
-						TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "AVX");
-					SameLine();
-					if (SDL_HasMMX)
-						TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "MMX");
-					SameLine();
-					if (SDL_HasSSE)
-						TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "SSE");
-					SameLine();
-					if (SDL_HasSSE2)
-						TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "SSE2");
-					SameLine();
-					if (SDL_HasSSE3)
-						TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "SSE3");
-					SameLine();
-					if (SDL_HasSSE41)
-						TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "SSE4");
-					SameLine();
-					if (SDL_HasSSE42)
-						TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "SSE42");
-					SameLine();
-					if (SDL_HasRDTSC)
-						TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "RDTSC");
-
-					Separator();
-					Text("GPU:");
-					SameLine();
-					TextColored(ImVec4(1.0, 1.0f, 0.5f, 1.0f), "%s", glGetString(GL_VENDOR));
-					Text("Brand:");
-					SameLine();
-					TextColored(ImVec4(1.0, 1.0f, 0.5f, 1.0f), "%s", glGetString(GL_RENDERER));
-					Text("VRAM Budget:");
-					SameLine();
-					TextColored(ImVec4(1.0, 1.0f, 0.5f, 1.0f), "%.1f Mb", (total_memory * 0.001));
-					Text("VRAM Usage:");
-					SameLine();
-					TextColored(ImVec4(1.0, 1.0f, 0.5f, 1.0f), "%.1f Mb", (memory_usage * 0.001));
-					Text("VRAM Available:");
-					SameLine();
-					TextColored(ImVec4(1.0, 1.0f, 0.5f, 1.0f), "%.1f Mb", (available_memory * 0.001));
-					Text("GPU:");
-					SameLine();
-					TextColored(ImVec4(1.0, 1.0f, 0.5f, 1.0f), "%.1f Mb", (dedicated_memory * 0.001));
-				}
-			}
-			ImGui::End();
-		}
-
-		//show about window
-		if (show_about)
-		{
-			if (Begin("About Nistal Engine"))
-			{
-				//TODO ADD LIBRARY VERSIONS
-				Separator();
-
-				TextWrapped("Nistal Engine");
-
-				Separator();
-
-				TextWrapped("3D Game Engine");
-
-				Separator();
-
-				TextWrapped("By Albert Cayuela and Nadine Gutierrez");
-
-				Separator();
-
-				TextWrapped("Libraries used:");
-
-				Separator();
-
-				TextWrapped("MIT License Copyright (c) 2020 Albert Cayuela and Nadine"
-					"Permission is hereby granted, free of charge, to any person obtaining a copy of this software"
-					"and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify,"
-					"merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:");
-
-				NewLine();
-
-				TextWrapped("The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.");
-
-				NewLine();
-
-				TextWrapped("THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A"
-					"PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,"
-					"WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.");
-			}
-			ImGui::End();
 		}
 
 		EndMainMenuBar();
+		//show about window
 	}
+
+	if (show_about)
+	{
+		if (Begin("About Nistal Engine"))
+		{
+			//TODO ADD LIBRARY VERSIONS
+			Separator();
+
+			TextWrapped("Nistal Engine");
+
+			Separator();
+
+			TextWrapped("3D Game Engine");
+
+			Separator();
+
+			TextWrapped("By Albert Cayuela and Nadine Gutierrez");
+
+			Separator();
+
+			TextWrapped("Libraries used:");
+
+			Separator();
+
+			TextWrapped("MIT License Copyright (c) 2020 Albert Cayuela and Nadine"
+				"Permission is hereby granted, free of charge, to any person obtaining a copy of this software"
+				"and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify,"
+				"merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:");
+
+			NewLine();
+
+			TextWrapped("The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.");
+
+			NewLine();
+
+			TextWrapped("THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A"
+				"PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,"
+				"WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.");
+		}
+		ImGui::End();
+	}
+
+	for (int i = 0; i < ui_windows.capacity(); i++)
+	{
+		if (ui_windows[i]->IsActive())
+			ui_windows[i]->Draw();
+	}
+
 
 	return UPDATE_CONTINUE;
 }
