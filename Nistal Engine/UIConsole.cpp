@@ -7,6 +7,7 @@
 #include "ImGui/imgui_impl_opengl3.h"
 #include "Glew/include/glew.h"
 #include "UIConsole.h"
+#include "ModuleUI.h"
 
 using namespace ImGui;
 
@@ -36,7 +37,7 @@ void UIConsole::Draw()
 {
 	Begin("Console", &is_on);
 
-	Text("PUT CONSOLE LOGS HERE :D");
+	App->ui->DebugConsole();
 
 	End();
 }

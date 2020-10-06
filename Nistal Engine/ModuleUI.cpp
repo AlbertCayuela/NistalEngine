@@ -152,3 +152,15 @@ bool ModuleUI::CleanUp()
 
 	return true;
 }
+
+void ModuleUI::ConsoleLog(const char* text)
+{
+	debug_console_buff.appendf(text);
+}
+
+void ModuleUI::DebugConsole()
+{
+	BeginChild("Console Log");
+	TextUnformatted(debug_console_buff.begin());
+	EndChild();
+}

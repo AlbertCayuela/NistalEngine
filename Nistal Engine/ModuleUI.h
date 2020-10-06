@@ -2,6 +2,7 @@
 #include "Module.h"
 #include "Globals.h"
 #include "UIWindow.h"
+#include "ImGui/imgui.h"
 
 class UIWindow;
 class UIConfiguration;
@@ -21,9 +22,12 @@ public:
 	update_status PostUpdate(float dt);
 	bool CleanUp();
 
-	bool show_demo = false;
+	void ConsoleLog(const char* text);
+	void DebugConsole();
 
+	bool show_demo = false;
 	std::vector<UIWindow*> ui_windows;
+	ImGuiTextBuffer debug_console_buff;
 
 private:
 

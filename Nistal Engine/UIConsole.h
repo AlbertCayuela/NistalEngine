@@ -18,9 +18,4 @@ public:
 	bool CleanUp();
 };
 
-
-
-
-
-
 #endif // !__UICONSOLE_H__
