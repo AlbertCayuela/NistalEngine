@@ -65,8 +65,11 @@ void UIConfiguration::Draw()
 		if (CollapsingHeader("Application"))
 		{
 			//static char str0[128] = "Nistal Engine";
-			InputText("App Name", "Nistal Engine", NULL);
-			InputText("Organization", "UPC CITM", NULL);
+			static char name[30] = "Nistal Engine";
+			InputText("App Name",  name, ARRAYSIZE(name));
+			App->window->SetTitle(name);
+			static char organization[30] = "UPC CITM";
+			InputText("Organization", organization, ARRAYSIZE(organization));
 
 			if (vector_fps.size() != 100)
 			{
