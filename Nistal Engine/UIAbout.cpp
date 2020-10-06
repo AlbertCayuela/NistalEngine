@@ -50,7 +50,55 @@ void UIAbout::Draw()
 
 		Separator();
 
-		TextWrapped("Libraries used:");
+		if (CollapsingHeader("Libraries used:")) 
+		{
+			Columns(2, NULL);
+			Text("Library");
+			SameLine();
+			NextColumn();
+			Text("Version");
+			NextColumn();
+			if (MenuItem("SDL"))
+				if (IsMouseClicked(0))
+					//App->RequestBrowser("https://www.libsdl.org/download-2.0.php");
+			SameLine();
+			NextColumn();
+			Text("2.0.4");
+
+			NextColumn();
+			if (MenuItem("OpenGL"))
+				if (IsMouseClicked(0))
+					//App->RequestBrowser("");
+			SameLine();
+			NextColumn();
+			Text("");
+
+			NextColumn();
+			if (MenuItem("ImGui"))
+				if (IsMouseClicked(1))
+					//App->RequestBrowser("https://github.com/ocornut/imgui/releases/tag/v1.72");
+			SameLine();
+			NextColumn();
+			Text("1.72");
+
+			NextColumn();
+			if (MenuItem("Glew"))
+				if (IsMouseClicked(0))
+					//App->RequestBrowser("http://glew.sourceforge.net/");
+			SameLine();
+			NextColumn();
+			Text("2.1.0");
+
+			NextColumn();
+			if (MenuItem("MathGeoLib"))
+				if (IsMouseClicked(0))
+					//App->RequestBrowser("https://github.com/juj/MathGeoLib/releases/tag/v1.5");
+			SameLine();
+			NextColumn();
+			Text("1.5");
+
+			Columns(1, NULL);
+		}
 
 		Separator();
 
