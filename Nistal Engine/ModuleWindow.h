@@ -35,6 +35,8 @@ public:
 	bool resizable = false;
 	bool borderless = false;
 	bool fullscreen_desktop = false;
+
+
 };
 
 #endif // __ModuleWindow_H__

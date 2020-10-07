@@ -21,6 +21,8 @@ public:
 	ModuleCamera3D* camera;
 	ModuleUI* ui;
 
+	std::string engine_title;
+
 
 private:
 
@@ -29,6 +31,8 @@ private:
 	float last_FPS = 0.0f;
 	float last_ms = 0.0f;
 	std::list<Module*> list_modules;
+
+	bool showConfig = false;
 
 public:
 
