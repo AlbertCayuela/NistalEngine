@@ -46,20 +46,23 @@ bool Application::Init()
 	JSON_Object* config = nullptr;
 	JSON_Object* config_node = nullptr;
 
+	//config_file = json_parse_file("config.json");
+
 	// Call Init() in all modules
 	//std::list<Module*>::iterator item = list_modules.begin();
 
 	if (config_file)
 	{
 		ret = true;
+
 	}
 
 	//FIX THIS ERRORS:
-	//config = json_value_get_object(config_file);
-	//app_config = json_object_dotget_object(config, "Application");
-	//engine_title = json_object_get_string(app_config, "Engine Name");
+		//config = json_value_get_object(config_file);
+		//app_config = json_object_dotget_object(config, "Application");
+		//engine_title = json_object_get_string(app_config, "Engine Name");
 
-	// Call Init() in all modules
+		// Call Init() in all modules
 	std::list<Module*>::iterator item = list_modules.begin();
 
 	while (item != list_modules.end() && ret == true)
@@ -78,7 +81,8 @@ bool Application::Init()
 		item++;
 	}
 
-	ms_timer.Start();
+	startup_time.Start();
+
 	return ret;
 }
 

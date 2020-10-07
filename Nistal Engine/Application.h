@@ -27,6 +27,7 @@ public:
 private:
 
 	Timer	ms_timer;
+	Timer startup_time;
 	float	dt;
 	float last_FPS = 0.0f;
 	float last_ms = 0.0f;
