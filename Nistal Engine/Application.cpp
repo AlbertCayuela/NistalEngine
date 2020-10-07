@@ -44,7 +44,7 @@ bool Application::Init()
 
 	JSON_Value* config_file = nullptr;
 	JSON_Object* config = nullptr;
-	JSON_Object* app_config = nullptr;
+	JSON_Object* config_node = nullptr;
 
 	// Call Init() in all modules
 	//std::list<Module*>::iterator item = list_modules.begin();
@@ -55,7 +55,7 @@ bool Application::Init()
 	}
 
 	//FIX THIS ERRORS:
-	config = json_value_get_object(config_file);
+	//config = json_value_get_object(config_file);
 	//app_config = json_object_dotget_object(config, "Application");
 	//engine_title = json_object_get_string(app_config, "Engine Name");
 
@@ -64,7 +64,7 @@ bool Application::Init()
 
 	while (item != list_modules.end() && ret == true)
 	{
-		ret = (*item)->Init();
+		ret = (*item)->Init(config_node);
 		item++;
 	}
 

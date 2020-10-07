@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Parson/parson.h"
+
 class Application;
 struct PhysBody3D;
 
@@ -17,7 +19,7 @@ public:
 	virtual ~Module()
 	{}
 
-	virtual bool Init() 
+	virtual bool Init(JSON_Object* node)
 	{
 		return true; 
 	}
