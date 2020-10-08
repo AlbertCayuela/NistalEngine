@@ -30,6 +30,13 @@ public:
 	int cpu_count = 0;
 	int ram = 0;
 
+	//3D Renderer
+	bool depthTest = false;
+	bool cullFace = false;
+	bool lightning = false;
+	bool colorMaterial = false;
+	bool texture2D = false;
+
 
 private:
 	std::vector<float> vector_ms;

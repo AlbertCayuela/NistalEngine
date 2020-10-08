@@ -7,6 +7,9 @@
 #include "ImGui/imgui_impl_sdl.h"
 #include "ImGui/imgui_impl_opengl3.h"
 #include "Glew/include/glew.h"
+#include <gl/GL.h>
+#include <gl/GLU.h>
+
 
 using namespace ImGui;
 
@@ -93,6 +96,45 @@ void UIConfiguration::Draw()
 			PlotHistogram("##milliseconds", &vector_ms[0], vector_ms.size(), 0, NULL, 0.0f, 40.0f, ImVec2(310, 100));
 		}
 
+		if (CollapsingHeader("3D Renderer"))
+		{
+			if (Checkbox("Depth test", &depthTest))
+			{
+				if (depthTest)
+					glDisable(GL_DEPTH_TEST);
+				else
+					glEnable(GL_DEPTH_TEST);
+			}
+			if (Checkbox("Backface culling", &cullFace))
+			{
+				if (cullFace)
+					glDisable(GL_CULL_FACE);
+				else
+					glEnable(GL_CULL_FACE);
+			}
+			if (Checkbox("Lightning", &lightning))
+			{
+				if (lightning)
+					glDisable(GL_LIGHTING);
+				else
+					glEnable(GL_LIGHTING);
+			}
+			if (Checkbox("Color material", &colorMaterial))
+			{
+				if (colorMaterial)
+					glDisable(GL_COLOR_MATERIAL);
+				else
+					glEnable(GL_COLOR_MATERIAL);
+			}
+			if (Checkbox("Texture 2D", &texture2D))
+			{
+				if (texture2D)
+					glDisable(GL_TEXTURE_2D);
+				else
+					glEnable(GL_TEXTURE_2D);
+			}
+		}
+
 		if (CollapsingHeader("Window"))
 		{
 			int values = 1.000;
@@ -166,6 +208,12 @@ void UIConfiguration::Draw()
 			Text("SDL Version:");
 			SameLine();
 			TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "%d.%d.%d", version.major, version.minor, version.patch);
+			Text("OpenGL version supported:");
+			SameLine();
+			TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "%s", glGetString(GL_VERSION));
+			Text("GLSL:");
+			SameLine();
+			TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "%s", glGetString(GL_SHADING_LANGUAGE_VERSION));
 
 			Separator();
 			Text("CPUs:");
