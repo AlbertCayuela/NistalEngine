@@ -33,6 +33,11 @@ update_status ModuleSceneIntro::Update(float dt)
     p.axis = true;
     p.Render();
 
+    Cube testWireframe(1.0f, 1.0f, 1.0f);
+    testWireframe.SetPos(0.0f, 0.5f, 0.0f);
+    testWireframe.wire = true;
+    testWireframe.Render();
+
 
     return UPDATE_CONTINUE;
 }
