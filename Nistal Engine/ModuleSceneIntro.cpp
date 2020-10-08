@@ -35,6 +35,7 @@ update_status ModuleSceneIntro::Update(float dt)
 
     Cube testWireframe(1.0f, 1.0f, 1.0f);
     testWireframe.SetPos(0.0f, 0.5f, 0.0f);
+    testWireframe.color = Yellow;
     testWireframe.wire = true;
     testWireframe.Render();
 
