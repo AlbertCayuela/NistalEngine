@@ -140,7 +140,7 @@ void ModuleSceneIntro::DrawCubeDirectMode()
     glVertex3f(0.0f, 0.0f, 0.0f);//b
     glVertex3f(-1.0f, 0.0f, -1.0f);//e
     glVertex3f(0.0f, 0.0f, -1.0f);//f
-
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glEnd();
 }
 

@@ -133,13 +133,13 @@ void UIConfiguration::Draw()
 				else
 					glEnable(GL_TEXTURE_2D);
 			}
-		/*	if (Checkbox("Wireframe", &wireframe)) 
+			if (Checkbox("Wireframe", &wireframe)) 
 			{
 				if (wireframe)
 					glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 				else
 					glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-			}*/
+			}
 		}
 
 		if (CollapsingHeader("Window"))
