@@ -55,9 +55,16 @@ update_status ModuleSceneIntro::Update(float dt)
 
     glColor3b(255.0f, 0.0f, 0.0f);*/
 
+
+    if (App->ui->render_cube_direct_mode)
+        DrawCubeDirectMode();
+    if (App->ui->render_cube_vertex)
+        DrawCubeVertexArray();
+    if (App->ui->render_cube_indices)
+        DrawCubeIndices();
     //DrawCubeDirectMode();
     //DrawCubeVertexArray();
-    DrawCubeIndices();
+    //DrawCubeIndices();
 
     //unsigned int g_VboHandle = 0;
 

@@ -36,6 +36,7 @@ public:
 	bool lightning = false;
 	bool color_material = false;
 	bool texture2D = false;
+	bool wireframe = false;
 
 
 private:

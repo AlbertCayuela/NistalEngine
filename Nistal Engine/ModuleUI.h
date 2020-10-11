@@ -26,6 +26,9 @@ public:
 	void DebugConsole();
 
 	bool show_demo = false;
+	bool render_cube_direct_mode = false;
+	bool render_cube_vertex = false;
+	bool render_cube_indices = false;
 	std::vector<UIWindow*> ui_windows;
 	ImGuiTextBuffer debug_console_buff;
 

@@ -77,6 +77,16 @@ update_status ModuleUI::Update(float dt)
 			}
 			ImGui::EndMenu();
 		}
+		if (BeginMenu("RenderObject"))
+		{
+			if (CollapsingHeader("Cubes")) 
+			{
+				Checkbox("Cube with direct mode", &render_cube_direct_mode); //functionality in sceneintro update
+				Checkbox("Cube with vertex", &render_cube_vertex);
+				Checkbox("Cube with indices", &render_cube_indices);
+			}
+			ImGui::EndMenu();
+		}
 		if (BeginMenu("View"))
 		{
 			if (MenuItem("Console"))
