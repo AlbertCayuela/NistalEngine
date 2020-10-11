@@ -98,16 +98,16 @@ void UIConfiguration::Draw()
 
 		if (CollapsingHeader("3D Renderer"))
 		{
-			if (Checkbox("Depth test", &depthTest))
+			if (Checkbox("Depth test", &depth_test))
 			{
-				if (depthTest)
+				if (depth_test)
 					glDisable(GL_DEPTH_TEST);
 				else
 					glEnable(GL_DEPTH_TEST);
 			}
-			if (Checkbox("Backface culling", &cullFace))
+			if (Checkbox("Backface culling", &cull_face))
 			{
-				if (cullFace)
+				if (cull_face)
 					glDisable(GL_CULL_FACE);
 				else
 					glEnable(GL_CULL_FACE);
@@ -119,9 +119,9 @@ void UIConfiguration::Draw()
 				else
 					glEnable(GL_LIGHTING);
 			}
-			if (Checkbox("Color material", &colorMaterial))
+			if (Checkbox("Color material", &color_material))
 			{
-				if (colorMaterial)
+				if (color_material)
 					glDisable(GL_COLOR_MATERIAL);
 				else
 					glEnable(GL_COLOR_MATERIAL);

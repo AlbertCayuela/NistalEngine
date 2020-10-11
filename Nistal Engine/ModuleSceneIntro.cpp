@@ -1,6 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleSceneIntro.h"
+#include "ModuleUI.h"
 #include "Primitive.h"
 
 #include "Glew/include/glew.h"
@@ -58,7 +59,6 @@ update_status ModuleSceneIntro::Update(float dt)
 
     //glGenBuffers(1, &g_VboHandle);
     //glBindBuffer();
-
 
     //Creating a cube
     glBegin(GL_TRIANGLES);

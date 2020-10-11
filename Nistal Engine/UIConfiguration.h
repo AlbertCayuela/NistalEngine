@@ -31,10 +31,10 @@ public:
 	int ram = 0;
 
 	//3D Renderer
-	bool depthTest = false;
-	bool cullFace = false;
+	bool depth_test = false;
+	bool cull_face = false;
 	bool lightning = false;
-	bool colorMaterial = false;
+	bool color_material = false;
 	bool texture2D = false;
 
 
