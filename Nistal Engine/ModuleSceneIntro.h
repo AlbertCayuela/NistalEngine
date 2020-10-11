@@ -25,6 +25,7 @@ public:
 
     void DrawCubeDirectMode();
     void DrawCubeVertexArray();
+    void DrawCubeIndices();
 
     //bool show_window = false;
 };
