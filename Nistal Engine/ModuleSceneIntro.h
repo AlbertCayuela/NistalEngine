@@ -23,5 +23,8 @@ public:
     update_status PostUpdate(float dt);
     bool CleanUp();
 
+    void DrawCubeDirectMode();
+    void DrawCubeVertexArray();
+
     //bool show_window = false;
 };

@@ -55,11 +55,33 @@ update_status ModuleSceneIntro::Update(float dt)
 
     glColor3b(255.0f, 0.0f, 0.0f);*/
 
-    unsigned int g_VboHandle = 0;
+    //DrawCubeDirectMode();
+    DrawCubeVertexArray();
+
+    //unsigned int g_VboHandle = 0;
 
     //glGenBuffers(1, &g_VboHandle);
     //glBindBuffer();
 
+    
+    return UPDATE_CONTINUE;
+}
+
+update_status ModuleSceneIntro::PostUpdate(float dt)
+{
+    return UPDATE_CONTINUE;
+}
+
+// Load assets
+bool ModuleSceneIntro::CleanUp()
+{
+    LOG("Unloading Intro scene");
+
+    return true;
+}
+
+void ModuleSceneIntro::DrawCubeDirectMode()
+{
     //Creating a cube
     glBegin(GL_TRIANGLES);
 
@@ -112,20 +134,90 @@ update_status ModuleSceneIntro::Update(float dt)
     glVertex3f(0.0f, 0.0f, -1.0f);//f
 
     glEnd();
-
-    return UPDATE_CONTINUE;
 }
 
-update_status ModuleSceneIntro::PostUpdate(float dt)
+void ModuleSceneIntro::DrawCubeVertexArray() 
 {
-    return UPDATE_CONTINUE;
-}
+    /*float vertices[8 * 3] =
+    * 		0.f, 0.f, 0.f,
+		0.f, 0.f, 1.f,
+		0.f, 1.f, 0.f,
+		0.f, 1.f, 0.f,
+		1.f, 0.f, 0.f,
+		1.f, 0.f, 1.f,
+		1.f, 1.f, 0.f,
+		1.f, 1.f, 1.f
+	};*/
 
-// Load assets
-bool ModuleSceneIntro::CleanUp()
-{
-    LOG("Unloading Intro scene");
+    float vertices[6 * 9 * 2] = // Size its = 6 faces * 9 vertex * 2 triangles 
+    {
+        // Face 1
+        0.f, 0.f, 0.f,
+        0.f, 0.f, 1.f,
+        0.f, 1.f, 0.f,
 
-    return true;
+        0.f, 0.f, 1.f,
+        0.f, 1.f, 1.f,
+        0.f, 1.f, 0.f,
+
+        // Face 2
+        0.f, 0.f, 1.f,
+        1.f, 0.f, 1.f,
+        0.f, 1.f, 1.f,
+
+        1.f, 0.f, 1.f,
+        1.f, 1.f, 1.f,
+        0.f, 1.f, 1.f,
+
+        // Face 3
+        1.f, 0.f, 1.f,
+        1.f, 0.f, 0.f,
+        1.f, 1.f, 0.f,
+
+        1.f, 0.f, 1.f,
+        1.f, 1.f, 0.f,
+        1.f, 1.f, 1.f,
+
+
+        // Face 4
+        1.f, 0.f, 0.f,
+        0.f, 1.f, 0.f,
+        1.f, 1.f, 0.f,
+
+        0.f, 0.f, 0.f,
+        0.f, 1.f, 0.f,
+        1.f, 0.f, 0.f,
+
+
+        // Face 5
+        0.f, 1.f, 0.f,
+        0.f, 1.f, 1.f,
+        1.f, 1.f, 0.f,
+
+        1.f, 1.f, 1.f,
+        1.f, 1.f, 0.f,
+        0.f, 1.f, 1.f,
+
+
+        // Face 6
+        0.f, 0.f, 0.f,
+        1.f, 0.f, 0.f,
+        0.f, 0.f, 1.f,
+
+        1.f, 0.f, 1.f,
+        0.f, 0.f, 1.f,
+        1.f, 0.f, 0.f
+    };
+
+    GLuint my_id = 0;
+    glGenBuffers(1, &my_id);	
+    glBindBuffer(GL_ARRAY_BUFFER, my_id);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6 * 9 * 2, vertices, GL_STATIC_DRAW);// 6 faces * 9 vertex * 2 triangles 
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glBindBuffer(GL_ARRAY_BUFFER, my_id);
+    glVertexPointer(3, GL_FLOAT, 0, NULL);
+    // draw other buffers
+    glDrawArrays(GL_TRIANGLES, 0, (6 * 9 * 2) / 3); // 6 faces * 9 vertex * 2 triangles / 3 vertex per triangle
+    glDisableClientState(GL_VERTEX_ARRAY);
 }
 
