@@ -3,6 +3,7 @@
 #include "ModuleSceneIntro.h"
 #include "ModuleUI.h"
 #include "Primitive.h"
+#include "sphereEngine.h"
 
 #include "Glew/include/glew.h"
 #include "SDL/include/SDL_opengl.h"
@@ -22,7 +23,6 @@ bool ModuleSceneIntro::Start()
 
     //App->camera->Move(vec3(0.0f, 0.0f, 0.0f));
     App->camera->LookAt(vec3(0, 0, 0));
-
     return ret;
 }
 
@@ -71,6 +71,12 @@ update_status ModuleSceneIntro::Update(float dt)
     //glGenBuffers(1, &g_VboHandle);
     //glBindBuffer();
 
+    //TESTING SPHERE RENDERING
+
+    SphereRender mySphere(1, 12, 24);
+
+    if (App->ui->render_sphere)
+        mySphere.DrawSphere(0.0f, 0.0f, 0.0f);
     
     return UPDATE_CONTINUE;
 }

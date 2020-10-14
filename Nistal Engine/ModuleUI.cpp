@@ -85,6 +85,12 @@ update_status ModuleUI::Update(float dt)
 				Checkbox("Cube with vertex", &render_cube_vertex);
 				Checkbox("Cube with indices", &render_cube_indices);
 			}
+
+			if (CollapsingHeader("Spheres"))
+			{
+				Checkbox("Sphere", &render_sphere);
+			}
+
 			ImGui::EndMenu();
 		}
 		if (BeginMenu("View"))

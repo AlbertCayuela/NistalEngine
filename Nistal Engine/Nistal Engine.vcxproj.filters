@@ -28,6 +28,9 @@
     <Filter Include="Sources\Modules\UI">
       <UniqueIdentifier>{83a066f5-104b-4d2d-aeb3-62c656dd7d01}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\PrimitivesEngine">
+      <UniqueIdentifier>{3aab1dc2-5ad4-494a-908f-f2a4890af2f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -309,6 +312,9 @@
     <ClInclude Include="UIConsole.h">
       <Filter>Sources\Modules\UI</Filter>
     </ClInclude>
+    <ClInclude Include="sphereEngine.h">
+      <Filter>Sources\PrimitivesEngine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -478,6 +484,9 @@
     </ClCompile>
     <ClCompile Include="UIConsole.cpp">
       <Filter>Sources\Modules\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="sphereEngine.cpp">
+      <Filter>Sources\PrimitivesEngine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
