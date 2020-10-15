@@ -31,6 +31,9 @@
     <Filter Include="Sources\PrimitivesEngine">
       <UniqueIdentifier>{3aab1dc2-5ad4-494a-908f-f2a4890af2f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Parson">
+      <UniqueIdentifier>{449df797-1b13-48f5-88d6-eae8bcd99356}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -315,6 +318,9 @@
     <ClInclude Include="sphereEngine.h">
       <Filter>Sources\PrimitivesEngine</Filter>
     </ClInclude>
+    <ClInclude Include="Parson\parson.h">
+      <Filter>Sources\Parson</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -487,6 +493,9 @@
     </ClCompile>
     <ClCompile Include="sphereEngine.cpp">
       <Filter>Sources\PrimitivesEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Parson\parson.c">
+      <Filter>Sources\Parson</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
