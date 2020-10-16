@@ -23,7 +23,7 @@ bool ModuleLoadFBX::Start()
     model_node = json_object_dotget_object(App->config, "Model");
     path = json_object_get_string(model_node, "Path");
 
-    LoadFBX(path);
+    //LoadFBX(path);
 
 	return true;
 }
@@ -40,7 +40,7 @@ update_status ModuleLoadFBX::Update(float dt)
 
 update_status ModuleLoadFBX::PostUpdate(float dt)
 {
-    DrawFBX(model);
+    //DrawFBX(model);
 
     return UPDATE_CONTINUE;
 }
