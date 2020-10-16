@@ -48,15 +48,12 @@ bool Application::Init()
 
 	config_file = json_parse_file("config.json");
 
-	// Call Init() in all modules
-
 	if (config_file)
 	{
 		ret = true;
 
 	}
 
-	//FIX THIS ERRORS:
 	config = json_value_get_object(config_file);
 	config_node = json_object_dotget_object(config, "Application");
 	engine_title = json_object_get_string(config_node, "Engine Name");
