@@ -29,6 +29,7 @@ public:
 	bool CleanUp();
 
 	bool LoadFBX(const char* path);
+	void DrawFBX(vertexData model);
 
 public:
 
