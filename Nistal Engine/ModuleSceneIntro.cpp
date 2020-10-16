@@ -2,13 +2,15 @@
 #include "Application.h"
 #include "ModuleSceneIntro.h"
 #include "ModuleUI.h"
-#include "Primitive.h"
 #include "sphereEngine.h"
 
 #include "Glew/include/glew.h"
 #include "SDL/include/SDL_opengl.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
+
+#include "Assimp/include/scene.h"
+#include "Assimp/include/postprocess.h"
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {}
@@ -20,6 +22,10 @@ bool ModuleSceneIntro::Start()
 {
     LOG("Loading Intro assets");
     bool ret = true;
+
+    struct aiLogStream stream;
+    stream = aiGetPredefinedLogStream(aiDefaultLogStream_DEBUGGER, nullptr);
+    aiAttachLogStream(&stream);
 
     //App->camera->Move(vec3(0.0f, 0.0f, 0.0f));
     App->camera->LookAt(vec3(0, 0, 0));
@@ -38,23 +44,6 @@ update_status ModuleSceneIntro::Update(float dt)
     p.axis = true;
     p.Render();
 
-    /*glLineWidth(2.0f);
-
-    glBegin(GL_TRIANGLE_STRIP);
-    glColor3f(0, 1, 0);
-    glVertex3f(0.0f, 0.0f, 0.0f);
-    glColor3f(1, 1, 0);
-    glVertex3f(-2.0f, 2.0f, 0.0f);
-    glColor3f(1, 0, 0);
-    glVertex3f(-4.0f, 0.0f, 0.0f);
-    glColor3f(0, 1, 0);
-    glVertex3f(-6.0f, 2.0f, 0.0f);
-    glColor3f(0, 1, 1);
-    glVertex3f(-8.0f, 0.0f, 0.0f);
-    glEnd();
-
-    glColor3b(255.0f, 0.0f, 0.0f);*/
-
 
     if (App->ui->render_cube_direct_mode)
         DrawCubeDirectMode();
@@ -62,17 +51,8 @@ update_status ModuleSceneIntro::Update(float dt)
         DrawCubeVertexArray();
     if (App->ui->render_cube_indices)
         DrawCubeIndices();
-    //DrawCubeDirectMode();
-    //DrawCubeVertexArray();
-    //DrawCubeIndices();
-
-    //unsigned int g_VboHandle = 0;
-
-    //glGenBuffers(1, &g_VboHandle);
-    //glBindBuffer();
 
     //TESTING SPHERE RENDERING
-
     SphereRender mySphere(1, 12, 24);
 
     if (App->ui->render_sphere)
@@ -90,6 +70,8 @@ update_status ModuleSceneIntro::PostUpdate(float dt)
 bool ModuleSceneIntro::CleanUp()
 {
     LOG("Unloading Intro scene");
+
+    aiDetachAllLogStreams();
 
     return true;
 }

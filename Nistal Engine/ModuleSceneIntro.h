@@ -8,8 +8,21 @@
 #include "MathGeoLib/include/MathBuildConfig.h"
 #include "MathGeoLib/include/MathGeoLibFwd.h"
 
+#include "Assimp/include/cimport.h"
+
 struct PhysBody3D;
 struct PhysMotor3D;
+
+struct vertexData {
+
+    uint id_index = 0; //index in VRAM
+    uint num_index = 0;
+    uint* index = nullptr;
+
+    uint id_vertx = 0; //unique vertex in VRAM
+    uint num_vertex = 0;
+    float* vertex = nullptr;
+};
 
 class ModuleSceneIntro : public Module
 {
@@ -27,5 +40,6 @@ public:
     void DrawCubeVertexArray();
     void DrawCubeIndices();
 
-    //bool show_window = false;
+public:
+    vertexData data;
 };

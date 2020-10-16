@@ -34,6 +34,9 @@
     <Filter Include="Sources\Parson">
       <UniqueIdentifier>{449df797-1b13-48f5-88d6-eae8bcd99356}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Assimp">
+      <UniqueIdentifier>{f2b08ae4-9338-404c-aed4-603a260970ec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -320,6 +323,15 @@
     </ClInclude>
     <ClInclude Include="Parson\parson.h">
       <Filter>Sources\Parson</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\cimport.h">
+      <Filter>Sources\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\scene.h">
+      <Filter>Sources\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\postprocess.h">
+      <Filter>Sources\Assimp</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
