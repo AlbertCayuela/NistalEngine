@@ -24,7 +24,7 @@ bool ModuleSceneIntro::Start()
     LOG("Loading Intro assets");
     bool ret = true;
 
-    App->load_fbx->LoadFBX(App->load_fbx->path);
+    //App->load_fbx->LoadFBX(App->load_fbx->path);
 
     //App->camera->Move(vec3(0.0f, 0.0f, 0.0f));
     App->camera->LookAt(vec3(0, 0, 0));

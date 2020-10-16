@@ -115,6 +115,7 @@ update_status ModuleInput::PreUpdate(float dt)
 			dropped_path = e.drop.file;
 			LOG("FILE DROPPED! FILE PATH:");
 			LOG(dropped_path);
+			App->load_fbx->LoadFBX(dropped_path);
 
 			break;
 
