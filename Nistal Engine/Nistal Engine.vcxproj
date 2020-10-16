@@ -81,6 +81,7 @@
     <ClInclude Include="Assimp\include\postprocess.h" />
     <ClInclude Include="Assimp\include\scene.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="cubeEngine.h" />
     <ClInclude Include="Glew\include\eglew.h" />
     <ClInclude Include="Glew\include\glew.h" />
     <ClInclude Include="Glew\include\glxew.h" />
@@ -179,6 +180,7 @@
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="cubeEngine.cpp" />
     <ClCompile Include="glmath.cpp" />
     <ClCompile Include="ImGui\imgui.cpp" />
     <ClCompile Include="ImGui\imgui_demo.cpp" />

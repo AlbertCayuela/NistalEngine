@@ -339,6 +339,9 @@
     <ClInclude Include="ModuleLoadFBX.h">
       <Filter>Sources\Modules</Filter>
     </ClInclude>
+    <ClInclude Include="cubeEngine.h">
+      <Filter>Sources\PrimitivesEngine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -517,6 +520,9 @@
     </ClCompile>
     <ClCompile Include="ModuleLoadFBX.cpp">
       <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="cubeEngine.cpp">
+      <Filter>Sources\PrimitivesEngine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
