@@ -5,6 +5,9 @@
     "Max FPS": 30,
     "VSYNC": false
   },
+  "Model": {
+    "Path": "Models/warrior.fbx"
+  },
   "Window": {
     "Brightness": 100,
     "Width": 1,

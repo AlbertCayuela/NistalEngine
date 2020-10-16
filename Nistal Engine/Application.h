@@ -23,6 +23,9 @@ public:
 
 	std::string engine_title;
 
+	JSON_Value* config_file = nullptr;
+	JSON_Object* config = nullptr;
+	JSON_Object* config_node = nullptr;
 
 private:
 

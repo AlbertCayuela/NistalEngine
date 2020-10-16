@@ -44,10 +44,6 @@ bool Application::Init()
 {
 	bool ret = true;
 
-	JSON_Value* config_file = nullptr;
-	JSON_Object* config = nullptr;
-	JSON_Object* config_node = nullptr;
-
 	config_file = json_parse_file("config.json");
 
 	// Call Init() in all modules

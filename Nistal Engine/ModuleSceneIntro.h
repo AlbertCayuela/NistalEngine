@@ -9,9 +9,11 @@
 #include "MathGeoLib/include/MathGeoLibFwd.h"
 
 #include "Assimp/include/cimport.h"
+#include "Assimp/include/mesh.h"
 
 struct PhysBody3D;
 struct PhysMotor3D;
+using namespace std;
 
 struct vertexData {
 
@@ -41,5 +43,10 @@ public:
     void DrawCubeIndices();
 
 public:
-    vertexData data;
+    const char* path;
+
+    JSON_Object* model_node = nullptr;
+    aiMesh* mesh;
+    aiMesh* new_mesh;
+    vertexData model;
 };
