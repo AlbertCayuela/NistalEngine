@@ -92,8 +92,24 @@ update_status ModuleSceneIntro::Update(float dt)
             }
         }
         aiReleaseImport(scene);
+        glGenBuffers(1, (GLuint*)&(model.id_vertex));
+        glBindBuffer(GL_ARRAY_BUFFER, model.id_vertex);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(float) * model.num_vertex, model.vertex, GL_STATIC_DRAW);
 
-        //TODO: Draw FBX Model
+        glGenBuffers(1, (GLuint*)&(model.id_index));
+        glBindBuffer(GL_ARRAY_BUFFER, model.id_index);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(float) * model.num_index, model.index, GL_STATIC_DRAW);
+
+        glEnableClientState(GL_VERTEX_ARRAY);
+
+        glBindBuffer(GL_ARRAY_BUFFER, model.id_vertex);
+        glVertexPointer(3, GL_FLOAT, 0, NULL);
+
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model.id_index);
+        glDrawElements(GL_TRIANGLES, model.num_index, GL_UNSIGNED_INT, NULL);
+
+        glDisableClientState(GL_VERTEX_ARRAY);
+
     }
     else
         LOG("Error loading scene %s", path);
