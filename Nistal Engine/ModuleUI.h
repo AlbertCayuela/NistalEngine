@@ -39,4 +39,6 @@ private:
 	UIAbout* ui_about = nullptr;
 	UIConsole* ui_console = nullptr;
 
+	JSON_Object* UI_node = nullptr;
+
 };

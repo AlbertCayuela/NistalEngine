@@ -71,6 +71,12 @@ update_status ModuleUI::Update(float dt)
 	{
 		if (BeginMenu("File"))
 		{
+			if (MenuItem("Load model"))
+			{
+				App->load_fbx->LoadFBX(App->load_fbx->path);
+				App->load_fbx->DrawFBX(App->load_fbx->model);
+			}
+
 			if (MenuItem("Exit", "Alt+F4"))
 			{
 				return UPDATE_STOP;
