@@ -55,7 +55,7 @@ bool ModuleLoadFBX::CleanUp()
 bool ModuleLoadFBX::LoadFBX(const char* file_path)
 {
     //LOADING FBX --------------------------------------------------
-    const aiScene* scene = aiImportFile(file_path, aiProcessPreset_TargetRealtime_MaxQuality);
+    scene = aiImportFile(file_path, aiProcessPreset_TargetRealtime_MaxQuality);
 
     if (scene != nullptr && scene->HasMeshes())
     {
@@ -82,11 +82,28 @@ bool ModuleLoadFBX::LoadFBX(const char* file_path)
                         memcpy(&model.index[i * 3], mesh->mFaces[i].mIndices, 3 * sizeof(uint));
                 }
             }
+
+            if (mesh->HasNormals())
+            {
+                //model.normals = new float[model.num_normals * 3];
+                //memcpy(model.vertex, mesh->mNormals, sizeof(float) * model.num_normals * 3);
+                //LOG("New mesh with %d normals", model.num_normals);
+                //LOG("New mesh with %d ID normals", model.normals);
+
+                model.num_normals = mesh->mNumFaces;
+                model.normals = new aiVector3D[model.num_normals * 3];
+                memcpy(model.normals, mesh->mNormals, sizeof(aiVector3D) * model.num_normals);
+                LOG("New mesh with %d normals", model.num_normals);
+                for (uint i = 0; i < mesh->mNumFaces; i++)
+                {
+                    //Draw normals here
+                }
+                
+            }
         }
         aiReleaseImport(scene);
-
-        //DrawFBX();
     }
+
     else 
     {
         LOG("Error loading scene %s", path);
@@ -98,7 +115,7 @@ bool ModuleLoadFBX::LoadFBX(const char* file_path)
     //--------------------------------------------------------------
 }
 
-void ModuleLoadFBX::DrawFBX(vertexData model)
+void ModuleLoadFBX::DrawFBX(modelData model)
 {
 
     glGenBuffers(1, (GLuint*)&(model.id_vertex));
@@ -119,4 +136,14 @@ void ModuleLoadFBX::DrawFBX(vertexData model)
 
     glDisableClientState(GL_VERTEX_ARRAY);
 
+}
+
+void ModuleLoadFBX::DrawFaceNormals()
+{
+    glLineWidth(2.0f);
+
+    glBegin(GL_LINES);
+    glVertex3f(0.0f, 0.0f, 0.0f);
+    glVertex3f(0.0f, 10.0f, 0.0f);
+    glEnd();
 }
