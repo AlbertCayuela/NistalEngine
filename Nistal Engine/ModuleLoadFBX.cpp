@@ -120,7 +120,7 @@ void ModuleLoadFBX::DrawFBX(modelData model)
 
     glGenBuffers(1, (GLuint*)&(model.id_vertex));
     glBindBuffer(GL_ARRAY_BUFFER, model.id_vertex);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * model.num_vertex, model.vertex, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float)* 3 * model.num_vertex, model.vertex, GL_STATIC_DRAW);
 
     glGenBuffers(1, (GLuint*)&(model.id_index));
     glBindBuffer(GL_ARRAY_BUFFER, model.id_index);
