@@ -67,6 +67,10 @@ bool ModuleLoadFBX::LoadFBX(const char* file_path)
             memcpy(model.vertex, mesh->mVertices, sizeof(float) * model.num_vertex * 3);
             LOG("New mesh with %d vertices", model.num_vertex);
 
+            glGenBuffers(1, (GLuint*)&(model.id_vertex));
+            glBindBuffer(GL_ARRAY_BUFFER, model.id_vertex);
+            glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * model.num_vertex, model.vertex, GL_STATIC_DRAW);
+
             if (mesh->HasFaces())
             {
                 model.num_index = mesh->mNumFaces * 3;
@@ -77,9 +81,14 @@ bool ModuleLoadFBX::LoadFBX(const char* file_path)
                     {
                         LOG("WARNING, geometry face with != 3 indices!");
                     }
-                    else
+                    else 
+                    {
                         //not sure if it's "mesh" at mesh->mFaces[i].mIndices, hmm (it supposed to be a new mesh)
                         memcpy(&model.index[i * 3], mesh->mFaces[i].mIndices, 3 * sizeof(uint));
+                        glGenBuffers(1, (GLuint*)&(model.id_index));
+                        glBindBuffer(GL_ARRAY_BUFFER, model.id_index);
+                        glBufferData(GL_ARRAY_BUFFER, sizeof(float) * model.num_index, model.index, GL_STATIC_DRAW);
+                    }
                 }
             }
 
@@ -118,13 +127,6 @@ bool ModuleLoadFBX::LoadFBX(const char* file_path)
 void ModuleLoadFBX::DrawFBX(modelData model)
 {
 
-    glGenBuffers(1, (GLuint*)&(model.id_vertex));
-    glBindBuffer(GL_ARRAY_BUFFER, model.id_vertex);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float)* 3 * model.num_vertex, model.vertex, GL_STATIC_DRAW);
-
-    glGenBuffers(1, (GLuint*)&(model.id_index));
-    glBindBuffer(GL_ARRAY_BUFFER, model.id_index);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * model.num_index, model.index, GL_STATIC_DRAW);
 
     glEnableClientState(GL_VERTEX_ARRAY);
 
