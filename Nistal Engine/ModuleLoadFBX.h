@@ -32,8 +32,11 @@ public:
 	bool CleanUp();
 
 	bool LoadFBX(const char* path);
+	void AddFBX();
 	void DrawFBX(modelData model);
 	void DrawFaceNormals();
+	void LoadMeshes(const aiScene* scene);
+	void LoadIndices(aiMesh* scene);
 
 public:
 
