@@ -41,7 +41,7 @@ update_status ModuleCamera3D::Update(float dt)
 	// Now we can make this movememnt frame rate independant!
 
 	vec3 newPos(0,0,0);
-	float speed = 6.0f * dt;
+	float speed = 4.0f * dt;
 	if(App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
 		speed = 8.0f * dt;
 
@@ -107,6 +107,10 @@ update_status ModuleCamera3D::Update(float dt)
 		Position -= newPos;
 		Reference -= newPos;
 	}
+
+	//TODO FOCUS CAMERA ON OBJECT WHEN PRESSING F
+	if (App->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN)
+		Look(Position, vec3(0, 0, 0));
 
 	// Recalculate matrix -------------
 	CalculateViewMatrix();
