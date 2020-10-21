@@ -33,6 +33,8 @@ public:
 	std::vector<UIWindow*> ui_windows;
 	ImGuiTextBuffer debug_console_buff;
 
+	bool render_normals = false;
+
 private:
 
 	UIConfiguration* ui_configuration = nullptr;

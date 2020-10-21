@@ -73,10 +73,11 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene)
 {
     for (uint i = 0; i < scene->mNumMeshes; i++)
     {
+        //loading vertices
         mesh = scene->mMeshes[i];
         model.num_vertex = mesh->mNumVertices;
-        model.vertex = new float[mesh->mNumVertices * 3];
-        memcpy(model.vertex, mesh->mVertices, sizeof(float) * model.num_vertex * 3);
+        model.vertices = new float[mesh->mNumVertices * 3];
+        memcpy(model.vertices, mesh->mVertices, sizeof(float) * model.num_vertex * 3);
         LOG("New mesh with %d vertices", model.num_vertex);
 
         if (mesh->HasFaces())
@@ -85,21 +86,37 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene)
         }
         if (mesh->HasNormals())
         {
-            //model.normals = new float[model.num_normals * 3];
-            //memcpy(model.vertex, mesh->mNormals, sizeof(float) * model.num_normals * 3);
-            //LOG("New mesh with %d normals", model.num_normals);
-            //LOG("New mesh with %d ID normals", model.normals);
+            model.normals = new aiVector3D[mesh->mNumVertices];
+            memcpy(model.normals, mesh->mNormals, sizeof(aiVector3D) * mesh->mNumVertices);
+        }
 
-            model.num_normals = mesh->mNumFaces;
-            model.normals = new aiVector3D[model.num_normals * 3];
-            memcpy(model.normals, mesh->mNormals, sizeof(aiVector3D) * model.num_normals);
-            LOG("New mesh with %d normals", model.num_normals);
-            for (uint i = 0; i < mesh->mNumFaces; i++)
-            {
-                //Draw normals here 
-            }
+        //loading normals
+        model.num_faces = mesh->mNumFaces;
+        model.faces_normals = new float3[mesh->mNumFaces];
+        model.face_middle = new float3[mesh->mNumFaces];
+
+        for (uint i = 0; i < model.num_index; i += 3)
+        {
+            uint index = model.indices[i];
+            float3 vertex1 = { model.vertices[index * 3], model.vertices[index * 3 + 1] , model.vertices[index * 3 + 2] };
+            index = model.indices[i + 1];
+
+            float3 vertex2 = { model.vertices[index * 3], model.vertices[index * 3 + 1] , model.vertices[index * 3 + 2] };
+            index = model.indices[i + 2];
+
+            float3 vertex3 = { model.vertices[index * 3], model.vertices[index * 3 + 1] , model.vertices[index * 3 + 2] };
+
+            float3 vector1 = vertex2 - vertex1;
+            float3 vector2 = vertex3 - vertex1;
+
+            model.faces_normals[i / 3] = Cross(vector1, vector2);
+            model.faces_normals[i / 3].Normalize();
+            model.face_middle[i / 3] = { (vertex1.x + vertex2.x + vertex3.x) / 3, (vertex1.y + vertex2.y + vertex3.y) / 3, (vertex1.z + vertex2.z + vertex3.z) / 3 };
 
         }
+        //glGenBuffers(1, (GLuint*)&(model.id_index));
+        //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model.id_index);
+        //glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * mesh->mNumFaces * 3, model.index, GL_STATIC_DRAW);
     }
 
     AddFBX(); //Creates buffers
@@ -116,31 +133,37 @@ void ModuleLoadFBX::DrawFBX(modelData model)
     glDisableClientState(GL_VERTEX_ARRAY);
 }
 
-void ModuleLoadFBX::DrawFaceNormals()
+void ModuleLoadFBX::DrawNormals(modelData model)
 {
-    glLineWidth(2.0f);
+    glColor3f(0, 1, 0.77f);
+    float lenght = 0.5f;
 
-    glBegin(GL_LINES);
-    glVertex3f(0.0f, 0.0f, 0.0f);
-    glVertex3f(0.0f, 10.0f, 0.0f);
-    glEnd();
+    for (uint i = 0; i < mesh->mNumFaces; i++)
+    {
+        glBegin(GL_LINES);
+        glVertex3f(model.face_middle [i].x, model.face_middle[i].y, model.face_middle[i].z);
+        glVertex3f(model.face_middle[i].x + model.faces_normals[i].x * lenght, model.face_middle[i].y + model.faces_normals[i].y * lenght, model.face_middle[i].z + model.faces_normals[i].z * lenght);
+        glEnd();
+    }
+
+    glColor3f(1, 1, 1);    
 }
 
 void ModuleLoadFBX::AddFBX()
 {
     glGenBuffers(1, (GLuint*)&(model.id_vertex));
     glBindBuffer(GL_ARRAY_BUFFER, model.id_vertex);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * model.num_vertex, model.vertex, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * model.num_vertex, model.vertices, GL_STATIC_DRAW);
 
     glGenBuffers(1, (GLuint*)&(model.id_index));
     glBindBuffer(GL_ARRAY_BUFFER, model.id_index);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * model.num_index, model.index, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * model.num_index, model.indices, GL_STATIC_DRAW);
 }
 
 void ModuleLoadFBX::LoadIndices(aiMesh* mesh)
 {
     model.num_index = mesh->mNumFaces * 3;
-    model.index = new uint[model.num_index]; //assume each face is a triangle
+    model.indices = new uint[model.num_index]; //assume each face is a triangle
     for (uint i = 0; i < mesh->mNumFaces; i++)
     {
         if (mesh->mFaces[i].mNumIndices != 3)
@@ -150,7 +173,7 @@ void ModuleLoadFBX::LoadIndices(aiMesh* mesh)
         else
         {
             //not sure if it's "mesh" at mesh->mFaces[i].mIndices, hmm (it supposed to be a new mesh)
-            memcpy(&model.index[i * 3], mesh->mFaces[i].mIndices, 3 * sizeof(uint));
+            memcpy(&model.indices[i * 3], mesh->mFaces[i].mIndices, 3 * sizeof(uint));
 
         }
     }
