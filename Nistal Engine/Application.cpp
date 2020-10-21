@@ -12,6 +12,7 @@ Application::Application()
 	camera = new ModuleCamera3D(this);
 	ui = new ModuleUI(this);
 	load_fbx = new ModuleLoadFBX(this);
+	file_system = new ModuleFS(this, ASSETS_FOLDER);
 	
 	
 
@@ -23,6 +24,7 @@ Application::Application()
 	AddModule(window);
 	AddModule(camera);
 	AddModule(input);
+	AddModule(file_system);
 	AddModule(load_fbx);
 	
 	// Scenes

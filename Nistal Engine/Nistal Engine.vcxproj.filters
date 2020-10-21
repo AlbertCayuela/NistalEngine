@@ -189,9 +189,6 @@
     <ClInclude Include="MathGeoLib\include\Geometry\GeomType.h">
       <Filter>Sources\Libs\MathGeoLib</Filter>
     </ClInclude>
-    <ClInclude Include="Globals.h">
-      <Filter>Sources\Libs\MathGeoLib</Filter>
-    </ClInclude>
     <ClInclude Include="MathGeoLib\include\Geometry\HitInfo.h">
       <Filter>Sources\Libs\MathGeoLib</Filter>
     </ClInclude>
@@ -341,6 +338,12 @@
     </ClInclude>
     <ClInclude Include="cubeEngine.h">
       <Filter>Sources\PrimitivesEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleFS.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Globals.h">
+      <Filter>Sources\Tools</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -523,6 +526,9 @@
     </ClCompile>
     <ClCompile Include="cubeEngine.cpp">
       <Filter>Sources\PrimitivesEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleFS.cpp">
+      <Filter>Sources\Modules</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

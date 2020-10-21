@@ -10,6 +10,7 @@
 #include "ModuleCamera3D.h"
 #include "ModuleUI.h"
 #include "ModuleLoadFBX.h"
+#include "ModuleFS.h"
 #include <list>
 
 class Application
@@ -22,6 +23,7 @@ public:
 	ModuleCamera3D* camera;
 	ModuleUI* ui;
 	ModuleLoadFBX* load_fbx;
+	ModuleFS* file_system;
 
 	std::string engine_title;
 
