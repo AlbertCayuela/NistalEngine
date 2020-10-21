@@ -62,7 +62,11 @@ update_status ModuleSceneIntro::Update(float dt)
 
     //DRAWING MODEL PROPERTIES
     if (App->ui->render_normals)
+    {
         App->load_fbx->DrawNormals(App->load_fbx->model);
+        App->load_fbx->DrawVertexNormals(App->load_fbx->model);
+    }
+        
 
     return UPDATE_CONTINUE;
 }

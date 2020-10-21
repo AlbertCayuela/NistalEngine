@@ -149,6 +149,22 @@ void ModuleLoadFBX::DrawNormals(modelData model)
     glColor3f(1, 1, 1);    
 }
 
+void ModuleLoadFBX::DrawVertexNormals(modelData model)
+{
+    glColor3f(1.0f, 0.0f, 0.0f);
+    uint j = 0;
+    float lenght = 0.5f;
+    for (uint i = 0; i < model.num_vertex * 3; i += 3)
+    {
+        glBegin(GL_LINES);
+        glVertex3f(model.vertices[i], model.vertices[i + 1], model.vertices[i + 2]);
+        glVertex3f(model.vertices[i] + model.normals[j].x * lenght, model.vertices[i + 1] + model.normals[j].y * lenght, model.vertices[i + 2] + model.normals[j].z * lenght);
+        ++j;
+        glEnd();
+    }
+    glColor3f(1, 1, 1);
+}
+
 void ModuleLoadFBX::AddFBX()
 {
     glGenBuffers(1, (GLuint*)&(model.id_vertex));

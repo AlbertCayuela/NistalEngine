@@ -38,9 +38,10 @@ public:
 	bool LoadFBX(const char* path);
 	void AddFBX();
 	void DrawFBX(modelData model);
-	void DrawNormals(modelData model);
 	void LoadMeshes(const aiScene* scene);
 	void LoadIndices(aiMesh* scene);
+	void DrawNormals(modelData model);
+	void DrawVertexNormals(modelData model);
 
 public:
 
