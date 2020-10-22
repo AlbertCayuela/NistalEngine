@@ -3,12 +3,22 @@
 #include "Assimp/include/scene.h"
 #include "Assimp/include/postprocess.h"
 #include "Glew/include/glew.h"
+#include "Devil/include/il.h"
+#include "Devil/include/ilu.h"
+#include "Devil/include/ilut.h"
 
 #pragma comment (lib, "Assimp/libx86/assimp.lib")
+#pragma comment (lib, "Devil/libx86/DevIL.lib")
+#pragma comment (lib, "Devil/libx86/ILU.lib")
+#pragma comment (lib, "Devil/libx86/ILUT.lib")
+
 
 
 ModuleLoadFBX::ModuleLoadFBX(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
+    ilInit();
+    iluInit();
+    ilutInit();
 }
 
 ModuleLoadFBX::~ModuleLoadFBX()
@@ -24,6 +34,22 @@ bool ModuleLoadFBX::Start()
     path = json_object_get_string(model_node, "Path");
 
     //LoadFBX(path);
+
+    //TEXTURES
+    GLuint texture;
+    bool testing = ilLoadImage("Models/lenna.png");
+    int width = ilGetInteger(IL_IMAGE_WIDTH);
+    int height = ilGetInteger(IL_IMAGE_HEIGHT);
+    //ilutRenderer(ILUT_OPENGL);
+
+    texture = ilutGLBindTexImage();
+    glBindTexture(GL_TEXTURE_2D, texture);
+    if (testing) {
+        LOG("LENA LOADED");
+    }
+    else {
+        LOG("LENA NOT LOADED");
+    }
 
 	return true;
 }
@@ -194,4 +220,3 @@ void ModuleLoadFBX::LoadIndices(aiMesh* mesh)
         }
     }
 }
-

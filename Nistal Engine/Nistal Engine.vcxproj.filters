@@ -40,6 +40,9 @@
     <Filter Include="Sources\Libs\Assimp">
       <UniqueIdentifier>{f2b08ae4-9338-404c-aed4-603a260970ec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Libs\Devil">
+      <UniqueIdentifier>{36f2ebce-0163-41eb-9b4b-c93f072423de}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -344,6 +347,33 @@
     </ClInclude>
     <ClInclude Include="Globals.h">
       <Filter>Sources\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Devil\include\config.h">
+      <Filter>Sources\Libs\Devil</Filter>
+    </ClInclude>
+    <ClInclude Include="Devil\include\devil_cpp_wrapper.hpp">
+      <Filter>Sources\Libs\Devil</Filter>
+    </ClInclude>
+    <ClInclude Include="Devil\include\devil_internal_exports.h">
+      <Filter>Sources\Libs\Devil</Filter>
+    </ClInclude>
+    <ClInclude Include="Devil\include\il.h">
+      <Filter>Sources\Libs\Devil</Filter>
+    </ClInclude>
+    <ClInclude Include="Devil\include\ilu.h">
+      <Filter>Sources\Libs\Devil</Filter>
+    </ClInclude>
+    <ClInclude Include="Devil\include\ilut.h">
+      <Filter>Sources\Libs\Devil</Filter>
+    </ClInclude>
+    <ClInclude Include="Devil\include\ilut_config.h">
+      <Filter>Sources\Libs\Devil</Filter>
+    </ClInclude>
+    <ClInclude Include="Devil\include\ilu_region.h">
+      <Filter>Sources\Libs\Devil</Filter>
+    </ClInclude>
+    <ClInclude Include="Devil\include\il_wrap.h">
+      <Filter>Sources\Libs\Devil</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
