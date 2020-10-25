@@ -34,6 +34,7 @@ public:
 	ImGuiTextBuffer debug_console_buff;
 
 	bool render_normals = false;
+	bool render_texture = false;
 
 private:
 

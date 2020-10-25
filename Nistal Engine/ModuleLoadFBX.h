@@ -2,9 +2,15 @@
 
 #include "Module.h"
 #include "Globals.h"
+#include <map>
+
+#include "Glew/include/glew.h"
+
+class Texture;
 
 struct modelData {
 
+public:
 	uint id_index = 0u; //index in VRAM
 	uint num_index = 0u;
 	uint* indices = nullptr;
@@ -20,6 +26,16 @@ struct modelData {
 	uint num_faces = 0u;
 	float3* faces_normals = nullptr;
 	float3* face_middle = nullptr;
+
+	//texture
+	uint id_uv = 0u;
+	uint num_uv_components = 0u;
+	float* uv_coord = nullptr;
+
+	uint id_texture = 0u;
+
+public:
+	
 };
 
 class ModuleLoadFBX : public Module
@@ -42,14 +58,22 @@ public:
 	void LoadIndices(aiMesh* scene);
 	void DrawNormals(modelData model);
 	void DrawVertexNormals(modelData model);
+	Texture* LoadTexture(const char* path);
+	//void DrawTexture(modelData model);
 
 public:
 
 	const char* path;
+	const char* texture_path = nullptr;
 	const aiScene* scene;
 
 	JSON_Object* model_node = nullptr;
 	aiMesh* mesh;
 	aiMesh* new_mesh;
 	modelData model;
+	//TODO: FBX modelData array
+	GLuint texture;
+
+	//TEXTURES
+	map<const char*, Texture*> textures;
 };

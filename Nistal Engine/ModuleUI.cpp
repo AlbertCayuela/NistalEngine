@@ -76,6 +76,9 @@ update_status ModuleUI::Update(float dt)
 				App->load_fbx->LoadFBX(App->load_fbx->path);
 				App->load_fbx->DrawFBX(App->load_fbx->model);
 				App->load_fbx->DrawNormals(App->load_fbx->model);
+				//DRAW TEXTURE THROUGH FILE
+				App->load_fbx->LoadTexture(App->load_fbx->texture_path);
+				//App->load_fbx->DrawTexture(App->load_fbx->model);
 			}
 
 			if (MenuItem("Exit", "Alt+F4"))
@@ -105,6 +108,7 @@ update_status ModuleUI::Update(float dt)
 			if (CollapsingHeader("Model Properties"))
 			{
 				Checkbox("Draw normals", &render_normals);
+				Checkbox("Draw texture", &render_texture);
 			}
 			if (MenuItem("Console"))
 			{

@@ -7,6 +7,7 @@
 #include "ImGui/imgui_impl_sdl.h"
 #include "ImGui/imgui_impl_opengl3.h"
 #include "Glew/include/glew.h"
+#include "Devil/include/ilut.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
 
@@ -126,7 +127,7 @@ void UIConfiguration::Draw()
 			if (Checkbox("Texture 2D", &texture2D))
 			{
 				if (texture2D)
-					glDisable(GL_TEXTURE_2D);
+					glDisable(GL_TEXTURE_2D);					
 				else
 					glEnable(GL_TEXTURE_2D);
 			}
@@ -137,6 +138,7 @@ void UIConfiguration::Draw()
 				else
 					glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 			}
+			//TODO: View Wireframe + Mesh
 		}
 
 		if (CollapsingHeader("Window"))

@@ -66,7 +66,11 @@ update_status ModuleSceneIntro::Update(float dt)
         App->load_fbx->DrawNormals(App->load_fbx->model);
         App->load_fbx->DrawVertexNormals(App->load_fbx->model);
     }
-        
+
+    if (App->ui->render_texture)
+    {
+        //App->load_fbx->DrawTexture(App->load_fbx->model);
+    }        
 
     return UPDATE_CONTINUE;
 }
