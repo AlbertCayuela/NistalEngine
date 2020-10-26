@@ -3,7 +3,7 @@
 #include "ModuleSceneIntro.h"
 #include "ModuleUI.h"
 #include "sphereEngine.h"
-#include "cubeEngine.h"
+
 
 #include "Glew/include/glew.h"
 #include "SDL/include/SDL_opengl.h"
@@ -45,10 +45,13 @@ update_status ModuleSceneIntro::Update(float dt)
     p.Render();
 
     //TESTING CUBES
-    CubeRender my_cube;
+        
 
-    if(App->ui->render_cube_direct_mode)
-        my_cube.DrawCubeDirectMode();
+    if (App->ui->render_cube_direct_mode)
+    {
+        App->load_fbx->DrawTexture();
+    }        
+
     if (App->ui->render_cube_vertex)
         my_cube.DrawCubeVertexArray();
     if (App->ui->render_cube_indices)

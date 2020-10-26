@@ -3,6 +3,7 @@
 #include "Globals.h"
 #include "Primitive.h"
 #include "ImGui/imconfig.h"
+#include "cubeEngine.h"
 
 #include "MathGeoLib/include/MathGeoLib.h"
 #include "MathGeoLib/include/MathBuildConfig.h"
@@ -26,4 +27,6 @@ public:
     update_status Update(float dt);
     update_status PostUpdate(float dt);
     bool CleanUp();
+
+    CubeRender my_cube;
 };

@@ -6,8 +6,8 @@
 
 #include "Glew/include/glew.h"
 
-#define CHECKERS_WIDTH 50
-#define CHECKERS_HEIGHT 50
+#define CHECKERS_WIDTH 64
+#define CHECKERS_HEIGHT 64
 
 class Texture;
 
@@ -62,7 +62,7 @@ public:
 	void DrawNormals(modelData model);
 	void DrawVertexNormals(modelData model);
 	bool LoadTexture(modelData model, const char* path);
-	//void DrawTexture(modelData model);
+	void DrawTexture();
 
 public:
 

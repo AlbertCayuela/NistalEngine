@@ -39,16 +39,27 @@ bool ModuleLoadFBX::Start()
 
     //Checker texture:
     
-    GLubyte checkerImage[CHECKERS_HEIGHT][CHECKERS_WIDTH][4];
+    GLubyte checkImage[CHECKERS_HEIGHT][CHECKERS_WIDTH][4];
     for (int i = 0; i < CHECKERS_HEIGHT; i++) {
         for (int j = 0; j < CHECKERS_WIDTH; j++) {
             int c = ((((i & 0x8) == 0) ^ (((j & 0x8)) == 0))) * 255;
-            checkerImage[i][j][0] = (GLubyte)c;
-            checkerImage[i][j][1] = (GLubyte)c;
-            checkerImage[i][j][2] = (GLubyte)c;
-            checkerImage[i][j][3] = (GLubyte)255;
+            checkImage[i][j][0] = (GLubyte)c;
+            checkImage[i][j][1] = (GLubyte)c;
+            checkImage[i][j][2] = (GLubyte)c;
+            checkImage[i][j][3] = (GLubyte)255;
         }
     }
+
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+    glGenTextures(1, &App->load_fbx->texture);
+    glBindTexture(GL_TEXTURE_2D, App->load_fbx->texture);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_R, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, CHECKERS_WIDTH, CHECKERS_HEIGHT,
+        0, GL_RGBA, GL_UNSIGNED_BYTE, checkImage);
 
     //put here LoadTexture();
 
@@ -145,7 +156,7 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene)
         }
     
         //loading textures
-        if (mesh->HasTextureCoords(0))
+        /*if (mesh->HasTextureCoords(0))
         {
             model.num_uv_components = mesh->mNumUVComponents[0];
             if (model.num_uv_components == 2)
@@ -156,7 +167,7 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene)
                     memcpy(&model.uv_coord[i * model.num_uv_components], &mesh->mTextureCoords[0][i], sizeof(float*) * model.num_uv_components);
                 }
             }
-        }
+        }*/
     
     }
 
@@ -206,26 +217,14 @@ void ModuleLoadFBX::DrawVertexNormals(modelData model)
     glColor3f(1, 1, 1);
 }
 
-/*void ModuleLoadFBX::DrawTexture(modelData model)
+void ModuleLoadFBX::DrawTexture()
 {
-    glGenBuffers(1, &model.id_vertex);
-    glBindBuffer(GL_ARRAY_BUFFER, model.id_vertex);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * model.num_vertex * 3, model.vertices, GL_STATIC_DRAW);
-
-    if (model.num_faces > 0)
-    {
-        glGenBuffers(1, &model.id_index);
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model.id_index);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * model.num_faces * 3, model.indices, GL_STATIC_DRAW);
-    }
-
-    if (model.uv_coord > 0)
-    {
-        glGenBuffers(1, &model.id_uv);
-        glBindBuffer(GL_ARRAY_BUFFER, model.id_uv);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(float) * model.num_uv_components * model.num_vertex, &model.uv_coord[0], GL_STATIC_DRAW);
-    }
-}*/
+    glEnable(GL_TEXTURE_2D);
+    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL); //color white
+    glBindTexture(GL_TEXTURE_2D, App->load_fbx->texture);
+    App->scene_intro->my_cube.DrawCubeDirectMode();
+    glDisable(GL_TEXTURE_2D);
+}
 
 bool ModuleLoadFBX::LoadTexture(modelData model, const char* path)
 {
