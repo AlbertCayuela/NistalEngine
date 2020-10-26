@@ -77,8 +77,8 @@ update_status ModuleUI::Update(float dt)
 				App->load_fbx->DrawFBX(App->load_fbx->model);
 				App->load_fbx->DrawNormals(App->load_fbx->model);
 				//DRAW TEXTURE THROUGH FILE
-				App->load_fbx->LoadTexture(App->load_fbx->model, App->load_fbx->texture_path);
-				//App->load_fbx->DrawTexture(App->load_fbx->model);
+				App->texture->LoadTexture(App->load_fbx->model, App->texture->texture_path);
+				//App->texture->DrawTexture();
 			}
 
 			if (MenuItem("Exit", "Alt+F4"))

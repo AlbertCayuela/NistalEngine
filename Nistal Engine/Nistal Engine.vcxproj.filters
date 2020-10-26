@@ -375,6 +375,9 @@
     <ClInclude Include="Devil\include\il_wrap.h">
       <Filter>Sources\Libs\Devil</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleTexture.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -558,6 +561,9 @@
       <Filter>Sources\PrimitivesEngine</Filter>
     </ClCompile>
     <ClCompile Include="ModuleFS.cpp">
+      <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleTexture.cpp">
       <Filter>Sources\Modules</Filter>
     </ClCompile>
   </ItemGroup>

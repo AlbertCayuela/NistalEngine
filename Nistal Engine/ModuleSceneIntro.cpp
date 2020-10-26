@@ -25,7 +25,6 @@ bool ModuleSceneIntro::Start()
     LOG("Loading Intro assets");
     bool ret = true;
 
-    //App->load_fbx->LoadFBX(App->load_fbx->path);
 
     //App->camera->Move(vec3(0.0f, 0.0f, 0.0f));
     App->camera->LookAt(vec3(0, 0, 0));
@@ -45,11 +44,10 @@ update_status ModuleSceneIntro::Update(float dt)
     p.Render();
 
     //TESTING CUBES
-        
 
     if (App->ui->render_cube_direct_mode)
     {
-        App->load_fbx->DrawTexture();
+        App->texture->DrawTexture();
     }        
 
     if (App->ui->render_cube_vertex)
@@ -72,7 +70,7 @@ update_status ModuleSceneIntro::Update(float dt)
 
     if (App->ui->render_texture)
     {
-        //App->load_fbx->DrawTexture(App->load_fbx->model);
+        //App->texture->DrawTexture();
     }        
 
     return UPDATE_CONTINUE;

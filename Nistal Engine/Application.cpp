@@ -13,7 +13,7 @@ Application::Application()
 	ui = new ModuleUI(this);
 	load_fbx = new ModuleLoadFBX(this);
 	file_system = new ModuleFS(this, ASSETS_FOLDER);
-	
+	texture = new ModuleTexture(this);
 	
 
 	// The order of calls is very important!
@@ -29,6 +29,7 @@ Application::Application()
 	
 	// Scenes
 	AddModule(scene_intro);
+	AddModule(texture);
 	AddModule(ui);
 
 	// Renderer last!

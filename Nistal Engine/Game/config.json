@@ -6,7 +6,9 @@
     "VSYNC": false
   },
   "Model": {
-    "Path": "Models/BakerHouse.fbx",
+    "Path": "Models/BakerHouse.fbx"    
+  },
+  "Texture": {
     "Texture Path": "Textures/Baker_house.png"
   },
   "Window": {

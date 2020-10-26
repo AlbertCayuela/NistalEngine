@@ -31,14 +31,11 @@ public:
 	float3* face_middle = nullptr;
 
 	//texture
-	uint id_uv = 0u;
+	/*uint id_uv = 0u;
 	uint num_uv_components = 0u;
 	float* uv_coord = nullptr;
 
-	uint id_texture = 0u;
-
-public:
-	
+	uint id_texture = 0u;*/
 };
 
 class ModuleLoadFBX : public Module
@@ -61,13 +58,10 @@ public:
 	void LoadIndices(aiMesh* scene);
 	void DrawNormals(modelData model);
 	void DrawVertexNormals(modelData model);
-	bool LoadTexture(modelData model, const char* path);
-	void DrawTexture();
 
 public:
 
 	const char* path;
-	const char* texture_path = nullptr;
 	const aiScene* scene;
 
 	JSON_Object* model_node = nullptr;
