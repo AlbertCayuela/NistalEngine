@@ -6,6 +6,9 @@
 
 #include "Glew/include/glew.h"
 
+#define CHECKERS_WIDTH 50
+#define CHECKERS_HEIGHT 50
+
 class Texture;
 
 struct modelData {
@@ -58,7 +61,7 @@ public:
 	void LoadIndices(aiMesh* scene);
 	void DrawNormals(modelData model);
 	void DrawVertexNormals(modelData model);
-	Texture* LoadTexture(const char* path);
+	bool LoadTexture(modelData model, const char* path);
 	//void DrawTexture(modelData model);
 
 public:
@@ -73,7 +76,9 @@ public:
 	modelData model;
 	//TODO: FBX modelData array
 	GLuint texture;
+	GLubyte* image = nullptr;
+	GLint LOD = 0; //level of detail
 
 	//TEXTURES
-	map<const char*, Texture*> textures;
+	GLubyte checkerImage[CHECKERS_WIDTH][CHECKERS_HEIGHT][4];
 };

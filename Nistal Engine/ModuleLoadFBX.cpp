@@ -12,8 +12,6 @@
 #pragma comment (lib, "Devil/libx86/ILU.lib")
 #pragma comment (lib, "Devil/libx86/ILUT.lib")
 
-#include "Texture.h"
-
 
 
 ModuleLoadFBX::ModuleLoadFBX(Application* app, bool start_enabled) : Module(app, start_enabled)
@@ -37,23 +35,22 @@ bool ModuleLoadFBX::Start()
     path = json_object_get_string(model_node, "Path");
     texture_path = json_object_get_string(model_node, "Texture Path");
 
-    //LoadFBX(path);
-
     //TEXTURES
-    
-    bool testing = ilLoadImage("Textures/lenna.png");
-    int width = ilGetInteger(IL_IMAGE_WIDTH);
-    int height = ilGetInteger(IL_IMAGE_HEIGHT);
-    //ilutRenderer(ILUT_OPENGL);
 
-    texture = ilutGLBindTexImage(); //this line changes the color environment to 1 pixel color of Lenna
-    glBindTexture(GL_TEXTURE_2D, texture);
-    if (testing) {
-        LOG("LENNA LOADED");
+    //Checker texture:
+    
+    GLubyte checkerImage[CHECKERS_HEIGHT][CHECKERS_WIDTH][4];
+    for (int i = 0; i < CHECKERS_HEIGHT; i++) {
+        for (int j = 0; j < CHECKERS_WIDTH; j++) {
+            int c = ((((i & 0x8) == 0) ^ (((j & 0x8)) == 0))) * 255;
+            checkerImage[i][j][0] = (GLubyte)c;
+            checkerImage[i][j][1] = (GLubyte)c;
+            checkerImage[i][j][2] = (GLubyte)c;
+            checkerImage[i][j][3] = (GLubyte)255;
+        }
     }
-    else {
-        LOG("LENNA NOT LOADED");
-    }
+
+    //put here LoadTexture();
 
 	return true;
 }
@@ -230,51 +227,42 @@ void ModuleLoadFBX::DrawVertexNormals(modelData model)
     }
 }*/
 
-Texture* ModuleLoadFBX::LoadTexture(const char* path)
+bool ModuleLoadFBX::LoadTexture(modelData model, const char* path)
 {
-    Texture* new_texture = nullptr;
+    bool ret = true;
 
-    if (path != nullptr && path != "")
-    {
-        uint devil_id = 0;
-        ilGenImages(1, &devil_id);
-        ilBindImage(devil_id);
-        ilutRenderer(ILUT_OPENGL);
+    LOG("TODO: Load Texture :)");
 
-        if (!ilLoad(IL_PNG, path))
-        {
-            auto error = ilGetError();
-            LOG("Error while loading texting with path: %s. Error: %s", path, ilGetString(error));
-            return new_texture;
-        }
-        else
-        {
-            new_texture = new Texture();
-            new_texture->buffer_id = ilutGLBindTexImage();
-            new_texture->height = ilGetInteger(IL_IMAGE_HEIGHT);
-            new_texture->width = ilGetInteger(IL_IMAGE_WIDTH);
+    bool testing = ilLoadImage(texture_path);
+    int width = ilGetInteger(IL_IMAGE_WIDTH);
+    int height = ilGetInteger(IL_IMAGE_HEIGHT);
+    //ilutRenderer(ILUT_OPENGL);
 
-            glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-            glBindTexture(GL_TEXTURE_2D, new_texture->buffer_id);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-            glTexParameteri(GL_TEXTURE_2D, 0x8072, GL_REPEAT);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-
-            textures[path] = new_texture;
-            glBindTexture(GL_TEXTURE_2D, 0);
-        }
-        
-        ilDeleteImages(1, &devil_id);
+    texture = ilutGLBindTexImage(); //this line changes the color environment to 1 pixel color of Lenna
+    
+    if (testing) {
+        LOG("Texture loaded through path");
+    }
+    else {
+        LOG("Loading error in texture path");
+        return false;
     }
 
-    else
-    {
-        LOG("There's no path");
-    }
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
 
-    return new_texture;
+    //TODO: Observe what happens if we change GL_REPEAT for GL_MIRRORED_REPEAT or GL_CLAMP or GL_CLAMP_TO_BORDER, hmm
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+
+    glTexImage2D(GL_TEXTURE_2D, LOD, GL_RGBA, CHECKERS_WIDTH, CHECKERS_HEIGHT, 0 /*this value must be 0 xD*/, GL_RGBA, GL_UNSIGNED_BYTE, checkerImage);
+
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    return ret;
 }
 
 void ModuleLoadFBX::AddFBX()
