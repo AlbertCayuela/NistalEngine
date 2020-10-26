@@ -43,7 +43,7 @@
     <Filter Include="Sources\Libs\Devil">
       <UniqueIdentifier>{36f2ebce-0163-41eb-9b4b-c93f072423de}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sources\Modules\GameObject Components">
+    <Filter Include="Sources\Modules\GameObject">
       <UniqueIdentifier>{9b88ce1a-2925-4bdf-8555-254b06aea180}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -381,20 +381,20 @@
     <ClInclude Include="ModuleTexture.h">
       <Filter>Sources\Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleGameObject.h">
-      <Filter>Sources\Modules</Filter>
-    </ClInclude>
     <ClInclude Include="GOComponent.h">
-      <Filter>Sources\Modules\GameObject Components</Filter>
+      <Filter>Sources\Modules\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="GOMaterial.h">
-      <Filter>Sources\Modules\GameObject Components</Filter>
+      <Filter>Sources\Modules\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="GOMesh.h">
-      <Filter>Sources\Modules\GameObject Components</Filter>
+      <Filter>Sources\Modules\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="GOTransform.h">
-      <Filter>Sources\Modules\GameObject Components</Filter>
+      <Filter>Sources\Modules\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Sources\Modules\GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -584,20 +584,20 @@
     <ClCompile Include="ModuleTexture.cpp">
       <Filter>Sources\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleGameObject.cpp">
-      <Filter>Sources\Modules</Filter>
-    </ClCompile>
     <ClCompile Include="GOComponent.cpp">
-      <Filter>Sources\Modules\GameObject Components</Filter>
+      <Filter>Sources\Modules\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="GOMaterial.cpp">
-      <Filter>Sources\Modules\GameObject Components</Filter>
+      <Filter>Sources\Modules\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="GOMesh.cpp">
-      <Filter>Sources\Modules\GameObject Components</Filter>
+      <Filter>Sources\Modules\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="GOTransform.cpp">
-      <Filter>Sources\Modules\GameObject Components</Filter>
+      <Filter>Sources\Modules\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Sources\Modules\GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
