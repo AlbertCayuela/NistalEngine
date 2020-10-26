@@ -2,7 +2,6 @@
 #include "ModuleLoadFBX.h"
 #include "Assimp/include/scene.h"
 #include "Assimp/include/postprocess.h"
-//#include "Glew/include/glew.h"
 #include "Devil/include/il.h"
 #include "Devil/include/ilu.h"
 #include "Devil/include/ilut.h"
@@ -36,9 +35,7 @@ bool ModuleLoadFBX::Start()
     texture_path = json_object_get_string(model_node, "Texture Path");
 
     //TEXTURES
-
     //Checker texture:
-    
     GLubyte checkImage[CHECKERS_HEIGHT][CHECKERS_WIDTH][4];
     for (int i = 0; i < CHECKERS_HEIGHT; i++) {
         for (int j = 0; j < CHECKERS_WIDTH; j++) {
@@ -62,6 +59,20 @@ bool ModuleLoadFBX::Start()
         0, GL_RGBA, GL_UNSIGNED_BYTE, checkImage);
 
     //put here LoadTexture();
+    bool testing = ilLoadImage(texture_path);
+    int width = ilGetInteger(IL_IMAGE_WIDTH);
+    int height = ilGetInteger(IL_IMAGE_HEIGHT);
+    //ilutRenderer(ILUT_OPENGL);
+
+    texture = ilutGLBindTexImage(); //this line changes the color environment to 1 pixel color of Lenna
+
+    if (testing) {
+        LOG("Texture loaded through path");
+    }
+    else {
+        LOG("Loading error in texture path");
+        return false;
+    }
 
 	return true;
 }
@@ -231,21 +242,6 @@ bool ModuleLoadFBX::LoadTexture(modelData model, const char* path)
     bool ret = true;
 
     LOG("TODO: Load Texture :)");
-
-    bool testing = ilLoadImage(texture_path);
-    int width = ilGetInteger(IL_IMAGE_WIDTH);
-    int height = ilGetInteger(IL_IMAGE_HEIGHT);
-    //ilutRenderer(ILUT_OPENGL);
-
-    texture = ilutGLBindTexImage(); //this line changes the color environment to 1 pixel color of Lenna
-    
-    if (testing) {
-        LOG("Texture loaded through path");
-    }
-    else {
-        LOG("Loading error in texture path");
-        return false;
-    }
 
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
     glGenTextures(1, &texture);
