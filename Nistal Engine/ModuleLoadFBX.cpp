@@ -33,7 +33,6 @@ bool ModuleLoadFBX::Start()
 	aiAttachLogStream(&stream);
     model_node = json_object_dotget_object(App->config, "Model");
     path = json_object_get_string(model_node, "Path");
-    
 
 	return true;
 }

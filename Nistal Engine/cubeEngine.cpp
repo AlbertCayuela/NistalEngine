@@ -130,17 +130,6 @@ void CubeRender::DrawCubeVertexArray()
         0.f, 0.f, 1.f,
         1.f, 0.f, 0.f
     };
-
-    GLuint my_id = 0;
-    glGenBuffers(1, &my_id);
-    glBindBuffer(GL_ARRAY_BUFFER, my_id);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6 * 9 * 2, vertices, GL_STATIC_DRAW);// 6 faces * 9 vertex * 2 triangles 
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glBindBuffer(GL_ARRAY_BUFFER, my_id);
-    glVertexPointer(3, GL_FLOAT, 0, NULL);
-    // draw other buffers
-    glDrawArrays(GL_TRIANGLES, 0, (6 * 9 * 2) / 3); // 6 faces * 9 vertex * 2 triangles / 3 vertex per triangle
-    glDisableClientState(GL_VERTEX_ARRAY);
 }
 
 void CubeRender::DrawCubeIndices()

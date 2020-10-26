@@ -47,7 +47,7 @@ update_status ModuleSceneIntro::Update(float dt)
 
     if (App->ui->render_cube_direct_mode)
     {
-        App->texture->DrawTexture();
+        App->scene_intro->my_cube.DrawCubeDirectMode();
     }        
 
     if (App->ui->render_cube_vertex)

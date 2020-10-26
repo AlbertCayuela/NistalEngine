@@ -18,11 +18,13 @@ public:
 	update_status PostUpdate(float dt);
 	bool CleanUp();
 
-	void DrawTexture();
 	bool LoadTexture(modelData model, const char* path);
+	void DrawTexture(modelData model);
 
 public:
 	JSON_Object* texture_node = nullptr;
 	const char* texture_path = nullptr;
+	GLuint texture;
+	GLubyte HouseImage[CHECKERS_WIDTH][CHECKERS_HEIGHT][4];
 
 };

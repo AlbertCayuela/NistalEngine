@@ -1,6 +1,7 @@
 #include "Application.h"
 #include "ModuleTexture.h"
 #include "ModuleLoadFBX.h"
+#include "cubeEngine.h"
 
 #include "Devil/include/il.h"
 #include "Devil/include/ilu.h"
@@ -30,8 +31,8 @@ bool ModuleTexture::Start()
     }
 
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-    glGenTextures(1, &App->load_fbx->texture);
-    glBindTexture(GL_TEXTURE_2D, App->load_fbx->texture);
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_R, GL_REPEAT);
@@ -46,7 +47,7 @@ bool ModuleTexture::Start()
     int height = ilGetInteger(IL_IMAGE_HEIGHT);
     //ilutRenderer(ILUT_OPENGL);
 
-    App->load_fbx->texture = ilutGLBindTexImage(); //this line changes the color environment to 1 pixel color of Lenna
+    texture = ilutGLBindTexImage(); //this line changes the color environment to 1 pixel color of Lenna
 
     if (testing) {
         LOG("Texture loaded through path");
@@ -85,28 +86,31 @@ bool ModuleTexture::LoadTexture(modelData model, const char* path)
 
     LOG("TODO: Load Texture :)");
 
+    //bool testing = ilLoadImage(texture_path);
+    //int width = ilGetInteger(IL_IMAGE_WIDTH);
+    //int height = ilGetInteger(IL_IMAGE_HEIGHT);
+    ////ilutRenderer(ILUT_OPENGL);
+
+    //texture = ilutGLBindTexImage(); //this line changes the color environment to 1 pixel color of Lenna
+
+    //if (testing) {
+    //    LOG("Texture loaded through path");
+    //}
+    //else {
+    //    LOG("Loading error in texture path");
+    //    return false;
+    //}
+    
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-    glGenTextures(1, &App->load_fbx->texture);
-    glBindTexture(GL_TEXTURE_2D, App->load_fbx->texture);
-
-    //TODO: Observe what happens if we change GL_REPEAT for GL_MIRRORED_REPEAT or GL_CLAMP or GL_CLAMP_TO_BORDER, hmm
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-
-    glTexImage2D(GL_TEXTURE_2D, App->load_fbx->LOD, GL_RGBA, CHECKERS_WIDTH, CHECKERS_HEIGHT, 0 /*this value must be 0 xD*/, GL_RGBA, GL_UNSIGNED_BYTE, App->load_fbx->checkerImage);
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    glTexImage2D(GL_TEXTURE_2D, App->load_fbx->LOD, GL_RGBA, CHECKERS_WIDTH, CHECKERS_HEIGHT, 0 /*this value must be 0 xD*/, GL_RGBA, GL_UNSIGNED_BYTE, HouseImage);
 
     glBindTexture(GL_TEXTURE_2D, 0);
 
     return ret;
 }
 
-void ModuleTexture::DrawTexture()
+void ModuleTexture::DrawTexture(modelData model)
 {
-    glEnable(GL_TEXTURE_2D);
-    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL); //color white
-    glBindTexture(GL_TEXTURE_2D, App->load_fbx->texture);
-    App->scene_intro->my_cube.DrawCubeDirectMode();
-    glDisable(GL_TEXTURE_2D);
 }
