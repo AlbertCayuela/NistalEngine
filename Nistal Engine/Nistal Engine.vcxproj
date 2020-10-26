@@ -97,7 +97,12 @@
     <ClInclude Include="Glew\include\wglew.h" />
     <ClInclude Include="glmath.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="GOComponent.h" />
+    <ClInclude Include="GOMaterial.h" />
+    <ClInclude Include="GOMesh.h" />
+    <ClInclude Include="GOTransform.h" />
     <ClInclude Include="ModuleFS.h" />
+    <ClInclude Include="ModuleGameObject.h" />
     <ClInclude Include="ModuleLoadFBX.h" />
     <ClInclude Include="ModuleTexture.h" />
     <ClInclude Include="Parson\parson.h" />
@@ -193,6 +198,10 @@
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="cubeEngine.cpp" />
     <ClCompile Include="glmath.cpp" />
+    <ClCompile Include="GOComponent.cpp" />
+    <ClCompile Include="GOMaterial.cpp" />
+    <ClCompile Include="GOMesh.cpp" />
+    <ClCompile Include="GOTransform.cpp" />
     <ClCompile Include="ImGui\imgui.cpp" />
     <ClCompile Include="ImGui\imgui_demo.cpp" />
     <ClCompile Include="ImGui\imgui_draw.cpp" />
@@ -236,6 +245,7 @@
     <ClCompile Include="MathGeoLib\include\Time\Clock.cpp" />
     <ClCompile Include="ModuleCamera3D.cpp" />
     <ClCompile Include="ModuleFS.cpp" />
+    <ClCompile Include="ModuleGameObject.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModuleLoadFBX.cpp" />
     <ClCompile Include="ModuleRenderer3D.cpp" />
