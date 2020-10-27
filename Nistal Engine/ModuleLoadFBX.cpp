@@ -65,7 +65,7 @@ bool ModuleLoadFBX::LoadFBX(const char* file_path)
     scene = aiImportFile(file_path, aiProcessPreset_TargetRealtime_MaxQuality);
 
     if (scene != nullptr && scene->HasMeshes())
-        LoadMeshes(scene);
+        LoadMeshes(scene, game_object);
     else 
     {
         LOG("Error loading scene %s", path);
@@ -73,11 +73,12 @@ bool ModuleLoadFBX::LoadFBX(const char* file_path)
     }
 }
 
-void ModuleLoadFBX::LoadMeshes(const aiScene* scene)
+void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object)
 {
     for (uint i = 0; i < scene->mNumMeshes; i++)
     {
         //loading vertices
+        GameObject* new_object = App->scene_intro->CreateGameObject(game_object);
         mesh = scene->mMeshes[i];
         model.num_vertex = mesh->mNumVertices;
         model.vertices = new float[mesh->mNumVertices * 3];

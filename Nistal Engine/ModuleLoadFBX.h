@@ -3,7 +3,7 @@
 #include "Module.h"
 #include "Globals.h"
 #include <map>
-
+#include "GameObject.h"
 #include "Glew/include/glew.h"
 
 #define CHECKERS_WIDTH 64
@@ -54,7 +54,7 @@ public:
 	bool LoadFBX(const char* path);
 	void AddFBX();
 	void DrawFBX(modelData model);
-	void LoadMeshes(const aiScene* scene);
+	void LoadMeshes(const aiScene* scene, GameObject* game_object);
 	void LoadIndices(aiMesh* scene);
 	void DrawNormals(modelData model);
 	void DrawVertexNormals(modelData model);
@@ -74,4 +74,6 @@ public:
 
 	//TEXTURES
 	GLubyte checkerImage[CHECKERS_WIDTH][CHECKERS_HEIGHT][4];
+
+	GameObject* game_object = new GameObject(nullptr);
 };

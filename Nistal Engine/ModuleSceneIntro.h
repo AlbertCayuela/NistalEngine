@@ -16,6 +16,8 @@ struct PhysBody3D;
 struct PhysMotor3D;
 using namespace std;
 
+class GameObject;
+
 class ModuleSceneIntro : public Module
 {
 public:
@@ -27,6 +29,9 @@ public:
     update_status Update(float dt);
     update_status PostUpdate(float dt);
     bool CleanUp();
+
+    GameObject* CreateGameObject(GameObject* parent);
+    vector<GameObject*> game_objects;
 
     CubeRender my_cube;
 };

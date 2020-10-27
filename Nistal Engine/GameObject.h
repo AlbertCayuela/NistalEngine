@@ -18,17 +18,20 @@ class GameObject
 {
 public:
 
-	GameObject();
+	GameObject(GameObject* parent = nullptr);
 	~GameObject();
 	void Update(float dt);
 	GOComponent* AddComponent(GOCOMPONENT_TYPE type);
+	GOComponent* GetComponent(GOCOMPONENT_TYPE type);
+
+	std::string name;
 
 private:
 
-	std::string name;
 	GameObject* parent = nullptr;
 	std::vector<GOComponent*> go_components;
 	std::vector<GameObject*> children;
+
 };
 
 #endif

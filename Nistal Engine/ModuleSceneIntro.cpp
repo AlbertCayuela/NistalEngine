@@ -13,6 +13,8 @@
 #include "Assimp/include/scene.h"
 #include "Assimp/include/postprocess.h"
 
+#include "GameObject.h"
+
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {}
@@ -90,4 +92,13 @@ bool ModuleSceneIntro::CleanUp()
     LOG("Unloading Intro scene");
 
     return true;
+}
+
+GameObject* ModuleSceneIntro::CreateGameObject(GameObject* parent)
+{
+    GameObject* game_object = new GameObject(parent);
+    game_objects.push_back(game_object);
+    LOG("Number of gameobjects in the scene: %i", game_objects.capacity());
+    
+    return game_object;
 }

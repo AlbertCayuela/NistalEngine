@@ -74,6 +74,7 @@ update_status ModuleUI::Update(float dt)
 			if (MenuItem("Load model"))
 			{
 				App->load_fbx->LoadFBX(App->load_fbx->path);
+				//LOG("MODEL LOADED");
 				App->load_fbx->DrawFBX(App->load_fbx->model);
 				//DRAW TEXTURE THROUGH FILE
 				App->texture->LoadTexture(App->load_fbx->model, App->texture->texture_path);
