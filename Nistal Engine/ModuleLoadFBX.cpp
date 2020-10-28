@@ -85,6 +85,7 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object)
         memcpy(model.vertices, mesh->mVertices, sizeof(float) * model.num_vertex * 3);
         LOG("New mesh with %d vertices", model.num_vertex);
 
+        //loading indices
         if (mesh->HasFaces())
         {
             LoadIndices(mesh);
@@ -93,6 +94,18 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object)
         {
             model.normals = new aiVector3D[mesh->mNumVertices];
             memcpy(model.normals, mesh->mNormals, sizeof(aiVector3D) * mesh->mNumVertices);
+        }
+
+        //loading uvs
+        model.num_uvs_channels = mesh->GetNumUVChannels();
+        if (model.num_uvs_channels > 0)
+        {
+            App->texture->LoadUVs(&model, mesh);
+        }
+
+        if (scene->HasMaterials())
+        {
+            App->texture->LoadMaterials(scene, mesh, &model);
         }
 
         //loading normals
@@ -127,11 +140,25 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object)
 void ModuleLoadFBX::DrawFBX(modelData model)
 {
     glEnableClientState(GL_VERTEX_ARRAY);
+
+    //bind vertices
     glBindBuffer(GL_ARRAY_BUFFER, model.id_vertex);
     glVertexPointer(3, GL_FLOAT, 0, NULL);
+
+    //bind indices
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model.id_index);
+
+    //bind uvs
+    glBindBuffer(GL_ARRAY_BUFFER, model.id_uvs);
+    glTexCoordPointer(2, GL_FLOAT, 0, NULL);
+
+    //bind texture
+    glBindTexture(GL_TEXTURE_2D, model.texture);
+
+
+    //Draw
     glDrawElements(GL_TRIANGLES, model.num_index, GL_UNSIGNED_INT, NULL);
-    glDisableClientState(GL_VERTEX_ARRAY);
+    //glDisableClientState(GL_VERTEX_ARRAY);
 }
 
 void ModuleLoadFBX::DrawNormals(modelData model)
@@ -175,6 +202,10 @@ void ModuleLoadFBX::AddFBX()
     glGenBuffers(1, (GLuint*)&(model.id_index));
     glBindBuffer(GL_ARRAY_BUFFER, model.id_index);
     glBufferData(GL_ARRAY_BUFFER, sizeof(float) * model.num_index, model.indices, GL_STATIC_DRAW);
+
+    glGenBuffers(1, (GLuint*)&(model.id_uvs));
+    glBindBuffer(GL_ARRAY_BUFFER, model.id_uvs);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * model.num_uvs, model.uvs, GL_STATIC_DRAW);
 }
 
 void ModuleLoadFBX::LoadIndices(aiMesh* mesh)

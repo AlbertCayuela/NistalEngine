@@ -19,12 +19,13 @@ public:
 	bool CleanUp();
 
 	bool LoadTexture(modelData model, const char* path);
-	void DrawTexture(modelData model);
+	void LoadUVs(modelData* model, aiMesh* mesh);
+	void LoadMaterials(const aiScene* scene, aiMesh* mesh, modelData* model);
 
 public:
 	JSON_Object* texture_node = nullptr;
 	const char* texture_path = nullptr;
-	GLuint texture;
+
 	GLubyte HouseImage[CHECKERS_WIDTH][CHECKERS_HEIGHT][4];
 
 };

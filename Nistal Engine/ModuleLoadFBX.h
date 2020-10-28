@@ -31,11 +31,16 @@ public:
 	float3* face_middle = nullptr;
 
 	//texture
-	/*uint id_uv = 0u;
-	uint num_uv_components = 0u;
-	float* uv_coord = nullptr;
+	bool has_texture = false;
+	GLuint texture;
 
-	uint id_texture = 0u;*/
+	uint id_uvs = 0u;
+	uint num_uvs = 0u;
+	float* uvs = nullptr;
+
+	uint num_uvs_channels = 0u;
+	uint channel_buffer_size = 0u;
+
 };
 
 class ModuleLoadFBX : public Module
@@ -71,9 +76,6 @@ public:
 	//TODO: FBX modelData array
 	GLubyte* image = nullptr;
 	GLint LOD = 0; //level of detail
-
-	//TEXTURES
-	GLubyte checkerImage[CHECKERS_WIDTH][CHECKERS_HEIGHT][4];
 
 	GameObject* game_object = new GameObject(nullptr);
 };
