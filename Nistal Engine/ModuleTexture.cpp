@@ -101,16 +101,10 @@ bool ModuleTexture::LoadTexture(modelData model, const char* path)
 
 void ModuleTexture::LoadUVs(modelData* model, aiMesh* mesh)
 {
-    //has_data means nothing in our code :)
-    //buffer size means id
-    //buffer means uvs
-
-    //has data true
-
     model->num_uvs = model->num_vertex;
 
-    model->id_uvs = model->num_uvs_channels * model->num_uvs * 2;
-    model->uvs = new float[model->id_uvs];
+    int buffer_size = model->num_uvs_channels * model->num_uvs * 2;
+    model->uvs = new float[buffer_size];
 
     model->channel_buffer_size = model->num_uvs * 2;
     for (uint channel = 0; channel < model->num_uvs_channels; ++channel)
@@ -122,6 +116,7 @@ void ModuleTexture::LoadUVs(modelData* model, aiMesh* mesh)
                 for (uint j = 0; j < model->num_uvs; ++j)
                 {
                     memcpy(&model->uvs[(channel * model->channel_buffer_size) + j * 2], &mesh->mTextureCoords[channel][j], sizeof(float) * 2);
+                    LOG("%f uv coords", model->uvs[j * 2]);
                 }
             
             }
@@ -142,8 +137,6 @@ void ModuleTexture::LoadMaterials(const aiScene* scene, aiMesh* mesh, modelData*
     if (numTextures > 0)
     {
         bool testing = ilLoadImage(texture_path);
-        int width = ilGetInteger(IL_IMAGE_WIDTH);
-        int height = ilGetInteger(IL_IMAGE_HEIGHT);
         //ilutRenderer(ILUT_OPENGL);
 
         if (testing) {

@@ -58,7 +58,7 @@ public:
 
 	bool LoadFBX(const char* path);
 	void AddFBX();
-	void DrawFBX(modelData model);
+	void DrawFBX();
 	void LoadMeshes(const aiScene* scene, GameObject* game_object);
 	void LoadIndices(aiMesh* scene);
 	void DrawNormals(modelData model);

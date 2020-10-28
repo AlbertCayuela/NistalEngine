@@ -75,7 +75,7 @@ update_status ModuleSceneIntro::Update(float dt)
 
 update_status ModuleSceneIntro::PostUpdate(float dt)
 {
-    App->load_fbx->DrawFBX(App->load_fbx->model);
+    App->load_fbx->DrawFBX();
     //App->load_fbx->DrawNormals(App->load_fbx->model);
 
     return UPDATE_CONTINUE;
