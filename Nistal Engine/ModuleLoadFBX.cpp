@@ -130,14 +130,22 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object)
             model.faces_normals[i / 3] = Cross(vector1, vector2);
             model.faces_normals[i / 3].Normalize();
             model.face_middle[i / 3] = { (vertex1.x + vertex2.x + vertex3.x) / 3, (vertex1.y + vertex2.y + vertex3.y) / 3, (vertex1.z + vertex2.z + vertex3.z) / 3 };
-        }    
+        }  
+
+        AddFBX();
+        meshes.push_back(model);
+        LOG("Loaded mesh with %i vertices.", model.num_vertex);
+        LOG("Loaded mesh with %i indices.", model.num_index);
+        LOG("Loaded mesh with %i triangles.", model.num_vertex / 3);
+        LOG("Loaded mesh with %i normals.", model.num_normals);
+        LOG("Loaded mesh with %i uvs.", model.num_uvs);
     }
 
-    AddFBX(); //Creates buffers
+    //AddFBX(); //Creates buffers
     //aiReleaseImport(scene);
 }
 
-void ModuleLoadFBX::DrawFBX()
+void ModuleLoadFBX::DrawFBX(modelData model)
 {
     glEnableClientState(GL_VERTEX_ARRAY);
     //change color viewport

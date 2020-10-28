@@ -116,7 +116,7 @@ void ModuleTexture::LoadUVs(modelData* model, aiMesh* mesh)
                 for (uint j = 0; j < model->num_uvs; ++j)
                 {
                     memcpy(&model->uvs[(channel * model->channel_buffer_size) + j * 2], &mesh->mTextureCoords[channel][j], sizeof(float) * 2);
-                    LOG("%f uv coords", model->uvs[j * 2]);
+                    //LOG("%f uv coords", model->uvs[j * 2]);
                 }
             
             }

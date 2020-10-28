@@ -75,7 +75,11 @@ update_status ModuleSceneIntro::Update(float dt)
 
 update_status ModuleSceneIntro::PostUpdate(float dt)
 {
-    App->load_fbx->DrawFBX();
+    for (std::vector<modelData>::iterator i = App->load_fbx->meshes.begin(); i != App->load_fbx->meshes.end(); ++i) 
+    {
+        App->load_fbx->DrawFBX(*i);
+    }
+    
     //App->load_fbx->DrawNormals(App->load_fbx->model);
 
     return UPDATE_CONTINUE;

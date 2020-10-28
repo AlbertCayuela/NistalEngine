@@ -5,6 +5,7 @@
 #include <map>
 #include "GameObject.h"
 #include "Glew/include/glew.h"
+#include <vector>
 
 #define CHECKERS_WIDTH 64
 #define CHECKERS_HEIGHT 64
@@ -58,7 +59,7 @@ public:
 
 	bool LoadFBX(const char* path);
 	void AddFBX();
-	void DrawFBX();
+	void DrawFBX(modelData model);
 	void LoadMeshes(const aiScene* scene, GameObject* game_object);
 	void LoadIndices(aiMesh* scene);
 	void DrawNormals(modelData model);
@@ -78,4 +79,6 @@ public:
 	GLint LOD = 0; //level of detail
 
 	GameObject* game_object = new GameObject(nullptr);
+
+	std::vector<modelData>meshes;
 };
