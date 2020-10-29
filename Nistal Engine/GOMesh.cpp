@@ -1,6 +1,6 @@
 #include "GOMesh.h"
 
-GOMesh::GOMesh() : GOComponent()
+GOMesh::GOMesh(GameObject* game_object) : GOComponent(game_object)
 {
 }
 

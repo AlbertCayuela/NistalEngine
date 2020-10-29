@@ -13,6 +13,9 @@ enum GOCOMPONENT_TYPE
 };
 
 class GOComponent;
+class GOMaterial;
+class GOMesh;
+class GOTransform;
 
 class GameObject 
 {
@@ -25,6 +28,9 @@ public:
 	GOComponent* GetComponent(GOCOMPONENT_TYPE type);
 
 	std::string name;
+	GOMaterial* material = nullptr;
+	GOMesh* mesh = nullptr;
+	GOTransform* transform = nullptr;
 
 private:
 

@@ -7,7 +7,7 @@ class GOMesh : public GOComponent
 {
 public:
 
-	GOMesh();
+	GOMesh(GameObject* game_object);
 	~GOMesh();
 
 };

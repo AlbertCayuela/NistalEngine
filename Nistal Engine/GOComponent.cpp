@@ -1,6 +1,7 @@
 #include "GOComponent.h"
 
-GOComponent::GOComponent()
+
+GOComponent::GOComponent(GameObject* game_object)
 {
 }
 

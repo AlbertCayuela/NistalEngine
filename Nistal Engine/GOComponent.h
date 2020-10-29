@@ -3,12 +3,15 @@
 
 #include "GameObject.h"
 
+class GameObject;
+enum GOCOMPONENT_TYPE;
+
 class GOComponent 
 {
 
 public:
 
-	GOComponent();
+	GOComponent(GameObject* game_object);
 	~GOComponent();
 
 	virtual void Update(float dt);

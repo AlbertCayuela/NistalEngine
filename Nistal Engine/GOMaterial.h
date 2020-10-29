@@ -8,7 +8,7 @@ class GOMaterial : public GOComponent
 
 public:
 
-	GOMaterial();
+	GOMaterial(GameObject* game_object);
 	~GOMaterial();
 
 };

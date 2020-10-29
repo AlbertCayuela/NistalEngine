@@ -12,7 +12,7 @@ class GOTransform : public GOComponent
 
 public:
 
-	GOTransform(GameObject* parent);
+	GOTransform(GameObject* game_object);
 	~GOTransform();
 
 public:

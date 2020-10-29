@@ -1,8 +1,9 @@
 #include "GOMaterial.h"
 
-GOMaterial::GOMaterial() : GOComponent()
+GOMaterial::GOMaterial(GameObject* game_object) : GOComponent(game_object)
 {
 }
+
 
 GOMaterial::~GOMaterial()
 {
