@@ -90,6 +90,10 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object)
         {
             LoadIndices(mesh);
         }
+        if (mesh->HasTextureCoords(model.id_uvs))
+        {
+
+        }
         if (mesh->HasNormals())
         {
             model.normals = new aiVector3D[mesh->mNumVertices];
@@ -97,40 +101,40 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object)
         }
 
         //loading uvs
-        model.num_uvs_channels = mesh->GetNumUVChannels();
-        if (model.num_uvs_channels > 0)
-        {
-            App->texture->LoadUVs(&model, mesh);
-        }
+        //model.num_uvs_channels = mesh->GetNumUVChannels();
+        //if (model.num_uvs_channels > 0)
+        //{
+        //    App->texture->LoadUVs(&model, mesh);
+        //}
 
-        if (scene->HasMaterials())
-        {
-            App->texture->LoadMaterials(scene, mesh, &model);
-        }
+        //if (scene->HasMaterials())
+        //{
+        //    App->texture->LoadMaterials(scene, mesh, &model);
+        //}
 
-        //loading normals
-        model.num_faces = mesh->mNumFaces;
-        model.faces_normals = new float3[mesh->mNumFaces];
-        model.face_middle = new float3[mesh->mNumFaces];
+        ////loading normals
+        //model.num_faces = mesh->mNumFaces;
+        //model.faces_normals = new float3[mesh->mNumFaces];
+        //model.face_middle = new float3[mesh->mNumFaces];
 
-        for (uint i = 0; i < model.num_index; i += 3)
-        {
-            uint index = model.indices[i];
-            float3 vertex1 = { model.vertices[index * 3], model.vertices[index * 3 + 1] , model.vertices[index * 3 + 2] };
-            index = model.indices[i + 1];
+        //for (uint i = 0; i < model.num_index; i += 3)
+        //{
+        //    uint index = model.indices[i];
+        //    float3 vertex1 = { model.vertices[index * 3], model.vertices[index * 3 + 1] , model.vertices[index * 3 + 2] };
+        //    index = model.indices[i + 1];
 
-            float3 vertex2 = { model.vertices[index * 3], model.vertices[index * 3 + 1] , model.vertices[index * 3 + 2] };
-            index = model.indices[i + 2];
+        //    float3 vertex2 = { model.vertices[index * 3], model.vertices[index * 3 + 1] , model.vertices[index * 3 + 2] };
+        //    index = model.indices[i + 2];
 
-            float3 vertex3 = { model.vertices[index * 3], model.vertices[index * 3 + 1] , model.vertices[index * 3 + 2] };
+        //    float3 vertex3 = { model.vertices[index * 3], model.vertices[index * 3 + 1] , model.vertices[index * 3 + 2] };
 
-            float3 vector1 = vertex2 - vertex1;
-            float3 vector2 = vertex3 - vertex1;
+        //    float3 vector1 = vertex2 - vertex1;
+        //    float3 vector2 = vertex3 - vertex1;
 
-            model.faces_normals[i / 3] = Cross(vector1, vector2);
-            model.faces_normals[i / 3].Normalize();
-            model.face_middle[i / 3] = { (vertex1.x + vertex2.x + vertex3.x) / 3, (vertex1.y + vertex2.y + vertex3.y) / 3, (vertex1.z + vertex2.z + vertex3.z) / 3 };
-        }  
+        //    model.faces_normals[i / 3] = Cross(vector1, vector2);
+        //    model.faces_normals[i / 3].Normalize();
+        //    model.face_middle[i / 3] = { (vertex1.x + vertex2.x + vertex3.x) / 3, (vertex1.y + vertex2.y + vertex3.y) / 3, (vertex1.z + vertex2.z + vertex3.z) / 3 };
+        //}  
 
         AddBuffers();
 

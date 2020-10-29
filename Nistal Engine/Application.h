@@ -13,7 +13,6 @@
 #include "ModuleUI.h"
 #include "ModuleLoadFBX.h"
 #include "ModuleFS.h"
-#include "ModuleTexture.h"
 #include <list>
 
 class Application
@@ -27,7 +26,6 @@ public:
 	ModuleUI* ui;
 	ModuleLoadFBX* load_fbx;
 	ModuleFS* file_system;
-	ModuleTexture* texture;
 
 	std::string engine_title;
 
