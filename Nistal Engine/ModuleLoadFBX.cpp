@@ -132,8 +132,10 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object)
             model.face_middle[i / 3] = { (vertex1.x + vertex2.x + vertex3.x) / 3, (vertex1.y + vertex2.y + vertex3.y) / 3, (vertex1.z + vertex2.z + vertex3.z) / 3 };
         }  
 
-        AddFBX();
+        AddBuffers();
+
         meshes.push_back(model);
+
         LOG("Loaded mesh with %i vertices.", model.num_vertex);
         LOG("Loaded mesh with %i indices.", model.num_index);
         LOG("Loaded mesh with %i triangles.", model.num_vertex / 3);
@@ -202,7 +204,7 @@ void ModuleLoadFBX::DrawVertexNormals(modelData model)
     glColor3f(1, 1, 1);
 }
 
-void ModuleLoadFBX::AddFBX()
+void ModuleLoadFBX::AddBuffers()
 {
     glGenBuffers(1, &(model.id_vertex));
     glBindBuffer(GL_ARRAY_BUFFER, model.id_vertex);
@@ -212,7 +214,10 @@ void ModuleLoadFBX::AddFBX()
     glBindBuffer(GL_ARRAY_BUFFER, model.id_index);
     glBufferData(GL_ARRAY_BUFFER, sizeof(float) * model.num_index, model.indices, GL_STATIC_DRAW);
 
-    //TODO GLuint delete and see what happens :)
+    glGenBuffers(1, &(model.id_normals));
+    glBindBuffer(GL_ARRAY_BUFFER, model.id_normals);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * model.num_normals, model.normals, GL_STATIC_DRAW);
+
     glGenBuffers(1, &(model.id_uvs));
     glBindBuffer(GL_ARRAY_BUFFER, model.id_uvs);
     glBufferData(GL_ARRAY_BUFFER, sizeof(float) * model.num_uvs * 2, model.uvs, GL_STATIC_DRAW);

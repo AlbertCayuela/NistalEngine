@@ -23,7 +23,7 @@ public:
 	uint num_vertex = 0u;
 	float* vertices = nullptr;
 
-	uint* id_normals = 0u;
+	uint id_normals = 0u;
 	uint num_normals = 0u;
 	aiVector3D* normals = nullptr;
 
@@ -58,7 +58,7 @@ public:
 	bool CleanUp();
 
 	bool LoadFBX(const char* path);
-	void AddFBX();
+	void AddBuffers();
 	void DrawFBX(modelData model);
 	void LoadMeshes(const aiScene* scene, GameObject* game_object);
 	void LoadIndices(aiMesh* scene);
