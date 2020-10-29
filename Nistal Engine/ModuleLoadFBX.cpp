@@ -82,6 +82,7 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object)
         //loading vertices
         GameObject* new_object = App->scene_intro->CreateGameObject(game_object);
         mesh = scene->mMeshes[i];
+        model = modelData();
         model.num_vertex = mesh->mNumVertices;
         model.vertices = new float[mesh->mNumVertices * 3];
         memcpy(model.vertices, mesh->mVertices, sizeof(float) * model.num_vertex * 3);
