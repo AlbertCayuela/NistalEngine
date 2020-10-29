@@ -64,6 +64,7 @@ public:
 	void LoadIndices(aiMesh* scene);
 	void DrawNormals(modelData model);
 	void DrawVertexNormals(modelData model);
+	void LoadTexture(char* texture_path);
 
 public:
 
@@ -79,6 +80,8 @@ public:
 	GLint LOD = 0; //level of detail
 
 	GameObject* game_object = new GameObject(nullptr);
+
+	uint texture_id;
 
 	std::vector<modelData>meshes;
 };

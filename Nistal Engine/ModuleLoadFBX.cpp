@@ -16,10 +16,10 @@
 
 ModuleLoadFBX::ModuleLoadFBX(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
-    ilInit();
-    iluInit();
-    ilutInit();
-    ilutRenderer(ILUT_OPENGL);
+    //ilInit();
+    //iluInit();
+    //ilutInit();
+    //ilutRenderer(ILUT_OPENGL);
 }
 
 ModuleLoadFBX::~ModuleLoadFBX()
@@ -33,6 +33,8 @@ bool ModuleLoadFBX::Start()
 	aiAttachLogStream(&stream);
     model_node = json_object_dotget_object(App->config, "Model");
     path = json_object_get_string(model_node, "Path");
+
+    LoadTexture("Textures/Baker_house.png");
 
 	return true;
 }
@@ -251,5 +253,41 @@ void ModuleLoadFBX::LoadIndices(aiMesh* mesh)
             memcpy(&model.indices[i * 3], mesh->mFaces[i].mIndices, 3 * sizeof(uint));
 
         }
+    }
+}
+
+void ModuleLoadFBX::LoadTexture(char* texture_path) 
+{
+    ilInit();
+    iluInit();
+    ilutInit();
+
+    if (ilLoadImage(texture_path))
+    {
+        /*glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+        glGenTextures(1, &texture_id);
+        glBindTexture(GL_TEXTURE_2D, texture_id);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, Width, Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, ilGetData());*/
+        uint id = 0;
+
+        ilGenImages(1, &id);
+        ilBindImage(id);
+        ilLoadImage(texture_path);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        texture_id = ilutGLBindTexImage();
+        glBindTexture(GL_TEXTURE_2D, 0);
+        ilDeleteImages(1, &id);
+        LOG("TEXTURE CORRECTLY LOADED");
+    }
+    else
+    {
+        LOG("ERROR LOADING TEXTURE");
     }
 }
