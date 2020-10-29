@@ -83,4 +83,5 @@ public:
 	uint texture_id;
 
 	std::vector<modelData>meshes;
+	bool all_fbx_loaded = false;
 };

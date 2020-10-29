@@ -28,7 +28,7 @@ bool ModuleSceneIntro::Start()
     bool ret = true;
 
 
-    //App->camera->Move(vec3(0.0f, 0.0f, 0.0f));
+    App->camera->Move(vec3(-5.0f, 3.5f, 0.0f));
     App->camera->LookAt(vec3(0, 0, 0));
     return ret;
 }
@@ -78,15 +78,7 @@ update_status ModuleSceneIntro::Update(float dt)
 }
 
 update_status ModuleSceneIntro::PostUpdate(float dt)
-{
-    //draw every mesh
-    for (std::vector<modelData>::iterator i = App->load_fbx->meshes.begin(); i != App->load_fbx->meshes.end(); ++i) 
-    {
-        App->load_fbx->DrawFBX(*i);
-    }
-    
-    //App->load_fbx->DrawNormals(App->load_fbx->model);
-
+{    
     return UPDATE_CONTINUE;
 }
 

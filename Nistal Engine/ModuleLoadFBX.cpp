@@ -42,6 +42,20 @@ update_status ModuleLoadFBX::PreUpdate(float dt)
 
 update_status ModuleLoadFBX::Update(float dt)
 {
+    if (!all_fbx_loaded)
+    {
+        App->load_fbx->LoadFBX(path);
+        all_fbx_loaded = true;
+    }
+
+    //draw every mesh
+    for (std::vector<modelData>::iterator i = App->load_fbx->meshes.begin(); i != App->load_fbx->meshes.end(); ++i)
+    {
+        App->load_fbx->DrawFBX(*i);
+    }
+
+    //DrawFBX(model);
+
 	return UPDATE_CONTINUE;
 }
 
