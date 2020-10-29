@@ -16,10 +16,6 @@
 
 ModuleLoadFBX::ModuleLoadFBX(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
-    //ilInit();
-    //iluInit();
-    //ilutInit();
-    //ilutRenderer(ILUT_OPENGL);
 }
 
 ModuleLoadFBX::~ModuleLoadFBX()
@@ -81,12 +77,12 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object)
     {
         //loading vertices
         GameObject* new_object = App->scene_intro->CreateGameObject(game_object);
+
         mesh = scene->mMeshes[i];
         model = modelData();
         model.num_vertex = mesh->mNumVertices;
         model.vertices = new float[mesh->mNumVertices * 3];
         memcpy(model.vertices, mesh->mVertices, sizeof(float) * model.num_vertex * 3);
-        LOG("New mesh with %d vertices", model.num_vertex);
 
         //loading indices
         if (mesh->HasFaces())
@@ -158,8 +154,6 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object)
         LOG("Loaded mesh with %i uvs.", model.num_uvs);
     }
 
-    //AddFBX(); //Creates buffers
-    //aiReleaseImport(scene);
 }
 
 void ModuleLoadFBX::DrawFBX(modelData model)
@@ -259,7 +253,6 @@ void ModuleLoadFBX::LoadIndices(aiMesh* mesh)
         {
             //not sure if it's "mesh" at mesh->mFaces[i].mIndices, hmm (it supposed to be a new mesh)
             memcpy(&model.indices[i * 3], mesh->mFaces[i].mIndices, 3 * sizeof(uint));
-
         }
     }
 }
@@ -272,14 +265,6 @@ void ModuleLoadFBX::LoadTexture(char* texture_path)
 
     if (ilLoadImage(texture_path))
     {
-        /*glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-        glGenTextures(1, &texture_id);
-        glBindTexture(GL_TEXTURE_2D, texture_id);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, Width, Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, ilGetData());*/
         uint id = 0;
 
         ilGenImages(1, &id);

@@ -75,7 +75,6 @@ public:
 	aiMesh* mesh;
 	aiMesh* new_mesh;
 	modelData model;
-	//TODO: FBX modelData array
 	GLubyte* image = nullptr;
 	GLint LOD = 0; //level of detail
 
