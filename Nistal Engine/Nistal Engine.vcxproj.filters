@@ -393,6 +393,9 @@
     <ClInclude Include="GameObject.h">
       <Filter>Sources\Modules\GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="UIInspector.h">
+      <Filter>Sources\Modules\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -592,6 +595,9 @@
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>Sources\Modules\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="UIInspector.cpp">
+      <Filter>Sources\Modules\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
