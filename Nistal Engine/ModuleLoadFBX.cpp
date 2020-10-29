@@ -164,8 +164,13 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object)
 void ModuleLoadFBX::DrawFBX(modelData model)
 {
     glEnableClientState(GL_VERTEX_ARRAY);
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
     //change color viewport
     //glClearColor(0.0f, 1.0f, 0.0f, 1.0f);
+
+    //bind texture
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture_id);
 
     //bind vertices
     glBindBuffer(GL_ARRAY_BUFFER, model.id_vertex);
@@ -175,15 +180,17 @@ void ModuleLoadFBX::DrawFBX(modelData model)
     glBindBuffer(GL_ARRAY_BUFFER, model.id_uvs);
     glTexCoordPointer(2, GL_FLOAT, 0, NULL);
 
-    //bind texture
-    glBindTexture(GL_TEXTURE_2D, model.texture);
-
     //bind indices
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model.id_index);
 
     //Draw
     glDrawElements(GL_TRIANGLES, model.num_index, GL_UNSIGNED_INT, NULL);
-    //glDisableClientState(GL_VERTEX_ARRAY);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+    glDisableClientState(GL_VERTEX_ARRAY);
+    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glDisable(GL_TEXTURE_2D);
 }
 
 void ModuleLoadFBX::DrawNormals(modelData model)
