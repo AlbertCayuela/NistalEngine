@@ -2,7 +2,7 @@
 #include "Application.h"
 #include "ModuleInput.h"
 #include "ImGUi/imgui_impl_sdl.h"
-
+#include <string>
 
 #define MAX_KEYS 300
 
@@ -112,11 +112,14 @@ update_status ModuleInput::PreUpdate(float dt)
 			break;
 
 			case SDL_DROPFILE:
+			LOG("file dropped on screen!");
 			dropped_path = e.drop.file;
-			LOG("FILE DROPPED! FILE PATH:");
-			LOG(dropped_path);
-			App->load_fbx->LoadFBX(dropped_path);
-
+			extension = App->file_system->GetExtension(dropped_path);
+			if (extension == "fbx" || extension == "FBX")
+			{
+				LOG("dropped file extension:.fbx");
+				App->load_fbx->LoadFBX(dropped_path);
+			}
 			break;
 
 			case SDL_QUIT:

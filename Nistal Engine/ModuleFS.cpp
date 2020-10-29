@@ -193,6 +193,19 @@ bool ModuleFS::Copy(const char* source, const char* destination)
 	return ret;
 }
 
+std::string ModuleFS::GetExtension(const char* file_path)
+{
+
+	std::string path = file_path;
+	NormalizePath(path);
+
+	std::string extension, file;
+	SplitFilePath(file_path, nullptr, &file, &extension);
+	//TODO MAYBE COPY FILE
+	return extension;
+	
+}
+
 void ModuleFS::SplitFilePath(const char* full_path, std::string* path, std::string* file, std::string* extension) const
 {
 	if (full_path != nullptr)

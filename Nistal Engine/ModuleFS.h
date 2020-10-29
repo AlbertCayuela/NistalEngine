@@ -35,6 +35,7 @@ public:
 	void SplitFilePath(const char* full_path, std::string* path, std::string* file = nullptr, std::string* extension = nullptr) const;
 	void NormalizePath(char* full_path) const;
 	void NormalizePath(std::string& full_path) const;
+	std::string GetExtension(const char* file_path);
 
 	// Open for Read/Write
 	unsigned int Load(const char* path, const char* file, char** buffer) const;

@@ -1,4 +1,6 @@
 #include "GOComponent.h"
+#include "Application.h"
+#include "ModuleLoadFBX.h"
 
 
 GOComponent::GOComponent(GameObject* game_object)
