@@ -120,6 +120,11 @@ update_status ModuleInput::PreUpdate(float dt)
 				LOG("dropped file extension:.fbx");
 				App->load_fbx->LoadFBX(dropped_path);
 			}
+			else if (extension == "dds" || extension == "DDS" || extension == "png" || extension == "PNG" || extension == "jpg" || extension == "JPG") 
+			{
+				LOG("dropped a texture file");
+				App->load_fbx->LoadTexture(dropped_path);
+			}
 			break;
 
 			case SDL_QUIT:
