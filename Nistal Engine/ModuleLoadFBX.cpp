@@ -92,7 +92,15 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object)
         }
         if (mesh->HasTextureCoords(model.id_uvs))
         {
+            //UVs
+            model.num_uvs = mesh->mNumVertices;
+            model.uvs = new  float[model.num_uvs * 2];
 
+            for (int i = 0; i < mesh->mNumVertices; ++i)
+            {
+                memcpy(&model.uvs[i * 2], &mesh->mTextureCoords[0][i].x, sizeof(float));
+                memcpy(&model.uvs[(i * 2) + 1], &mesh->mTextureCoords[0][i].y, sizeof(float));
+            }
         }
         if (mesh->HasNormals())
         {
