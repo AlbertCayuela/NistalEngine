@@ -66,8 +66,12 @@ update_status ModuleSceneIntro::Update(float dt)
     //DRAWING MODEL PROPERTIES
     if (App->ui->render_normals)
     {
-        App->load_fbx->DrawNormals(App->load_fbx->model);
-        App->load_fbx->DrawVertexNormals(App->load_fbx->model);
+        for (std::vector<modelData>::iterator i = App->load_fbx->meshes.begin(); i != App->load_fbx->meshes.end(); ++i)
+        {
+            //App->load_fbx->DrawNormals(*i);
+            App->load_fbx->DrawVertexNormals(*i);
+        }
+        
     }       
 
     return UPDATE_CONTINUE;
