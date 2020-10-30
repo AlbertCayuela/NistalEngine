@@ -8,6 +8,7 @@ GameObject::GameObject(GameObject* parent, const char* name)
 {
 	this->parent = parent;
 	this->name = name;
+	AddComponent(GOCOMPONENT_TYPE::TRANSFORM);
 	LOG("New GameObject created: %s", this->name.c_str());
 }
 
