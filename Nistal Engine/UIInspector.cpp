@@ -75,7 +75,7 @@ void UIInspector::Draw()
 			//hellow :)
 		}
 
-		LOG("Hellow");
+		//LOG("Hellow");
 	}
 	End();
 }
