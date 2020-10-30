@@ -66,15 +66,15 @@ update_status ModuleSceneIntro::Update(float dt)
         my_sphere.DrawSphere(0.0f, 0.0f, 0.0f);
 
     //DRAWING MODEL PROPERTIES
-    if (App->ui->render_vertex_normals)
-    {
-        for (std::vector<modelData>::iterator i = App->load_fbx->meshes.begin(); i != App->load_fbx->meshes.end(); ++i)
-        {
-            //App->load_fbx->DrawNormals(*i);
-            App->load_fbx->DrawVertexNormals(*i);
-        }
-        
-    }       
+    //if (App->ui->render_vertex_normals)
+    //{
+    //    for (std::vector<modelData>::iterator i = App->load_fbx->meshes.begin(); i != App->load_fbx->meshes.end(); ++i)
+    //    {
+    //        //App->load_fbx->DrawNormals(*i);
+    //        App->load_fbx->DrawVertexNormals(*i);
+    //    }
+    //    
+    //}       
 
     return UPDATE_CONTINUE;
 }

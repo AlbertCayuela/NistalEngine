@@ -51,10 +51,10 @@ update_status ModuleLoadFBX::Update(float dt)
     }
 
     //draw every mesh
-    for (std::vector<modelData>::iterator i = App->load_fbx->meshes.begin(); i != App->load_fbx->meshes.end(); ++i)
-    {
-        App->load_fbx->DrawFBX(*i);
-    }
+    //for (std::vector<modelData>::iterator i = App->load_fbx->meshes.begin(); i != App->load_fbx->meshes.end(); ++i)
+    //{
+    //    App->load_fbx->DrawFBX(*i);
+    //}
 
     //DrawFBX(model);
 
@@ -163,9 +163,10 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object, co
 
         new_go = App->scene_intro->CreateGameObject(game_object, file_path);
         new_go->AddComponent(GOCOMPONENT_TYPE::MESH);
+        new_go->mesh->mesh_info = model;
         //LOG("New GameObject name: %s", new_go->name.c_str());
 
-        meshes.push_back(model);
+        //meshes.push_back(model);
 
         LOG("Loaded mesh with %i vertices.", model.num_vertex);
         LOG("Loaded mesh with %i indices.", model.num_index);

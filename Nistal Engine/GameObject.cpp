@@ -26,17 +26,22 @@ GOComponent* GameObject::AddComponent(GOCOMPONENT_TYPE type)
 	switch (type)
 	{
 	case(GOCOMPONENT_TYPE::MATERIAL):
-		component = new GOMaterial(this);
+		material = new GOMaterial(this);
+		component = material;
 		break;
 	case(GOCOMPONENT_TYPE::MESH):
-		component = new GOMesh(this);
+		mesh = new GOMesh(this);
+		component = mesh;
 		break;
 	case(GOCOMPONENT_TYPE::TRANSFORM):
-		component = new GOTransform(this);
+		transform = new GOTransform(this);
+		component = transform;
 		break;
 	default:
 		break;
 	}
+
+	go_components.push_back(component);
 
 	return component;
 }

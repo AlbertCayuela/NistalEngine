@@ -85,6 +85,6 @@ public:
 
 	uint texture_id;
 
-	std::vector<modelData>meshes;
+	std::vector<GOMesh*> meshes;
 	bool all_fbx_loaded = false;
 };

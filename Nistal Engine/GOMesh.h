@@ -11,6 +11,7 @@ public:
 	GOMesh(GameObject* game_object);
 	~GOMesh();
 
+	modelData mesh_info;
 };
 
 #endif
