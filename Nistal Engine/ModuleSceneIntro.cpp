@@ -3,6 +3,7 @@
 #include "ModuleSceneIntro.h"
 #include "ModuleUI.h"
 #include "sphereEngine.h"
+#include "GameObject.h"
 
 
 #include "Glew/include/glew.h"
@@ -27,9 +28,11 @@ bool ModuleSceneIntro::Start()
     LOG("Loading Intro assets");
     bool ret = true;
 
-
     App->camera->Move(vec3(-5.0f, 3.5f, 0.0f));
     App->camera->LookAt(vec3(0, 0, 0));
+
+    root = CreateGameObject(nullptr, "root");
+
     return ret;
 }
 
@@ -90,9 +93,9 @@ bool ModuleSceneIntro::CleanUp()
     return true;
 }
 
-GameObject* ModuleSceneIntro::CreateGameObject(GameObject* parent)
+GameObject* ModuleSceneIntro::CreateGameObject(GameObject* parent, const char* name)
 {
-    GameObject* game_object = new GameObject(parent);
+    GameObject* game_object = new GameObject(parent, name);
     game_objects.push_back(game_object);
     LOG("Number of gameobjects in the scene: %i", game_objects.capacity());
     

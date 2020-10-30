@@ -30,8 +30,9 @@ public:
     update_status PostUpdate(float dt);
     bool CleanUp();
 
-    GameObject* CreateGameObject(GameObject* parent);
+    GameObject* CreateGameObject(GameObject* parent, const char* name);
     vector<GameObject*> game_objects;
+    GameObject* root;
 
     CubeRender my_cube;
 };

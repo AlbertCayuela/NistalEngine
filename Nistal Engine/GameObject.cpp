@@ -4,9 +4,11 @@
 #include "GOMesh.h"
 #include "GOTransform.h"
 
-GameObject::GameObject(GameObject* parent)
+GameObject::GameObject(GameObject* parent, const char* name)
 {
 	this->parent = parent;
+	this->name = name;
+	LOG("created a new GameObject");
 }
 
 GameObject::~GameObject()
