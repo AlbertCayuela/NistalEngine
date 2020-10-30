@@ -64,6 +64,37 @@ void UIInspector::Draw()
 		}
 		if (CollapsingHeader("Geometry Mesh"))
 		{
+			//show normals
+			if (ImGui::Checkbox("Normals ALL: Vertex", &App->ui->render_vertex_normals))
+			{
+				for (std::vector<modelData>::iterator i = App->load_fbx->meshes.begin(); i != App->load_fbx->meshes.end(); ++i)
+				{
+					App->load_fbx->DrawVertexNormals(*i);
+				}
+			}
+
+			/*if (ImGui::Checkbox("Normals ALL: Face", &App->ui->render_face_normals))
+			{
+				for (std::vector<modelData>::iterator i = App->load_fbx->meshes.begin(); i != App->load_fbx->meshes.end(); ++i)
+				{
+					App->load_fbx->DrawNormals(*i);
+				}
+			}*/
+
+			Separator();
+
+			/*if (ImGui::Checkbox("Normals: Vertex", &App->ui->render_all_vertex_normals))
+			{
+				App->load_fbx->DrawVertexNormals(App->load_fbx->model);
+			}*/
+
+			/*if (ImGui::Checkbox("Normals: Face", &App->ui->render_all_face_normals))
+			{
+				App->load_fbx->DrawNormals(App->load_fbx->model);
+			}*/
+
+			Separator();
+
 			Text("Number of vertices: %i", App->load_fbx->model.num_vertex);
 			Text("Number of indices: %i", App->load_fbx->model.num_index);
 			Text("Number of faces: %i", App->load_fbx->model.num_vertex / 3);

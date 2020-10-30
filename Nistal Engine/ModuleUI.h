@@ -34,7 +34,11 @@ public:
 	std::vector<UIWindow*> ui_windows;
 	ImGuiTextBuffer debug_console_buff;
 
-	bool render_normals = false;
+	bool render_vertex_normals = false;
+	bool render_face_normals = false;
+	bool render_all_vertex_normals = false;
+	bool render_all_face_normals = false;
+
 	bool render_texture = false;
 
 private:

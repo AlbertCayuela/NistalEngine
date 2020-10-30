@@ -115,7 +115,7 @@ update_status ModuleUI::Update(float dt)
 
 			if (CollapsingHeader("Model Properties"))
 			{
-				Checkbox("Draw normals", &render_normals);
+				Checkbox("Draw normals", &render_vertex_normals);
 				Checkbox("Draw texture", &render_texture);
 			}
 			if (MenuItem("Console"))
