@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include "Globals.h"
 
 enum GOCOMPONENT_TYPE
 {

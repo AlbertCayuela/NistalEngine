@@ -1,8 +1,8 @@
-#ifndef __H_GOMESH_H__
-#define __H_GOMESH_H__
+#ifndef __GOMESH_H__
+#define __GOMESH_H__
 
 #include "GOComponent.h"
-//#include "ModuleLoadFBX.h"
+#include "ModuleLoadFBX.h"
 
 class GOMesh : public GOComponent
 {

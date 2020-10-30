@@ -96,7 +96,7 @@ GameObject* ModuleSceneIntro::CreateGameObject(GameObject* parent, const char* n
 {
     GameObject* game_object = new GameObject(parent, name);
     game_objects.push_back(game_object);
-    LOG("Number of gameobjects in the scene: %i", game_objects.capacity());
+    //LOG("Number of gameobjects in the scene: %i", game_objects.capacity());
     
     return game_object;
 }

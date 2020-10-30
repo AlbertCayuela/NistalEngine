@@ -1,5 +1,5 @@
-#ifndef __H_GOMATERIAL_H__
-#define __H_GOMATERIAL_H__
+#ifndef __GOMATERIAL_H__
+#define __GOMATERIAL_H__
 
 #include "GOComponent.h"
 

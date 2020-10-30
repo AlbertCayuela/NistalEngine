@@ -6,11 +6,13 @@
 #include "GameObject.h"
 #include "Glew/include/glew.h"
 #include <vector>
+#include "MathGeoLib/include/Math/float3.h"
+#include "Assimp/include/vector3.h"
 
-#define CHECKERS_WIDTH 64
-#define CHECKERS_HEIGHT 64
 
-class Texture;
+class GameObject;
+class aiScene;
+class aiMesh;
 
 struct modelData {
 
