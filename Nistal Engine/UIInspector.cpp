@@ -8,6 +8,7 @@
 #include "ImGui/imgui_impl_opengl3.h"
 #include "Glew/include/glew.h"
 
+
 using namespace ImGui;
 
 UIInspector::UIInspector() : UIWindow()
@@ -42,7 +43,7 @@ void UIInspector::Draw()
 			ImGui::ColorEdit3("color 1", col1);
 			ImGui::ColorEdit4("color 2", col2);	*/	
 
-			Text("Game Object name:");
+			Text("Game Object name: %s", App->load_fbx->new_go->name.c_str());
 			Separator();
 
 			Text("Position:"); SameLine();

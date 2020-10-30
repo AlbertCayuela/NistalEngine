@@ -2,6 +2,7 @@
 #define __H_GOMESH_H__
 
 #include "GOComponent.h"
+//#include "ModuleLoadFBX.h"
 
 class GOMesh : public GOComponent
 {

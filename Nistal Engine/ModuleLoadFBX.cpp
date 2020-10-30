@@ -1,6 +1,7 @@
 #include "Application.h"
 #include "ModuleLoadFBX.h"
 #include "GameObject.h"
+#include "GOMesh.h"
 
 #include "Assimp/include/scene.h"
 #include "Assimp/include/postprocess.h"
@@ -161,6 +162,7 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object, co
         AddBuffers();
 
         new_go = App->scene_intro->CreateGameObject(game_object, file_path);
+        new_go->AddComponent(GOCOMPONENT_TYPE::MESH);
         //LOG("New GameObject name: %s", new_go->name.c_str());
 
         meshes.push_back(model);
