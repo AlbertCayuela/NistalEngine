@@ -32,6 +32,7 @@ public:
 	GOMaterial* material = nullptr;
 	GOMesh* mesh = nullptr;
 	GOTransform* transform = nullptr;
+	bool has_mesh = false;
 
 private:
 

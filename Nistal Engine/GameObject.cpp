@@ -32,6 +32,7 @@ GOComponent* GameObject::AddComponent(GOCOMPONENT_TYPE type)
 	case(GOCOMPONENT_TYPE::MESH):
 		mesh = new GOMesh(this);
 		component = mesh;
+		has_mesh = true;
 		break;
 	case(GOCOMPONENT_TYPE::TRANSFORM):
 		transform = new GOTransform(this);

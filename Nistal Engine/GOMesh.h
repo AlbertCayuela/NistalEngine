@@ -10,6 +10,7 @@ public:
 
 	GOMesh(GameObject* game_object);
 	~GOMesh();
+	void DrawMesh();
 
 	modelData mesh_info;
 };

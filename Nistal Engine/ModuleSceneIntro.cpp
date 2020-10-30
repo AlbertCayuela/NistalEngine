@@ -3,6 +3,7 @@
 #include "ModuleSceneIntro.h"
 #include "ModuleUI.h"
 #include "sphereEngine.h"
+#include "GOMesh.h"
 
 
 #include "Glew/include/glew.h"
@@ -45,6 +46,7 @@ update_status ModuleSceneIntro::Update(float dt)
 {    
     PlanePrimitive p(0, 1, 0, 0);
     p.axis = true;
+    //to change size see p.innerrender() -> variable d(now its 10 it was 200 before)
     p.Render();
 
     //TESTING CUBES
@@ -66,15 +68,23 @@ update_status ModuleSceneIntro::Update(float dt)
         my_sphere.DrawSphere(0.0f, 0.0f, 0.0f);
 
     //DRAWING MODEL PROPERTIES
-    if (App->ui->render_vertex_normals)
+    //if (App->ui->render_vertex_normals)
+    //{
+    //    for (std::vector<modelData>::iterator i = App->load_fbx->meshes.begin(); i != App->load_fbx->meshes.end(); ++i)
+    //    {
+    //        //App->load_fbx->DrawNormals(*i);
+    //        App->load_fbx->DrawVertexNormals(*i);
+    //    }
+    //    
+    //} 
+
+    for (std::vector<GameObject*>::iterator i = game_objects.begin(); i != game_objects.end(); ++i)
     {
-        for (std::vector<modelData>::iterator i = App->load_fbx->meshes.begin(); i != App->load_fbx->meshes.end(); ++i)
+        if ((*i)->has_mesh)
         {
-            //App->load_fbx->DrawNormals(*i);
-            App->load_fbx->DrawVertexNormals(*i);
+            (*i)->mesh->DrawMesh();
         }
-        
-    }   
+    }
 
     if (App->ui->render_face_normals)
     {

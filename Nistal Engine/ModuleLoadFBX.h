@@ -61,7 +61,7 @@ public:
 
 	bool LoadFBX(const char* file_path);
 	void AddBuffers();
-	void DrawFBX(modelData model);
+	//void DrawFBX(modelData model);
 	void LoadMeshes(const aiScene* scene, GameObject* game_object, const char* file_path);
 	void LoadIndices(aiMesh* scene);
 	void DrawNormals(modelData model);
@@ -91,6 +91,6 @@ public:
 
 	uint texture_id;
 
-	std::vector<GOMesh*> meshes;
+	//std::vector<GOMesh*> meshes;
 	bool all_fbx_loaded = false;
 };
