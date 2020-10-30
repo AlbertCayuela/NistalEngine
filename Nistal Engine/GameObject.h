@@ -25,7 +25,7 @@ public:
 	GameObject(GameObject* parent, const char* name);
 	~GameObject();
 	void Update(float dt);
-	GOComponent* AddComponent(GOCOMPONENT_TYPE type);
+	GOComponent* AddComponent(GOCOMPONENT_TYPE type, const char* name);
 	GOComponent* GetComponent(GOCOMPONENT_TYPE type);
 
 	std::string name;
@@ -33,6 +33,7 @@ public:
 	GOMesh* mesh = nullptr;
 	GOTransform* transform = nullptr;
 	bool has_mesh = false;
+	bool has_material = false;
 
 private:
 

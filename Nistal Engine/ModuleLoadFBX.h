@@ -13,6 +13,7 @@
 class GameObject;
 class aiScene;
 class aiMesh;
+class aiNode;
 
 struct modelData {
 
@@ -82,6 +83,8 @@ public:
 	modelData model;
 	int texture_height;
 	int texture_width;
+	uint textures_num;
+	//std::string texture_path;
 
 	GLubyte* image = nullptr;
 	GLint LOD = 0; //level of detail

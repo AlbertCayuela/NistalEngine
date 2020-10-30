@@ -34,6 +34,9 @@ public:
 
     vector<GameObject*> game_objects;
     GameObject* root;
+    GameObject* baker_house;
+
+    bool render_house = false;
 
     CubeRender my_cube;
 };

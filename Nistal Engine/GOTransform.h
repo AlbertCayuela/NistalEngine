@@ -12,7 +12,7 @@ class GOTransform : public GOComponent
 
 public:
 
-	GOTransform(GameObject* game_object);
+	GOTransform(GameObject* game_object, const char* name);
 	~GOTransform();
 
 public:
@@ -22,6 +22,8 @@ public:
 	float3 position;
 	Quat rotation;
 	float3 scale;
+
+	std::string name;
 };
 
 #endif

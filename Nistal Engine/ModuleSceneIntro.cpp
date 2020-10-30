@@ -4,6 +4,7 @@
 #include "ModuleUI.h"
 #include "sphereEngine.h"
 #include "GOMesh.h"
+#include "GOMaterial.h"
 
 
 #include "Glew/include/glew.h"
@@ -33,6 +34,11 @@ bool ModuleSceneIntro::Start()
 
     root = CreateGameObject(nullptr, "root");
 
+    baker_house = CreateGameObject(root, "baker house");
+    //baker_house->mesh->SetMesh("Models/BakerHouse.fbx");
+
+
+
     return ret;
 }
 
@@ -49,8 +55,17 @@ update_status ModuleSceneIntro::Update(float dt)
     //to change size see p.innerrender() -> variable d(now its 10 it was 200 before)
     p.Render();
 
-    //TESTING CUBES
+    if (!render_house) 
+    {
+        baker_house->mesh->SetMesh("Models/BakerHouse.fbx");
+        baker_house->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "Textures/Baker_house.png");
+        baker_house->material->LoadThisTex("Textures/Baker_house.png");
+        render_house = true;
+    }
 
+
+
+    //TESTING CUBES
     if (App->ui->render_cube_direct_mode)
     {
         App->scene_intro->my_cube.DrawCubeDirectMode();

@@ -8,7 +8,7 @@ GameObject::GameObject(GameObject* parent, const char* name)
 {
 	this->parent = parent;
 	this->name = name;
-	AddComponent(GOCOMPONENT_TYPE::TRANSFORM);
+	AddComponent(GOCOMPONENT_TYPE::TRANSFORM, "transform");
 	LOG("New GameObject created: %s", this->name.c_str());
 }
 
@@ -20,23 +20,24 @@ void GameObject::Update(float dt)
 {
 }
 
-GOComponent* GameObject::AddComponent(GOCOMPONENT_TYPE type)
+GOComponent* GameObject::AddComponent(GOCOMPONENT_TYPE type, const char* name)
 {
 	GOComponent* component = nullptr;
 
 	switch (type)
 	{
 	case(GOCOMPONENT_TYPE::MATERIAL):
-		material = new GOMaterial(this);
+		material = new GOMaterial(this, name);
 		component = material;
+		has_material = true;
 		break;
 	case(GOCOMPONENT_TYPE::MESH):
-		mesh = new GOMesh(this);
+		mesh = new GOMesh(this, name);
 		component = mesh;
 		has_mesh = true;
 		break;
 	case(GOCOMPONENT_TYPE::TRANSFORM):
-		transform = new GOTransform(this);
+		transform = new GOTransform(this, name);
 		component = transform;
 		break;
 	default:

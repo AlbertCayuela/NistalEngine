@@ -5,6 +5,7 @@
 
 GOComponent::GOComponent(GameObject* game_object)
 {
+	parent = game_object;
 }
 
 GOComponent::~GOComponent()

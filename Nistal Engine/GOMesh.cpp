@@ -1,8 +1,10 @@
 #include "GOMesh.h"
+#include "GOMaterial.h"
 #include "Application.h"
 
-GOMesh::GOMesh(GameObject* game_object) : GOComponent(game_object)
+GOMesh::GOMesh(GameObject* game_object, const char* name) : GOComponent(game_object)
 {
+    this->name = name;
 	LOG("Mesh added to gameobject: %s", game_object->name.c_str());
 }
 
@@ -18,10 +20,14 @@ void GOMesh::DrawMesh()
     //change color viewport
     //glClearColor(0.0f, 1.0f, 0.0f, 1.0f);
 
-    //bind texture
-    glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, App->load_fbx->texture_id);
-
+    if (parent->has_material)
+    {
+        parent->material->GetTexId();
+        //bind texture
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, parent->material->texture_id);
+    }
+    
     //bind vertices
     glBindBuffer(GL_ARRAY_BUFFER, mesh_info.id_vertex);
     glVertexPointer(3, GL_FLOAT, 0, NULL);
@@ -42,4 +48,9 @@ void GOMesh::DrawMesh()
     glBindTexture(GL_TEXTURE_2D, 0);
     glDisable(GL_TEXTURE_2D);
 
+}
+
+void GOMesh::SetMesh(const char* path)
+{
+    App->load_fbx->LoadFBX(path);
 }

@@ -2,9 +2,12 @@
 #include "ModuleLoadFBX.h"
 #include "GameObject.h"
 #include "GOMesh.h"
+#include "GOMaterial.h"
 
 #include "Assimp/include/scene.h"
 #include "Assimp/include/postprocess.h"
+#include "Assimp/include/cimport.h"
+
 #include "Devil/include/il.h"
 #include "Devil/include/ilu.h"
 #include "Devil/include/ilut.h"
@@ -35,7 +38,7 @@ bool ModuleLoadFBX::Start()
     path = json_object_get_string(model_node, "Path");
     texture_path = json_object_get_string(texture_node, "Texture Path");
 
-    LoadTexture(texture_path);
+    //LoadTexture(texture_path);
 
 	return true;
 }
@@ -47,11 +50,11 @@ update_status ModuleLoadFBX::PreUpdate(float dt)
 
 update_status ModuleLoadFBX::Update(float dt)
 {
-    if (!all_fbx_loaded)
-    {
-        App->load_fbx->LoadFBX(path);
-        all_fbx_loaded = true;
-    }
+    //if (!all_fbx_loaded)
+    //{
+    //    App->load_fbx->LoadFBX(path);
+    //    all_fbx_loaded = true;
+    //}
 
     //draw every mesh
     //for (std::vector<modelData>::iterator i = App->load_fbx->meshes.begin(); i != App->load_fbx->meshes.end(); ++i)
@@ -92,12 +95,28 @@ bool ModuleLoadFBX::LoadFBX(const char* file_path)
 
 void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object, const char* file_path)
 {
-    for (uint i = 0; i < scene->mNumMeshes; ++i)
+    aiNode* root_node = scene->mRootNode;
+
+    for (uint i = 0; i<root_node->mNumChildren; ++i)
     {
-        //loading vertices
-        //GameObject* new_object = App->scene_intro->CreateGameObject(game_object);
+        new_go = App->scene_intro->CreateGameObject(game_object, file_path);
 
         mesh = scene->mMeshes[i];
+
+        aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
+        if (material != nullptr)
+        {
+            textures_num = material->GetTextureCount(aiTextureType_DIFFUSE);
+            aiString tex_path;
+            material->GetTexture(aiTextureType_DIFFUSE, 0, &tex_path);
+            const char* texture_path;
+            texture_path = tex_path.data;
+            //std::string st = texture_path;
+            //TODO CHECK IF WE HAVE TO ADD IT IN THIS GAMEOBJECT
+            //LOG("Texture detected! Path: %s", st.c_str());
+            new_go->AddComponent(GOCOMPONENT_TYPE::MATERIAL, texture_path);
+        }
+
         model = modelData();
         model.num_vertex = mesh->mNumVertices;
         model.vertices = new float[mesh->mNumVertices * 3];
@@ -164,8 +183,7 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object, co
 
         AddBuffers();
 
-        new_go = App->scene_intro->CreateGameObject(game_object, file_path);
-        new_go->AddComponent(GOCOMPONENT_TYPE::MESH);
+        new_go->AddComponent(GOCOMPONENT_TYPE::MESH, "mesh");
         new_go->mesh->mesh_info = model;
         //LOG("New GameObject name: %s", new_go->name.c_str());
 
