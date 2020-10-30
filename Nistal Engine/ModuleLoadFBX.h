@@ -66,17 +66,23 @@ public:
 	void LoadIndices(aiMesh* scene);
 	void DrawNormals(modelData model);
 	void DrawVertexNormals(modelData model);
-	void LoadTexture(char* texture_path);
+	void LoadTexture(const char* texture_path);
 
 public:
 
 	const char* path;
+	const char* texture_path;
 	const aiScene* scene;
 
 	JSON_Object* model_node = nullptr;
+	JSON_Object* texture_node = nullptr;
+
 	aiMesh* mesh;
 	aiMesh* new_mesh;
 	modelData model;
+	int texture_height;
+	int texture_width;
+
 	GLubyte* image = nullptr;
 	GLint LOD = 0; //level of detail
 

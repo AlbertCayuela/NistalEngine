@@ -74,7 +74,12 @@ update_status ModuleSceneIntro::Update(float dt)
             App->load_fbx->DrawVertexNormals(*i);
         }
         
-    }       
+    }   
+
+    if (App->ui->render_face_normals)
+    {
+         App->load_fbx->DrawNormals(App->load_fbx->model);
+    }
 
     return UPDATE_CONTINUE;
 }

@@ -30,9 +30,12 @@ bool ModuleLoadFBX::Start()
 	stream = aiGetPredefinedLogStream(aiDefaultLogStream_DEBUGGER, nullptr);
 	aiAttachLogStream(&stream);
     model_node = json_object_dotget_object(App->config, "Model");
-    path = json_object_get_string(model_node, "Path");
+    texture_node = json_object_dotget_object(App->config, "Texture");
 
-    LoadTexture("Textures/Baker_house.png");
+    path = json_object_get_string(model_node, "Path");
+    texture_path = json_object_get_string(texture_node, "Texture Path");
+
+    LoadTexture(texture_path);
 
 	return true;
 }
@@ -276,7 +279,7 @@ void ModuleLoadFBX::LoadIndices(aiMesh* mesh)
     }
 }
 
-void ModuleLoadFBX::LoadTexture(char* texture_path) 
+void ModuleLoadFBX::LoadTexture(const char* texture_path) 
 {
     ilInit();
     iluInit();
@@ -284,6 +287,9 @@ void ModuleLoadFBX::LoadTexture(char* texture_path)
 
     if (ilLoadImage(texture_path))
     {
+        texture_width = ilGetInteger(IL_IMAGE_WIDTH);
+        texture_height = ilGetInteger(IL_IMAGE_HEIGHT);
+
         uint id = 0;
 
         ilGenImages(1, &id);

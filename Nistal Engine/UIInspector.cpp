@@ -66,7 +66,7 @@ void UIInspector::Draw()
 		if (CollapsingHeader("Geometry Mesh"))
 		{
 			//show normals
-			if (ImGui::Checkbox("Normals ALL: Vertex", &App->ui->render_vertex_normals))
+			if (ImGui::Checkbox("Normals: Vertex", &App->ui->render_vertex_normals))
 			{
 				for (std::vector<modelData>::iterator i = App->load_fbx->meshes.begin(); i != App->load_fbx->meshes.end(); ++i)
 				{
@@ -74,25 +74,10 @@ void UIInspector::Draw()
 				}
 			}
 
-			/*if (ImGui::Checkbox("Normals ALL: Face", &App->ui->render_face_normals))
-			{
-				for (std::vector<modelData>::iterator i = App->load_fbx->meshes.begin(); i != App->load_fbx->meshes.end(); ++i)
-				{
-					App->load_fbx->DrawNormals(*i);
-				}
-			}*/
-
-			Separator();
-
-			/*if (ImGui::Checkbox("Normals: Vertex", &App->ui->render_all_vertex_normals))
-			{
-				App->load_fbx->DrawVertexNormals(App->load_fbx->model);
-			}*/
-
-			/*if (ImGui::Checkbox("Normals: Face", &App->ui->render_all_face_normals))
+			if (ImGui::Checkbox("Normals: Face", &App->ui->render_face_normals))
 			{
 				App->load_fbx->DrawNormals(App->load_fbx->model);
-			}*/
+			}
 
 			Separator();
 
@@ -102,9 +87,13 @@ void UIInspector::Draw()
 			//Text("Number of normals: %i", App->load_fbx->model.num_normals);
 			Text("Number of UVs: %i", App->load_fbx->model.num_uvs);
 		}
-		if (CollapsingHeader("Material"))
+		if (CollapsingHeader("Texture"))
 		{
-			//hellow :)
+			Text("Path: %s", App->load_fbx->texture_path);
+			Separator();
+			Text("Width: %ipx", App->load_fbx->texture_width);
+			Text("Height: %ipx", App->load_fbx->texture_height);
+
 		}
 
 		//LOG("Hellow");
