@@ -109,6 +109,7 @@
     <ClInclude Include="UIAbout.h" />
     <ClInclude Include="UIConfiguration.h" />
     <ClInclude Include="UIConsole.h" />
+    <ClInclude Include="UIHierarchy.h" />
     <ClInclude Include="UIInspector.h" />
     <ClInclude Include="UIWindow.h" />
     <ClInclude Include="ImGui\imconfig.h" />
@@ -259,6 +260,7 @@
     <ClCompile Include="UIAbout.cpp" />
     <ClCompile Include="UIConfiguration.cpp" />
     <ClCompile Include="UIConsole.cpp" />
+    <ClCompile Include="UIHierarchy.cpp" />
     <ClCompile Include="UIInspector.cpp" />
     <ClCompile Include="UIWindow.cpp" />
   </ItemGroup>

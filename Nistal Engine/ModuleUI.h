@@ -9,6 +9,7 @@ class UIConfiguration;
 class UIAbout;
 class UIConsole;
 class UIInspector;
+class UIHierarchy;
 
 class ModuleUI : public Module
 {
@@ -48,6 +49,7 @@ private:
 	UIAbout* ui_about = nullptr;
 	UIConsole* ui_console = nullptr;
 	UIInspector* ui_inspector = nullptr;
+	UIHierarchy* ui_hierarchy = nullptr;
 
 	JSON_Object* UI_node = nullptr;
 

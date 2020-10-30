@@ -6,6 +6,8 @@
 #include "UIAbout.h"
 #include "UIConsole.h"
 #include "UIInspector.h"
+#include "UIHierarchy.h"
+#include <vector>
 
 #include "ImGui/imconfig.h"
 #include "ImGui/imgui.h"
@@ -31,6 +33,7 @@ ModuleUI::ModuleUI(Application* app, bool start_enabled) : Module(app, start_ena
 	ui_windows.push_back(ui_about = new UIAbout());
 	ui_windows.push_back(ui_console = new UIConsole());
 	ui_windows.push_back(ui_inspector = new UIInspector());
+	ui_windows.push_back(ui_hierarchy = new UIHierarchy());
 }
 
 ModuleUI::~ModuleUI()
@@ -51,6 +54,7 @@ bool ModuleUI::Start()
 	ui_about->Start();
 	ui_console->Start();
 	ui_inspector->Start();
+	ui_hierarchy->Start();
 
 	return ret;
 }
@@ -68,6 +72,9 @@ update_status ModuleUI::Update(float dt)
 {
 	//INSPECTOR
 	ui_inspector->Draw();
+
+	//hierarchy
+	//ui_hierarchy->Draw();
 
 	//show demo window
 	if (show_demo)
@@ -87,7 +94,6 @@ update_status ModuleUI::Update(float dt)
 				
 				//App->texture->DrawTexture();
 			}
-
 			if (MenuItem("Exit", "Alt+F4"))
 			{
 				return UPDATE_STOP;
@@ -155,10 +161,10 @@ update_status ModuleUI::Update(float dt)
 		EndMainMenuBar();
 	}
 
-	for (int i = 0; i < ui_windows.capacity(); i++)
+	for (std::vector<UIWindow*>::iterator i = ui_windows.begin(); i < ui_windows.end(); ++i)
 	{
-		if (ui_windows[i]->IsActive())
-			ui_windows[i]->Draw();
+		if ((*i)->IsActive())
+			(*i)->Draw();
 	}
 
 
