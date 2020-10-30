@@ -78,7 +78,7 @@ public:
 	GLubyte* image = nullptr;
 	GLint LOD = 0; //level of detail
 
-	//GameObject* game_object = new GameObject(nullptr);
+	GameObject* game_object = new GameObject(nullptr);
 
 	uint texture_id;
 

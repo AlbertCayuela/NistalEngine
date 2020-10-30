@@ -35,7 +35,7 @@ void UIInspector::Draw()
 {
 	if (Begin("Inspector", &is_on, 0))
 	{
-		//LOG("Hellow");
+		LOG("Hellow");
 	}
 	End();
 }

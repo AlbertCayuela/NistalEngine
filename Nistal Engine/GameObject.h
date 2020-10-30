@@ -21,7 +21,7 @@ class GameObject
 {
 public:
 
-	GameObject(GameObject* parent, const char* name);
+	GameObject(GameObject* parent = nullptr);
 	~GameObject();
 	void Update(float dt);
 	GOComponent* AddComponent(GOCOMPONENT_TYPE type);
