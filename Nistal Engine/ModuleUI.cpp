@@ -5,6 +5,7 @@
 #include "UIConfiguration.h"
 #include "UIAbout.h"
 #include "UIConsole.h"
+#include "UIInspector.h"
 
 #include "ImGui/imconfig.h"
 #include "ImGui/imgui.h"
@@ -29,6 +30,7 @@ ModuleUI::ModuleUI(Application* app, bool start_enabled) : Module(app, start_ena
 	ui_windows.push_back(ui_configuration = new UIConfiguration());
 	ui_windows.push_back(ui_about = new UIAbout());
 	ui_windows.push_back(ui_console = new UIConsole());
+	ui_windows.push_back(ui_inspector = new UIInspector());
 }
 
 ModuleUI::~ModuleUI()
@@ -48,6 +50,7 @@ bool ModuleUI::Start()
 	ui_configuration->Start();
 	ui_about->Start();
 	ui_console->Start();
+	ui_inspector->Start();
 
 	return ret;
 }
@@ -63,6 +66,9 @@ update_status ModuleUI::PreUpdate(float dt)
 
 update_status ModuleUI::Update(float dt)
 {
+	//INSPECTOR
+	ui_inspector->Draw();
+
 	//show demo window
 	if (show_demo)
 		ShowDemoWindow(&show_demo);
@@ -106,6 +112,7 @@ update_status ModuleUI::Update(float dt)
 		}
 		if (BeginMenu("View"))
 		{
+
 			if (CollapsingHeader("Model Properties"))
 			{
 				Checkbox("Draw normals", &render_normals);

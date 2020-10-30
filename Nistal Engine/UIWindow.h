@@ -4,6 +4,7 @@
 #include "Application.h"
 #include "Globals.h"
 #include "SDL/include/SDL.h"
+
 class UIWindow
 {
 public:
@@ -13,7 +14,6 @@ public:
 	virtual void Active();
 	virtual bool IsActive();
 	virtual void Draw() = 0;
-
 
 public:
 	bool is_on = false;

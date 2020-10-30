@@ -33,4 +33,9 @@ bool UIInspector::CleanUp()
 
 void UIInspector::Draw()
 {
+	if (Begin("Inspector", &is_on, 0))
+	{
+		LOG("Hellow");
+	}
+	End();
 }
