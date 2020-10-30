@@ -1,5 +1,6 @@
 #include "Application.h"
 #include "ModuleLoadFBX.h"
+#include "GameObject.h"
 
 #include "Assimp/include/scene.h"
 #include "Assimp/include/postprocess.h"
@@ -77,7 +78,7 @@ bool ModuleLoadFBX::LoadFBX(const char* file_path)
     scene = aiImportFile(file_path, aiProcessPreset_TargetRealtime_MaxQuality);
 
     if (scene != nullptr && scene->HasMeshes())
-        LoadMeshes(scene, App->scene_intro->root);
+        LoadMeshes(scene, App->scene_intro->root, file_path);
     else 
     {
         LOG("Error loading scene %s", path);
@@ -85,7 +86,7 @@ bool ModuleLoadFBX::LoadFBX(const char* file_path)
     }
 }
 
-void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object)
+void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object, const char* file_path)
 {
     for (uint i = 0; i < scene->mNumMeshes; ++i)
     {
@@ -158,6 +159,9 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object)
         }  
 
         AddBuffers();
+
+        new_go = App->scene_intro->CreateGameObject(game_object, file_path);
+        //LOG("New GameObject name: %s", new_go->name.c_str());
 
         meshes.push_back(model);
 

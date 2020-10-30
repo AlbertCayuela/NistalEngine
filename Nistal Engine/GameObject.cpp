@@ -8,7 +8,7 @@ GameObject::GameObject(GameObject* parent, const char* name)
 {
 	this->parent = parent;
 	this->name = name;
-	LOG("New GameObject created");
+	LOG("New GameObject created: %s", this->name.c_str());
 }
 
 GameObject::~GameObject()

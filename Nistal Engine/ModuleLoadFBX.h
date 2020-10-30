@@ -57,10 +57,10 @@ public:
 	update_status PostUpdate(float dt);
 	bool CleanUp();
 
-	bool LoadFBX(const char* path);
+	bool LoadFBX(const char* file_path);
 	void AddBuffers();
 	void DrawFBX(modelData model);
-	void LoadMeshes(const aiScene* scene, GameObject* game_object);
+	void LoadMeshes(const aiScene* scene, GameObject* game_object, const char* file_path);
 	void LoadIndices(aiMesh* scene);
 	void DrawNormals(modelData model);
 	void DrawVertexNormals(modelData model);
@@ -79,6 +79,7 @@ public:
 	GLint LOD = 0; //level of detail
 
 	//GameObject* game_object = new GameObject(nullptr);
+	GameObject* new_go;
 
 	uint texture_id;
 
