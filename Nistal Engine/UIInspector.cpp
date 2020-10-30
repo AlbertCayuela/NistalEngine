@@ -68,10 +68,10 @@ void UIInspector::Draw()
 			//show normals
 			if (ImGui::Checkbox("Normals: Vertex", &App->ui->render_vertex_normals))
 			{
-				for (std::vector<modelData>::iterator i = App->load_fbx->meshes.begin(); i != App->load_fbx->meshes.end(); ++i)
+				/*for (std::vector<modelData>::iterator i = App->load_fbx->meshes.begin(); i != App->load_fbx->meshes.end(); ++i)
 				{
 					App->load_fbx->DrawVertexNormals(*i);
-				}
+				}*/
 			}
 
 			if (ImGui::Checkbox("Normals: Face", &App->ui->render_face_normals))
