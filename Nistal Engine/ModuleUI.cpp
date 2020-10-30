@@ -6,6 +6,7 @@
 #include "UIAbout.h"
 #include "UIConsole.h"
 #include "UIInspector.h"
+#include "UIHierarchy.h"
 
 #include "ImGui/imconfig.h"
 #include "ImGui/imgui.h"
@@ -31,6 +32,7 @@ ModuleUI::ModuleUI(Application* app, bool start_enabled) : Module(app, start_ena
 	ui_windows.push_back(ui_about = new UIAbout());
 	ui_windows.push_back(ui_console = new UIConsole());
 	ui_windows.push_back(ui_inspector = new UIInspector());
+	ui_windows.push_back(ui_hierarchy = new UIHierarchy());
 }
 
 ModuleUI::~ModuleUI()
@@ -51,6 +53,8 @@ bool ModuleUI::Start()
 	ui_about->Start();
 	ui_console->Start();
 	ui_inspector->Start();
+	ui_hierarchy->Start();
+
 
 	return ret;
 }
@@ -68,6 +72,9 @@ update_status ModuleUI::Update(float dt)
 {
 	//INSPECTOR
 	ui_inspector->Draw();
+
+	//HIERARCHY
+	ui_hierarchy->Draw();
 
 	//show demo window
 	if (show_demo)

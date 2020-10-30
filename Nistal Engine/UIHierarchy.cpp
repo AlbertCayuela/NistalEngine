@@ -1,39 +1,37 @@
 #include "Application.h"
 #include "Globals.h"
-#include "UIInspector.h"
+#include "UIHierarchy.h"
 #include "UIWindow.h"
-#include "ImGui/imconfig.h"
 
+#include "ImGui/imconfig.h"
 #include "ImGui/imgui.h"
 #include "ImGui/imgui_impl_sdl.h"
 #include "ImGui/imgui_impl_opengl3.h"
 #include "Glew/include/glew.h"
 
-
 using namespace ImGui;
 
-UIInspector::UIInspector() : UIWindow()
+UIHierarchy::UIHierarchy() : UIWindow()
 {
 	is_on = false;
 }
 
-UIInspector::~UIInspector()
+UIHierarchy::~UIHierarchy()
 {}
 
-bool UIInspector::Start()
+bool UIHierarchy::Start()
 {
 	bool ret = true;
-
 
 	return ret;
 }
 
-bool UIInspector::CleanUp()
+bool UIHierarchy::CleanUp()
 {
 	return true;
 }
 
-void UIInspector::Draw()
+void UIHierarchy::Draw()
 {
 	if (Begin("Inspector", &is_on, 0))
 	{
@@ -42,7 +40,7 @@ void UIInspector::Draw()
 			/*static float col1[3] = { 1.0f, 0.0f, 0.2f };
 			static float col2[4] = { 0.4f, 0.7f, 0.0f, 0.5f };
 			ImGui::ColorEdit3("color 1", col1);
-			ImGui::ColorEdit4("color 2", col2);	*/	
+			ImGui::ColorEdit4("color 2", col2);	*/
 
 			Text("Game Object name: %s", App->load_fbx->new_go->name.c_str());
 			Separator();
