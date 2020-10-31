@@ -71,25 +71,26 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 
 			Text("Position:"); SameLine();
 			static float position[4] = { GO->transform->position.x , GO->transform->position.y, GO->transform->position.z };
-			ImGui::InputFloat3("", position);
+			InputFloat3("", position);
 
 			Text("Rotation:"); SameLine();
 			static float rotation[4] = { GO->transform->rotation.x, GO->transform->rotation.y, GO->transform->rotation.z };
-			ImGui::InputFloat3("", rotation);
+			InputFloat3("", rotation);
 
 			Text("Scale:"); SameLine();
 			static float scale[4] = { GO->transform->scale.x, GO->transform->scale.y, GO->transform->scale.z };
-			ImGui::InputFloat3("", scale);
+			InputFloat3("", scale);
 
 			static int world = 0;
-			ImGui::RadioButton("world", &world, 2); ImGui::SameLine();
+			RadioButton("world", &world, 2); ImGui::SameLine();
 			static int local = 0;
-			ImGui::RadioButton("local", &local, 2);
+			RadioButton("local", &local, 2);
 		}
 		if (CollapsingHeader("Geometry Mesh"))
 		{
+			if (Checkbox("Active", &App->scene_intro->selected_go->active)){}
 			//show normals
-			if (ImGui::Checkbox("Normals: Vertex", &App->ui->render_vertex_normals))
+			if (Checkbox("Normals: Vertex", &App->ui->render_vertex_normals))
 			{
 				/*for (std::vector<modelData>::iterator i = App->load_fbx->meshes.begin(); i != App->load_fbx->meshes.end(); ++i)
 				{
@@ -98,7 +99,7 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 				App->load_fbx->DrawVertexNormals(App->load_fbx->model);
 			}
 
-			if (ImGui::Checkbox("Normals: Face", &App->ui->render_face_normals))
+			if (Checkbox("Normals: Face", &App->ui->render_face_normals))
 			{
 				App->load_fbx->DrawNormals(App->load_fbx->model);
 			}
@@ -130,7 +131,7 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 			ImVec4 tint_col = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);   // No tint
 			ImVec4 border_col = ImVec4(1.0f, 1.0f, 1.0f, 0.5f); // 50% opaque white
 
-			ImGui::Image((ImTextureID)App->load_fbx->texture_id, ImVec2(100.0f, 100.0f), uv_min, uv_max, tint_col, border_col);
+			Image((ImTextureID)App->load_fbx->texture_id, ImVec2(100.0f, 100.0f), uv_min, uv_max, tint_col, border_col);
 
 		}
 	}
