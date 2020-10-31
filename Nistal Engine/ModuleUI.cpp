@@ -102,16 +102,19 @@ update_status ModuleUI::Update(float dt)
 		}
 		if (BeginMenu("RenderObject"))
 		{
-			if (CollapsingHeader("Cubes")) 
+			if (CollapsingHeader("Primitives")) 
+			{
+				Checkbox("Cube", &cube);
+				Checkbox("Sphere", &sphere);
+				Checkbox("Cylinder", &cylinder);
+				Checkbox("Cone", &cone);
+				Checkbox("Torus", &torus);
+			}
+			if (CollapsingHeader("Different Cubes"))
 			{
 				Checkbox("Cube with direct mode", &render_cube_direct_mode); //functionality in sceneintro update
 				Checkbox("Cube with vertex", &render_cube_vertex);
 				Checkbox("Cube with indices", &render_cube_indices);
-			}
-
-			if (CollapsingHeader("Spheres"))
-			{
-				Checkbox("Sphere", &render_sphere);
 			}
 
 			ImGui::EndMenu();

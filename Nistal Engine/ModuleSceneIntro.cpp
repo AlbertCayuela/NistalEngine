@@ -73,6 +73,41 @@ update_status ModuleSceneIntro::Update(float dt)
         render_house = true;
     }
 
+    //PRIMITIVES
+    if (App->ui->cube)
+    {
+        App->load_fbx->LoadFBX("Primitives/Cube.fbx");
+        App->ui->cube = false;
+    }
+
+    if (App->ui->sphere)
+    {
+        App->load_fbx->LoadFBX("Primitives/Sphere.fbx");
+        App->ui->sphere = false;
+    }
+
+    if (App->ui->cylinder)
+    {
+        App->load_fbx->LoadFBX("Primitives/Cylinder.fbx");
+        App->ui->cylinder = false;
+    }
+
+    if (App->ui->cone)
+    {
+        App->load_fbx->LoadFBX("Primitives/Cone.fbx");
+        App->ui->cone = false;
+    }
+
+    if (App->ui->torus)
+    {
+        App->load_fbx->LoadFBX("Primitives/Torus.fbx");
+        App->ui->torus = false;
+    }
+
+
+
+    ImGui::Separator();
+
     //TESTING CUBES
     if (App->ui->render_cube_direct_mode)
     {
@@ -87,8 +122,8 @@ update_status ModuleSceneIntro::Update(float dt)
     //TESTING SPHERE RENDERING
     SphereRender my_sphere(1, 12, 24);
 
-    if (App->ui->render_sphere)
-        my_sphere.DrawSphere(0.0f, 0.0f, 0.0f);
+    /*if (App->ui->render_sphere)
+        my_sphere.DrawSphere(0.0f, 0.0f, 0.0f);*/
 
     //DRAWING MODEL PROPERTIES
     //if (App->ui->render_vertex_normals)

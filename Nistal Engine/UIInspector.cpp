@@ -104,14 +104,14 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 
 			Separator();
 
-			//if (mesh_exists || GO != App->scene_intro->root)
-			//{
-			//	Text("Number of vertices: %i", GO->mesh->mesh_info.num_vertex);
-			//	Text("Number of indices: %i", GO->mesh->mesh_info.num_index);
-			//	Text("Number of faces: %i", GO->mesh->mesh_info.num_vertex / 3);
-			//	//Text("Number of normals: %i", App->load_fbx->model.num_normals);
-			//	Text("Number of UVs: %i", GO->mesh->mesh_info.num_uvs);
-			//}
+			if (mesh_exists || GO != App->scene_intro->root)
+			{
+				Text("Number of vertices: %i", GO->mesh->mesh_info.num_vertex);
+				Text("Number of indices: %i", GO->mesh->mesh_info.num_index);
+				Text("Number of faces: %i", GO->mesh->mesh_info.num_vertex / 3);
+				Text("Number of normals: %i", App->load_fbx->model.num_normals);
+				Text("Number of UVs: %i", GO->mesh->mesh_info.num_uvs);
+			}
 		}
 		if (CollapsingHeader("Texture"))
 		{

@@ -27,11 +27,18 @@ public:
 	void ConsoleLog(const char* text);
 	void DebugConsole();
 
+	bool cube = false;
+	bool sphere = false;
+	bool cylinder = false;
+	bool torus = false;
+	bool cone = false;
+
+
 	bool show_demo = false;
 	bool render_cube_direct_mode = false;
 	bool render_cube_vertex = false;
 	bool render_cube_indices = false;
-	bool render_sphere = false;
+
 	std::vector<UIWindow*> ui_windows;
 	ImGuiTextBuffer debug_console_buff;
 
