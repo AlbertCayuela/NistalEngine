@@ -21,6 +21,10 @@ public:
 	void Draw ();
 	bool CleanUp();
 
+	void LoadInspectoData(GameObject* GO);
+
+	bool mesh_exists = false;
+
 private:
 
 };

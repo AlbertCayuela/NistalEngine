@@ -39,9 +39,6 @@ bool ModuleSceneIntro::Start()
 
     App->load_fbx->LoadTexture("Textures/Baker_house.png");
 
-    go1 = CreateGameObject(root, "go1");
-    go2 = CreateGameObject(go1, "go2");
-
     return ret;
 }
 

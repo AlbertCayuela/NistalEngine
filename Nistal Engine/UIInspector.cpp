@@ -4,6 +4,7 @@
 #include "UIWindow.h"
 #include "GameObject.h"
 #include "GOTransform.h"
+#include "GOMesh.h"
 #include "ModuleSceneIntro.h"
 
 #include "ImGui/imconfig.h"
@@ -38,6 +39,23 @@ bool UIInspector::CleanUp()
 
 void UIInspector::Draw()
 {
+	if (App->scene_intro->selected_go != nullptr)
+	{
+		LoadInspectoData(App->scene_intro->selected_go);
+		mesh_exists = true;
+
+	}
+	else
+	{
+		LoadInspectoData(App->scene_intro->root);
+		//mesh_exists = false;
+	}
+
+	
+}
+
+void UIInspector::LoadInspectoData(GameObject* GO)
+{
 	if (Begin("Inspector", &is_on, 0))
 	{
 		if (CollapsingHeader("Transform"))
@@ -47,21 +65,19 @@ void UIInspector::Draw()
 			ImGui::ColorEdit3("color 1", col1);
 			ImGui::ColorEdit4("color 2", col2);	*/
 
-			
-
-			Text("Game Object name: %s", App->scene_intro->go1->name.c_str());
+			Text("Game Object name: %s", GO->name.c_str());
 			Separator();
 
 			Text("Position:"); SameLine();
-			static float position[4] = { App->scene_intro->go1->transform->position.x , App->scene_intro->go1->transform->position.y, App->scene_intro->go1->transform->position.z };
+			static float position[4] = { GO->transform->position.x , GO->transform->position.y, GO->transform->position.z };
 			ImGui::InputFloat3("", position);
 
 			Text("Rotation:"); SameLine();
-			static float rotation[4] = { App->scene_intro->go1->transform->rotation.x, App->scene_intro->go1->transform->rotation.y, App->scene_intro->go1->transform->rotation.z };
+			static float rotation[4] = { GO->transform->rotation.x, GO->transform->rotation.y, GO->transform->rotation.z };
 			ImGui::InputFloat3("", rotation);
 
 			Text("Scale:"); SameLine();
-			static float scale[4] = { App->scene_intro->go1->transform->scale.x, App->scene_intro->go1->transform->scale.y, App->scene_intro->go1->transform->scale.z };
+			static float scale[4] = { GO->transform->scale.x, GO->transform->scale.y, GO->transform->scale.z };
 			ImGui::InputFloat3("", scale);
 
 			static int world = 0;
@@ -88,11 +104,14 @@ void UIInspector::Draw()
 
 			Separator();
 
-			Text("Number of vertices: %i", App->load_fbx->model.num_vertex);
-			Text("Number of indices: %i", App->load_fbx->model.num_index);
-			Text("Number of faces: %i", App->load_fbx->model.num_vertex / 3);
-			//Text("Number of normals: %i", App->load_fbx->model.num_normals);
-			Text("Number of UVs: %i", App->load_fbx->model.num_uvs);
+			//if (mesh_exists || GO != App->scene_intro->root)
+			//{
+			//	Text("Number of vertices: %i", GO->mesh->mesh_info.num_vertex);
+			//	Text("Number of indices: %i", GO->mesh->mesh_info.num_index);
+			//	Text("Number of faces: %i", GO->mesh->mesh_info.num_vertex / 3);
+			//	//Text("Number of normals: %i", App->load_fbx->model.num_normals);
+			//	Text("Number of UVs: %i", GO->mesh->mesh_info.num_uvs);
+			//}
 		}
 		if (CollapsingHeader("Texture"))
 		{
