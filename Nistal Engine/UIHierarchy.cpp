@@ -13,7 +13,7 @@ using namespace ImGui;
 
 UIHierarchy::UIHierarchy() : UIWindow()
 {
-	is_on = false;
+	is_on = true;
 }
 
 UIHierarchy::~UIHierarchy()

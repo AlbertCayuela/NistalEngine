@@ -71,10 +71,10 @@ update_status ModuleUI::PreUpdate(float dt)
 update_status ModuleUI::Update(float dt)
 {
 	//INSPECTOR
-	ui_inspector->Draw();
+	//ui_inspector->Draw();
 
 	//hierarchy
-	ui_hierarchy->Draw();
+	//ui_hierarchy->Draw();
 
 	//show demo window
 	if (show_demo)
@@ -84,19 +84,34 @@ update_status ModuleUI::Update(float dt)
 	{
 		if (BeginMenu("File"))
 		{
-			if (MenuItem("Load model"))
-			{
-				App->load_fbx->LoadFBX(App->load_fbx->path);
-
-				//App->load_fbx->DrawFBX(App->load_fbx->model);
-				LOG("Model drawed!!");
-				//DRAW TEXTURE THROUGH FILE
-				
-				//App->texture->DrawTexture();
-			}
 			if (MenuItem("Exit", "Alt+F4"))
 			{
 				return UPDATE_STOP;
+			}
+			ImGui::EndMenu();
+		}
+		if (BeginMenu("Edit"))
+		{
+			if (MenuItem("Settings..."))
+			{
+				ui_configuration->is_on = !ui_configuration->is_on;
+
+			}
+			ImGui::EndMenu();
+		}
+		if (BeginMenu("Window"))
+		{
+			if (MenuItem("Hierarchy"))
+			{
+				ui_hierarchy->is_on = !ui_hierarchy->is_on;
+			}
+			if (MenuItem("Inspector"))
+			{
+				ui_inspector->is_on = !ui_inspector->is_on;
+			}
+			if (MenuItem("Console"))
+			{
+				ui_console->is_on = !ui_console->is_on;
 			}
 			ImGui::EndMenu();
 		}
@@ -117,24 +132,6 @@ update_status ModuleUI::Update(float dt)
 				Checkbox("Cube with indices", &render_cube_indices);
 			}
 
-			ImGui::EndMenu();
-		}
-		if (BeginMenu("View"))
-		{
-
-			if (CollapsingHeader("Model Properties"))
-			{
-				Checkbox("Draw normals", &render_vertex_normals);
-				Checkbox("Draw texture", &render_texture);
-			}
-			if (MenuItem("Console"))
-			{
-				ui_console->is_on = !ui_console->is_on;
-			}
-			if (MenuItem("Configuration"))
-			{
-				ui_configuration->is_on = !ui_configuration->is_on;
-			}
 			ImGui::EndMenu();
 		}
 		if (BeginMenu("Help"))

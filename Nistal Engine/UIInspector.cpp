@@ -18,7 +18,7 @@ using namespace ImGui;
 
 UIInspector::UIInspector() : UIWindow()
 {
-	is_on = false;
+	is_on = true;
 }
 
 UIInspector::~UIInspector()
