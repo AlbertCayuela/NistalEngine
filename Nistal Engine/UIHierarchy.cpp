@@ -47,6 +47,10 @@ void UIHierarchy::SetHierarchy(GameObject* root)
 {
 	if (TreeNode(root->name.c_str()))
 	{
+		if (IsItemClicked()) 
+		{
+			LOG("CLICKED! %s", root->name.c_str());
+		}
 		if (!root->children.empty())
 		{
 			for (std::vector<GameObject*>::iterator i = root->children.begin(); i < root->children.end(); ++i)

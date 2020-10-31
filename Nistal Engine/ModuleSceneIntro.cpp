@@ -34,10 +34,13 @@ bool ModuleSceneIntro::Start()
 
     root = CreateGameObject(nullptr, "root");
 
-    baker_house = CreateGameObject(root, "baker house");
+    //baker_house = CreateGameObject(root, "baker house");
     //baker_house->mesh->SetMesh("Models/BakerHouse.fbx");
 
+    App->load_fbx->LoadTexture("Textures/Baker_house.png");
 
+    GameObject* go1 = CreateGameObject(root, "go1");
+    GameObject* go2 = CreateGameObject(go1, "go2");
 
     return ret;
 }
@@ -57,9 +60,10 @@ update_status ModuleSceneIntro::Update(float dt)
 
     if (!render_house) 
     {
-        baker_house->mesh->SetMesh("Models/BakerHouse.fbx");
-        baker_house->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "Textures/Baker_house.png");
-        baker_house->material->LoadThisTex("Textures/Baker_house.png");
+        App->load_fbx->LoadFBX("Models/BakerHouse.fbx");
+        //baker_house->mesh->SetMesh("Models/BakerHouse.fbx");
+        //baker_house->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "Textures/Baker_house.png");
+        //baker_house->material->LoadThisTex("Textures/Baker_house.png");
         render_house = true;
     }
 
