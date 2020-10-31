@@ -117,6 +117,8 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 		}
 		if (CollapsingHeader("Texture"))
 		{
+			if(App->scene_intro->selected_go != nullptr)
+				if (Checkbox("Active", &App->scene_intro->selected_go->has_material)) {}
 			Text("Path: %s", App->load_fbx->texture_path);
 			Separator();
 			Text("Width: %ipx", App->load_fbx->texture_width);
