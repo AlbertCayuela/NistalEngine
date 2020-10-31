@@ -14,9 +14,6 @@ GOMaterial::~GOMaterial()
 void GOMaterial::LoadThisTex(const char* texture_path)
 {
 	App->load_fbx->LoadTexture(texture_path);
-}
-
-void GOMaterial::GetTexId()
-{
 	texture_id = App->load_fbx->texture_id;
 }
+

@@ -10,7 +10,7 @@ public:
 
 	GOMesh(GameObject* game_object, const char* name);
 	~GOMesh();
-	void DrawMesh();
+	void DrawMesh(uint texture_id = NULL);
 	void SetMesh(const char* path);
 
 	modelData mesh_info;

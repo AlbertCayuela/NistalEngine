@@ -63,6 +63,10 @@ update_status ModuleSceneIntro::Update(float dt)
     if (!render_house) 
     {
         App->load_fbx->LoadFBX("Models/BakerHouse.fbx");
+        game_objects.at(1)->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "texture");
+        game_objects.at(1)->material->LoadThisTex("Textures/Baker_house.png");
+        game_objects.at(2)->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "texture");
+        game_objects.at(2)->material->LoadThisTex("Textures/Baker_house.png");
         //baker_house->mesh->SetMesh("Models/BakerHouse.fbx");
         //baker_house->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "Textures/Baker_house.png");
         //baker_house->material->LoadThisTex("Textures/Baker_house.png");
@@ -101,7 +105,7 @@ update_status ModuleSceneIntro::Update(float dt)
     {
         if ((*i)->has_mesh)
         {
-            (*i)->mesh->DrawMesh();
+            (*i)->mesh->DrawMesh((*i)->material->texture_id);
         }
     }
 

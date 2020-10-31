@@ -12,7 +12,7 @@ GOMesh::~GOMesh()
 {
 }
 
-void GOMesh::DrawMesh()
+void GOMesh::DrawMesh(uint texture_id)
 {
 
     glEnableClientState(GL_VERTEX_ARRAY);
@@ -22,10 +22,9 @@ void GOMesh::DrawMesh()
 
     if (parent->has_material)
     {
-        parent->material->GetTexId();
         //bind texture
         glEnable(GL_TEXTURE_2D);
-        glBindTexture(GL_TEXTURE_2D, parent->material->texture_id);
+        glBindTexture(GL_TEXTURE_2D, texture_id);
     }
     
     //bind vertices

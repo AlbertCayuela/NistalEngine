@@ -1,6 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleInput.h"
+#include "GOMaterial.h"
 #include "ImGUi/imgui_impl_sdl.h"
 #include <string>
 
@@ -131,7 +132,15 @@ update_status ModuleInput::PreUpdate(float dt)
 			else if (extension == "dds" || extension == "DDS" || extension == "png" || extension == "PNG" || extension == "jpg" || extension == "JPG") 
 			{
 				LOG("dropped a texture file");
-				App->load_fbx->LoadTexture(dropped_path);
+				if (App->scene_intro->selected_go != nullptr) 
+				{
+					App->scene_intro->selected_go->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "texture");
+					App->scene_intro->selected_go->material->LoadThisTex(dropped_path);
+				}
+				else
+				{
+					App->load_fbx->LoadTexture(dropped_path);
+				}
 			}
 			break;
 
