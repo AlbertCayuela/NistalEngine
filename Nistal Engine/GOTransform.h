@@ -15,6 +15,8 @@ public:
 	GOTransform(GameObject* game_object, const char* name);
 	~GOTransform();
 
+	void GetGOPosition();
+
 public:
 
 	float4x4 transform_matrix;

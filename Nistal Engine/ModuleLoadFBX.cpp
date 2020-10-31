@@ -240,7 +240,7 @@ void ModuleLoadFBX::DrawNormals(modelData model)
     glColor3f(0, 1, 0.77f);
     float lenght = 0.5f;
 
-    for (uint i = 0; i < mesh->mNumFaces; i++)
+    for (uint i = 0; i < model.num_faces; i++)
     {
         glBegin(GL_LINES);
         glVertex3f(model.face_middle [i].x, model.face_middle[i].y, model.face_middle[i].z);

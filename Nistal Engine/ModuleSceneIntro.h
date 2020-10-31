@@ -40,4 +40,7 @@ public:
     bool render_house = false;
 
     CubeRender my_cube;
+
+    GameObject* go1 = nullptr;
+    GameObject* go2 = nullptr;
 };

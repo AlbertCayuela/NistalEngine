@@ -2,6 +2,10 @@
 #include "Globals.h"
 #include "UIInspector.h"
 #include "UIWindow.h"
+#include "GameObject.h"
+#include "GOTransform.h"
+#include "ModuleSceneIntro.h"
+
 #include "ImGui/imconfig.h"
 #include "ImGui/imgui.h"
 #include "ImGui/imgui_impl_sdl.h"
@@ -41,21 +45,23 @@ void UIInspector::Draw()
 			/*static float col1[3] = { 1.0f, 0.0f, 0.2f };
 			static float col2[4] = { 0.4f, 0.7f, 0.0f, 0.5f };
 			ImGui::ColorEdit3("color 1", col1);
-			ImGui::ColorEdit4("color 2", col2);	*/	
+			ImGui::ColorEdit4("color 2", col2);	*/
 
-			Text("Game Object name: %s", App->load_fbx->new_go->name.c_str());
+			
+
+			Text("Game Object name: %s", App->scene_intro->go1->name.c_str());
 			Separator();
 
 			Text("Position:"); SameLine();
-			static float position[4] = { 0.0f, 0.0f, 0.0f };
+			static float position[4] = { App->scene_intro->go1->transform->position.x , App->scene_intro->go1->transform->position.y, App->scene_intro->go1->transform->position.z };
 			ImGui::InputFloat3("", position);
 
 			Text("Rotation:"); SameLine();
-			static float rotation[4] = { 0.0f, 0.0f, 0.0f };
+			static float rotation[4] = { App->scene_intro->go1->transform->rotation.x, App->scene_intro->go1->transform->rotation.y, App->scene_intro->go1->transform->rotation.z };
 			ImGui::InputFloat3("", rotation);
 
 			Text("Scale:"); SameLine();
-			static float scale[4] = { 1.0f, 1.0f, 1.0f };
+			static float scale[4] = { App->scene_intro->go1->transform->scale.x, App->scene_intro->go1->transform->scale.y, App->scene_intro->go1->transform->scale.z };
 			ImGui::InputFloat3("", scale);
 
 			static int world = 0;
@@ -72,6 +78,7 @@ void UIInspector::Draw()
 				{
 					App->load_fbx->DrawVertexNormals(*i);
 				}*/
+				App->load_fbx->DrawVertexNormals(App->load_fbx->model);
 			}
 
 			if (ImGui::Checkbox("Normals: Face", &App->ui->render_face_normals))

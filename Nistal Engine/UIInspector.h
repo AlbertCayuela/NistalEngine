@@ -18,7 +18,7 @@ public:
 
 
 	bool Start();
-	void Draw();
+	void Draw ();
 	bool CleanUp();
 
 private:

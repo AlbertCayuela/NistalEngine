@@ -39,8 +39,8 @@ bool ModuleSceneIntro::Start()
 
     App->load_fbx->LoadTexture("Textures/Baker_house.png");
 
-    GameObject* go1 = CreateGameObject(root, "go1");
-    GameObject* go2 = CreateGameObject(go1, "go2");
+    go1 = CreateGameObject(root, "go1");
+    go2 = CreateGameObject(go1, "go2");
 
     return ret;
 }
@@ -111,6 +111,11 @@ update_status ModuleSceneIntro::Update(float dt)
     if (App->ui->render_face_normals)
     {
          App->load_fbx->DrawNormals(App->load_fbx->model);
+    }
+
+    if (App->ui->render_vertex_normals)
+    {
+        App->load_fbx->DrawVertexNormals(App->load_fbx->model);
     }
 
     return UPDATE_CONTINUE;
