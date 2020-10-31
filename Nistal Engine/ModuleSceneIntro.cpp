@@ -144,10 +144,6 @@ update_status ModuleSceneIntro::Update(float dt)
             {
                 (*i)->active = false;
             }
-            //else if ((*i)->parent->active) 
-            //{
-            //    (*i)->active = true;
-            //}
         }
     }
 

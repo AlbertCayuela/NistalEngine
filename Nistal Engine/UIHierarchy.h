@@ -24,8 +24,6 @@ public:
 	bool CleanUp();
 	void SetHierarchy(GameObject* root);
 
-
-
 };
 
 #endif 

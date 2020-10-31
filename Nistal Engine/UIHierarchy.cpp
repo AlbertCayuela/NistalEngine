@@ -52,20 +52,22 @@ void UIHierarchy::SetHierarchy(GameObject* root)
 			SetHierarchy((*i));
 		}
 	}
-
 	else
 	{
 		if (TreeNode(root->ui_name.c_str()))
 		{
-			if (IsItemClicked())
+			if (IsItemHovered())
 			{
-				LOG("CLICKED! %s", root->ui_name.c_str());
-				App->scene_intro->selected_go = root;
-			}
-			if (Checkbox("Active", &root->active))
-			{
+				if (App->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN)
+				{
+					LOG("CLICKED! %s", root->ui_name.c_str());
+					App->scene_intro->selected_go = root;
+				}
 
 			}
+			if (Checkbox("Active", &root->active)){}
+			SameLine();
+			if (Checkbox("Selected", &root->selected)){}
 			if (!root->children.empty())
 			{
 				for (std::vector<GameObject*>::iterator i = root->children.begin(); i < root->children.end(); ++i)
