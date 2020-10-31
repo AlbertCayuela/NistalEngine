@@ -45,24 +45,35 @@ void UIHierarchy::Draw()
 
 void UIHierarchy::SetHierarchy(GameObject* root)
 {
-	if (TreeNode(root->ui_name.c_str()))
+	if (root->ui_name == "root")
 	{
-		if (IsItemClicked()) 
+		for (std::vector<GameObject*>::iterator i = root->children.begin(); i < root->children.end(); ++i)
 		{
-			LOG("CLICKED! %s", root->ui_name.c_str());
-			App->scene_intro->selected_go = root;
+			SetHierarchy((*i));
 		}
-		if (Checkbox("Active", &root->active))
-		{
-
-		}
-		if (!root->children.empty())
-		{
-			for (std::vector<GameObject*>::iterator i = root->children.begin(); i < root->children.end(); ++i)
-			{
-				SetHierarchy((*i));
-			}
-		}
-		TreePop();
 	}
+
+	else
+	{
+		if (TreeNode(root->ui_name.c_str()))
+		{
+			if (IsItemClicked())
+			{
+				LOG("CLICKED! %s", root->ui_name.c_str());
+				App->scene_intro->selected_go = root;
+			}
+			if (Checkbox("Active", &root->active))
+			{
+
+			}
+			if (!root->children.empty())
+			{
+				for (std::vector<GameObject*>::iterator i = root->children.begin(); i < root->children.end(); ++i)
+				{
+					SetHierarchy((*i));
+				}
+			}
+			TreePop();
+		}
+	}	
 }
