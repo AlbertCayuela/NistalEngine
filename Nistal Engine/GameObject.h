@@ -37,6 +37,7 @@ public:
 	GOTransform* transform = nullptr;
 	bool has_mesh = false;
 	bool has_material = false;
+	bool active = true;
 	std::vector<GOComponent*> go_components;
 	std::vector<GameObject*> children;
 

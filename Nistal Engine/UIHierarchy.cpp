@@ -52,6 +52,10 @@ void UIHierarchy::SetHierarchy(GameObject* root)
 			LOG("CLICKED! %s", root->ui_name.c_str());
 			App->scene_intro->selected_go = root;
 		}
+		if (Checkbox("Active", &root->active))
+		{
+
+		}
 		if (!root->children.empty())
 		{
 			for (std::vector<GameObject*>::iterator i = root->children.begin(); i < root->children.end(); ++i)
