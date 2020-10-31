@@ -58,6 +58,11 @@ update_status ModuleSceneIntro::Update(float dt)
     //to change size see p.innerrender() -> variable d(now its 10 it was 200 before)
     p.Render();
 
+    //if(selected_go != nullptr)
+    //    LOG("SELECTED GAMEOBJECT: %s", selected_go->name.c_str());
+
+
+
     if (!render_house) 
     {
         App->load_fbx->LoadFBX("Models/BakerHouse.fbx");
@@ -66,8 +71,6 @@ update_status ModuleSceneIntro::Update(float dt)
         //baker_house->material->LoadThisTex("Textures/Baker_house.png");
         render_house = true;
     }
-
-
 
     //TESTING CUBES
     if (App->ui->render_cube_direct_mode)

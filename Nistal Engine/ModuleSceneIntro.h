@@ -34,7 +34,8 @@ public:
 
     vector<GameObject*> game_objects;
     GameObject* root;
-    GameObject* baker_house;
+    //GameObject* baker_house;
+    GameObject* selected_go = nullptr;
 
     bool render_house = false;
 

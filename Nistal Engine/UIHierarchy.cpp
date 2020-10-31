@@ -50,6 +50,7 @@ void UIHierarchy::SetHierarchy(GameObject* root)
 		if (IsItemClicked()) 
 		{
 			LOG("CLICKED! %s", root->name.c_str());
+			App->scene_intro->selected_go = root;
 		}
 		if (!root->children.empty())
 		{
