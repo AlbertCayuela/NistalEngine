@@ -79,13 +79,18 @@ bool ModuleLoadFBX::CleanUp()
 	return true;
 }
 
-bool ModuleLoadFBX::LoadFBX(const char* file_path)
+bool ModuleLoadFBX::LoadFBX(const char* file_path, GameObject* parent)
 {
     //LOADING FBX --------------------------------------------------
     scene = aiImportFile(file_path, aiProcessPreset_TargetRealtime_MaxQuality);
 
     if (scene != nullptr && scene->HasMeshes())
-        LoadMeshes(scene, App->scene_intro->root, file_path);
+    {
+        if (parent == nullptr)
+            LoadMeshes(scene, App->scene_intro->root, file_path);
+        else if (parent != nullptr)
+            LoadMeshes(scene, parent, file_path);
+    }
     else 
     {
         LOG("Error loading scene %s", path);

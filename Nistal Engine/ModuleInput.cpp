@@ -118,7 +118,15 @@ update_status ModuleInput::PreUpdate(float dt)
 			if (extension == "fbx" || extension == "FBX")
 			{
 				LOG("dropped file extension:.fbx");
-				App->load_fbx->LoadFBX(dropped_path);
+				if (App->scene_intro->selected_go != nullptr) 
+				{
+					App->load_fbx->LoadFBX(dropped_path, App->scene_intro->selected_go);
+				}
+				else 
+				{
+					App->load_fbx->LoadFBX(dropped_path);
+				}
+					
 			}
 			else if (extension == "dds" || extension == "DDS" || extension == "png" || extension == "PNG" || extension == "jpg" || extension == "JPG") 
 			{

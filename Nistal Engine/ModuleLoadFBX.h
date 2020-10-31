@@ -60,7 +60,7 @@ public:
 	update_status PostUpdate(float dt);
 	bool CleanUp();
 
-	bool LoadFBX(const char* file_path);
+	bool LoadFBX(const char* file_path, GameObject* parent = nullptr);
 	void AddBuffers();
 	//void DrawFBX(modelData model);
 	void LoadMeshes(const aiScene* scene, GameObject* game_object, const char* file_path);
