@@ -23,6 +23,7 @@ public:
 	void Draw();
 	bool CleanUp();
 	void SetHierarchy(GameObject* root);
+	void SetPos();
 
 };
 

@@ -38,6 +38,7 @@ void UIHierarchy::Draw()
 {
 	if (Begin("GameObjects Hierarchy")) 
 	{
+		SetPos();
 		SetHierarchy(App->scene_intro->root);
 	}
 	End();
@@ -78,4 +79,10 @@ void UIHierarchy::SetHierarchy(GameObject* root)
 			TreePop();
 		}
 	}	
+}
+
+void UIHierarchy::SetPos()
+{
+	SetWindowPos(ImVec2(0.f, 18.f), ImGuiCond_Always);
+	SetWindowSize(ImVec2((App->window->width / 8.0f) * 1.5f, (App->window->height / 0.6f) * 4.5f), ImGuiCond_Always);
 }

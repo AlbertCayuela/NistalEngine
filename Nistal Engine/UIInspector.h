@@ -22,6 +22,7 @@ public:
 	bool CleanUp();
 
 	void LoadInspectoData(GameObject* GO);
+	void SetPos();
 
 	bool mesh_exists = false;
 

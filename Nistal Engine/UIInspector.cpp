@@ -58,6 +58,7 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 {
 	if (Begin("Inspector", &is_on, 0))
 	{
+		SetPos();
 		if (CollapsingHeader("Transform"))
 		{
 			/*static float col1[3] = { 1.0f, 0.0f, 0.2f };
@@ -134,4 +135,10 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 		}
 	}
 	End();
+}
+
+void UIInspector::SetPos()
+{
+	SetWindowPos(ImVec2((App->window->width / 8.0f) * 6.0f, 18), ImGuiCond_Always);
+	SetWindowSize(ImVec2((App->window->width / 8.0f) * 2.0f, (App->window->height / 0.6f) * 4.5f), ImGuiCond_Always);
 }
