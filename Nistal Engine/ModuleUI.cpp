@@ -74,7 +74,7 @@ update_status ModuleUI::Update(float dt)
 	ui_inspector->Draw();
 
 	//hierarchy
-	//ui_hierarchy->Draw();
+	ui_hierarchy->Draw();
 
 	//show demo window
 	if (show_demo)

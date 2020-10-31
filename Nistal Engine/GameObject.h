@@ -34,11 +34,12 @@ public:
 	GOTransform* transform = nullptr;
 	bool has_mesh = false;
 	bool has_material = false;
+	std::vector<GOComponent*> go_components;
 
 private:
 
 	GameObject* parent = nullptr;
-	std::vector<GOComponent*> go_components;
+
 	std::vector<GameObject*> children;
 
 };

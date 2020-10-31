@@ -23,6 +23,8 @@ public:
 	void Draw();
 	bool CleanUp();
 
+	int node_it = 0;
+
 };
 
 #endif 
