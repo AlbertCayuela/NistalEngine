@@ -101,9 +101,18 @@ void UIInspector::Draw()
 			Text("Width: %ipx", App->load_fbx->texture_width);
 			Text("Height: %ipx", App->load_fbx->texture_height);
 
-		}
+			Separator();
 
-		//LOG("Hellow");
+			//SHOW 2D TEXTURE
+			ImVec2 pos = ImGui::GetCursorScreenPos();
+			ImVec2 uv_min = ImVec2(1.0f, 1.0f);                 // Top-left
+			ImVec2 uv_max = ImVec2(0.0f, 0.0f);                 // Lower-right
+			ImVec4 tint_col = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);   // No tint
+			ImVec4 border_col = ImVec4(1.0f, 1.0f, 1.0f, 0.5f); // 50% opaque white
+
+			ImGui::Image((ImTextureID)App->load_fbx->texture_id, ImVec2(100.0f, 100.0f), uv_min, uv_max, tint_col, border_col);
+
+		}
 	}
 	End();
 }
