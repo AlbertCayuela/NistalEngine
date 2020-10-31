@@ -27,8 +27,11 @@ public:
 	void Update(float dt);
 	GOComponent* AddComponent(GOCOMPONENT_TYPE type, const char* name);
 	GOComponent* GetComponent(GOCOMPONENT_TYPE type);
+	void GetNames(const char* name);
 
 	std::string name;
+	std::string path;
+	std::string ui_name;
 	GOMaterial* material = nullptr;
 	GOMesh* mesh = nullptr;
 	GOTransform* transform = nullptr;

@@ -7,10 +7,14 @@
 GameObject::GameObject(GameObject* parent, const char* name)
 {
 	this->parent = parent;
-	this->name = name;
+
 	if (parent != nullptr)
 		parent->children.push_back(this);
+
+	GetNames(name);
+
 	AddComponent(GOCOMPONENT_TYPE::TRANSFORM, "transform");
+
 	LOG("New GameObject created: %s", this->name.c_str());
 }
 
@@ -54,4 +58,12 @@ GOComponent* GameObject::AddComponent(GOCOMPONENT_TYPE type, const char* name)
 GOComponent* GameObject::GetComponent(GOCOMPONENT_TYPE type)
 {
 	return nullptr;
+}
+
+void GameObject::GetNames(const char* name)
+{
+	path = name;
+	this->name = path.substr(path.find_last_of("/\\") + 1);
+	std::string::size_type const p(this->name.find_last_of('.'));
+	ui_name = this->name.substr(0, p);
 }
