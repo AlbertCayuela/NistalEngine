@@ -35,13 +35,11 @@ public:
 	bool has_mesh = false;
 	bool has_material = false;
 	std::vector<GOComponent*> go_components;
+	std::vector<GameObject*> children;
 
 private:
 
 	GameObject* parent = nullptr;
-
-	std::vector<GameObject*> children;
-
 };
 
 #endif

@@ -22,6 +22,7 @@ public:
 	bool Start();
 	void Draw();
 	bool CleanUp();
+	void SetHierarchy(GameObject* root);
 
 	int node_it = 0;
 

@@ -32,32 +32,28 @@ bool UIHierarchy::CleanUp()
 	return true;
 }
 
-void UIHierarchy::SetHierarchy()
-{
-}
+
 
 void UIHierarchy::Draw()
 {
 	if (Begin("GameObjects Hierarchy")) 
 	{
-
-		//for (std::vector<GameObject*>::iterator i = App->scene_intro->game_objects.begin(); i < App->scene_intro->game_objects.end(); ++i) 
-		//{
-		//	static ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick;
-		//	PushID((*i)->name.c_str());
-		//	PopID();
-		//}
-	/*	ImGuiTreeNodeFlags flag = 1;
-		flag += ImGuiTreeNodeFlags_::ImGuiTreeNodeFlags_Leaf;*/
-		for (std::vector<GameObject*>::iterator i = App->scene_intro->game_objects.begin(); i < App->scene_intro->game_objects.end(); ++i) 
-		{
-			if (TreeNode((*i)->name.c_str()))
-			{
-
-			}
-		}
-
+		SetHierarchy(App->scene_intro->root);
 	}
 	End();
 }
 
+void UIHierarchy::SetHierarchy(GameObject* root)
+{
+	if (TreeNode(root->name.c_str()))
+	{
+		if (!root->children.empty())
+		{
+			for (std::vector<GameObject*>::iterator i = root->children.begin(); i < root->children.end(); ++i)
+			{
+				SetHierarchy((*i));
+			}
+		}
+		TreePop();
+	}
+}
