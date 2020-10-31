@@ -26,7 +26,7 @@ public:
 	void SetPos();
 
 private:
-
+	uint counter = -1;
 
 };
 

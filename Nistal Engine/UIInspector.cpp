@@ -88,7 +88,10 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 		}
 		if (CollapsingHeader("Geometry Mesh"))
 		{
-			if (Checkbox("Active", &App->scene_intro->selected_go->active)){}
+			if (App->scene_intro->selected_go != nullptr) 
+			{
+				if (Checkbox("Active", &App->scene_intro->selected_go->active)) {}
+			}
 			//show normals
 			if (Checkbox("Normals: Vertex", &App->ui->render_vertex_normals))
 			{

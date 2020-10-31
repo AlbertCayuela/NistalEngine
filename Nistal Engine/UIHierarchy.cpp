@@ -49,14 +49,16 @@ void UIHierarchy::SetHierarchy(GameObject* root)
 {
 	if (root->ui_name == "root")
 	{
+		counter = 0;
 		for (std::vector<GameObject*>::iterator i = root->children.begin(); i < root->children.end(); ++i)
 		{
+			counter++;
 			SetHierarchy((*i));
 		}
 	}
 	else
 	{
-		if (TreeNodeEx(root->ui_name.c_str()))
+		if (TreeNodeEx((root->ui_name + '_' + std::to_string(counter)).c_str()))
 		{
 			if (IsItemHovered())
 			{
@@ -86,7 +88,8 @@ void UIHierarchy::SetHierarchy(GameObject* root)
 			{
 				for (std::vector<GameObject*>::iterator i = root->children.begin(); i < root->children.end(); ++i)
 				{	
-					SetHierarchy((*i));	
+					SetHierarchy((*i));
+					counter++;
 				}
 			}
 			TreePop();

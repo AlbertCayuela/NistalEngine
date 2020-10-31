@@ -71,7 +71,7 @@ update_status ModuleSceneIntro::Update(float dt)
         render_house = true;
     }
 
-    //PRIMITIVES
+     //PRIMITIVES
     if (App->ui->cube)
     {
         App->load_fbx->LoadFBX("Primitives/Cube.fbx");
