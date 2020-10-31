@@ -109,8 +109,10 @@ update_status ModuleCamera3D::Update(float dt)
 	}
 
 	//TODO FOCUS CAMERA ON OBJECT WHEN PRESSING F
-	if (App->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN) 
+	{
 		Look(Position, vec3(0, 0, 0));
+	}
 
 	// Recalculate matrix -------------
 	CalculateViewMatrix();

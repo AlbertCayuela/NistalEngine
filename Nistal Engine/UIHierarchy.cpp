@@ -36,7 +36,8 @@ bool UIHierarchy::CleanUp()
 
 void UIHierarchy::Draw()
 {
-	if (Begin("GameObjects Hierarchy")) 
+	ImGuiWindowFlags flags = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove;
+	if (Begin("GameObjects Hierarchy"), &is_on, flags) 
 	{
 		SetPos();
 		SetHierarchy(App->scene_intro->root);
@@ -55,7 +56,7 @@ void UIHierarchy::SetHierarchy(GameObject* root)
 	}
 	else
 	{
-		if (TreeNode(root->ui_name.c_str()))
+		if (TreeNodeEx(root->ui_name.c_str()))
 		{
 			if (IsItemHovered())
 			{
@@ -64,16 +65,28 @@ void UIHierarchy::SetHierarchy(GameObject* root)
 					LOG("CLICKED! %s", root->ui_name.c_str());
 					App->scene_intro->selected_go = root;
 				}
-
 			}
-			if (Checkbox("Active", &root->active)){}
-			SameLine();
-			if (Checkbox("Selected", &root->selected)){}
+			if (App->scene_intro->selected_go == root)
+			{
+				if (Button("Selected"))
+				{
+					App->scene_intro->selected_go = root;
+					LOG("GO SELECTED: %s", App->scene_intro->selected_go->ui_name.c_str());
+				}
+			}
+			if (App->scene_intro->selected_go != root) 
+			{
+				if (Button("Select"))
+				{
+					App->scene_intro->selected_go = root;
+					LOG("GO SELECTED: %s", App->scene_intro->selected_go->ui_name.c_str());
+				}
+			}
 			if (!root->children.empty())
 			{
 				for (std::vector<GameObject*>::iterator i = root->children.begin(); i < root->children.end(); ++i)
-				{
-					SetHierarchy((*i));
+				{	
+					SetHierarchy((*i));	
 				}
 			}
 			TreePop();

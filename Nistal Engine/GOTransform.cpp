@@ -16,4 +16,7 @@ GOTransform::~GOTransform()
 void GOTransform::GetGOPosition()
 {
 	//read original positions
+	if (this->parent->parent != nullptr) {
+
+	}
 }

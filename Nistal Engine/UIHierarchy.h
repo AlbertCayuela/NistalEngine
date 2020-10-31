@@ -25,6 +25,9 @@ public:
 	void SetHierarchy(GameObject* root);
 	void SetPos();
 
+private:
+
+
 };
 
 #endif 

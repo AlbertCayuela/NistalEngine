@@ -96,4 +96,5 @@ public:
 
 	//std::vector<GOMesh*> meshes;
 	bool all_fbx_loaded = false;
+
 };
