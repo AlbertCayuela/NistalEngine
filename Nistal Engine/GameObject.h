@@ -38,11 +38,9 @@ public:
 	bool has_mesh = false;
 	bool has_material = false;
 	bool active = true;
+	bool selected = false;
 	std::vector<GOComponent*> go_components;
 	std::vector<GameObject*> children;
-
-private:
-
 	GameObject* parent = nullptr;
 };
 

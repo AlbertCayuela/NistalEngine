@@ -58,8 +58,6 @@ update_status ModuleSceneIntro::Update(float dt)
     //if(selected_go != nullptr)
     //    LOG("SELECTED GAMEOBJECT: %s", selected_go->name.c_str());
 
-
-
     if (!render_house) 
     {
         App->load_fbx->LoadFBX("Models/BakerHouse.fbx");
@@ -104,8 +102,6 @@ update_status ModuleSceneIntro::Update(float dt)
         App->ui->torus = false;
     }
 
-
-
     ImGui::Separator();
 
     //TESTING CUBES
@@ -141,6 +137,17 @@ update_status ModuleSceneIntro::Update(float dt)
         if ((*i)->has_mesh)
         {
             (*i)->mesh->DrawMesh((*i)->material->texture_id);
+        }
+        if ((*i)->parent != nullptr) 
+        {
+            if (!(*i)->parent->active)
+            {
+                (*i)->active = false;
+            }
+            //else if ((*i)->parent->active) 
+            //{
+            //    (*i)->active = true;
+            //}
         }
     }
 
