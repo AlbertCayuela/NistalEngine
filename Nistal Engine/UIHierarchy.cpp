@@ -45,11 +45,11 @@ void UIHierarchy::Draw()
 
 void UIHierarchy::SetHierarchy(GameObject* root)
 {
-	if (TreeNode(root->name.c_str()))
+	if (TreeNode(root->ui_name.c_str()))
 	{
 		if (IsItemClicked()) 
 		{
-			LOG("CLICKED! %s", root->name.c_str());
+			LOG("CLICKED! %s", root->ui_name.c_str());
 			App->scene_intro->selected_go = root;
 		}
 		if (!root->children.empty())
