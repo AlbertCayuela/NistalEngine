@@ -1,13 +1,10 @@
 #ifndef __UIHIERARHCY_H__
 #define __UIHIERARCHY_H__
 
-
 #include "Module.h"
 #include "Application.h"	
 #include "Globals.h"
 #include "UIWindow.h"
-#include "SDL/include/SDL.h"
-#include "imGUI\imgui.h"
 
 #include <vector>
 

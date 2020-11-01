@@ -1,8 +1,6 @@
 #include "Application.h"
 #include "Parson/parson.h"
 
-//TODO: Review all includes and remove the innecesary ones
-
 Application::Application()
 {
 	window = new ModuleWindow(this);

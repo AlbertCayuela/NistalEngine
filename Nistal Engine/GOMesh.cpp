@@ -18,8 +18,6 @@ void GOMesh::DrawMesh(uint texture_id)
     {
         glEnableClientState(GL_VERTEX_ARRAY);
         glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-        //change color viewport
-        //glClearColor(0.0f, 1.0f, 0.0f, 1.0f);
 
         if (parent->has_material)
         {

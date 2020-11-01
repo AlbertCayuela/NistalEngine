@@ -12,11 +12,3 @@ GOTransform::GOTransform(GameObject* game_object, const char* name):GOComponent(
 GOTransform::~GOTransform()
 {
 }
-
-void GOTransform::GetGOPosition()
-{
-	//read original positions
-	if (this->parent->parent != nullptr) {
-
-	}
-}

@@ -1,4 +1,3 @@
-#pragma once
 #include "Globals.h"
 #include "sphereEngine.h"
 

@@ -72,7 +72,7 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 			ImGui::ColorEdit3("color 1", col1);
 			ImGui::ColorEdit4("color 2", col2);	*/
 
-			Text("Game Object name: %s", GO->name.c_str());
+			Text("Game Object name: %s", GO->ui_name.c_str());
 			Separator();
 
 			Text("Position:"); SameLine();
@@ -97,10 +97,8 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 			if (App->scene_intro->selected_go != nullptr) 
 			{
 				if (Checkbox("Active", &App->scene_intro->selected_go->active)) {}
-			}
-			//show normals
-			if (App->scene_intro->selected_go != nullptr) 
-			{
+
+				//show normals
 				if (Checkbox("Normals: Vertex", &App->ui->render_vertex_normals))
 				{
 					/*for (std::vector<modelData>::iterator i = App->load_fbx->meshes.begin(); i != App->load_fbx->meshes.end(); ++i)
@@ -132,7 +130,9 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 		{
 			if (App->scene_intro->selected_go != nullptr)
 			{
-				if (Checkbox("Active", &App->scene_intro->selected_go->has_material)) {}
+				if (Checkbox("Active", &App->scene_intro->selected_go->has_material)) {
+					LOG("Heloow");
+				}
 				Text("Path: %s", App->load_fbx->texture_path);
 				Separator();
 				Text("Width: %ipx", App->load_fbx->texture_width);

@@ -4,7 +4,6 @@
 GOMaterial::GOMaterial(GameObject* game_object, const char* name) : GOComponent(game_object)
 {
 	this->name = name;
-	//LoadThisTex(name);
 }
 
 GOMaterial::~GOMaterial()

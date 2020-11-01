@@ -2,21 +2,13 @@
 #include "Application.h"
 #include "ModuleSceneIntro.h"
 #include "ModuleUI.h"
-#include "sphereEngine.h"
 #include "GOMesh.h"
 #include "GOMaterial.h"
+#include "GameObject.h"
 
-
-#include "Glew/include/glew.h"
 #include "SDL/include/SDL_opengl.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
-
-#include "Assimp/include/scene.h"
-#include "Assimp/include/postprocess.h"
-
-#include "GameObject.h"
-
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {}
@@ -33,9 +25,6 @@ bool ModuleSceneIntro::Start()
     App->camera->LookAt(vec3(0, 0, 0));
 
     root = CreateGameObject(nullptr, "root");
-
-    //baker_house = CreateGameObject(root, "baker house");
-    //baker_house->mesh->SetMesh("Models/BakerHouse.fbx");
 
     App->load_fbx->LoadTexture("Textures/Baker_house.png");
 
@@ -55,19 +44,13 @@ update_status ModuleSceneIntro::Update(float dt)
     //to change size see p.innerrender() -> variable d(now its 10 it was 200 before)
     p.Render();
 
-    //if(selected_go != nullptr)
-    //    LOG("SELECTED GAMEOBJECT: %s", selected_go->name.c_str());
-
     if (!render_house) 
     {
         App->load_fbx->LoadFBX("Models/BakerHouse.fbx");
         game_objects.at(1)->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "texture");
-        game_objects.at(1)->material->LoadThisTex("Textures/Baker_house.png");
+        game_objects.at(1)->material->LoadThisTex(App->load_fbx->texture_path);
         game_objects.at(2)->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "texture");
-        game_objects.at(2)->material->LoadThisTex("Textures/Baker_house.png");
-        //baker_house->mesh->SetMesh("Models/BakerHouse.fbx");
-        //baker_house->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "Textures/Baker_house.png");
-        //baker_house->material->LoadThisTex("Textures/Baker_house.png");
+        game_objects.at(2)->material->LoadThisTex(App->load_fbx->texture_path);
         render_house = true;
     }
 
@@ -103,23 +86,6 @@ update_status ModuleSceneIntro::Update(float dt)
     }
 
     ImGui::Separator();
-
-    //TESTING CUBES
-    if (App->ui->render_cube_direct_mode)
-    {
-        App->scene_intro->my_cube.DrawCubeDirectMode();
-    }        
-
-    if (App->ui->render_cube_vertex)
-        my_cube.DrawCubeVertexArray();
-    if (App->ui->render_cube_indices)
-        my_cube.DrawCubeIndices();
-
-    //TESTING SPHERE RENDERING
-    SphereRender my_sphere(1, 12, 24);
-
-    /*if (App->ui->render_sphere)
-        my_sphere.DrawSphere(0.0f, 0.0f, 0.0f);*/
 
     //DRAWING MODEL PROPERTIES
     //if (App->ui->render_vertex_normals)

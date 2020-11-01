@@ -1,4 +1,3 @@
-
 #include "Globals.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
@@ -96,17 +95,6 @@ void Primitive::Scale(float x, float y, float z)
 	transform.scale(x, y, z);
 }
 
-// CUBE ============================================
-Cube::Cube() : Primitive(), size(1.0f, 1.0f, 1.0f)
-{
-	type = PrimitiveTypes::Primitive_Cube;
-}
-
-Cube::Cube(float sizeX, float sizeY, float sizeZ) : Primitive(), size(sizeX, sizeY, sizeZ)
-{
-	type = PrimitiveTypes::Primitive_Cube;
-}
-
 void Cube::InnerRender() const
 {	
 	float sx = size.x * 0.5f;
@@ -152,34 +140,6 @@ void Cube::InnerRender() const
 	glVertex3f(-sx, -sy,  sz);
 
 	glEnd();
-}
-
-// SPHERE ============================================
-Sphere::Sphere() : Primitive(), radius(1.0f)
-{
-	type = PrimitiveTypes::Primitive_Sphere;
-}
-
-Sphere::Sphere(float radius) : Primitive(), radius(radius)
-{
-	type = PrimitiveTypes::Primitive_Sphere;
-}
-
-void Sphere::InnerRender() const
-{
-	//glutSolidSphere(radius, 25, 25);
-}
-
-
-// CYLINDER ============================================
-Cylinder::Cylinder() : Primitive(), radius(1.0f), height(1.0f)
-{
-	type = PrimitiveTypes::Primitive_Cylinder;
-}
-
-Cylinder::Cylinder(float radius, float height) : Primitive(), radius(radius), height(height)
-{
-	type = PrimitiveTypes::Primitive_Cylinder;
 }
 
 void Cylinder::InnerRender() const

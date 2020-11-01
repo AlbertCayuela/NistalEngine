@@ -8,7 +8,6 @@
 
 #pragma comment( lib, "PhysFS/libx86/physfs.lib" )
 
-
 using namespace std;
 
 ModuleFS::ModuleFS(Application* app, bool start_enabled, const char* game_path) : Module(app, start_enabled)
@@ -60,7 +59,7 @@ ModuleFS::~ModuleFS()
 }
 
 
-// Called before render is available
+//Garrigó rules:// Called before render is available
 //bool ModuleFS::Init(Config* config)
 //{
 //	LOG("Loading File System");

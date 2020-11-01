@@ -3,11 +3,7 @@
 #include "ModuleSceneIntro.h"
 #include "UIHierarchy.h"
 #include "UIWindow.h"
-#include "ImGui/imconfig.h"
 #include "ImGui/imgui.h"
-#include "ImGui/imgui_impl_sdl.h"
-#include "ImGui/imgui_impl_opengl3.h"
-#include "Glew/include/glew.h"
 
 using namespace ImGui;
 

@@ -3,9 +3,7 @@
 
 #include "Module.h"
 #include "Application.h"
-#include "Globals.h"
 #include "UIWindow.h"
-#include "ImGui/imgui.h"
 
 class UIConsole : public UIWindow
 {

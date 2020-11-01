@@ -2,11 +2,6 @@
 #include "Globals.h"
 #include "UIAbout.h"
 #include "UIWindow.h"
-#include "ImGui/imconfig.h"
-#include "ImGui/imgui.h"
-#include "ImGui/imgui_impl_sdl.h"
-#include "ImGui/imgui_impl_opengl3.h"
-#include "Glew/include/glew.h"
 
 using namespace ImGui;
 
@@ -120,7 +115,7 @@ void UIAbout::Draw()
 
 		Separator();
 
-		TextWrapped("MIT License Copyright (c) 2020 Albert Cayuela and Nadine"
+		TextWrapped("MIT License\nCopyright (c) 2020 Albert Cayuela and Nadine Gutierrez\n"
 			"Permission is hereby granted, free of charge, to any person obtaining a copy of this software"
 			"and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify,"
 			"merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:");

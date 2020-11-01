@@ -1,8 +1,6 @@
 #pragma once
-
 #include "Module.h"
 #include "Globals.h"
-#include <map>
 #include "GameObject.h"
 #include "Glew/include/glew.h"
 #include <vector>
