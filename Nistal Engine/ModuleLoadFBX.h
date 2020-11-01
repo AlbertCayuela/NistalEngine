@@ -60,7 +60,6 @@ public:
 
 	bool LoadFBX(const char* file_path, GameObject* parent = nullptr);
 	void AddBuffers();
-	//void DrawFBX(modelData model);
 	void LoadMeshes(const aiScene* scene, GameObject* game_object, const char* file_path);
 	void LoadIndices(aiMesh* scene);
 	void DrawNormals(modelData model);
@@ -69,7 +68,7 @@ public:
 
 public:
 
-	const char* path;
+	const char* model_path;
 	const char* texture_path;
 	const aiScene* scene;
 
@@ -82,17 +81,14 @@ public:
 	int texture_height;
 	int texture_width;
 	uint textures_num;
-	//std::string texture_path;
 
 	GLubyte* image = nullptr;
 	GLint LOD = 0; //level of detail
 
-	//GameObject* game_object = new GameObject(nullptr);
 	GameObject* new_go;
 
 	uint texture_id;
 
-	//std::vector<GOMesh*> meshes;
 	bool all_fbx_loaded = false;
 
 };

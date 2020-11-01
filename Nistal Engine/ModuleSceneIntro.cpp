@@ -87,17 +87,6 @@ update_status ModuleSceneIntro::Update(float dt)
 
     ImGui::Separator();
 
-    //DRAWING MODEL PROPERTIES
-    //if (App->ui->render_vertex_normals)
-    //{
-    //    for (std::vector<modelData>::iterator i = App->load_fbx->meshes.begin(); i != App->load_fbx->meshes.end(); ++i)
-    //    {
-    //        //App->load_fbx->DrawNormals(*i);
-    //        App->load_fbx->DrawVertexNormals(*i);
-    //    }
-    //    
-    //} 
-
     for (std::vector<GameObject*>::iterator i = game_objects.begin(); i != game_objects.end(); ++i)
     {
         if ((*i)->has_mesh)
@@ -143,7 +132,6 @@ GameObject* ModuleSceneIntro::CreateGameObject(GameObject* parent, const char* n
 {
     GameObject* game_object = new GameObject(parent, name);
     game_objects.push_back(game_object);
-    //LOG("Number of gameobjects in the scene: %i", game_objects.capacity());
     
     return game_object;
 }

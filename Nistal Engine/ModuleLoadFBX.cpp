@@ -35,10 +35,8 @@ bool ModuleLoadFBX::Start()
     model_node = json_object_dotget_object(App->config, "Model");
     texture_node = json_object_dotget_object(App->config, "Texture");
 
-    path = json_object_get_string(model_node, "Path");
+    model_path = json_object_get_string(model_node, "Path");
     texture_path = json_object_get_string(texture_node, "Texture Path");
-
-    //LoadTexture(texture_path);
 
 	return true;
 }
@@ -50,19 +48,6 @@ update_status ModuleLoadFBX::PreUpdate(float dt)
 
 update_status ModuleLoadFBX::Update(float dt)
 {
-    //if (!all_fbx_loaded)
-    //{
-    //    App->load_fbx->LoadFBX(path);
-    //    all_fbx_loaded = true;
-    //}
-
-    //draw every mesh
-    //for (std::vector<modelData>::iterator i = App->load_fbx->meshes.begin(); i != App->load_fbx->meshes.end(); ++i)
-    //{
-    //    App->load_fbx->DrawFBX(*i);
-    //}
-
-    //DrawFBX(model);
 
 	return UPDATE_CONTINUE;
 }
@@ -93,7 +78,7 @@ bool ModuleLoadFBX::LoadFBX(const char* file_path, GameObject* parent)
     }
     else 
     {
-        LOG("Error loading scene %s", path);
+        LOG("Error loading scene %s", model_path);
         return false;
     }
 }
@@ -116,9 +101,6 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object, co
             material->GetTexture(aiTextureType_DIFFUSE, 0, &tex_path);
             const char* texture_path;
             texture_path = tex_path.data;
-            //std::string st = texture_path;
-            //TODO CHECK IF WE HAVE TO ADD IT IN THIS GAMEOBJECT
-            //LOG("Texture detected! Path: %s", st.c_str());
             new_go->AddComponent(GOCOMPONENT_TYPE::MATERIAL, texture_path);
         }
 
@@ -150,18 +132,6 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object, co
             memcpy(model.normals, mesh->mNormals, sizeof(aiVector3D) * mesh->mNumVertices);
         }
 
-        //loading uvs
-        //model.num_uvs_channels = mesh->GetNumUVChannels();
-        //if (model.num_uvs_channels > 0)
-        //{
-        //    App->texture->LoadUVs(&model, mesh);
-        //}
-
-        //if (scene->HasMaterials())
-        //{
-        //    App->texture->LoadMaterials(scene, mesh, &model);
-        //}
-
         //loading normals
         model.num_faces = mesh->mNumFaces;
         model.faces_normals = new float3[mesh->mNumFaces];
@@ -190,9 +160,6 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object, co
 
         new_go->AddComponent(GOCOMPONENT_TYPE::MESH, "mesh");
         new_go->mesh->mesh_info = model;
-        //LOG("New GameObject name: %s", new_go->name.c_str());
-
-        //meshes.push_back(model);
 
         LOG("Loaded mesh with %i vertices.", model.num_vertex);
         LOG("Loaded mesh with %i indices.", model.num_index);
@@ -202,38 +169,6 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object, co
     }
 
 }
-
-//void ModuleLoadFBX::DrawFBX(modelData model)
-//{
-//    glEnableClientState(GL_VERTEX_ARRAY);
-//    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-//    //change color viewport
-//    //glClearColor(0.0f, 1.0f, 0.0f, 1.0f);
-//
-//    //bind texture
-//    glEnable(GL_TEXTURE_2D);
-//    glBindTexture(GL_TEXTURE_2D, texture_id);
-//
-//    //bind vertices
-//    glBindBuffer(GL_ARRAY_BUFFER, model.id_vertex);
-//    glVertexPointer(3, GL_FLOAT, 0, NULL);
-//
-//    //bind uvs
-//    glBindBuffer(GL_ARRAY_BUFFER, model.id_uvs);
-//    glTexCoordPointer(2, GL_FLOAT, 0, NULL);
-//
-//    //bind indices
-//    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model.id_index);
-//
-//    //Draw
-//    glDrawElements(GL_TRIANGLES, model.num_index, GL_UNSIGNED_INT, NULL);
-//    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-//
-//    glDisableClientState(GL_VERTEX_ARRAY);
-//    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-//    glBindTexture(GL_TEXTURE_2D, 0);
-//    glDisable(GL_TEXTURE_2D);
-//}
 
 void ModuleLoadFBX::DrawNormals(modelData model)
 {
@@ -289,7 +224,7 @@ void ModuleLoadFBX::AddBuffers()
 void ModuleLoadFBX::LoadIndices(aiMesh* mesh)
 {
     model.num_index = mesh->mNumFaces * 3;
-    model.indices = new uint[model.num_index]; //assume each face is a triangle
+    model.indices = new uint[model.num_index];
     for (uint i = 0; i < mesh->mNumFaces; i++)
     {
         if (mesh->mFaces[i].mNumIndices != 3)

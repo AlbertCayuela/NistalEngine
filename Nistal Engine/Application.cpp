@@ -142,8 +142,6 @@ bool Application::CleanUp()
 		item--;
 	}
 
-	//TODO1
-
 	return ret;
 }
 

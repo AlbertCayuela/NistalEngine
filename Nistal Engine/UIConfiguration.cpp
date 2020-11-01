@@ -60,7 +60,6 @@ void UIConfiguration::Draw()
 
 		if (CollapsingHeader("Application"))
 		{
-			//static char str0[128] = "Nistal Engine";
 			static char name[30] = "Nistal Engine";
 			InputText("App Name",  name, ARRAYSIZE(name));
 			App->window->SetTitle(name);
@@ -140,7 +139,6 @@ void UIConfiguration::Draw()
 		{
 			int values = 1.000;
 
-			//Checkbox("Active");
 			Text("Icon: *default*");
 
 			if (SliderFloat("Brightness", &App->window->brightness, 0.0f, 1.0f))
@@ -189,7 +187,6 @@ void UIConfiguration::Draw()
 
 		if (CollapsingHeader("Input"))
 		{
-			//Checkbox("Active");
 			Text("Mouse Position:");
 			SameLine();
 			TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "%i,%i", App->input->GetMouseX(), App->input->GetMouseY());
@@ -205,7 +202,6 @@ void UIConfiguration::Draw()
 
 		if (CollapsingHeader("Hardware"))
 		{
-			//Checkbox("Active");
 			Text("SDL Version:");
 			SameLine();
 			TextColored(ImVec4(1.0f, 1.0f, 0.5f, 1.0f), "%d.%d.%d", version.major, version.minor, version.patch);

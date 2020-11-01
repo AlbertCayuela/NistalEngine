@@ -70,12 +70,6 @@ update_status ModuleUI::PreUpdate(float dt)
 
 update_status ModuleUI::Update(float dt)
 {
-	//INSPECTOR
-	//ui_inspector->Draw();
-
-	//hierarchy
-	//ui_hierarchy->Draw();
-
 	//show demo window
 	if (show_demo)
 		ShowDemoWindow(&show_demo);
@@ -125,12 +119,6 @@ update_status ModuleUI::Update(float dt)
 				Checkbox("Cone", &cone);
 				Checkbox("Torus", &torus);
 			}
-			//if (CollapsingHeader("Different Cubes"))
-			//{
-			//	Checkbox("Cube with direct mode", &render_cube_direct_mode); //functionality in sceneintro update
-			//	Checkbox("Cube with vertex", &render_cube_vertex);
-			//	Checkbox("Cube with indices", &render_cube_indices);
-			//}
 
 			ImGui::EndMenu();
 		}

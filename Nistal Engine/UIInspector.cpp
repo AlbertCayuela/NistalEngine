@@ -49,7 +49,6 @@ void UIInspector::Draw()
 	else
 	{
 		LoadInspectoData(App->scene_intro->root);
-		//mesh_exists = false;
 	}
 
 	
@@ -101,10 +100,6 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 				//show normals
 				if (Checkbox("Normals: Vertex", &App->ui->render_vertex_normals))
 				{
-					/*for (std::vector<modelData>::iterator i = App->load_fbx->meshes.begin(); i != App->load_fbx->meshes.end(); ++i)
-					{
-						App->load_fbx->DrawVertexNormals(*i);
-					}*/
 					App->load_fbx->DrawVertexNormals(GO->mesh->mesh_info);
 				}
 
@@ -112,7 +107,6 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 				{
 					App->load_fbx->DrawNormals(GO->mesh->mesh_info);
 				}
-
 			}
 
 			Separator();

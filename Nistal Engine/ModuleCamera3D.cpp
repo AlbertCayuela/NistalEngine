@@ -112,6 +112,7 @@ update_status ModuleCamera3D::Update(float dt)
 	//FOCUS CAMERA ON OBJECT WHEN PRESSING F
 	if (App->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN) 
 	{
+		//we will change (0,0,0) by fbx position, but not for now
 		FocusOnTarget(vec3(0, 0, 0), 10.0f);
 	}
 
