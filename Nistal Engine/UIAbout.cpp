@@ -71,7 +71,7 @@ void UIAbout::Draw()
 					//App->RequestBrowser("");
 			SameLine();
 			NextColumn();
-			Text("");
+			Text("4.6");
 
 			NextColumn();
 			if (MenuItem("ImGui"))
@@ -96,6 +96,24 @@ void UIAbout::Draw()
 			SameLine();
 			NextColumn();
 			Text("1.5");
+
+			NextColumn();
+			if (MenuItem("DevIL"))
+				if (IsMouseClicked(1))
+					//App->RequestBrowser("https://github.com/ocornut/imgui/releases/tag/v1.72");
+					SameLine();
+			NextColumn();
+			Text("1.8.0");
+
+			NextColumn();
+			if (MenuItem("Assimp"))
+				if (IsMouseClicked(1))
+					//App->RequestBrowser("https://github.com/ocornut/imgui/releases/tag/v1.72");
+					SameLine();
+			NextColumn();
+			Text("");
+
+			NextColumn();;
 
 			Columns(1, NULL);
 		}
