@@ -22,6 +22,7 @@ private:
 
 	void CalculateViewMatrix();
 	void FocusOnTarget(const vec3& focus,const float& distance);
+	void RotateAroundTarget();
 
 public:
 	
