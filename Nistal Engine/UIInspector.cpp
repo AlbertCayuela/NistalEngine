@@ -5,6 +5,7 @@
 #include "GameObject.h"
 #include "GOTransform.h"
 #include "GOMesh.h"
+#include "GOMaterial.h"
 #include "ModuleSceneIntro.h"
 
 #include "ImGui/imconfig.h"
@@ -140,8 +141,8 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 			ImVec2 uv_max = ImVec2(0.0f, 0.0f);                 // Lower-right
 			ImVec4 tint_col = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);   // No tint
 			ImVec4 border_col = ImVec4(1.0f, 1.0f, 1.0f, 0.5f); // 50% opaque white
-
-			Image((ImTextureID)App->load_fbx->texture_id, ImVec2(100.0f, 100.0f), uv_min, uv_max, tint_col, border_col);
+			if(App->scene_intro->selected_go!=nullptr)
+				Image((ImTextureID)GO->material->texture_id, ImVec2(100.0f, 100.0f), uv_min, uv_max, tint_col, border_col);
 
 		}
 	}
