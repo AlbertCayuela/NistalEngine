@@ -111,7 +111,7 @@ update_status ModuleCamera3D::Update(float dt)
 	//TODO FOCUS CAMERA ON OBJECT WHEN PRESSING F
 	if (App->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN) 
 	{
-		Look(Position, vec3(0, 0, 0));
+		FocusOnTarget(vec3(0, 0, 0), 10.0f);
 	}
 
 	// Recalculate matrix -------------
@@ -172,4 +172,10 @@ void ModuleCamera3D::CalculateViewMatrix()
 {
 	ViewMatrix = mat4x4(X.x, Y.x, Z.x, 0.0f, X.y, Y.y, Z.y, 0.0f, X.z, Y.z, Z.z, 0.0f, -dot(X, Position), -dot(Y, Position), -dot(Z, Position), 1.0f);
 	ViewMatrixInverse = inverse(ViewMatrix);
+}
+
+void ModuleCamera3D::FocusOnTarget(const vec3& focus, const float& distance)
+{
+	Reference = focus;
+	Position = Reference + Z * distance;
 }

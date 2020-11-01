@@ -21,6 +21,7 @@ public:
 private:
 
 	void CalculateViewMatrix();
+	void FocusOnTarget(const vec3& focus,const float& distance);
 
 public:
 	
@@ -29,4 +30,5 @@ public:
 private:
 
 	mat4x4 ViewMatrix, ViewMatrixInverse;
+	float distance;
 };
