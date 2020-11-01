@@ -56,7 +56,8 @@ void UIInspector::Draw()
 
 void UIInspector::LoadInspectoData(GameObject* GO)
 {
-	if (Begin("Inspector", &is_on, 0))
+	ImGuiWindowFlags flags = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove;
+	if (Begin("Inspector", &is_on, flags))
 	{
 		SetPos();
 		if (CollapsingHeader("Transform"))
@@ -146,5 +147,6 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 void UIInspector::SetPos()
 {
 	SetWindowPos(ImVec2((App->window->width / 8.0f) * 6.0f, 18), ImGuiCond_Always);
-	SetWindowSize(ImVec2((App->window->width / 8.0f) * 2.0f, (App->window->height / 0.6f) * 4.5f), ImGuiCond_Always);
+	SetWindowSize(ImVec2((App->window->width / 8.0f) * 2.0f, (App->window->height / 0.6f) * 4.5f));
+	SDL_GetWindowSize(App->window->window, &App->window->width, &App->window->height);
 }
