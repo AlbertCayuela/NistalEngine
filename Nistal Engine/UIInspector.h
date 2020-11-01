@@ -28,6 +28,7 @@ public:
 
 private:
 
+	const char* inspector_name;
 };
 
 #endif 

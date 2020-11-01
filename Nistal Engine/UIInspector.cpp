@@ -57,7 +57,11 @@ void UIInspector::Draw()
 void UIInspector::LoadInspectoData(GameObject* GO)
 {
 	ImGuiWindowFlags flags = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove;
-	if (Begin("Inspector", &is_on, flags))
+	if (App->scene_intro->selected_go != nullptr)
+		inspector_name = ("Inspector: %s", App->scene_intro->selected_go->ui_name.c_str());
+	else
+		inspector_name = "Inspector";
+	if (Begin(inspector_name, &is_on, flags))
 	{
 		SetPos();
 		if (CollapsingHeader("Transform"))
