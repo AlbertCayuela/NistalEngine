@@ -22,7 +22,7 @@ public:
 
 	GOCOMPONENT_TYPE type;
 	bool active = true;
-	GameObject* parent;
+	GameObject* parent = nullptr;
 
 };
 

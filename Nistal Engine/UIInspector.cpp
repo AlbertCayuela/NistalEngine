@@ -99,18 +99,22 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 				if (Checkbox("Active", &App->scene_intro->selected_go->active)) {}
 			}
 			//show normals
-			if (Checkbox("Normals: Vertex", &App->ui->render_vertex_normals))
+			if (App->scene_intro->selected_go != nullptr) 
 			{
-				/*for (std::vector<modelData>::iterator i = App->load_fbx->meshes.begin(); i != App->load_fbx->meshes.end(); ++i)
+				if (Checkbox("Normals: Vertex", &App->ui->render_vertex_normals))
 				{
-					App->load_fbx->DrawVertexNormals(*i);
-				}*/
-				App->load_fbx->DrawVertexNormals(App->load_fbx->model);
-			}
+					/*for (std::vector<modelData>::iterator i = App->load_fbx->meshes.begin(); i != App->load_fbx->meshes.end(); ++i)
+					{
+						App->load_fbx->DrawVertexNormals(*i);
+					}*/
+					App->load_fbx->DrawVertexNormals(GO->mesh->mesh_info);
+				}
 
-			if (Checkbox("Normals: Face", &App->ui->render_face_normals))
-			{
-				App->load_fbx->DrawNormals(App->load_fbx->model);
+				if (Checkbox("Normals: Face", &App->ui->render_face_normals))
+				{
+					App->load_fbx->DrawNormals(GO->mesh->mesh_info);
+				}
+
 			}
 
 			Separator();
@@ -126,12 +130,14 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 		}
 		if (CollapsingHeader("Texture"))
 		{
-			if(App->scene_intro->selected_go != nullptr)
+			if (App->scene_intro->selected_go != nullptr)
+			{
 				if (Checkbox("Active", &App->scene_intro->selected_go->has_material)) {}
-			Text("Path: %s", App->load_fbx->texture_path);
-			Separator();
-			Text("Width: %ipx", App->load_fbx->texture_width);
-			Text("Height: %ipx", App->load_fbx->texture_height);
+				Text("Path: %s", App->load_fbx->texture_path);
+				Separator();
+				Text("Width: %ipx", App->load_fbx->texture_width);
+				Text("Height: %ipx", App->load_fbx->texture_height);
+			}
 
 			Separator();
 

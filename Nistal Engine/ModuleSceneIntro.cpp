@@ -149,12 +149,12 @@ update_status ModuleSceneIntro::Update(float dt)
 
     if (App->ui->render_face_normals)
     {
-         App->load_fbx->DrawNormals(App->load_fbx->model);
+         App->load_fbx->DrawNormals(selected_go->mesh->mesh_info);
     }
 
     if (App->ui->render_vertex_normals)
     {
-        App->load_fbx->DrawVertexNormals(App->load_fbx->model);
+        App->load_fbx->DrawVertexNormals(selected_go->mesh->mesh_info);
     }
 
     return UPDATE_CONTINUE;
