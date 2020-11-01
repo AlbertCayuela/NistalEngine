@@ -1,5 +1,8 @@
 # NistalEngine
 Nistal Engine is a 3D Engine created in the third year of our Videogame Design and Development degree. It's mainly created using OPEN-GL.
+
+You can check our GitHub repository here: https://github.com/AlbertCayuela/NistalEngine
+
 ### Version
 Nistal Engine v.0.1
 
@@ -13,11 +16,13 @@ Deploy any gameobject in the hierarchy and click "select".
 ### General controls
 - ESC: Quit
 ### Camera controls
-- Movement: WASD keys
+- Movement: RightClik + WASD keys
 - Pan / Zoom: Mouse wheel
-- Alt + Left: Orbit around object
+- LeftAlt + LeftClick: Orbit around object
 - F: Focus
 - SHIFT: Duplicates movement speed
+- RightClick + E: move camera up
+- RightClick + R: move camera down
 
 ### Instructions to execute
 1. Download the latest release from: https://github.com/AlbertCayuela/NistalEngine/releases
