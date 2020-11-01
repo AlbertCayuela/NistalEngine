@@ -64,6 +64,12 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 	if (Begin(inspector_name, &is_on, flags))
 	{
 		SetPos();
+		if (App->scene_intro->selected_go != nullptr)
+		{
+			Checkbox("Active Texture", &App->scene_intro->selected_go->has_material); SameLine();
+			Checkbox("Active Mesh", &App->scene_intro->selected_go->active);
+		}
+
 		if (CollapsingHeader("Transform"))
 		{
 			/*static float col1[3] = { 1.0f, 0.0f, 0.2f };
@@ -95,8 +101,6 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 		{
 			if (App->scene_intro->selected_go != nullptr) 
 			{
-				if (Checkbox("Active", &App->scene_intro->selected_go->active)) {}
-
 				//show normals
 				if (Checkbox("Normals: Vertex", &App->ui->render_vertex_normals))
 				{
@@ -124,9 +128,6 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 		{
 			if (App->scene_intro->selected_go != nullptr)
 			{
-				if (Checkbox("Active", &App->scene_intro->selected_go->has_material)) {
-					LOG("Heloow");
-				}
 				Text("Path: %s", App->load_fbx->texture_path);
 				Separator();
 				Text("Width: %ipx", App->load_fbx->texture_width);

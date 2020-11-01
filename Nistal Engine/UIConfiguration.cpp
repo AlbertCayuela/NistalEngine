@@ -111,7 +111,7 @@ void UIConfiguration::Draw()
 				else
 					glEnable(GL_LIGHTING);
 			}
-			if (Checkbox("Color material", &color_material))
+			/*if (Checkbox("Color material", &color_material))
 			{
 				if (color_material)
 					glDisable(GL_COLOR_MATERIAL);
@@ -124,7 +124,7 @@ void UIConfiguration::Draw()
 					glDisable(GL_TEXTURE_2D);					
 				else
 					glEnable(GL_TEXTURE_2D);
-			}
+			}*/
 			if (Checkbox("Wireframe", &wireframe)) 
 			{
 				if (wireframe)
