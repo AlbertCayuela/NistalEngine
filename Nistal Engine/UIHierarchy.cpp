@@ -64,7 +64,6 @@ void UIHierarchy::SetHierarchy(GameObject* root)
 			{
 				if (App->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN)
 				{
-					LOG("CLICKED! %s", root->ui_name.c_str());
 					App->scene_intro->selected_go = root;
 				}
 			}

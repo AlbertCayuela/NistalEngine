@@ -16,6 +16,8 @@ public:
 	bool Start();
 	void Draw();
 	bool CleanUp();
+
+	void SetPos();
 };
 
 #endif // !__UICONSOLE_H__

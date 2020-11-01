@@ -35,9 +35,21 @@ bool UIConsole::CleanUp()
 
 void UIConsole::Draw()
 {
-	Begin("Console", &is_on);
+	ImGuiWindowFlags flags = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove;
+	Begin("Console", &is_on, flags);
+
+	SetPos();
 
 	App->ui->DebugConsole();
 
 	End();
+}
+
+
+void UIConsole::SetPos()
+{
+	SetWindowPos(ImVec2(0, (App->window->height / 6.0f) * 4.6f), ImGuiCond_Always);
+	SetWindowSize(ImVec2(App->window->width, (App->window->height / 6.0f) * 1.4f), ImGuiCond_Always);
+	SDL_GetWindowSize(App->window->window, &App->window->width, &App->window->height);
+	
 }
