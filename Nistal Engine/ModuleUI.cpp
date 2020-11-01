@@ -125,12 +125,12 @@ update_status ModuleUI::Update(float dt)
 				Checkbox("Cone", &cone);
 				Checkbox("Torus", &torus);
 			}
-			if (CollapsingHeader("Different Cubes"))
-			{
-				Checkbox("Cube with direct mode", &render_cube_direct_mode); //functionality in sceneintro update
-				Checkbox("Cube with vertex", &render_cube_vertex);
-				Checkbox("Cube with indices", &render_cube_indices);
-			}
+			//if (CollapsingHeader("Different Cubes"))
+			//{
+			//	Checkbox("Cube with direct mode", &render_cube_direct_mode); //functionality in sceneintro update
+			//	Checkbox("Cube with vertex", &render_cube_vertex);
+			//	Checkbox("Cube with indices", &render_cube_indices);
+			//}
 
 			ImGui::EndMenu();
 		}
