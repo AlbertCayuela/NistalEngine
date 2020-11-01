@@ -16,7 +16,7 @@ Deploy any gameobject in the hierarchy and click "select".
 ### General controls
 - ESC: Quit
 ### Camera controls
-- Movement: RightClik + WASD keys
+- Movement: RightClick + WASD keys
 - Pan / Zoom: Mouse wheel
 - LeftAlt + LeftClick: Orbit around object
 - F: Focus
