@@ -133,7 +133,7 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object, co
         }
 
         //loading normals
-        model.num_faces = mesh->mNumFaces;
+        /*model.num_faces = mesh->mNumFaces;
         model.faces_normals = new float3[mesh->mNumFaces];
         model.face_middle = new float3[mesh->mNumFaces];
 
@@ -154,9 +154,19 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object, co
             model.faces_normals[i / 3] = Cross(vector1, vector2);
             model.faces_normals[i / 3].Normalize();
             model.face_middle[i / 3] = { (vertex1.x + vertex2.x + vertex3.x) / 3, (vertex1.y + vertex2.y + vertex3.y) / 3, (vertex1.z + vertex2.z + vertex3.z) / 3 };
-        }  
+        }  */
 
         AddBuffers();
+
+        aiVector3D translation, scaling, rot_euler;
+        aiQuaternion rotation;
+        root_node->mTransformation.Decompose(scaling, rotation, translation);
+        aiMatrix3x3 rot_mat = rotation.GetMatrix();
+        rot_euler = rot_mat.GetEuler();
+
+        float3 pos(translation.x, translation.y, translation.z);
+        float3 scale(scaling.x, scaling.y, scaling.z);
+        Quat rot(rotation.x, rotation.y, rotation.z, rotation.w);
 
         new_go->AddComponent(GOCOMPONENT_TYPE::MESH, "mesh");
         new_go->mesh->mesh_info = model;

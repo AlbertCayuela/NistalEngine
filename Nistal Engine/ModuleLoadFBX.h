@@ -6,6 +6,7 @@
 #include <vector>
 #include "MathGeoLib/include/Math/float3.h"
 #include "Assimp/include/vector3.h"
+#include "MathGeoLib/include/Math/Quat.h"
 
 
 class GameObject;
@@ -86,6 +87,15 @@ public:
 	GLint LOD = 0; //level of detail
 
 	GameObject* new_go;
+
+	//aiVector3D translation;
+	//aiVector3D scaling;
+	//aiQuaternion rotation;
+	//float3 position;
+	//float3 scale;
+	//Quat rot;
+	//aiMatrix3x3 rot_mat;
+	//aiVector3D rot_euler;
 
 	uint texture_id;
 
