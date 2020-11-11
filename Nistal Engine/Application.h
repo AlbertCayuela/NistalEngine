@@ -11,6 +11,7 @@
 #include "ModuleUI.h"
 #include "ModuleLoadFBX.h"
 #include "ModuleFS.h"
+#include "ModuleImporter.h"
 #include <list>
 
 class Application
@@ -24,6 +25,7 @@ public:
 	ModuleUI* ui;
 	ModuleLoadFBX* load_fbx;
 	ModuleFS* file_system;
+	ModuleImporter* importer;
 
 	std::string engine_title;
 

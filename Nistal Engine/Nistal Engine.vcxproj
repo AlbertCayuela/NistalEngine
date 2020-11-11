@@ -103,6 +103,7 @@
     <ClInclude Include="GOTransform.h" />
     <ClInclude Include="ModuleFS.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="ModuleImporter.h" />
     <ClInclude Include="ModuleLoadFBX.h" />
     <ClInclude Include="Parson\parson.h" />
     <ClInclude Include="sphereEngine.h" />
@@ -247,6 +248,7 @@
     <ClCompile Include="ModuleCamera3D.cpp" />
     <ClCompile Include="ModuleFS.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="ModuleImporter.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModuleLoadFBX.cpp" />
     <ClCompile Include="ModuleRenderer3D.cpp" />

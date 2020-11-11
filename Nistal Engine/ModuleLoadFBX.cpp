@@ -3,6 +3,7 @@
 #include "GameObject.h"
 #include "GOMesh.h"
 #include "GOMaterial.h"
+#include "ModuleImporter.h"
 
 #include "Assimp/include/scene.h"
 #include "Assimp/include/postprocess.h"
@@ -104,6 +105,7 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object, co
             new_go->AddComponent(GOCOMPONENT_TYPE::MATERIAL, texture_path);
         }
 
+        //TODO: Watch out Memory Leaks. When we will be able to delete models, check if everything is deleted. Otherwise, it will cause memory leaks :)
         model = modelData();
         model.num_vertex = mesh->mNumVertices;
         model.vertices = new float[mesh->mNumVertices * 3];
@@ -177,7 +179,6 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object, co
         LOG("Loaded mesh with %i normals.", model.num_normals);
         LOG("Loaded mesh with %i uvs.", model.num_uvs);
     }
-
 }
 
 void ModuleLoadFBX::DrawNormals(modelData model)
