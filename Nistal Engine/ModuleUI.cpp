@@ -78,6 +78,10 @@ update_status ModuleUI::Update(float dt)
 	{
 		if (BeginMenu("File"))
 		{
+			if (MenuItem("Load Own Format Model", "L"))
+			{
+				App->importer->LoadOwnFormat("mymesh");
+			}
 			if (MenuItem("Exit", "Alt+F4"))
 			{
 				return UPDATE_STOP;

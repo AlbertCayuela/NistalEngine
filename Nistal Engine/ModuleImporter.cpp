@@ -15,6 +15,13 @@ bool ModuleImporter::Start()
 	return ret;
 }
 
+bool ModuleImporter::Update()
+{
+	bool ret = true;
+
+	return ret;
+}
+
 bool ModuleImporter::CleanUp()
 {
 	bool ret = true;
@@ -23,7 +30,7 @@ bool ModuleImporter::CleanUp()
 }
 
 
-bool ModuleImporter::SaveData(modelData model, string name_to_file)
+bool ModuleImporter::SaveOwnFormat(modelData model, string name_to_file)
 {
 	bool ret = true;
 	//save each mesh component as .material, .mesh, .model, etc
@@ -69,11 +76,11 @@ bool ModuleImporter::SaveData(modelData model, string name_to_file)
 	return ret;
 }
 
-bool ModuleImporter::LoadData(string file_name)
+bool ModuleImporter::LoadOwnFormat(string file_name)
 {
 	bool ret = true;
 
-	string full_path(LIBRARY_MESH_FOLDER + file_name);
+	string full_path(LIBRARY_MESH_FOLDER + string(file_name) + string(".mesh"));
 	string name;
 	App->file_system->SplitFilePath(file_name.c_str(), nullptr, &name);
 	GameObject* new_go = new GameObject(App->scene_intro->root, name.c_str());
@@ -86,7 +93,7 @@ bool ModuleImporter::LoadData(string file_name)
 	char* cursor = data;
 
 	//loading header
-	uint header[4];
+	uint header[4] = { 0u, 0u, 0u, 0u };
 	uint bytes = sizeof(header);
 	memcpy(header, cursor, bytes);
 	cursor += bytes;
@@ -101,21 +108,26 @@ bool ModuleImporter::LoadData(string file_name)
 	model.vertices = new float[model.num_vertex * 3];
 	memcpy(model.vertices, cursor, bytes);
 	cursor += bytes;
+	LOG("OwnFormat num_vertex: %i", model.num_vertex);
+	
 
 	bytes = sizeof(float) * model.num_index;
 	model.indices = new uint[model.num_index];
 	memcpy(model.indices, cursor, bytes);
 	cursor += bytes;
+	LOG("OwnFormat num_index: %i", model.num_index);
 
 	bytes = sizeof(float) * model.num_normals * 3;
 	model.normals = new aiVector3D[model.num_normals * 3];
 	memcpy(model.normals, cursor, bytes);
 	cursor += bytes;
+	LOG("OwnFormat num_normals: %i", model.num_normals);
 
 	bytes = sizeof(float) * model.num_uvs * 2;
 	model.uvs = new float[model.num_uvs * 2];
 	memcpy(model.uvs, cursor, bytes);
 	cursor += bytes;
+	LOG("OwnFormat num_uvs: %i", model.num_uvs);
 
 	return ret;
 }

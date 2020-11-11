@@ -11,11 +11,12 @@ public:
 	~ModuleImporter();
 
 	bool Start();
+	bool Update();
 	bool CleanUp();
 
 	//import function is our current LoadMeshes
-	bool SaveData(modelData model, string name_to_file);
-	bool LoadData(string file_name);
+	bool SaveOwnFormat(modelData model, string name_to_file);
+	bool LoadOwnFormat(string file_name);
 
 public:
 	modelData data;

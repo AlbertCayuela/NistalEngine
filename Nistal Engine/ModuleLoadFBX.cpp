@@ -179,6 +179,8 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object, co
         LOG("Loaded mesh with %i normals.", model.num_normals);
         LOG("Loaded mesh with %i uvs.", model.num_uvs);
     }
+
+    App->importer->SaveOwnFormat(model, "SuperCoolHouse");
 }
 
 void ModuleLoadFBX::DrawNormals(modelData model)

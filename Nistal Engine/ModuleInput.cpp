@@ -122,14 +122,16 @@ update_status ModuleInput::PreUpdate(float dt)
 				if (App->scene_intro->selected_go != nullptr) 
 				{
 					App->load_fbx->LoadFBX(dropped_path, App->scene_intro->selected_go);
+					App->importer->SaveOwnFormat(App->load_fbx->model, "mymesh");
 				}
 				else 
 				{
 					App->load_fbx->LoadFBX(dropped_path);
+					App->importer->SaveOwnFormat(App->load_fbx->model, "mymesh");
 				}
 					
 			}
-			else if (extension == "dds" || extension == "DDS" || extension == "png" || extension == "PNG" || extension == "jpg" || extension == "JPG") 
+			if (extension == "dds" || extension == "DDS" || extension == "png" || extension == "PNG" || extension == "jpg" || extension == "JPG") 
 			{
 				LOG("dropped a texture file");
 				if (App->scene_intro->selected_go != nullptr) 
