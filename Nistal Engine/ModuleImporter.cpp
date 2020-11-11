@@ -23,7 +23,7 @@ bool ModuleImporter::CleanUp()
 }
 
 
-bool ModuleImporter::SaveData(modelData model, string file_name)
+bool ModuleImporter::SaveData(modelData model, string name_to_file)
 {
 	bool ret = true;
 	//save each mesh component as .material, .mesh, .model, etc
@@ -36,11 +36,11 @@ bool ModuleImporter::SaveData(modelData model, string file_name)
 		sizeof(float) * 3 * model.num_normals +
 		sizeof(float) * model.num_uvs * 2;
 
-	char* fileBuffer = new char[generalSize];
-	char* cursor = fileBuffer;
+	char* data = new char[generalSize];
+	char* cursor = data;
 
 
-	//saving the header
+	//saving header
 	uint bytes = sizeof(header);
 	memcpy(cursor, header, bytes);
 	cursor += bytes;
@@ -63,15 +63,59 @@ bool ModuleImporter::SaveData(modelData model, string file_name)
 	cursor += bytes;
 
 	//file system
-	string path_to_save(LIBRARY_MESH_FOLDER + string(file_name) + string(".mesh"));
-	App->file_system->Save(path_to_save.c_str(), fileBuffer, generalSize);
+	string path_to_save(LIBRARY_MESH_FOLDER + string(name_to_file) + string(".mesh"));
+	App->file_system->Save(path_to_save.c_str(), data, generalSize);
 
 	return ret;
 }
 
-bool ModuleImporter::LoadData()
+bool ModuleImporter::LoadData(string file_name)
 {
 	bool ret = true;
+
+	string full_path(LIBRARY_MESH_FOLDER + file_name);
+	string name;
+	App->file_system->SplitFilePath(file_name.c_str(), nullptr, &name);
+	GameObject* new_go = new GameObject(App->scene_intro->root, name.c_str());
+	//GOComponent* mesh = (GOComponent*)new_go->AddComponent(GOCOMPONENT_TYPE::MESH);
+
+	modelData model;
+
+	char* data;
+	App->file_system->Load(full_path.c_str(), &data);
+	char* cursor = data;
+
+	//loading header
+	uint header[4];
+	uint bytes = sizeof(header);
+	memcpy(header, cursor, bytes);
+	cursor += bytes;
+
+	model.num_vertex = header[0];
+	model.num_index = header[1];
+	model.num_normals = header[2];
+	model.num_uvs = header[3];
+
+	//loading data
+	bytes = sizeof(float) * model.num_vertex * 3;
+	model.vertices = new float[model.num_vertex * 3];
+	memcpy(model.vertices, cursor, bytes);
+	cursor += bytes;
+
+	bytes = sizeof(float) * model.num_index;
+	model.indices = new uint[model.num_index];
+	memcpy(model.indices, cursor, bytes);
+	cursor += bytes;
+
+	bytes = sizeof(float) * model.num_normals * 3;
+	model.normals = new aiVector3D[model.num_normals * 3];
+	memcpy(model.normals, cursor, bytes);
+	cursor += bytes;
+
+	bytes = sizeof(float) * model.num_uvs * 2;
+	model.uvs = new float[model.num_uvs * 2];
+	memcpy(model.uvs, cursor, bytes);
+	cursor += bytes;
 
 	return ret;
 }
