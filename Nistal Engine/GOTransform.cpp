@@ -29,3 +29,8 @@ math::float4x4& GOTransform::GlobalMatrix() const
 		return local_matrix;
 	}
 }
+
+void GOTransform::NewPosition(float3 new_position)
+{
+	position = new_position;
+}

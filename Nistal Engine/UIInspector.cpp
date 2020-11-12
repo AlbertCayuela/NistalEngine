@@ -77,6 +77,11 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 			ImGui::ColorEdit3("color 1", col1);
 			ImGui::ColorEdit4("color 2", col2);	*/
 
+			if (DragFloat3("Position", &GO->transform->position[0], 0.1f, 0.0f, 0.0f, "%.3f")) 
+			{
+				GO->transform->NewPosition(GO->transform->position);
+			}
+
 			Text("Game Object name: %s", GO->ui_name.c_str());
 			Separator();
 

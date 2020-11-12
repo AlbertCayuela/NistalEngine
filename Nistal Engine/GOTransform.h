@@ -18,6 +18,8 @@ public:
 	math::float4x4& LocalMatrix() const;
 	math::float4x4& GlobalMatrix() const;
 
+	void NewPosition(float3 new_position);
+
 public:
 
 	float4x4 transform_matrix = math::float4x4::identity;
