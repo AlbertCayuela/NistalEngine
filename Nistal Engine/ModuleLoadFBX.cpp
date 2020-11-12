@@ -3,6 +3,7 @@
 #include "GameObject.h"
 #include "GOMesh.h"
 #include "GOMaterial.h"
+#include "GOTransform.h"
 #include "ModuleImporter.h"
 
 #include "Assimp/include/scene.h"
@@ -172,6 +173,13 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object, co
 
         new_go->AddComponent(GOCOMPONENT_TYPE::MESH, "mesh");
         new_go->mesh->mesh_info = model;
+
+        new_go->transform->position = pos;
+        new_go->transform->rotation = rot;
+        new_go->transform->scale = scale;
+
+        LOG("GameObject Position: %f , %f , %f", pos.x, pos.y, pos.z);
+
 
         LOG("Loaded mesh with %i vertices.", model.num_vertex);
         LOG("Loaded mesh with %i indices.", model.num_index);

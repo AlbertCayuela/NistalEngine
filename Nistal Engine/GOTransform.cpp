@@ -4,11 +4,18 @@ GOTransform::GOTransform(GameObject* game_object, const char* name):GOComponent(
 {
 	this->name = name;
 
-	position = float3(0.0f, 0.0f, 0.0f);
-	rotation = Quat::identity;
-	scale = float3(1.0f, 1.0f, 1.0f);
 }
 
 GOTransform::~GOTransform()
 {
 }
+
+//math::float4x4& GOTransform::LocalMatrix() const
+//{
+//	return float4x4::FromTRS(position, rotation, scale);
+//}
+
+//math::float4x4& GOTransform::GlobalMatrix() const
+//{
+//
+//}

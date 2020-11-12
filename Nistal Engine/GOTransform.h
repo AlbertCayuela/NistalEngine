@@ -15,13 +15,16 @@ public:
 	GOTransform(GameObject* game_object, const char* name);
 	~GOTransform();
 
+	math::float4x4& LocalMatrix() const;
+	math::float4x4& GlobalMatrix() const;
+
 public:
 
-	float4x4 transform_matrix;
+	float4x4 transform_matrix = math::float4x4::identity;
 
-	float3 position;
-	Quat rotation;
-	float3 scale;
+	float3 position = math::float3::zero;
+	Quat rotation = math::Quat::identity;
+	float3 scale = math::float3::one;
 
 	std::string name;
 };
