@@ -2,6 +2,10 @@
 #include "ModuleImporter.h"
 #include "ModuleFS.h"
 
+//TODO: Check this libraries
+//#include "Devil/include/config.h"
+#include "Devil/include/il.h"
+
 ModuleImporter::ModuleImporter(Application* app, bool start_enabled) : Module(app, start_enabled)
 {}
 
@@ -128,6 +132,36 @@ bool ModuleImporter::LoadOwnFormat(string file_name)
 	memcpy(model.uvs, cursor, bytes);
 	cursor += bytes;
 	LOG("OwnFormat num_uvs: %i", model.num_uvs);
+
+	return ret;
+}
+
+bool ModuleImporter::TextureSaving(string texture_name)
+{
+	bool ret = true;
+
+	ILuint size;
+	ILubyte* data;
+
+	char* fileBuffer = nullptr;
+
+	ilSetInteger(IL_DXTC_FORMAT, IL_DXT5);
+	size = ilSaveL(IL_DDS, nullptr, 0);
+
+	fileBuffer = new char[size];
+
+	if (size > 0)
+	{
+		data = new ILubyte[size]; //allocate data buffer
+		if (ilSaveL(IL_DDS, data, size) > 0)
+			fileBuffer = (char*)data;
+
+		//RELEASE_ARRAY(data);
+	}
+
+	//Save custom format
+	string path_to_save(LIBRARY_TEXTURES_FOLDER + string(texture_name) + string(".tex"));
+	App->file_system->Save(path_to_save.c_str(), data, size);
 
 	return ret;
 }

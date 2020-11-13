@@ -18,6 +18,8 @@ public:
 	bool SaveOwnFormat(modelData model, string name_to_file);
 	bool LoadOwnFormat(string file_name);
 
+	bool TextureSaving(string texture_name);
+
 public:
 	modelData data;
 

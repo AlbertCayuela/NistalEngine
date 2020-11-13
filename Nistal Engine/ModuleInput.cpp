@@ -138,6 +138,8 @@ update_status ModuleInput::PreUpdate(float dt)
 				{
 					App->scene_intro->selected_go->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "texture");
 					App->scene_intro->selected_go->material->LoadThisTex(dropped_path);
+					//custom format
+					App->importer->TextureSaving("hOlAsOy_UnA_tExTuRa");
 				}
 				else
 				{
