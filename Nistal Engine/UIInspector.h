@@ -29,6 +29,7 @@ public:
 private:
 
 	const char* inspector_name;
+	float3 rot = float3::zero;
 };
 
 #endif 

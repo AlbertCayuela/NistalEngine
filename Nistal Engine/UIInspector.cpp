@@ -77,13 +77,18 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 			ImGui::ColorEdit3("color 1", col1);
 			ImGui::ColorEdit4("color 2", col2);	*/
 
-			if (DragFloat3("Position", &GO->transform->position[0], 0.1f, 0.0f, 0.0f, "%.3f")) 
-			{
-				GO->transform->NewPosition(GO->transform->position);
-			}
+
 
 			Text("Game Object name: %s", GO->ui_name.c_str());
 			Separator();
+
+			rot = GO->transform->rotation.ToEulerXYZ() * RADTODEG;
+
+			if (DragFloat3("Position", &GO->transform->position[0], 0.1f, 0.0f, 0.0f, "%.3f"))
+				GO->transform->NewPosition(GO->transform->position);
+
+			if (DragFloat3("Rotation", &rot[0], 0.1f, 0.0f, 0.0f, "%.3f"))
+				GO->transform->NewRotation(rot);
 
 			Text("Position:"); SameLine();
 			float position[4] = { GO->transform->position.x , GO->transform->position.y, GO->transform->position.z };

@@ -19,6 +19,7 @@ public:
 	math::float4x4 GlobalMatrix() const;
 
 	void NewPosition(float3 new_position);
+	void NewRotation(float3 new_rotation);
 
 public:
 

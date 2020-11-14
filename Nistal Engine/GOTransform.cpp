@@ -34,3 +34,8 @@ void GOTransform::NewPosition(float3 new_position)
 {
 	position = new_position;
 }
+
+void GOTransform::NewRotation(float3 new_rotation)
+{
+	rotation = Quat::FromEulerXYZ(new_rotation.x * DEGTORAD, new_rotation.y * DEGTORAD, new_rotation.z * DEGTORAD);
+}
