@@ -20,6 +20,7 @@ public:
 
 	void NewPosition(float3 new_position);
 	void NewRotation(float3 new_rotation);
+	void NewScale(float3 new_scale);
 
 public:
 

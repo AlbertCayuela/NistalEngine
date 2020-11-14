@@ -39,3 +39,8 @@ void GOTransform::NewRotation(float3 new_rotation)
 {
 	rotation = Quat::FromEulerXYZ(new_rotation.x * DEGTORAD, new_rotation.y * DEGTORAD, new_rotation.z * DEGTORAD);
 }
+
+void GOTransform::NewScale(float3 new_scale)
+{
+	scale = new_scale;
+}

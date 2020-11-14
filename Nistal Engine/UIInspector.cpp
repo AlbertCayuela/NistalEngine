@@ -90,6 +90,9 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 			if (DragFloat3("Rotation", &rot[0], 0.1f, 0.0f, 0.0f, "%.3f"))
 				GO->transform->NewRotation(rot);
 
+			if (DragFloat3("Scale", &GO->transform->scale[0], 0.1f, 0.0f, 0.0f, "%.3f"))
+				GO->transform->NewScale(GO->transform->scale);
+
 			Text("Position:"); SameLine();
 			float position[4] = { GO->transform->position.x , GO->transform->position.y, GO->transform->position.z };
 			InputFloat3("", position);
