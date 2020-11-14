@@ -77,8 +77,6 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 			ImGui::ColorEdit3("color 1", col1);
 			ImGui::ColorEdit4("color 2", col2);	*/
 
-
-
 			Text("Game Object name: %s", GO->ui_name.c_str());
 			Separator();
 
@@ -92,18 +90,6 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 
 			if (DragFloat3("Scale", &GO->transform->scale[0], 0.1f, 0.0f, 0.0f, "%.3f"))
 				GO->transform->NewScale(GO->transform->scale);
-
-			Text("Position:"); SameLine();
-			float position[4] = { GO->transform->position.x , GO->transform->position.y, GO->transform->position.z };
-			InputFloat3("", position);
-
-			Text("Rotation:"); SameLine();
-			static float rotation[4] = { GO->transform->rotation.x, GO->transform->rotation.y, GO->transform->rotation.z };
-			InputFloat3("", rotation);
-
-			Text("Scale:"); SameLine();
-			static float scale[4] = { GO->transform->scale.x, GO->transform->scale.y, GO->transform->scale.z };
-			InputFloat3("", scale);
 
 			static int world = 0;
 			RadioButton("world", &world, 2); ImGui::SameLine();
