@@ -16,12 +16,12 @@ math::float4x4& GOTransform::LocalMatrix() const
 	return float4x4::FromTRS(position, rotation, scale);
 }
 
-math::float4x4& GOTransform::GlobalMatrix() const
+math::float4x4 GOTransform::GlobalMatrix() const
 {
 	float4x4 local_matrix = LocalMatrix();
 	if (parent->parent != nullptr)
 	{
-		float4x4 global_matrix = (parent->parent->transform->GlobalMatrix()) * local_matrix;
+		float4x4 global_matrix = parent->parent->transform->GlobalMatrix() * local_matrix;
 		return global_matrix;
 	}
 	else

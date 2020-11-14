@@ -16,13 +16,14 @@ public:
 	~GOTransform();
 
 	math::float4x4& LocalMatrix() const;
-	math::float4x4& GlobalMatrix() const;
+	math::float4x4 GlobalMatrix() const;
 
 	void NewPosition(float3 new_position);
 
 public:
 
-	float4x4 transform_matrix = math::float4x4::identity;
+	float4x4 local_matrix = math::float4x4::identity;
+	float4x4 global_matrix = math::float4x4::identity;
 
 	float3 position = math::float3::zero;
 	Quat rotation = math::Quat::identity;

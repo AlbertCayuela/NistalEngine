@@ -1,5 +1,6 @@
 #include "GOMesh.h"
 #include "GOMaterial.h"
+#include "GOTransform.h"
 #include "Application.h"
 
 GOMesh::GOMesh(GameObject* game_object, const char* name) : GOComponent(game_object)
@@ -16,6 +17,9 @@ void GOMesh::DrawMesh(uint texture_id)
 {
     if (parent->active)
     {
+        glPushMatrix();
+        glMultMatrixf(parent->transform->GlobalMatrix().Transposed().ptr());
+
         glEnableClientState(GL_VERTEX_ARRAY);
         glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
@@ -45,6 +49,8 @@ void GOMesh::DrawMesh(uint texture_id)
         glDisableClientState(GL_TEXTURE_COORD_ARRAY);
         glBindTexture(GL_TEXTURE_2D, 0);
         glDisable(GL_TEXTURE_2D);
+
+        glPopMatrix();
     }
 }
 

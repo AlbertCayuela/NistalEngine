@@ -86,7 +86,7 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 			Separator();
 
 			Text("Position:"); SameLine();
-			static float position[4] = { GO->transform->position.x , GO->transform->position.y, GO->transform->position.z };
+			float position[4] = { GO->transform->position.x , GO->transform->position.y, GO->transform->position.z };
 			InputFloat3("", position);
 
 			Text("Rotation:"); SameLine();
