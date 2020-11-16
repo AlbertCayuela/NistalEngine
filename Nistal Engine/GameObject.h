@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include "Globals.h"
+#include "Parson/parson.h"
 
 enum GOCOMPONENT_TYPE
 {
@@ -42,6 +43,9 @@ public:
 	std::vector<GOComponent*> go_components;
 	std::vector<GameObject*> children;
 	GameObject* parent = nullptr;
+
+public:
+	void SaveInfoGameObject(GameObject* go, JSON_Array* json_array);
 };
 
 #endif

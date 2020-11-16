@@ -402,6 +402,9 @@
     <ClInclude Include="ModuleImporter.h">
       <Filter>Sources\Modules</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleSerialization.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -611,6 +614,9 @@
     <ClCompile Include="ModuleImporter.cpp">
       <Filter>Sources\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleSerialization.cpp">
+      <Filter>Sources\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="MathGeoLib\include\Geometry\KDTree.inl">
@@ -630,6 +636,9 @@
     </None>
     <None Include="MathGeoLib\include\Geometry\TriangleMesh_IntersectRay_SSE.inl">
       <Filter>Sources\Libs\MathGeoLib</Filter>
+    </None>
+    <None Include="Game\config.json">
+      <Filter>Sources</Filter>
     </None>
   </ItemGroup>
 </Project>

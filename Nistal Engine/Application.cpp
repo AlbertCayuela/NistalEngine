@@ -12,6 +12,7 @@ Application::Application()
 	load_fbx = new ModuleLoadFBX(this);
 	file_system = new ModuleFS(this, ASSETS_FOLDER);
 	importer = new ModuleImporter(this);
+	serialization = new ModuleSerialization(this);
 	
 
 	// The order of calls is very important!
@@ -25,6 +26,7 @@ Application::Application()
 	AddModule(file_system);
 	AddModule(load_fbx);
 	AddModule(importer);
+	AddModule(serialization);
 	
 	// Scenes
 	AddModule(scene_intro);

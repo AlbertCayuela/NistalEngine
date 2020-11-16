@@ -67,3 +67,26 @@ void GameObject::GetNames(const char* name)
 	std::string::size_type const p(this->name.find_last_of('.'));
 	ui_name = this->name.substr(0, p);
 }
+
+void GameObject::SaveInfoGameObject(GameObject* go, JSON_Array* json_array)
+{
+	//BASIC INFO
+	JSON_Value* value_json = json_value_init_object();
+	JSON_Object* object_json = json_value_get_object(value_json);
+
+	json_object_set_string(object_json, "Name:", go->name.c_str());
+	/*json_object_set_number(object_json, "UUID:", go->uuid);
+	if (go->parent != nullptr)
+		json_object_set_number(object_json, "Parent UUID:", go->parent->uuid);*/
+
+		//COMPONENTS INFO
+	JSON_Value* components = json_value_init_array();
+	JSON_Array* componentsObj = json_value_get_array(components);
+
+	if (go->transform != nullptr)
+		go->transform->JsonSaveTransform(componentsObj);
+
+	json_object_set_value(object_json, "Components:", components);
+
+	json_array_append_value(json_array, value_json);
+}

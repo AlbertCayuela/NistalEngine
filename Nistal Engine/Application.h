@@ -12,6 +12,7 @@
 #include "ModuleLoadFBX.h"
 #include "ModuleFS.h"
 #include "ModuleImporter.h"
+#include "ModuleSerialization.h"
 #include <list>
 
 class Application
@@ -26,6 +27,7 @@ public:
 	ModuleLoadFBX* load_fbx;
 	ModuleFS* file_system;
 	ModuleImporter* importer;
+	ModuleSerialization* serialization;
 
 	std::string engine_title;
 

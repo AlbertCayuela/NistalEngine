@@ -5,6 +5,7 @@
 #include "GOMesh.h"
 #include "GOMaterial.h"
 #include "GameObject.h"
+#include "ModuleSerialization.h"
 
 #include "SDL/include/SDL_opengl.h"
 #include <gl/GL.h>
@@ -101,6 +102,9 @@ update_status ModuleSceneIntro::Update(float dt)
             }
         }
     }
+
+    if (App->input->GetKey(SDL_SCANCODE_O) == KEY_REPEAT)
+        App->serialization->SaveScene("New Scene");
 
     if (App->ui->render_face_normals)
     {

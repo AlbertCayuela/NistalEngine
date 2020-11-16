@@ -105,6 +105,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="ModuleImporter.h" />
     <ClInclude Include="ModuleLoadFBX.h" />
+    <ClInclude Include="ModuleSerialization.h" />
     <ClInclude Include="Parson\parson.h" />
     <ClInclude Include="sphereEngine.h" />
     <ClInclude Include="UIAbout.h" />
@@ -253,6 +254,7 @@
     <ClCompile Include="ModuleLoadFBX.cpp" />
     <ClCompile Include="ModuleRenderer3D.cpp" />
     <ClCompile Include="ModuleSceneIntro.cpp" />
+    <ClCompile Include="ModuleSerialization.cpp" />
     <ClCompile Include="ModuleUI.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
     <ClCompile Include="Parson\parson.c" />
@@ -267,6 +269,7 @@
     <ClCompile Include="UIWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Game\config.json" />
     <None Include="MathGeoLib\include\Geometry\KDTree.inl" />
     <None Include="MathGeoLib\include\Geometry\QuadTree.inl" />
     <None Include="MathGeoLib\include\Geometry\TriangleMesh_IntersectRay_AVX.inl" />

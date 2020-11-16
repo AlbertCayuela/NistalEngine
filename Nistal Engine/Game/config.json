@@ -6,7 +6,7 @@
     "VSYNC": false
   },
   "Model": {
-    "Path": "Models/BakerHouse.fbx"    
+    "Path": "Models/BakerHouse.fbx"
   },
   "Texture": {
     "Texture Path": "Textures/Baker_house.png"
@@ -19,6 +19,13 @@
     "Resizable": true,
     "Borderless": false,
     "Full Desktop": false
+  },
+  "Game Objects": {
+    "UID": 0,
+    "ParentUID": 0,
+    "Name": "Root Name",
+    "Translation": [ 0, 0, 0 ],
+    "Scale": [ 1, 1, 1 ],
+    "Rotation": [ 0, 0, 0, 1 ]
   }
-
-}  
+}

@@ -1,6 +1,7 @@
 #include "Application.h"
 #include "ModuleImporter.h"
 #include "ModuleFS.h"
+#include "GOTransform.h"
 
 //TODO: Check this libraries
 //#include "Devil/include/config.h"
