@@ -57,7 +57,7 @@ public:
 
 	bool LoadFBX(const char* file_path, GameObject* parent = nullptr);
 	void AddBuffers();
-	void LoadMeshes(const aiScene* scene, GameObject* game_object, const char* file_path);
+	void LoadMeshes(const aiScene* scene, aiNode* node, GameObject* game_object, const char* file_path);
 	void LoadIndices(aiMesh* scene);
 	void DrawNormals(modelData model);
 	void DrawVertexNormals(modelData model);

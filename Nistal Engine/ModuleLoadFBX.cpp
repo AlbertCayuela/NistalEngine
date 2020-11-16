@@ -71,12 +71,20 @@ bool ModuleLoadFBX::LoadFBX(const char* file_path, GameObject* parent)
     //LOADING FBX --------------------------------------------------
     scene = aiImportFile(file_path, aiProcessPreset_TargetRealtime_MaxQuality);
 
+    aiNode* root_node = scene->mRootNode;
+
     if (scene != nullptr && scene->HasMeshes())
     {
-        if (parent == nullptr)
-            LoadMeshes(scene, App->scene_intro->root, file_path);
+        if (parent == nullptr) 
+        {
+            for(int i=0; i<root_node->mNumChildren; ++i)
+                LoadMeshes(scene, root_node->mChildren[i], App->scene_intro->root, file_path);
+        }        
         else if (parent != nullptr)
-            LoadMeshes(scene, parent, file_path);
+        {
+            for (int i = 0; i < root_node->mNumChildren; ++i)
+                LoadMeshes(scene, root_node->mChildren[i], App->scene_intro->root, file_path);
+        }
     }
     else 
     {
@@ -85,15 +93,14 @@ bool ModuleLoadFBX::LoadFBX(const char* file_path, GameObject* parent)
     }
 }
 
-void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object, const char* file_path)
+void ModuleLoadFBX::LoadMeshes(const aiScene* scene,aiNode* node, GameObject* game_object, const char* file_path)
 {
-    aiNode* root_node = scene->mRootNode;
 
-    for (uint i = 0; i<root_node->mNumChildren; ++i)
+    if (node->mNumMeshes > 0) 
     {
         new_go = App->scene_intro->CreateGameObject(game_object, file_path);
 
-        mesh = scene->mMeshes[i];
+        mesh = scene->mMeshes[node->mMeshes[0]];
 
         aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
         if (material != nullptr)
@@ -163,7 +170,7 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object, co
 
         aiVector3D translation, scaling, rot_euler;
         aiQuaternion rotation;
-        root_node->mTransformation.Decompose(scaling, rotation, translation);
+        node->mTransformation.Decompose(scaling, rotation, translation);
         aiMatrix3x3 rot_mat = rotation.GetMatrix();
         rot_euler = rot_mat.GetEuler();
 
@@ -186,7 +193,11 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene, GameObject* game_object, co
         LOG("Loaded mesh with %i triangles.", model.num_vertex / 3);
         LOG("Loaded mesh with %i normals.", model.num_normals);
         LOG("Loaded mesh with %i uvs.", model.num_uvs);
-    }
+
+    } 
+
+    for (int i = 0; i < node->mNumChildren; ++i)
+        LoadMeshes(scene, node->mChildren[i], game_object, file_path);
 
     App->importer->SaveOwnFormat(model, "SuperCoolHouse");
 }
