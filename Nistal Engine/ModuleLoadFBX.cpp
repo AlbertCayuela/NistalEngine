@@ -101,35 +101,25 @@ bool ModuleLoadFBX::LoadFBX(const char* file_path, GameObject* parent)
 
 void ModuleLoadFBX::LoadMeshes(const aiScene* scene,aiNode* node, GameObject* game_object, const char* file_path)
 {
-
     if (node->mNumMeshes > 0) 
     {
         new_go = App->scene_intro->CreateGameObject(game_object, file_path);
-
         mesh = scene->mMeshes[node->mMeshes[0]];
-
-        aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
-        if (material != nullptr)
-        {
-            textures_num = material->GetTextureCount(aiTextureType_DIFFUSE);
-            aiString tex_path;
-            material->GetTexture(aiTextureType_DIFFUSE, 0, &tex_path);
-            const char* texture_path;
-            texture_path = tex_path.data;
-            new_go->AddComponent(GOCOMPONENT_TYPE::MATERIAL, texture_path);
-        }
-
-        //TODO: Watch out Memory Leaks. When we will be able to delete models, check if everything is deleted. Otherwise, it will cause memory leaks :)
         model = modelData();
-        model.num_vertex = mesh->mNumVertices;
-        model.vertices = new float[mesh->mNumVertices * 3];
-        memcpy(model.vertices, mesh->mVertices, sizeof(float) * model.num_vertex * 3);
 
-        //loading indices
+        //LOADING MATERIAL
+        LoadMaterial();
+       
+        //TODO: Watch out Memory Leaks. When we will be able to delete models, check if everything is deleted. Otherwise, it will cause memory leaks :)
+        LoadVertices();
+
+        //LOADING FACES
         if (mesh->HasFaces())
         {
             LoadIndices(mesh);
         }
+
+        //LOADING TEXTURE COORDS
         if (mesh->HasTextureCoords(model.id_uvs))
         {
             //UVs
@@ -142,11 +132,15 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene,aiNode* node, GameObject* ga
                 memcpy(&model.uvs[(i * 2) + 1], &mesh->mTextureCoords[0][i].y, sizeof(float));
             }
         }
+
+        //LOADING NORMALS
         if (mesh->HasNormals())
         {
             model.normals = new aiVector3D[mesh->mNumVertices];
             memcpy(model.normals, mesh->mNormals, sizeof(aiVector3D) * mesh->mNumVertices);
         }
+
+        //---------------------------------------------------------------------------
 
         //loading normals
         /*model.num_faces = mesh->mNumFaces;
@@ -177,6 +171,7 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene,aiNode* node, GameObject* ga
 
         AddBuffers();
 
+        //LOADING TRANSFORM
         aiVector3D translation, scaling, rot_euler;
         aiQuaternion rotation;
         node->mTransformation.Decompose(scaling, rotation, translation);
@@ -196,16 +191,16 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene,aiNode* node, GameObject* ga
 
         LOG("GameObject Position: %f , %f , %f", pos.x, pos.y, pos.z);
 
+        //---------------------------------------------------------------------------
 
+        //OUTPUT
         LOG("Loaded mesh with %i vertices.", model.num_vertex);
         LOG("Loaded mesh with %i indices.", model.num_index);
         LOG("Loaded mesh with %i triangles.", model.num_vertex / 3);
         LOG("Loaded mesh with %i normals.", model.num_normals);
         LOG("Loaded mesh with %i uvs.", model.num_uvs);
-
-        
-
     } 
+
 
     for (int i = 0; i < node->mNumChildren; ++i)
         LoadMeshes(scene, node->mChildren[i], game_object, file_path);
@@ -310,4 +305,25 @@ void ModuleLoadFBX::LoadTexture(const char* texture_path)
     {
         LOG("ERROR LOADING TEXTURE");
     }
+}
+
+void ModuleLoadFBX::LoadMaterial()
+{
+    aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
+    if (material != nullptr)
+    {
+        textures_num = material->GetTextureCount(aiTextureType_DIFFUSE);
+        aiString tex_path;
+        material->GetTexture(aiTextureType_DIFFUSE, 0, &tex_path);
+        const char* texture_path;
+        texture_path = tex_path.data;
+        new_go->AddComponent(GOCOMPONENT_TYPE::MATERIAL, texture_path);
+    }
+}
+
+void ModuleLoadFBX::LoadVertices()
+{
+    model.num_vertex = mesh->mNumVertices;
+    model.vertices = new float[mesh->mNumVertices * 3];
+    memcpy(model.vertices, mesh->mVertices, sizeof(float) * model.num_vertex * 3);
 }
