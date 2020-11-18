@@ -79,8 +79,6 @@ bool ModuleLoadFBX::LoadFBX(const char* file_path, GameObject* parent)
 
     if (scene != nullptr && scene->HasMeshes())
     {
-
-
         if (parent == nullptr) 
         {
             for(int i=0; i<root_node->mNumChildren; ++i)
@@ -120,12 +118,15 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene,aiNode* node, GameObject* ga
         }
 
         //LOADING TEXTURE COORDS
+        //UVs
+        //In case that we load a texture without create the UVs buffer, imgui crashes :D. So it's because of that we create the buffer outside the if. That way there's at least one empty UVs buffer
+        //that picks and uses the first texture pixel
+
+        model.num_uvs = mesh->mNumVertices;
+        model.uvs = new float[model.num_uvs * 2];
+
         if (mesh->HasTextureCoords(model.id_uvs))
         {
-            //UVs
-            model.num_uvs = mesh->mNumVertices;
-            model.uvs = new  float[model.num_uvs * 2];
-
             for (int i = 0; i < mesh->mNumVertices; ++i)
             {
                 memcpy(&model.uvs[i * 2], &mesh->mTextureCoords[0][i].x, sizeof(float));

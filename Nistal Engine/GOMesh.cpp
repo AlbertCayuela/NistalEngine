@@ -23,7 +23,6 @@ void GOMesh::DrawMesh(uint texture_id)
         glEnableClientState(GL_VERTEX_ARRAY);
         glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
-        /*TODO: has texture coords?? put here :D)*/
         if (parent->has_material)
         {
             //bind texture
