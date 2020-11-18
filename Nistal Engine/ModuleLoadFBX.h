@@ -40,6 +40,8 @@ public:
 	uint id_uvs = 0u;
 	uint num_uvs = 0u;
 	float* uvs = nullptr;
+
+	uint nums_uvs_channels = 0u;
 };
 
 class ModuleLoadFBX : public Module

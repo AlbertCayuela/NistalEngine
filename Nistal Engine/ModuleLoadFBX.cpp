@@ -73,8 +73,14 @@ bool ModuleLoadFBX::LoadFBX(const char* file_path, GameObject* parent)
 
     aiNode* root_node = scene->mRootNode;
 
+    //TODO: loading street (fixing)
+    //create game object for every node
+    //set transform from node (info de los verdes esos :) )
+
     if (scene != nullptr && scene->HasMeshes())
     {
+
+
         if (parent == nullptr) 
         {
             for(int i=0; i<root_node->mNumChildren; ++i)
@@ -166,6 +172,9 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene,aiNode* node, GameObject* ga
             model.face_middle[i / 3] = { (vertex1.x + vertex2.x + vertex3.x) / 3, (vertex1.y + vertex2.y + vertex3.y) / 3, (vertex1.z + vertex2.z + vertex3.z) / 3 };
         }  */
 
+        //NumUVsChannel
+        model.nums_uvs_channels = mesh->GetNumUVChannels();
+
         AddBuffers();
 
         aiVector3D translation, scaling, rot_euler;
@@ -193,6 +202,8 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene,aiNode* node, GameObject* ga
         LOG("Loaded mesh with %i triangles.", model.num_vertex / 3);
         LOG("Loaded mesh with %i normals.", model.num_normals);
         LOG("Loaded mesh with %i uvs.", model.num_uvs);
+
+        
 
     } 
 

@@ -25,9 +25,9 @@ Application::Application()
 	AddModule(input);
 	AddModule(file_system);
 	AddModule(load_fbx);
-	AddModule(importer);
 	AddModule(serialization);
-	
+	AddModule(importer);
+		
 	// Scenes
 	AddModule(scene_intro);
 	AddModule(ui);

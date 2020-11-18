@@ -91,8 +91,6 @@ bool ModuleImporter::LoadOwnFormat(string file_name)
 	GameObject* new_go = new GameObject(App->scene_intro->root, name.c_str());
 	//GOComponent* mesh = (GOComponent*)new_go->AddComponent(GOCOMPONENT_TYPE::MESH);
 
-	modelData model;
-
 	char* data;
 	App->file_system->Load(full_path.c_str(), &data);
 	char* cursor = data;
@@ -103,36 +101,36 @@ bool ModuleImporter::LoadOwnFormat(string file_name)
 	memcpy(header, cursor, bytes);
 	cursor += bytes;
 
-	model.num_vertex = header[0];
-	model.num_index = header[1];
-	model.num_normals = header[2];
-	model.num_uvs = header[3];
+	modelOwnFormat.num_vertex = header[0];
+	modelOwnFormat.num_index = header[1];
+	modelOwnFormat.num_normals = header[2];
+	modelOwnFormat.num_uvs = header[3];
 
 	//loading data
-	bytes = sizeof(float) * model.num_vertex * 3;
-	model.vertices = new float[model.num_vertex * 3];
-	memcpy(model.vertices, cursor, bytes);
+	bytes = sizeof(float) * modelOwnFormat.num_vertex * 3;
+	modelOwnFormat.vertices = new float[modelOwnFormat.num_vertex * 3];
+	memcpy(modelOwnFormat.vertices, cursor, bytes);
 	cursor += bytes;
-	LOG("OwnFormat num_vertex: %i", model.num_vertex);
+	LOG("OwnFormat num_vertex: %i", modelOwnFormat.num_vertex);
 	
 
-	bytes = sizeof(float) * model.num_index;
-	model.indices = new uint[model.num_index];
-	memcpy(model.indices, cursor, bytes);
+	bytes = sizeof(float) * modelOwnFormat.num_index;
+	modelOwnFormat.indices = new uint[modelOwnFormat.num_index];
+	memcpy(modelOwnFormat.indices, cursor, bytes);
 	cursor += bytes;
-	LOG("OwnFormat num_index: %i", model.num_index);
+	LOG("OwnFormat num_index: %i", modelOwnFormat.num_index);
 
-	bytes = sizeof(float) * model.num_normals * 3;
-	model.normals = new aiVector3D[model.num_normals * 3];
-	memcpy(model.normals, cursor, bytes);
+	bytes = sizeof(float) * modelOwnFormat.num_normals * 3;
+	modelOwnFormat.normals = new aiVector3D[modelOwnFormat.num_normals * 3];
+	memcpy(modelOwnFormat.normals, cursor, bytes);
 	cursor += bytes;
-	LOG("OwnFormat num_normals: %i", model.num_normals);
+	LOG("OwnFormat num_normals: %i", modelOwnFormat.num_normals);
 
-	bytes = sizeof(float) * model.num_uvs * 2;
-	model.uvs = new float[model.num_uvs * 2];
-	memcpy(model.uvs, cursor, bytes);
+	bytes = sizeof(float) * modelOwnFormat.num_uvs * 2;
+	modelOwnFormat.uvs = new float[modelOwnFormat.num_uvs * 2];
+	memcpy(modelOwnFormat.uvs, cursor, bytes);
 	cursor += bytes;
-	LOG("OwnFormat num_uvs: %i", model.num_uvs);
+	LOG("OwnFormat num_uvs: %i", modelOwnFormat.num_uvs);
 
 	return ret;
 }

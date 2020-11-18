@@ -22,5 +22,7 @@ public:
 
 public:
 	modelData data;
+	bool loadOwnFormat = false;
+	modelData modelOwnFormat;
 
 };

@@ -131,6 +131,14 @@ update_status ModuleInput::PreUpdate(float dt)
 				}
 					
 			}
+
+			if (extension == "mesh")
+			{
+				LOG("Loading mesh from library");
+				App->importer->loadOwnFormat = true;
+				App->importer->LoadOwnFormat("mymesh");
+			}
+
 			if (extension == "dds" || extension == "DDS" || extension == "png" || extension == "PNG" || extension == "jpg" || extension == "JPG") 
 			{
 				LOG("dropped a texture file");
