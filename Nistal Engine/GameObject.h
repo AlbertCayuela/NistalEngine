@@ -12,13 +12,15 @@ enum GOCOMPONENT_TYPE
 	NONE = 0,
 	TRANSFORM,
 	MESH,
-	MATERIAL
+	MATERIAL,
+	CAMERA
 };
 
 class GOComponent;
 class GOMaterial;
 class GOMesh;
 class GOTransform;
+class GOCamera;
 
 class GameObject 
 {
