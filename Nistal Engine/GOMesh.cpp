@@ -6,6 +6,7 @@
 GOMesh::GOMesh(GameObject* game_object, const char* name) : GOComponent(game_object)
 {
     this->name = name;
+
 	LOG("Mesh added to gameobject: %s", game_object->name.c_str());
 }
 

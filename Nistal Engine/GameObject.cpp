@@ -24,6 +24,17 @@ GameObject::~GameObject()
 
 void GameObject::Update(float dt)
 {
+	if (mesh != nullptr && !has_bbox)
+	{
+		AddBoundingBox();
+		has_bbox = false;
+	}
+
+	for (std::vector<GameObject*>::iterator i = children.begin(); i != children.end(); ++i)
+	{
+		(*i)->Update(dt);
+	}
+	DrawBoundingBox();
 }
 
 GOComponent* GameObject::AddComponent(GOCOMPONENT_TYPE type, const char* name)
@@ -82,6 +93,25 @@ void GameObject::AddBoundingBox()
 	}
 	for (std::vector<GameObject*>::iterator i = children.begin(); i != children.end(); ++i)
 		(*i)->AddBoundingBox();
+}
+
+void GameObject::DrawBoundingBox()
+{
+
+	glBegin(GL_LINES);
+	glColor4f(1.0f, 1.0f, 0.0f, 1.0f);
+
+	for (uint i = 0; i < bbox.NumEdges(); i++) 
+	{
+		glVertex3f(bbox.Edge(i).a.x, bbox.Edge(i).a.y, bbox.Edge(i).a.z);
+		glVertex3f(bbox.Edge(i).b.x, bbox.Edge(i).b.y, bbox.Edge(i).b.z);
+	}
+	glEnd();
+	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+
+	for (std::vector<GameObject*>::iterator i = children.begin(); i != children.end(); ++i)
+		(*i)->DrawBoundingBox();
+
 }
 
 void GameObject::SaveInfoGameObject(GameObject* go, JSON_Array* json_array)

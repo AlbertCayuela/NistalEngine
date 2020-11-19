@@ -32,6 +32,7 @@ public:
 	void GetNames(const char* name);
 
 	void AddBoundingBox();
+	void DrawBoundingBox();
 
 	std::string name;
 	std::string path;
@@ -41,6 +42,7 @@ public:
 	GOTransform* transform = nullptr;
 	bool has_mesh = false;
 	bool has_material = false;
+	bool has_bbox = false;
 	bool active = true;
 	bool selected = false;
 	std::vector<GOComponent*> go_components;

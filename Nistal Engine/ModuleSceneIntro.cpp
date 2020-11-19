@@ -88,6 +88,8 @@ update_status ModuleSceneIntro::Update(float dt)
 
     ImGui::Separator();
 
+    root->Update(dt);
+
     for (std::vector<GameObject*>::iterator i = game_objects.begin(); i != game_objects.end(); ++i)
     {
         if ((*i)->has_mesh)
