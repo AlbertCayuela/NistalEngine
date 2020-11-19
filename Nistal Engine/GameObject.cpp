@@ -68,6 +68,22 @@ void GameObject::GetNames(const char* name)
 	ui_name = this->name.substr(0, p);
 }
 
+void GameObject::AddBoundingBox()
+{
+	bbox.SetNegativeInfinity();
+
+	if (mesh != nullptr)
+	{
+		bbox.Enclose((float3*)mesh->mesh_info.vertices, mesh->mesh_info.num_vertex);
+		obb_box.SetFrom(bbox);
+		obb_box.Transform(transform->GlobalMatrix());
+		if (obb_box.IsFinite())
+			bbox = obb_box.MinimalEnclosingAABB();
+	}
+	for (std::vector<GameObject*>::iterator i = children.begin(); i != children.end(); ++i)
+		(*i)->AddBoundingBox();
+}
+
 void GameObject::SaveInfoGameObject(GameObject* go, JSON_Array* json_array)
 {
 	//BASIC INFO

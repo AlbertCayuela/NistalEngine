@@ -5,6 +5,7 @@
 #include <string>
 #include "Globals.h"
 #include "Parson/parson.h"
+#include "MathGeoLib/include/MathGeoLib.h"
 
 enum GOCOMPONENT_TYPE
 {
@@ -30,6 +31,8 @@ public:
 	GOComponent* GetComponent(GOCOMPONENT_TYPE type);
 	void GetNames(const char* name);
 
+	void AddBoundingBox();
+
 	std::string name;
 	std::string path;
 	std::string ui_name;
@@ -43,6 +46,8 @@ public:
 	std::vector<GOComponent*> go_components;
 	std::vector<GameObject*> children;
 	GameObject* parent = nullptr;
+	math::AABB bbox;
+	math::OBB obb_box;
 
 public:
 	void SaveInfoGameObject(GameObject* go, JSON_Array* json_array);
