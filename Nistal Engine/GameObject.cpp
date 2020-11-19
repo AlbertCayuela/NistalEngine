@@ -27,7 +27,8 @@ void GameObject::Update(float dt)
 	if (mesh != nullptr && !has_bbox)
 	{
 		AddBoundingBox();
-		has_bbox = false;
+		has_bbox = true;
+		LOG("Added bounding box to %s", name.c_str());
 	}
 
 	for (std::vector<GameObject*>::iterator i = children.begin(); i != children.end(); ++i)
