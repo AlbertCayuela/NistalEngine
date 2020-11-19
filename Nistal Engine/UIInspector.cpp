@@ -83,13 +83,22 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 			rot = GO->transform->rotation.ToEulerXYZ() * RADTODEG;
 
 			if (DragFloat3("Position", &GO->transform->position[0], 0.1f, 0.0f, 0.0f, "%.3f"))
+			{
 				GO->transform->NewPosition(GO->transform->position);
+				GO->AddBoundingBox();
+			}
 
 			if (DragFloat3("Rotation", &rot[0], 0.1f, 0.0f, 0.0f, "%.3f"))
+			{
 				GO->transform->NewRotation(rot);
+				GO->AddBoundingBox();
+			}
 
 			if (DragFloat3("Scale", &GO->transform->scale[0], 0.1f, 0.0f, 0.0f, "%.3f"))
+			{
 				GO->transform->NewScale(GO->transform->scale);
+				GO->AddBoundingBox();
+			}
 
 			static int world = 0;
 			RadioButton("world", &world, 2); ImGui::SameLine();
