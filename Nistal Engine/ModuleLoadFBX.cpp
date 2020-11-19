@@ -87,7 +87,7 @@ bool ModuleLoadFBX::LoadFBX(const char* file_path, GameObject* parent)
         else if (parent != nullptr)
         {
             for (int i = 0; i < root_node->mNumChildren; ++i)
-                LoadMeshes(scene, root_node->mChildren[i], App->scene_intro->root, file_path);
+                LoadMeshes(scene, root_node->mChildren[i], parent, file_path);
         }
     }
     else 
