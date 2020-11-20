@@ -36,6 +36,10 @@ void GameObject::Update(float dt)
 	{
 		(*i)->Update(dt);
 	}
+
+	if (camera != nullptr)
+		camera->Update(dt);
+
 	DrawBoundingBox();
 }
 

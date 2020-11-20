@@ -19,6 +19,23 @@ GOCamera::~GOCamera()
 {
 }
 
+void GOCamera::Update(float dt)
+{
+	DrawFrustum();
+}
+
 void GOCamera::DrawFrustum()
 {
+	glBegin(GL_LINES);
+	glLineWidth(2.0f);
+	glColor4f(1.0f, 0.5f, 0.0f, 1.0f);
+
+	for (uint i = 0; i < frustum.NumEdges(); i++) 
+	{
+		glVertex3f(frustum.Edge(i).a.x, frustum.Edge(i).a.y, frustum.Edge(i).a.z);
+		glVertex3f(frustum.Edge(i).b.x, frustum.Edge(i).b.y, frustum.Edge(i).b.z);
+	}
+
+	glEnd();
+	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 }

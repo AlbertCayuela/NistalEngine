@@ -12,6 +12,8 @@ public:
 	GOCamera(GameObject* parent);
 	~GOCamera();
 
+	void Update(float dt);
+
 	void DrawFrustum();
 
 public:
