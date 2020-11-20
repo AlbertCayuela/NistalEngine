@@ -12,6 +12,13 @@ public:
 	GOCamera(GameObject* parent);
 	~GOCamera();
 
+	void DrawFrustum();
+
+public:
+
+	math::Frustum frustum;
+	float aspect_ratio = 0.0f;
+
 };
 
 #endif

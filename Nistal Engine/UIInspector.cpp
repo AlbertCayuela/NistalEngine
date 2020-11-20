@@ -6,6 +6,7 @@
 #include "GOTransform.h"
 #include "GOMesh.h"
 #include "GOMaterial.h"
+#include "GOCamera.h"
 #include "ModuleSceneIntro.h"
 
 #include "ImGui/imconfig.h"
@@ -167,7 +168,23 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 		}
 		else if (GO->has_camera)
 		{
-			
+			float near_plane = GO->camera->frustum.nearPlaneDistance;
+			if (SliderFloat("Near Plane", &near_plane, 0.1f, 1000.0f))
+			{
+
+			}
+
+			float far_plane = GO->camera->frustum.farPlaneDistance;
+			if (SliderFloat("Far Plane", &far_plane, 25.0f, 1000.0f))
+			{
+
+			}
+
+			float fov = GO->camera->frustum.verticalFov * RADTODEG;
+			if (SliderFloat("Field of view (FOV)", &fov, 1.0f, 179.0f)) 
+			{
+
+			}
 		}
 
 	}
