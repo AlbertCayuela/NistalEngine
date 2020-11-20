@@ -15,6 +15,10 @@ public:
 	void Update(float dt);
 
 	void DrawFrustum();
+	void SetFOV(float fov);
+	void SetNearPlane(float near_plane);
+	void SetFarPlane(float far_plane);
+	void SetAspectRatio(float aspect_ratio);
 
 public:
 

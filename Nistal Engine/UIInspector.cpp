@@ -169,21 +169,21 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 		else if (GO->has_camera)
 		{
 			float near_plane = GO->camera->frustum.nearPlaneDistance;
-			if (SliderFloat("Near Plane", &near_plane, 0.1f, 1000.0f))
-			{
-
-			}
-
 			float far_plane = GO->camera->frustum.farPlaneDistance;
-			if (SliderFloat("Far Plane", &far_plane, 25.0f, 1000.0f))
+			float fov = GO->camera->frustum.verticalFov * RADTODEG;
+			if (SliderFloat("Near Plane", &near_plane, 0.1f, far_plane))
 			{
-
+				GO->camera->SetNearPlane(near_plane);
 			}
 
-			float fov = GO->camera->frustum.verticalFov * RADTODEG;
+			if (SliderFloat("Far Plane", &far_plane, 1.0f, 1000.0f))
+			{
+				GO->camera->SetFarPlane(far_plane);
+			}
+
 			if (SliderFloat("Field of view (FOV)", &fov, 1.0f, 179.0f)) 
 			{
-
+				GO->camera->SetFOV(fov);
 			}
 		}
 

@@ -39,3 +39,34 @@ void GOCamera::DrawFrustum()
 	glEnd();
 	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 }
+
+void GOCamera::SetFOV(float fov)
+{
+	float aspect_ratio = frustum.AspectRatio();
+	frustum.verticalFov = DEGTORAD * fov;
+	SetAspectRatio(aspect_ratio);
+}
+
+void GOCamera::SetNearPlane(float near_plane)
+{
+	if (near_plane >= frustum.farPlaneDistance)
+		near_plane = frustum.farPlaneDistance - 1.0f;
+
+	if (near_plane <= 0.0f)
+		near_plane = 0.1f;
+
+	frustum.nearPlaneDistance = near_plane;
+}
+
+void GOCamera::SetFarPlane(float far_plane)
+{
+	if (far_plane <= frustum.nearPlaneDistance)
+		far_plane = frustum.nearPlaneDistance + 1.0f;
+
+	frustum.farPlaneDistance = far_plane;
+}
+
+void GOCamera::SetAspectRatio(float aspect_ratio)
+{
+	frustum.horizontalFov = 2.0f * atanf(aspect_ratio * tanf(frustum.verticalFov * 0.5f));
+}
