@@ -42,9 +42,11 @@ public:
 	GOMaterial* material = nullptr;
 	GOMesh* mesh = nullptr;
 	GOTransform* transform = nullptr;
+	GOCamera* camera = nullptr;
 	bool has_mesh = false;
 	bool has_material = false;
 	bool has_bbox = false;
+	bool has_camera = false;
 	bool active = true;
 	bool selected = false;
 	std::vector<GOComponent*> go_components;

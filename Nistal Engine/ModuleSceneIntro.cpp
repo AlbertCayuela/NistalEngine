@@ -26,8 +26,9 @@ bool ModuleSceneIntro::Start()
     App->camera->LookAt(vec3(0, 0, 0));
 
     root = CreateGameObject(nullptr, "root");
-
     App->load_fbx->LoadTexture("Textures/Baker_house.png");
+    camera = CreateGameObject(root, "camera");
+    camera->AddComponent(GOCOMPONENT_TYPE::CAMERA, "camera");
 
     return ret;
 }
@@ -48,10 +49,10 @@ update_status ModuleSceneIntro::Update(float dt)
     if (!render_house) 
     {
         App->load_fbx->LoadFBX("Models/BakerHouse.fbx");
-        game_objects.at(1)->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "texture");
-        game_objects.at(1)->material->LoadThisTex(App->load_fbx->texture_path);
         game_objects.at(2)->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "texture");
         game_objects.at(2)->material->LoadThisTex(App->load_fbx->texture_path);
+        game_objects.at(3)->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "texture");
+        game_objects.at(3)->material->LoadThisTex(App->load_fbx->texture_path);
         render_house = true;
     }
 

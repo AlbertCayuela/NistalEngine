@@ -3,6 +3,7 @@
 #include "GOMaterial.h"
 #include "GOMesh.h"
 #include "GOTransform.h"
+#include "GOCamera.h"
 
 GameObject::GameObject(GameObject* parent, const char* name)
 {
@@ -57,6 +58,11 @@ GOComponent* GameObject::AddComponent(GOCOMPONENT_TYPE type, const char* name)
 	case(GOCOMPONENT_TYPE::TRANSFORM):
 		transform = new GOTransform(this, name);
 		component = transform;
+		break;
+	case(GOCOMPONENT_TYPE::CAMERA):
+		camera = new GOCamera(this);
+		component = camera;
+		has_camera = true;
 		break;
 	default:
 		break;
