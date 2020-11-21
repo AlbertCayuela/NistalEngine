@@ -70,3 +70,63 @@ void GOCamera::SetAspectRatio(float aspect_ratio)
 {
 	frustum.horizontalFov = 2.0f * atanf(aspect_ratio * tanf(frustum.verticalFov * 0.5f));
 }
+
+int GOCamera::ContainsAABB(const AABB& box)
+{
+	math::float3 vCorner[8];
+	int iTotalIn = 0;
+	box.GetCornerPoints(vCorner); // get the corners of the box into the vCorner array
+									 // test all 8 corners against the 6 sides
+									 // if all points are behind 1 specific plane, we are out
+									 // if we are in with all points, then we are fully in
+	math::Plane m_plane[6];
+	frustum.GetPlanes(m_plane); //{ near, far, left, right, top, bottom }.
+
+	for (int p = 0; p < 6; ++p)
+	{
+		int iInCount = 8;
+		int iPtIn = 1;
+		for (int i = 0; i < 8; ++i)
+		{
+			// test this point against the planes
+
+			if (m_plane[p].IsOnPositiveSide(vCorner[i]))
+			{
+				iPtIn = 0;
+				--iInCount;
+			}
+		}
+		// were all the points outside of plane p?
+		if (iInCount == 0)
+			return(OUTSIDE);
+		// check if they were all on the right side of the plane
+		iTotalIn += iPtIn;
+	}
+	// so if iTotalIn is 6, then all are inside the view
+	if (iTotalIn == 6)
+		return(INSIDE);
+	// we must be partly in then otherwise
+	return(INTERSECT);
+}
+
+void GOCamera::FrustumCulling(GameObject* game_object)
+{
+	if (!game_object->has_camera)
+	{
+
+		for (std::vector<GameObject*>::iterator i = game_object->children.begin(); i < game_object->children.end(); i++) 
+		{
+			AABB box = (*i)->bbox;
+
+			if (box.IsFinite() && (*i)->has_mesh) 
+			{
+				if (ContainsAABB(box) == OUTSIDE)
+					(*i)->active = false;
+				else
+					(*i)->active = true;
+			}
+			FrustumCulling(*i);
+		}
+
+	}
+}

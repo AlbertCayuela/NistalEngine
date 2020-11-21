@@ -5,6 +5,14 @@
 #include "Globals.h"
 #include "MathGeoLib/include/Geometry/Frustum.h"
 
+class GameObject;
+
+enum Intersection {
+	INSIDE = 0,
+	INTERSECT = 1,
+	OUTSIDE = 2
+};
+
 class GOCamera : public GOComponent
 {
 public:
@@ -19,6 +27,9 @@ public:
 	void SetNearPlane(float near_plane);
 	void SetFarPlane(float far_plane);
 	void SetAspectRatio(float aspect_ratio);
+
+	int ContainsAABB(const AABB& box);
+	void FrustumCulling(GameObject* game_object);
 
 public:
 
