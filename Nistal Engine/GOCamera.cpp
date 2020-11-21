@@ -21,6 +21,9 @@ GOCamera::~GOCamera()
 
 void GOCamera::Update(float dt)
 {
+	if (App->scene_intro->root)
+		FrustumCulling(App->scene_intro->root);
+
 	DrawFrustum();
 }
 

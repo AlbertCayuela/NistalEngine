@@ -65,108 +65,107 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 	if (Begin(inspector_name, &is_on, flags))
 	{
 		SetPos();
-		if (!GO->has_camera) 
+ 
+
+		if (App->scene_intro->selected_go != nullptr)
+		{
+			Checkbox("Active Texture", &App->scene_intro->selected_go->has_material); SameLine();
+			Checkbox("Active Mesh", &App->scene_intro->selected_go->active);
+		}
+
+		if (CollapsingHeader("Transform"))
+		{
+			/*static float col1[3] = { 1.0f, 0.0f, 0.2f };
+			static float col2[4] = { 0.4f, 0.7f, 0.0f, 0.5f };
+			ImGui::ColorEdit3("color 1", col1);
+			ImGui::ColorEdit4("color 2", col2);	*/
+
+			Text("Game Object name: %s", GO->ui_name.c_str());
+			Separator();
+
+			rot = GO->transform->rotation.ToEulerXYZ() * RADTODEG;
+
+			if (DragFloat3("Position", &GO->transform->position[0], 0.1f, 0.0f, 0.0f, "%.3f"))
+			{
+				GO->transform->NewPosition(GO->transform->position);
+				GO->AddBoundingBox();
+			}
+
+			if (DragFloat3("Rotation", &rot[0], 0.1f, 0.0f, 0.0f, "%.3f"))
+			{
+				GO->transform->NewRotation(rot);
+				GO->AddBoundingBox();
+			}
+
+			if (DragFloat3("Scale", &GO->transform->scale[0], 0.1f, 0.0f, 0.0f, "%.3f"))
+			{
+				GO->transform->NewScale(GO->transform->scale);
+				GO->AddBoundingBox();
+			}
+
+			static int world = 0;
+			RadioButton("world", &world, 2); ImGui::SameLine();
+			static int local = 0;
+			RadioButton("local", &local, 2);
+		}
+		if (CollapsingHeader("Geometry Mesh"))
 		{
 			if (App->scene_intro->selected_go != nullptr)
 			{
-				Checkbox("Active Texture", &App->scene_intro->selected_go->has_material); SameLine();
-				Checkbox("Active Mesh", &App->scene_intro->selected_go->active);
-			}
-
-			if (CollapsingHeader("Transform"))
-			{
-				/*static float col1[3] = { 1.0f, 0.0f, 0.2f };
-				static float col2[4] = { 0.4f, 0.7f, 0.0f, 0.5f };
-				ImGui::ColorEdit3("color 1", col1);
-				ImGui::ColorEdit4("color 2", col2);	*/
-
-				Text("Game Object name: %s", GO->ui_name.c_str());
-				Separator();
-
-				rot = GO->transform->rotation.ToEulerXYZ() * RADTODEG;
-
-				if (DragFloat3("Position", &GO->transform->position[0], 0.1f, 0.0f, 0.0f, "%.3f"))
+				//show normals
+				if (Checkbox("Normals: Vertex", &App->ui->render_vertex_normals))
 				{
-					GO->transform->NewPosition(GO->transform->position);
-					GO->AddBoundingBox();
+					App->load_fbx->DrawVertexNormals(GO->mesh->mesh_info);
 				}
 
-				if (DragFloat3("Rotation", &rot[0], 0.1f, 0.0f, 0.0f, "%.3f"))
+				if (Checkbox("Normals: Face", &App->ui->render_face_normals))
 				{
-					GO->transform->NewRotation(rot);
-					GO->AddBoundingBox();
-				}
-
-				if (DragFloat3("Scale", &GO->transform->scale[0], 0.1f, 0.0f, 0.0f, "%.3f"))
-				{
-					GO->transform->NewScale(GO->transform->scale);
-					GO->AddBoundingBox();
-				}
-
-				static int world = 0;
-				RadioButton("world", &world, 2); ImGui::SameLine();
-				static int local = 0;
-				RadioButton("local", &local, 2);
-			}
-			if (CollapsingHeader("Geometry Mesh"))
-			{
-				if (App->scene_intro->selected_go != nullptr)
-				{
-					//show normals
-					if (Checkbox("Normals: Vertex", &App->ui->render_vertex_normals))
-					{
-						App->load_fbx->DrawVertexNormals(GO->mesh->mesh_info);
-					}
-
-					if (Checkbox("Normals: Face", &App->ui->render_face_normals))
-					{
-						App->load_fbx->DrawNormals(GO->mesh->mesh_info);
-					}
-				}
-
-				Separator();
-
-				if (App->importer->loadOwnFormat)
-				{
-					Text("Number of vertices: %i", App->importer->modelOwnFormat.num_vertex);
-					Text("Number of indices: %i", App->importer->modelOwnFormat.num_index);
-					Text("Number of faces: %i", App->importer->modelOwnFormat.num_vertex / 3);
-					Text("Number of normals: %i", App->importer->modelOwnFormat.num_normals);
-					Text("Number of UVs: %i", App->importer->modelOwnFormat.num_uvs);
-				}
-
-				else if (mesh_exists || GO != App->scene_intro->root)
-				{
-					Text("Number of vertices: %i", GO->mesh->mesh_info.num_vertex);
-					Text("Number of indices: %i", GO->mesh->mesh_info.num_index);
-					Text("Number of faces: %i", GO->mesh->mesh_info.num_vertex / 3);
-					Text("Number of normals: %i", App->load_fbx->model.num_normals);
-					Text("Number of UVs: %i", GO->mesh->mesh_info.num_uvs);
+					App->load_fbx->DrawNormals(GO->mesh->mesh_info);
 				}
 			}
-			if (CollapsingHeader("Texture"))
+
+			Separator();
+
+			if (App->importer->loadOwnFormat)
 			{
-				if (App->scene_intro->selected_go != nullptr)
-				{
-					Text("Path: %s", App->load_fbx->texture_path);
-					Separator();
-					Text("Width: %ipx", App->load_fbx->texture_width);
-					Text("Height: %ipx", App->load_fbx->texture_height);
-				}
+				Text("Number of vertices: %i", App->importer->modelOwnFormat.num_vertex);
+				Text("Number of indices: %i", App->importer->modelOwnFormat.num_index);
+				Text("Number of faces: %i", App->importer->modelOwnFormat.num_vertex / 3);
+				Text("Number of normals: %i", App->importer->modelOwnFormat.num_normals);
+				Text("Number of UVs: %i", App->importer->modelOwnFormat.num_uvs);
+			}
 
-				Separator();
-
-				//SHOW 2D TEXTURE
-				ImVec2 pos = ImGui::GetCursorScreenPos();
-				ImVec2 uv_min = ImVec2(1.0f, 1.0f);                 // Top-left
-				ImVec2 uv_max = ImVec2(0.0f, 0.0f);                 // Lower-right
-				ImVec4 tint_col = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);   // No tint
-				ImVec4 border_col = ImVec4(1.0f, 1.0f, 1.0f, 0.5f); // 50% opaque white
-				if (App->scene_intro->selected_go != nullptr)
-					Image((ImTextureID)GO->material->texture_id, ImVec2(100.0f, 100.0f), uv_min, uv_max, tint_col, border_col);
-			}		
+			else if (mesh_exists || GO != App->scene_intro->root)
+			{
+				Text("Number of vertices: %i", GO->mesh->mesh_info.num_vertex);
+				Text("Number of indices: %i", GO->mesh->mesh_info.num_index);
+				Text("Number of faces: %i", GO->mesh->mesh_info.num_vertex / 3);
+				Text("Number of normals: %i", App->load_fbx->model.num_normals);
+				Text("Number of UVs: %i", GO->mesh->mesh_info.num_uvs);
+			}
 		}
-		else if (GO->has_camera)
+		if (CollapsingHeader("Texture"))
+		{
+			if (App->scene_intro->selected_go != nullptr)
+			{
+				Text("Path: %s", App->load_fbx->texture_path);
+				Separator();
+				Text("Width: %ipx", App->load_fbx->texture_width);
+				Text("Height: %ipx", App->load_fbx->texture_height);
+			}
+
+			Separator();
+
+			//SHOW 2D TEXTURE
+			ImVec2 pos = ImGui::GetCursorScreenPos();
+			ImVec2 uv_min = ImVec2(1.0f, 1.0f);                 // Top-left
+			ImVec2 uv_max = ImVec2(0.0f, 0.0f);                 // Lower-right
+			ImVec4 tint_col = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);   // No tint
+			ImVec4 border_col = ImVec4(1.0f, 1.0f, 1.0f, 0.5f); // 50% opaque white
+			if (App->scene_intro->selected_go != nullptr)
+				Image((ImTextureID)GO->material->texture_id, ImVec2(100.0f, 100.0f), uv_min, uv_max, tint_col, border_col);
+		}
+		if (GO->has_camera)
 		{
 			float near_plane = GO->camera->frustum.nearPlaneDistance;
 			float far_plane = GO->camera->frustum.farPlaneDistance;
@@ -181,7 +180,7 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 				GO->camera->SetFarPlane(far_plane);
 			}
 
-			if (SliderFloat("Field of view (FOV)", &fov, 1.0f, 179.0f)) 
+			if (SliderFloat("Field of view (FOV)", &fov, 1.0f, 179.0f))
 			{
 				GO->camera->SetFOV(fov);
 			}
