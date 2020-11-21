@@ -46,14 +46,14 @@ update_status ModuleSceneIntro::Update(float dt)
     //to change size see p.innerrender() -> variable d(now its 10 it was 200 before)
     p.Render();
 
-    if (!render_house) 
+    if (!render_street) 
     {
-        App->load_fbx->LoadFBX("Models/BakerHouse.fbx");
+        App->load_fbx->LoadFBX("Models/Street.fbx");
         game_objects.at(2)->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "texture");
         game_objects.at(2)->material->LoadThisTex(App->load_fbx->texture_path);
         game_objects.at(3)->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "texture");
         game_objects.at(3)->material->LoadThisTex(App->load_fbx->texture_path);
-        render_house = true;
+        render_street = true;
     }
 
      //PRIMITIVES

@@ -27,5 +27,5 @@ public:
     GameObject* camera;
     GameObject* selected_go = nullptr;
 
-    bool render_house = false;
+    bool render_street = false;
 };

@@ -6,10 +6,10 @@
     "VSYNC": false
   },
   "Model": {
-    "Path": "Models/BakerHouse.fbx"
+    "Path": "Models/Street.FBX"
   },
   "Texture": {
-    "Texture Path": "Textures/Baker_house.png"
+    "Texture Path": "Textures/Building_V01_C.png"
   },
   "Window": {
     "Brightness": 100,
