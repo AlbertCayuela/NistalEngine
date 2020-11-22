@@ -1,5 +1,6 @@
 #include "Application.h"
 #include "GOTransform.h"
+#include "GOCamera.h"
 #include "ModuleFS.h"
 
 GOTransform::GOTransform(GameObject* game_object, const char* name):GOComponent(game_object)
@@ -34,6 +35,10 @@ math::float4x4 GOTransform::GlobalMatrix() const
 void GOTransform::NewPosition(float3 new_position)
 {
 	position = new_position;
+
+	if (parent->has_camera)
+		parent->camera->frustum.pos = position;
+
 }
 
 void GOTransform::NewRotation(float3 new_rotation)
