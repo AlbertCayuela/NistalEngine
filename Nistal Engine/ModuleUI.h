@@ -47,8 +47,9 @@ public:
 	bool render_all_vertex_normals = false;
 	bool render_all_face_normals = false;
 
-
 	bool render_texture = false;
+
+	bool use_camera = false;
 
 private:
 

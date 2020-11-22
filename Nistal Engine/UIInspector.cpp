@@ -167,23 +167,30 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 		}
 		if (GO->has_camera)
 		{
-			float near_plane = GO->camera->frustum.nearPlaneDistance;
-			float far_plane = GO->camera->frustum.farPlaneDistance;
-			float fov = GO->camera->frustum.verticalFov * RADTODEG;
-			if (SliderFloat("Near Plane", &near_plane, 0.1f, far_plane))
+			if (CollapsingHeader("Camera")) 
 			{
-				GO->camera->SetNearPlane(near_plane);
-			}
+				if (Checkbox("Use this camera", &App->ui->use_camera)) 
+				{
+				}
 
-			if (SliderFloat("Far Plane", &far_plane, 1.0f, 1000.0f))
-			{
-				GO->camera->SetFarPlane(far_plane);
-			}
+				float near_plane = GO->camera->frustum.nearPlaneDistance;
+				float far_plane = GO->camera->frustum.farPlaneDistance;
+				float fov = GO->camera->frustum.verticalFov * RADTODEG;
+				if (SliderFloat("Near Plane", &near_plane, 0.1f, far_plane))
+				{
+					GO->camera->SetNearPlane(near_plane);
+				}
 
-			if (SliderFloat("Field of view (FOV)", &fov, 1.0f, 179.0f))
-			{
-				GO->camera->SetFOV(fov);
-			}
+				if (SliderFloat("Far Plane", &far_plane, 1.0f, 1000.0f))
+				{
+					GO->camera->SetFarPlane(far_plane);
+				}
+
+				if (SliderFloat("Field of view (FOV)", &fov, 1.0f, 179.0f))
+				{
+					GO->camera->SetFOV(fov);
+				}
+			}		
 		}
 
 	}

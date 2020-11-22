@@ -111,7 +111,14 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 	glLoadIdentity();
 
 	glMatrixMode(GL_MODELVIEW);
-	glLoadMatrixf(App->camera->camera->GetViewMatrix().ptr());
+	if (!App->ui->use_camera) 
+	{
+		glLoadMatrixf(App->camera->camera->GetViewMatrix().ptr());
+	}
+	else if (App->ui->use_camera) 
+	{
+		glLoadMatrixf(App->scene_intro->camera->camera->GetViewMatrix().ptr());
+	}
 
 	// light 0 on cam pos
 	float3 cam_pos = App->camera->camera->frustum.pos;
