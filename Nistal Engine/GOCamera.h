@@ -31,6 +31,9 @@ public:
 	int ContainsAABB(const AABB& box);
 	void FrustumCulling(GameObject* game_object);
 
+	float4x4 GetViewMatrix() const;
+	float4x4 GetProjectionMatrix() const;
+
 public:
 
 	math::Frustum frustum;

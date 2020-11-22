@@ -22,8 +22,8 @@ bool ModuleSceneIntro::Start()
     LOG("Loading Intro assets");
     bool ret = true;
 
-    App->camera->Move(vec3(-5.0f, 3.5f, 0.0f));
-    App->camera->LookAt(vec3(0, 0, 0));
+    App->camera->Move(float3(-5.0f, 3.5f, 0.0f));
+    App->camera->LookAt(float3(0, 0, 0));
 
     root = CreateGameObject(nullptr, "root");
     App->load_fbx->LoadTexture("Textures/Baker_house.png");

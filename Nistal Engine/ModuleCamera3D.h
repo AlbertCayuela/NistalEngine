@@ -2,6 +2,10 @@
 #include "Module.h"
 #include "Globals.h"
 #include "glmath.h"
+#include "MathGeoLib/include/Math/float3.h"
+
+class GameObject;
+class GOCamera;
 
 class ModuleCamera3D : public Module
 {
@@ -13,23 +17,21 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
-	void Look(const vec3 &Position, const vec3 &Reference, bool RotateAroundReference = false);
-	void LookAt(const vec3 &Spot);
-	void Move(const vec3 &Movement);
-	float* GetViewMatrix();
+	void Look(const float3 &Position, const float3 &Reference, bool RotateAroundReference = false);
+	void LookAt(const float3 &Spot);
+	void Move(const float3 &Movement);
 
 private:
 
-	void CalculateViewMatrix();
 	void FocusOnTarget(const vec3& focus,const float& distance);
 	void RotateAroundTarget();
 
 public:
 	
-	vec3 X, Y, Z, Position, Reference;
+	GOCamera* camera = nullptr;
 
 private:
 
 	mat4x4 ViewMatrix, ViewMatrixInverse;
-	float distance;
+
 };

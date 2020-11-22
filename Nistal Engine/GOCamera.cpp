@@ -133,3 +133,15 @@ void GOCamera::FrustumCulling(GameObject* game_object)
 
 	}
 }
+
+float4x4 GOCamera::GetViewMatrix() const
+{
+	math::float4x4 view_matrix = frustum.ViewMatrix();
+	return view_matrix.Transposed();
+}
+
+float4x4 GOCamera::GetProjectionMatrix() const
+{
+	math::float4x4 projection_matrix = frustum.ProjectionMatrix();
+	return projection_matrix.Transposed();
+}
