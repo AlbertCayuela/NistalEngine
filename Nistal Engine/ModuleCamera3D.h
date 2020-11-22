@@ -23,7 +23,7 @@ public:
 
 private:
 
-	void FocusOnTarget(const vec3& focus,const float& distance);
+	void FocusOnTarget(const float3& focus,const float& distance);
 	void RotateAroundTarget();
 
 public:

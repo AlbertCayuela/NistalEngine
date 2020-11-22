@@ -3,6 +3,7 @@
 #include "ModuleCamera3D.h"
 #include "GameObject.h"
 #include "GOCamera.h"
+#include "GOTransform.h"
 
 ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -105,7 +106,10 @@ update_status ModuleCamera3D::Update(float dt)
 	//FOCUS CAMERA ON OBJECT WHEN PRESSING F
 	if (App->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN) 
 	{
-		FocusOnTarget(vec3(0, 0, 0), 10.0f);
+		if (App->scene_intro->selected_go != nullptr)
+			FocusOnTarget(App->scene_intro->selected_go->transform->position, 7.0f);
+		else if (App->scene_intro->selected_go == nullptr)
+			FocusOnTarget(float3(0.0f, 0.0f, 0.0f), 7.0f);
 	}
 
 	//ROTATE AROUND OBJECT
@@ -142,8 +146,11 @@ void ModuleCamera3D::Move(const float3 &Movement)
 	camera->frustum.Translate(Movement);
 }
 
-void ModuleCamera3D::FocusOnTarget(const vec3& focus, const float& distance)
+void ModuleCamera3D::FocusOnTarget(const float3& focus, const float& distance)
 {
+		float3 direction = camera->frustum.pos - focus;
+		camera->frustum.pos = direction.Normalized() * distance;
+		LookAt(focus);
 }
 
 void ModuleCamera3D::RotateAroundTarget()
