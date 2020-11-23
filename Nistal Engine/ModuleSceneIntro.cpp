@@ -32,7 +32,8 @@ bool ModuleSceneIntro::Start()
     camera->AddComponent(GOCOMPONENT_TYPE::CAMERA, "camera");
     camera->transform->NewPosition(float3(0.0f, 3.0f, -15.0f));
 
-    //street = CreateGameObject(root, "street");
+    street = CreateGameObject(root, "Street");
+
 
     return ret;
 }
@@ -52,7 +53,7 @@ update_status ModuleSceneIntro::Update(float dt)
 
     if (!render_street) 
     {
-        //App->load_fbx->LoadFBX("Models/Street environment_V01.fbx");
+        App->load_fbx->LoadFBX("Models/Street environment_V01.fbx", street);
         //game_objects.at(2)->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "texture");
         //game_objects.at(2)->material->LoadThisTex(App->load_fbx->texture_path);
         //game_objects.at(3)->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "texture");
