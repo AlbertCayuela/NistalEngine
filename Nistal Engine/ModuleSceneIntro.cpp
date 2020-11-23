@@ -96,26 +96,20 @@ update_status ModuleSceneIntro::Update(float dt)
 
     root->Update(dt);
 
-    if (render_own_model)
+    for (std::vector<GameObject*>::iterator i = own_game_objects.begin(); i != own_game_objects.end(); ++i)
     {
-        for (std::vector<GameObject*>::iterator i = own_game_objects.begin(); i != own_game_objects.end(); ++i)
+        if ((*i)->has_mesh)
         {
-            if ((*i)->has_mesh)
+            (*i)->mesh->DrawOwnMesh((*i)->mesh->mesh_info);
+        }
+        if ((*i)->parent != nullptr)
+        {
+            if (!(*i)->parent->active)
             {
-                (*i)->mesh->DrawOwnMesh((*i)->mesh->mesh_info);
-            }
-            if ((*i)->parent != nullptr)
-            {
-                if (!(*i)->parent->active)
-                {
-                    (*i)->active = false;
-                }
+                (*i)->active = false;
             }
         }
-        //render_own_model = false;
     }
-
-    //render_own_model = false;
 
     for (std::vector<GameObject*>::iterator i = game_objects.begin(); i != game_objects.end(); ++i)
     {

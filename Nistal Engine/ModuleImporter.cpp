@@ -97,6 +97,7 @@ bool ModuleImporter::LoadOwnFormat(string file_name)
 		new_go = App->scene_intro->CreateOWNGameObject(App->scene_intro->root, name.c_str());
 		new_go->AddComponent(GOCOMPONENT_TYPE::MESH, "ownMesh");
 	}
+	createOwnGameObject = false;
 
 	char* data;
 	App->file_system->Load(full_path.c_str(), &data);
@@ -138,6 +139,23 @@ bool ModuleImporter::LoadOwnFormat(string file_name)
 	memcpy(new_go->mesh->mesh_info.uvs, cursor, bytes);
 	cursor += bytes;
 	LOG("OwnFormat num_uvs: %i", new_go->mesh->mesh_info.num_uvs);
+
+	//Adding buffers for our Own Meshes (.mesh files)
+	glGenBuffers(1, &(new_go->mesh->mesh_info.id_vertex));
+	glBindBuffer(GL_ARRAY_BUFFER, new_go->mesh->mesh_info.id_vertex);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * new_go->mesh->mesh_info.num_vertex, new_go->mesh->mesh_info.vertices, GL_STATIC_DRAW);
+
+	glGenBuffers(1, &(new_go->mesh->mesh_info.id_index));
+	glBindBuffer(GL_ARRAY_BUFFER, new_go->mesh->mesh_info.id_index);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * new_go->mesh->mesh_info.num_index, new_go->mesh->mesh_info.indices, GL_STATIC_DRAW);
+
+	glGenBuffers(1, &(new_go->mesh->mesh_info.id_normals));
+	glBindBuffer(GL_ARRAY_BUFFER, new_go->mesh->mesh_info.id_normals);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * new_go->mesh->mesh_info.num_normals, new_go->mesh->mesh_info.normals, GL_STATIC_DRAW);
+
+	glGenBuffers(1, &(new_go->mesh->mesh_info.id_uvs));
+	glBindBuffer(GL_ARRAY_BUFFER, new_go->mesh->mesh_info.id_uvs);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * new_go->mesh->mesh_info.num_uvs * 2, new_go->mesh->mesh_info.uvs, GL_STATIC_DRAW);
 
 	return ret;
 }

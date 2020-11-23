@@ -31,5 +31,4 @@ public:
     GameObject* selected_go = nullptr;
 
     bool render_street = false;
-    bool render_own_model = false;
 };
