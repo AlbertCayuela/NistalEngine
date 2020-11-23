@@ -23,8 +23,9 @@ public:
     GameObject* CreateGameObject(GameObject* parent, const char* name);
 
     vector<GameObject*> game_objects;
-    GameObject* root;
-    GameObject* camera;
+    GameObject* root = nullptr;
+    GameObject* camera = nullptr;
+    GameObject* street = nullptr;
     GameObject* selected_go = nullptr;
 
     bool render_street = false;

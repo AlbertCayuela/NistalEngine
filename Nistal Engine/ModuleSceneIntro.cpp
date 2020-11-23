@@ -27,9 +27,12 @@ bool ModuleSceneIntro::Start()
     App->camera->LookAt(float3(0, 0, 0));
 
     root = CreateGameObject(nullptr, "root");
-    App->load_fbx->LoadTexture("Textures/Baker_house.png");
+    //App->load_fbx->LoadTexture("Textures/Baker_house.png");
     camera = CreateGameObject(root, "camera");
     camera->AddComponent(GOCOMPONENT_TYPE::CAMERA, "camera");
+    camera->transform->NewPosition(float3(0.0f, 3.0f, -15.0f));
+
+    //street = CreateGameObject(root, "street");
 
     return ret;
 }
@@ -47,15 +50,15 @@ update_status ModuleSceneIntro::Update(float dt)
     //to change size see p.innerrender() -> variable d(now its 10 it was 200 before)
     p.Render();
 
-    //if (!render_street) 
-    //{
-    //    App->load_fbx->LoadFBX("Models/Street.fbx");
-    //    game_objects.at(2)->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "texture");
-    //    game_objects.at(2)->material->LoadThisTex(App->load_fbx->texture_path);
-    //    game_objects.at(3)->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "texture");
-    //    game_objects.at(3)->material->LoadThisTex(App->load_fbx->texture_path);
-    //    render_street = true;
-    //}
+    if (!render_street) 
+    {
+        //App->load_fbx->LoadFBX("Models/Street environment_V01.fbx");
+        //game_objects.at(2)->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "texture");
+        //game_objects.at(2)->material->LoadThisTex(App->load_fbx->texture_path);
+        //game_objects.at(3)->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "texture");
+        //game_objects.at(3)->material->LoadThisTex(App->load_fbx->texture_path);
+        render_street = true;
+    }
 
      //PRIMITIVES
     if (App->ui->cube)
