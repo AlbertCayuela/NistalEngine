@@ -92,9 +92,9 @@ bool ModuleImporter::LoadOwnFormat(string file_name)
 	string full_path(LIBRARY_MESH_FOLDER + string(file_name) + string(".mesh"));
 	string name;
 	App->file_system->SplitFilePath(file_name.c_str(), nullptr, &name);
-	new_go = new GameObject(App->scene_intro->root, name.c_str());
+	new_go = App->scene_intro->CreateOWNGameObject(App->scene_intro->root, name.c_str());
 	new_go->AddComponent(GOCOMPONENT_TYPE::MESH, "ownMesh");
-	App->scene_intro->CreateOWNGameObject(App->scene_intro->root, name.c_str());
+	//TODO: Delete this Game Object and Create it in DrawOwnMesh function
 
 	char* data;
 	App->file_system->Load(full_path.c_str(), &data);
@@ -106,38 +106,36 @@ bool ModuleImporter::LoadOwnFormat(string file_name)
 	memcpy(header, cursor, bytes);
 	cursor += bytes;
 
-	modelOwnFormat.num_vertex = header[0];
-	modelOwnFormat.num_index = header[1];
-	modelOwnFormat.num_normals = header[2];
-	modelOwnFormat.num_uvs = header[3];
+	new_go->mesh->mesh_info.num_vertex = header[0];
+	new_go->mesh->mesh_info.num_index = header[1];
+	new_go->mesh->mesh_info.num_normals = header[2];
+	new_go->mesh->mesh_info.num_uvs = header[3];
 
 	//loading data
-	bytes = sizeof(float) * modelOwnFormat.num_vertex * 3;
-	modelOwnFormat.vertices = new float[modelOwnFormat.num_vertex * 3];
-	memcpy(modelOwnFormat.vertices, cursor, bytes);
+	bytes = sizeof(float) * new_go->mesh->mesh_info.num_vertex * 3;
+	new_go->mesh->mesh_info.vertices = new float[new_go->mesh->mesh_info.num_vertex * 3];
+	memcpy(new_go->mesh->mesh_info.vertices, cursor, bytes);
 	cursor += bytes;
-	LOG("OwnFormat num_vertex: %i", modelOwnFormat.num_vertex);
+	LOG("OwnFormat num_vertex: %i", new_go->mesh->mesh_info.num_vertex);
 	
 
-	bytes = sizeof(float) * modelOwnFormat.num_index;
-	modelOwnFormat.indices = new uint[modelOwnFormat.num_index];
-	memcpy(modelOwnFormat.indices, cursor, bytes);
+	bytes = sizeof(float) * new_go->mesh->mesh_info.num_index;
+	new_go->mesh->mesh_info.indices = new uint[new_go->mesh->mesh_info.num_index];
+	memcpy(new_go->mesh->mesh_info.indices, cursor, bytes);
 	cursor += bytes;
-	LOG("OwnFormat num_index: %i", modelOwnFormat.num_index);
+	LOG("OwnFormat num_index: %i", new_go->mesh->mesh_info.num_index);
 
-	bytes = sizeof(float) * modelOwnFormat.num_normals * 3;
-	modelOwnFormat.normals = new aiVector3D[modelOwnFormat.num_normals * 3];
-	memcpy(modelOwnFormat.normals, cursor, bytes);
+	bytes = sizeof(float) * new_go->mesh->mesh_info.num_normals * 3;
+	new_go->mesh->mesh_info.normals = new aiVector3D[new_go->mesh->mesh_info.num_normals * 3];
+	memcpy(new_go->mesh->mesh_info.normals, cursor, bytes);
 	cursor += bytes;
-	LOG("OwnFormat num_normals: %i", modelOwnFormat.num_normals);
+	LOG("OwnFormat num_normals: %i", new_go->mesh->mesh_info.num_normals);
 
-	bytes = sizeof(float) * modelOwnFormat.num_uvs * 2;
-	modelOwnFormat.uvs = new float[modelOwnFormat.num_uvs * 2];
-	memcpy(modelOwnFormat.uvs, cursor, bytes);
+	bytes = sizeof(float) * new_go->mesh->mesh_info.num_uvs * 2;
+	new_go->mesh->mesh_info.uvs = new float[new_go->mesh->mesh_info.num_uvs * 2];
+	memcpy(new_go->mesh->mesh_info.uvs, cursor, bytes);
 	cursor += bytes;
-	LOG("OwnFormat num_uvs: %i", modelOwnFormat.num_uvs);
-
-	new_go->mesh->mesh_info = modelOwnFormat;
+	LOG("OwnFormat num_uvs: %i", new_go->mesh->mesh_info.num_uvs);
 
 	return ret;
 }

@@ -102,7 +102,7 @@ update_status ModuleSceneIntro::Update(float dt)
         {
             if ((*i)->has_mesh)
             {
-                (*i)->mesh->DrawOwnMesh(App->importer->modelOwnFormat);
+                (*i)->mesh->DrawOwnMesh((*i)->mesh->mesh_info);
             }
             if ((*i)->parent != nullptr)
             {
