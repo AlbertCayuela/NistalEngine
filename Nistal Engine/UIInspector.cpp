@@ -65,8 +65,7 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 	if (Begin(inspector_name, &is_on, flags))
 	{
 		SetPos();
- 
-
+		
 		if (App->scene_intro->selected_go != nullptr)
 		{
 			Checkbox("Active Texture", &App->scene_intro->selected_go->has_material); SameLine();
@@ -169,10 +168,7 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 		{
 			if (CollapsingHeader("Camera")) 
 			{
-				if (Checkbox("Use this camera", &App->ui->use_camera)) 
-				{
-				}
-
+				Checkbox("Use this camera", &App->ui->use_camera);
 				float near_plane = GO->camera->frustum.nearPlaneDistance;
 				float far_plane = GO->camera->frustum.farPlaneDistance;
 				float fov = GO->camera->frustum.verticalFov * RADTODEG;

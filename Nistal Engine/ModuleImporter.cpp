@@ -78,6 +78,8 @@ bool ModuleImporter::SaveOwnFormat(modelData model, string name_to_file)
 	string path_to_save(LIBRARY_MESH_FOLDER + string(name_to_file) + string(".mesh"));
 	App->file_system->Save(path_to_save.c_str(), data, generalSize);
 
+	LOG("Saving own format gameobject: %s", name_to_file.c_str());
+
 	return ret;
 }
 

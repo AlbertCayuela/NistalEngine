@@ -4,6 +4,7 @@
 #include "ModuleUI.h"
 #include "GOMesh.h"
 #include "GOMaterial.h"
+#include "GOTransform.h"
 #include "GameObject.h"
 #include "ModuleSerialization.h"
 
@@ -22,7 +23,7 @@ bool ModuleSceneIntro::Start()
     LOG("Loading Intro assets");
     bool ret = true;
 
-    App->camera->Move(float3(-5.0f, 3.5f, 0.0f));
+    App->camera->Move(float3(-25.0f, 10.0f, -10.0f));
     App->camera->LookAt(float3(0, 0, 0));
 
     root = CreateGameObject(nullptr, "root");
@@ -46,15 +47,15 @@ update_status ModuleSceneIntro::Update(float dt)
     //to change size see p.innerrender() -> variable d(now its 10 it was 200 before)
     p.Render();
 
-    if (!render_street) 
-    {
-        App->load_fbx->LoadFBX("Models/Street.fbx");
-        game_objects.at(2)->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "texture");
-        game_objects.at(2)->material->LoadThisTex(App->load_fbx->texture_path);
-        game_objects.at(3)->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "texture");
-        game_objects.at(3)->material->LoadThisTex(App->load_fbx->texture_path);
-        render_street = true;
-    }
+    //if (!render_street) 
+    //{
+    //    App->load_fbx->LoadFBX("Models/Street.fbx");
+    //    game_objects.at(2)->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "texture");
+    //    game_objects.at(2)->material->LoadThisTex(App->load_fbx->texture_path);
+    //    game_objects.at(3)->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "texture");
+    //    game_objects.at(3)->material->LoadThisTex(App->load_fbx->texture_path);
+    //    render_street = true;
+    //}
 
      //PRIMITIVES
     if (App->ui->cube)

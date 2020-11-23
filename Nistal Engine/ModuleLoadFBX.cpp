@@ -190,9 +190,11 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene,aiNode* node, GameObject* ga
         new_go->transform->rotation = rot;
         new_go->transform->scale = scale;
 
-        LOG("GameObject Position: %f , %f , %f", pos.x, pos.y, pos.z);
+        //LOG("GameObject Position: %f , %f , %f", pos.x, pos.y, pos.z);
 
         //---------------------------------------------------------------------------
+
+        App->importer->SaveOwnFormat(model, new_go->ui_name);
 
         //OUTPUT
         LOG("Loaded mesh with %i vertices.", model.num_vertex);
@@ -205,8 +207,6 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene,aiNode* node, GameObject* ga
 
     for (int i = 0; i < node->mNumChildren; ++i)
         LoadMeshes(scene, node->mChildren[i], game_object, file_path);
-
-    App->importer->SaveOwnFormat(model, "SuperCoolHouse");
 }
 
 void ModuleLoadFBX::DrawNormals(modelData model)

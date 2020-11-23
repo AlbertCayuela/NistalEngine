@@ -116,12 +116,11 @@ void GOCamera::FrustumCulling(GameObject* game_object)
 {
 	if (!game_object->has_camera)
 	{
-
-		for (std::vector<GameObject*>::iterator i = game_object->children.begin(); i < game_object->children.end(); i++) 
+		for (std::vector<GameObject*>::iterator i = game_object->children.begin(); i < game_object->children.end(); i++)
 		{
 			AABB box = (*i)->bbox;
 
-			if (box.IsFinite() && (*i)->has_mesh) 
+			if (box.IsFinite() && (*i)->has_mesh)
 			{
 				if (ContainsAABB(box) == OUTSIDE)
 					(*i)->active = false;
