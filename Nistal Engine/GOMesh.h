@@ -14,6 +14,7 @@ public:
 	void SetMesh(const char* path);
 
 	bool DrawOwnMesh(modelData model);
+	void AddOwnBuffers(modelData model);
 
 	modelData mesh_info;
 	std::string name;

@@ -3,6 +3,7 @@
 #include "ModuleFS.h"
 #include "GOTransform.h"
 #include "GOMaterial.h"
+#include "GOMesh.h"
 
 //TODO: Check this libraries
 //#include "Devil/include/config.h"
@@ -92,7 +93,8 @@ bool ModuleImporter::LoadOwnFormat(string file_name)
 	string name;
 	App->file_system->SplitFilePath(file_name.c_str(), nullptr, &name);
 	new_go = new GameObject(App->scene_intro->root, name.c_str());
-	//GOComponent* mesh = (GOComponent*)new_go->AddComponent(GOCOMPONENT_TYPE::MESH);
+	new_go->AddComponent(GOCOMPONENT_TYPE::MESH, "ownMesh");
+	App->scene_intro->CreateOWNGameObject(App->scene_intro->root, name.c_str());
 
 	char* data;
 	App->file_system->Load(full_path.c_str(), &data);
@@ -135,8 +137,7 @@ bool ModuleImporter::LoadOwnFormat(string file_name)
 	cursor += bytes;
 	LOG("OwnFormat num_uvs: %i", modelOwnFormat.num_uvs);
 
-	//Draw Own Format
-	App->scene_intro->render_own_model = true;
+	new_go->mesh->mesh_info = modelOwnFormat;
 
 	return ret;
 }

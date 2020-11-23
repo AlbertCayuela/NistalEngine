@@ -45,13 +45,13 @@ update_status ModuleSceneIntro::PreUpdate(float dt)
 
 // Update
 update_status ModuleSceneIntro::Update(float dt)
-{    
+{
     PlanePrimitive p(0, 1, 0, 0);
     p.axis = true;
     //to change size see p.innerrender() -> variable d(now its 10 it was 200 before)
     p.Render();
 
-    if (!render_street) 
+    if (!render_street)
     {
         App->load_fbx->LoadFBX("Models/Street environment_V01.fbx", street);
         //game_objects.at(2)->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "texture");
@@ -61,7 +61,7 @@ update_status ModuleSceneIntro::Update(float dt)
         render_street = true;
     }
 
-     //PRIMITIVES
+    //PRIMITIVES
     if (App->ui->cube)
     {
         App->load_fbx->LoadFBX("Primitives/Cube.fbx");
@@ -96,17 +96,32 @@ update_status ModuleSceneIntro::Update(float dt)
 
     root->Update(dt);
 
+    if (render_own_model)
+    {
+        for (std::vector<GameObject*>::iterator i = own_game_objects.begin(); i != own_game_objects.end(); ++i)
+        {
+            if ((*i)->has_mesh)
+            {
+                (*i)->mesh->DrawOwnMesh(App->importer->modelOwnFormat);
+            }
+            if ((*i)->parent != nullptr)
+            {
+                if (!(*i)->parent->active)
+                {
+                    (*i)->active = false;
+                }
+            }
+        }
+        render_own_model = false;
+    }
+
+    //render_own_model = false;
+
     for (std::vector<GameObject*>::iterator i = game_objects.begin(); i != game_objects.end(); ++i)
     {
         if ((*i)->has_mesh)
         {
-            if (!render_own_model)
-                (*i)->mesh->DrawMesh((*i)->material->texture_id);
-            else
-            {
-                (*i)->mesh->DrawOwnMesh(App->importer->modelOwnFormat);
-                render_own_model = false;
-            }
+            (*i)->mesh->DrawMesh((*i)->material->texture_id);
                 
         }
         if ((*i)->parent != nullptr) 
@@ -154,3 +169,13 @@ GameObject* ModuleSceneIntro::CreateGameObject(GameObject* parent, const char* n
     
     return game_object;
 }
+
+GameObject* ModuleSceneIntro::CreateOWNGameObject(GameObject* parent, const char* name)
+{
+    GameObject* game_object = new GameObject(parent, name);
+    own_game_objects.push_back(game_object);
+
+    return game_object;
+}
+
+

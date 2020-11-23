@@ -64,6 +64,8 @@ bool GOMesh::DrawOwnMesh(modelData model)
 {
 	bool ret = true;
 
+	model = App->importer->modelOwnFormat;
+
 	const char* name = "hullo hullo";
 
 	App->scene_intro->CreateGameObject(App->importer->new_go->parent, name);
@@ -83,6 +85,9 @@ bool GOMesh::DrawOwnMesh(modelData model)
 			glEnable(GL_TEXTURE_2D);
 			glBindTexture(GL_TEXTURE_2D, App->importer->new_go->material->texture_id);
 		}
+
+        AddOwnBuffers(model);
+        model = App->importer->modelOwnFormat;
 
 		//bind vertices
 		glBindBuffer(GL_ARRAY_BUFFER, model.id_vertex);
@@ -108,4 +113,23 @@ bool GOMesh::DrawOwnMesh(modelData model)
 	}
 
 	return ret;
+}
+
+void GOMesh::AddOwnBuffers(modelData model)
+{
+    glGenBuffers(1, &(App->importer->modelOwnFormat.id_vertex));
+    glBindBuffer(GL_ARRAY_BUFFER, App->importer->modelOwnFormat.id_vertex);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * App->importer->modelOwnFormat.num_vertex, App->importer->modelOwnFormat.vertices, GL_STATIC_DRAW);
+
+    glGenBuffers(1, &(App->importer->modelOwnFormat.id_index));
+    glBindBuffer(GL_ARRAY_BUFFER, App->importer->modelOwnFormat.id_index);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * App->importer->modelOwnFormat.num_index, App->importer->modelOwnFormat.indices, GL_STATIC_DRAW);
+
+    glGenBuffers(1, &(model.id_normals));
+    glBindBuffer(GL_ARRAY_BUFFER, model.id_normals);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * App->importer->modelOwnFormat.num_normals, App->importer->modelOwnFormat.normals, GL_STATIC_DRAW);
+
+    glGenBuffers(1, &(model.id_uvs));
+    glBindBuffer(GL_ARRAY_BUFFER, model.id_uvs);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * App->importer->modelOwnFormat.num_uvs * 2, App->importer->modelOwnFormat.uvs, GL_STATIC_DRAW);
 }
