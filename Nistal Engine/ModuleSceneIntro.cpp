@@ -112,7 +112,7 @@ update_status ModuleSceneIntro::Update(float dt)
                 }
             }
         }
-        render_own_model = false;
+        //render_own_model = false;
     }
 
     //render_own_model = false;

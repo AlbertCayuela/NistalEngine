@@ -23,6 +23,7 @@ public:
 public:
 	modelData data;
 	bool loadOwnFormat = false;
+	bool createOwnGameObject = true;
 	modelData modelOwnFormat;
 	GameObject* new_go = nullptr;
 

@@ -92,9 +92,11 @@ bool ModuleImporter::LoadOwnFormat(string file_name)
 	string full_path(LIBRARY_MESH_FOLDER + string(file_name) + string(".mesh"));
 	string name;
 	App->file_system->SplitFilePath(file_name.c_str(), nullptr, &name);
-	new_go = App->scene_intro->CreateOWNGameObject(App->scene_intro->root, name.c_str());
-	new_go->AddComponent(GOCOMPONENT_TYPE::MESH, "ownMesh");
-	//TODO: Delete this Game Object and Create it in DrawOwnMesh function
+	if (createOwnGameObject)
+	{
+		new_go = App->scene_intro->CreateOWNGameObject(App->scene_intro->root, name.c_str());
+		new_go->AddComponent(GOCOMPONENT_TYPE::MESH, "ownMesh");
+	}
 
 	char* data;
 	App->file_system->Load(full_path.c_str(), &data);
