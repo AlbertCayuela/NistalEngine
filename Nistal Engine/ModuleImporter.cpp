@@ -2,6 +2,7 @@
 #include "ModuleImporter.h"
 #include "ModuleFS.h"
 #include "GOTransform.h"
+#include "GOMaterial.h"
 
 //TODO: Check this libraries
 //#include "Devil/include/config.h"
@@ -90,7 +91,7 @@ bool ModuleImporter::LoadOwnFormat(string file_name)
 	string full_path(LIBRARY_MESH_FOLDER + string(file_name) + string(".mesh"));
 	string name;
 	App->file_system->SplitFilePath(file_name.c_str(), nullptr, &name);
-	GameObject* new_go = new GameObject(App->scene_intro->root, name.c_str());
+	new_go = new GameObject(App->scene_intro->root, name.c_str());
 	//GOComponent* mesh = (GOComponent*)new_go->AddComponent(GOCOMPONENT_TYPE::MESH);
 
 	char* data;
@@ -134,8 +135,13 @@ bool ModuleImporter::LoadOwnFormat(string file_name)
 	cursor += bytes;
 	LOG("OwnFormat num_uvs: %i", modelOwnFormat.num_uvs);
 
+	//Draw Own Format
+	App->scene_intro->render_own_model = true;
+
 	return ret;
 }
+
+
 
 bool ModuleImporter::TextureSaving(string texture_name)
 {

@@ -100,7 +100,14 @@ update_status ModuleSceneIntro::Update(float dt)
     {
         if ((*i)->has_mesh)
         {
-            (*i)->mesh->DrawMesh((*i)->material->texture_id);
+            if (!render_own_model)
+                (*i)->mesh->DrawMesh((*i)->material->texture_id);
+            else
+            {
+                (*i)->mesh->DrawOwnMesh(App->importer->modelOwnFormat);
+                render_own_model = false;
+            }
+                
         }
         if ((*i)->parent != nullptr) 
         {

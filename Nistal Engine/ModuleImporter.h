@@ -24,5 +24,6 @@ public:
 	modelData data;
 	bool loadOwnFormat = false;
 	modelData modelOwnFormat;
+	GameObject* new_go = nullptr;
 
 };

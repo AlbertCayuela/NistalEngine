@@ -13,6 +13,8 @@ public:
 	void DrawMesh(uint texture_id = NULL);
 	void SetMesh(const char* path);
 
+	bool DrawOwnMesh(modelData model);
+
 	modelData mesh_info;
 	std::string name;
 };
