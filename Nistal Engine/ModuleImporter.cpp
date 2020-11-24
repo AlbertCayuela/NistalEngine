@@ -166,28 +166,41 @@ bool ModuleImporter::TextureSaving(string texture_name)
 {
 	bool ret = true;
 
-	ILuint size;
-	ILubyte* data;
+	LOG("Importing texture: %s", texture_name.c_str());
+	std::string file_name = texture_name;
+	LOG("file name: %s", file_name.c_str());
+	std::string name_texture = file_name.substr(file_name.find_last_of("\\") + 1);
+	LOG("texture name: %s", name_texture.c_str());
+	std::string::size_type const p(name_texture.find_last_of('.'));
+	std::string texture_ui_name = name_texture.substr(0, p);
+	LOG("texture name without extension: %s", texture_ui_name.c_str());
 
-	char* fileBuffer = nullptr;
+	ILuint size;
+	char* data;
+
+	//char* fileBuffer = nullptr;
 
 	ilSetInteger(IL_DXTC_FORMAT, IL_DXT5);
-	size = ilSaveL(IL_DDS, nullptr, 0);
+	size = ilSaveL(IL_DDS, NULL, 0);
 
-	fileBuffer = new char[size];
+	//fileBuffer = new char[size];
 
 	if (size > 0)
 	{
-		data = new ILubyte[size]; //allocate data buffer
+		data = new char[size]; //allocate data buffer
 		if (ilSaveL(IL_DDS, data, size) > 0)
-			fileBuffer = (char*)data;
+		{
+			std:string output_file;
+			//Save custom format
+			//string path_to_save(LIBRARY_TEXTURES_FOLDER + string(texture_name) + string(".dds"));
+			//fileBuffer = (char*)data;
+			ret = App->file_system->SaveUnique(output_file, data, size, LIBRARY_TEXTURES_FOLDER, texture_ui_name.c_str(), "dds");
 
-		//RELEASE_ARRAY(data);
+			LOG("Output texture name: %s", output_file.c_str());
+		}
+	
+		delete[] data;
 	}
-
-	//Save custom format
-	string path_to_save(LIBRARY_TEXTURES_FOLDER + string(texture_name) + string(".tex"));
-	App->file_system->Save(path_to_save.c_str(), data, size);
 
 	return ret;
 }
