@@ -283,10 +283,6 @@ void ModuleLoadFBX::LoadIndices(aiMesh* mesh)
 
 void ModuleLoadFBX::LoadTexture(const char* texture_path) 
 {
-    ilInit();
-    iluInit();
-    ilutInit();
-
     if (ilLoadImage(texture_path))
     {
         texture_width = ilGetInteger(IL_IMAGE_WIDTH);
@@ -325,6 +321,7 @@ void ModuleLoadFBX::LoadMaterial(GameObject* game_object)
         LOG("Texture detected: %s", texture_path.c_str());
         App->importer->TextureSaving(texture_path, "textures/");
         game_object->AddComponent(GOCOMPONENT_TYPE::MATERIAL, texture_path.c_str());
+        game_object->material->GetNewMaterial(texture_path);
     }
 }
 

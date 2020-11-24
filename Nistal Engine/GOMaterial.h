@@ -11,6 +11,7 @@ public:
 	GOMaterial(GameObject* game_object, const char* name);
 	~GOMaterial();
 	void LoadThisTex(const char* texture_path);
+	void GetNewMaterial(std::string new_material_path);
 
 	uint texture_id;
 	std::string name;
