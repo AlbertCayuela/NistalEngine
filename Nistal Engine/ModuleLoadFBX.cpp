@@ -40,6 +40,10 @@ bool ModuleLoadFBX::Start()
     model_path = json_object_get_string(model_node, "Path");
     texture_path = json_object_get_string(texture_node, "Texture Path");
 
+    ilInit();
+    iluInit();
+    ilutInit();
+
 	return true;
 }
 
@@ -106,7 +110,7 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene,aiNode* node, GameObject* ga
         model = modelData();
 
         //LOADING MATERIAL
-        LoadMaterial();
+        LoadMaterial(new_go);
        
         //TODO: Watch out Memory Leaks. When we will be able to delete models, check if everything is deleted. Otherwise, it will cause memory leaks :)
         LoadVertices();
@@ -308,7 +312,7 @@ void ModuleLoadFBX::LoadTexture(const char* texture_path)
     }
 }
 
-void ModuleLoadFBX::LoadMaterial()
+void ModuleLoadFBX::LoadMaterial(GameObject* game_object)
 {
     aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
     if (material != nullptr)
@@ -316,9 +320,11 @@ void ModuleLoadFBX::LoadMaterial()
         textures_num = material->GetTextureCount(aiTextureType_DIFFUSE);
         aiString tex_path;
         material->GetTexture(aiTextureType_DIFFUSE, 0, &tex_path);
-        const char* texture_path;
+        std::string texture_path;
         texture_path = tex_path.data;
-        new_go->AddComponent(GOCOMPONENT_TYPE::MATERIAL, texture_path);
+        LOG("Texture detected: %s", texture_path.c_str());
+        App->importer->TextureSaving(texture_path, "textures/");
+        game_object->AddComponent(GOCOMPONENT_TYPE::MATERIAL, texture_path.c_str());
     }
 }
 

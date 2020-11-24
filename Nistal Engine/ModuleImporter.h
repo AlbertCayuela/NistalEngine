@@ -18,7 +18,7 @@ public:
 	bool SaveOwnFormat(modelData model, string name_to_file);
 	bool LoadOwnFormat(string file_name);
 
-	bool TextureSaving(string texture_name);
+	bool TextureSaving(string texture_name, const char* folder);
 
 public:
 	modelData data;

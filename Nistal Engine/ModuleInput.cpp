@@ -113,7 +113,7 @@ update_status ModuleInput::PreUpdate(float dt)
 			break;
 
 			case SDL_DROPFILE:
-			LOG("file dropped on screen!");
+			//LOG("file dropped on screen!");
 			dropped_path = e.drop.file;
 			extension = App->file_system->GetExtension(dropped_path);
 			if (extension == "fbx" || extension == "FBX")
@@ -139,7 +139,7 @@ update_status ModuleInput::PreUpdate(float dt)
 				App->importer->LoadOwnFormat("mymesh");
 			}
 
-			if (extension == "dds" || extension == "DDS" || extension == "png" || extension == "PNG" || extension == "jpg" || extension == "JPG") 
+			if (extension == "dds" || extension == "DDS" || extension == "png" || extension == "PNG" || extension == "jpg" || extension == "JPG" || extension == "tga") 
 			{
 				LOG("dropped a texture file");
 				if (App->scene_intro->selected_go != nullptr) 
@@ -147,12 +147,12 @@ update_status ModuleInput::PreUpdate(float dt)
 					App->scene_intro->selected_go->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "texture");
 					App->scene_intro->selected_go->material->LoadThisTex(dropped_path);
 					//custom format
-					App->importer->TextureSaving(dropped_path);
+					App->importer->TextureSaving(dropped_path, "textures/");
 				}
 				else
 				{
 					App->load_fbx->LoadTexture(dropped_path);
-					App->importer->TextureSaving(dropped_path);
+					App->importer->TextureSaving(dropped_path, "textures/");
 				}
 			}
 			break;

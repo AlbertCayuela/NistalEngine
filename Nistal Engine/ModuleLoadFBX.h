@@ -63,7 +63,7 @@ public:
 
 	void LoadIndices(aiMesh* scene);
 	void LoadTexture(const char* texture_path);
-	void LoadMaterial();
+	void LoadMaterial(GameObject* game_object);
 	void LoadVertices();
 
 	void DrawNormals(modelData model);

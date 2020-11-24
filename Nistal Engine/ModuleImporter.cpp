@@ -8,6 +8,12 @@
 //TODO: Check this libraries
 //#include "Devil/include/config.h"
 #include "Devil/include/il.h"
+#include "Devil/include/ilu.h"
+#include "Devil/include/ilut.h"
+
+#pragma comment (lib, "Devil\\libx86\\DevIL.lib")
+#pragma comment ( lib, "Devil\\libx86\\ILU.lib" )
+#pragma comment ( lib, "Devil\\libx86\\ILUT.lib" )
 
 ModuleImporter::ModuleImporter(Application* app, bool start_enabled) : Module(app, start_enabled)
 {}
@@ -162,7 +168,7 @@ bool ModuleImporter::LoadOwnFormat(string file_name)
 
 
 
-bool ModuleImporter::TextureSaving(string texture_name)
+bool ModuleImporter::TextureSaving(string texture_name, const char* folder)
 {
 	bool ret = true;
 
@@ -174,32 +180,41 @@ bool ModuleImporter::TextureSaving(string texture_name)
 	std::string::size_type const p(name_texture.find_last_of('.'));
 	std::string texture_ui_name = name_texture.substr(0, p);
 	LOG("texture name without extension: %s", texture_ui_name.c_str());
+	std::string folder_path(folder);
+	LOG("textures folder path: %s", folder_path.c_str());
 
-	ILuint size;
-	char* data;
 
-	//char* fileBuffer = nullptr;
+	char* buffer = nullptr;
+	uint length = App->file_system->Load((folder_path + name_texture).c_str(), &buffer);
 
-	ilSetInteger(IL_DXTC_FORMAT, IL_DXT5);
-	size = ilSaveL(IL_DDS, NULL, 0);
-
-	//fileBuffer = new char[size];
-
-	if (size > 0)
+	if (ilLoadL(IL_TYPE_UNKNOWN, (const void*)buffer, length))
 	{
-		data = new char[size]; //allocate data buffer
-		if (ilSaveL(IL_DDS, data, size) > 0)
-		{
-			std:string output_file;
-			//Save custom format
-			//string path_to_save(LIBRARY_TEXTURES_FOLDER + string(texture_name) + string(".dds"));
-			//fileBuffer = (char*)data;
-			ret = App->file_system->SaveUnique(output_file, data, size, LIBRARY_TEXTURES_FOLDER, texture_ui_name.c_str(), "dds");
+		ILuint size;
+		ILubyte* data;
 
-			LOG("Output texture name: %s", output_file.c_str());
+		ilSetInteger(IL_DXTC_FORMAT, IL_DXT5);
+		size = ilSaveL(IL_DDS, NULL, 0);
+
+		if (size > 0)
+		{
+			data = new ILubyte[size]; //allocate data buffer
+
+			if (ilSaveL(IL_DDS, data, size) > 0)
+			{
+				std:string output_file;
+
+				ret = App->file_system->SaveUnique(output_file, data, size, LIBRARY_TEXTURES_FOLDER, texture_ui_name.c_str(), "dds");
+
+				LOG("Output texture name: %s", output_file.c_str());
+			}
+
+			delete data;
 		}
-	
-		delete[] data;
+	}
+	else 
+	{
+		LOG("ilLoadL returned false");
+
 	}
 
 	return ret;
