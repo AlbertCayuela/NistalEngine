@@ -114,6 +114,7 @@
     <ClInclude Include="UIConsole.h" />
     <ClInclude Include="UIHierarchy.h" />
     <ClInclude Include="UIInspector.h" />
+    <ClInclude Include="UISave.h" />
     <ClInclude Include="UIWindow.h" />
     <ClInclude Include="ImGui\imconfig.h" />
     <ClInclude Include="ImGui\imgui.h" />
@@ -268,6 +269,7 @@
     <ClCompile Include="UIConsole.cpp" />
     <ClCompile Include="UIHierarchy.cpp" />
     <ClCompile Include="UIInspector.cpp" />
+    <ClCompile Include="UISave.cpp" />
     <ClCompile Include="UIWindow.cpp" />
   </ItemGroup>
   <ItemGroup>

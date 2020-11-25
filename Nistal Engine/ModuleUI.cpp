@@ -8,6 +8,7 @@
 #include "UIConsole.h"
 #include "UIInspector.h"
 #include "UIHierarchy.h"
+#include "UISave.h"
 #include <vector>
 
 #include "ImGui/imgui_impl_sdl.h"
@@ -34,6 +35,7 @@ ModuleUI::ModuleUI(Application* app, bool start_enabled) : Module(app, start_ena
 	ui_windows.push_back(ui_console = new UIConsole());
 	ui_windows.push_back(ui_inspector = new UIInspector());
 	ui_windows.push_back(ui_hierarchy = new UIHierarchy());
+	ui_windows.push_back(ui_save = new UISave());
 }
 
 ModuleUI::~ModuleUI()
@@ -55,6 +57,7 @@ bool ModuleUI::Start()
 	ui_console->Start();
 	ui_inspector->Start();
 	ui_hierarchy->Start();
+	ui_save->Start();
 
 	return ret;
 }
@@ -78,6 +81,10 @@ update_status ModuleUI::Update(float dt)
 	{
 		if (BeginMenu("File"))
 		{
+			if (MenuItem("Save")) 
+			{
+				ui_save->is_on = !ui_save->is_on;
+			}
 			if (MenuItem("Load Own Format Model", "L"))
 			{
 				App->importer->LoadOwnFormat("mymesh");
