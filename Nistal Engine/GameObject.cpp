@@ -9,14 +9,25 @@ GameObject::GameObject(GameObject* parent, const char* name)
 {
 	this->parent = parent;
 
-	if (parent != nullptr)
+	if (parent != nullptr) 
+	{
 		parent->children.push_back(this);
+		parent_uuid = parent->uuid;
+	}
+	else if (parent == nullptr)
+	{
+		parent_uuid = 0;
+	}
+
+	uuid = GenerateUUID();
 
 	GetNames(name);
 
 	AddComponent(GOCOMPONENT_TYPE::TRANSFORM, "transform");
 
 	LOG("New GameObject created: %s", this->name.c_str());
+	LOG("GameObject UUID: %u", uuid);
+	LOG("GameObject parent UUID: %u", parent_uuid);
 }
 
 GameObject::~GameObject()
@@ -88,6 +99,11 @@ void GameObject::GetNames(const char* name)
 	this->name = path.substr(path.find_last_of("/\\") + 1);
 	std::string::size_type const p(this->name.find_last_of('.'));
 	ui_name = this->name.substr(0, p);
+}
+
+u32 GameObject::GenerateUUID()
+{
+	return lcg.Int();
 }
 
 void GameObject::AddBoundingBox()

@@ -27,7 +27,7 @@ bool ModuleSceneIntro::Start()
     App->camera->LookAt(float3(0, 0, 0));
 
     root = CreateGameObject(nullptr, "root");
-    //App->load_fbx->LoadTexture("Textures/Baker_house.png");
+
     camera = CreateGameObject(root, "camera");
     camera->AddComponent(GOCOMPONENT_TYPE::CAMERA, "camera");
     camera->transform->NewPosition(float3(0.0f, 3.0f, -15.0f));

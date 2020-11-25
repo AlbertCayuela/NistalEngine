@@ -32,6 +32,7 @@ public:
 	GOComponent* AddComponent(GOCOMPONENT_TYPE type, const char* name);
 	GOComponent* GetComponent(GOCOMPONENT_TYPE type);
 	void GetNames(const char* name);
+	u32 GenerateUUID();
 
 	void AddBoundingBox();
 	void DrawBoundingBox();
@@ -54,6 +55,9 @@ public:
 	GameObject* parent = nullptr;
 	math::AABB bbox;
 	math::OBB obb_box;
+	LCG lcg;
+	uint uuid = 0;
+	uint parent_uuid = 0;
 
 public:
 	void SaveInfoGameObject(GameObject* go, JSON_Array* json_array);
