@@ -33,6 +33,7 @@ bool ModuleSceneIntro::Start()
     camera->transform->NewPosition(float3(0.0f, 3.0f, -15.0f));
 
     street = CreateGameObject(root, "Street");
+    street->transform->NewRotation(float3(-90.0f, 0.0f, 0.0f));
 
 
     return ret;
