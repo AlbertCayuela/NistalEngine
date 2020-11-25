@@ -40,7 +40,7 @@ void UISave::Draw()
 		InputText("Scene Name", name, ARRAYSIZE(name));
 		if(Button("Save"))
 		{
-
+			App->serialization->SaveScene(name);
 		}
 	}
 
