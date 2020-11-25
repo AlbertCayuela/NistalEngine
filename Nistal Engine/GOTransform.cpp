@@ -51,13 +51,14 @@ void GOTransform::NewScale(float3 new_scale)
 	scale = new_scale;
 }
 
-void GOTransform::JsonSaveTransform(JSON_Array* componentsObj)
+void GOTransform::JsonSaveTransform(JSON_Array* componentsObj, GameObject* game_object)
 {
 	JSON_Value* component = json_value_init_object();
 	JSON_Object* componentObj = json_value_get_object(component);
 
 	json_object_set_number(componentObj, "Type:", this->type);
 
+	json_object_set_number(componentObj, "UID", game_object->uuid);
 	json_object_set_number(componentObj, "PositionX", position.x);
 	json_object_set_number(componentObj, "PositionY", position.y);
 	json_object_set_number(componentObj, "PositionZ", position.z);
