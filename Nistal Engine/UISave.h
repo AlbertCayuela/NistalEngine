@@ -14,6 +14,8 @@ public:
 	bool Start();
 	void Draw();
 	bool CleanUp();
+
+	void SetPos();
 };
 
 #endif // !__UISAVE_H__

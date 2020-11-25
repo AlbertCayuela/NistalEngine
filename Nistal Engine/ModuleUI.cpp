@@ -81,7 +81,7 @@ update_status ModuleUI::Update(float dt)
 	{
 		if (BeginMenu("File"))
 		{
-			if (MenuItem("Save")) 
+			if (MenuItem("Save scene")) 
 			{
 				ui_save->is_on = !ui_save->is_on;
 			}
