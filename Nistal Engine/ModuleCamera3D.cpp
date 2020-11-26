@@ -146,13 +146,21 @@ update_status ModuleCamera3D::Update(float dt)
 
 			if (closest_object != nullptr)
 			{
-				LOG("Closest gameobject: %s", closest_object->ui_name.c_str());
-				TestTriIntersection(picking, closest_object, intersected_objects);
-				App->scene_intro->selected_go = closest_object;
+				if (TestTriIntersection(picking, closest_object, intersected_objects))
+				{
+					App->scene_intro->selected_go = closest_object;
+					LOG("Selected GameObject: %s, uuid: %i", closest_object->ui_name.c_str(), closest_object->uuid);
+				}
+				else 
+				{
+					App->scene_intro->selected_go = nullptr;
+					LOG("No GameObject selected now!");
+				}
 			}
 			else if (closest_object == nullptr)
 			{
-				LOG("Closest gameobject is nullptr");
+				App->scene_intro->selected_go = nullptr;
+				LOG("No GameObject selected now!");
 			}
 		}
 	}
