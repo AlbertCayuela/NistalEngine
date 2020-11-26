@@ -4,6 +4,7 @@
 #include "GameObject.h"
 #include "GOCamera.h"
 #include "GOTransform.h"
+#include "GOMesh.h"
 
 ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -137,22 +138,32 @@ update_status ModuleCamera3D::Update(float dt)
 
 			for (std::vector<GameObject*>::iterator i = App->scene_intro->game_objects.begin(); i != App->scene_intro->game_objects.end(); i++)
 			{
-				TestAABBIntersection(picking, (*i), intersected_objects); //check intersections and store objects them in a map
+				TestAABBIntersection(picking, (*i), intersected_objects); //check intersections and store objects in a map
 			}
 
-			closest_object = intersected_objects.begin()->first;
+			if(!intersected_objects.empty())
+				closest_object = intersected_objects.begin()->first;
 
 			if (closest_object != nullptr)
 			{
-				LOG("Closest gameobject: %s", closest_object->ui_name.c_str());
+				if (TestTriIntersection(picking, closest_object, intersected_objects))
+				{
+					App->scene_intro->selected_go = closest_object;
+					LOG("Selected GameObject: %s, uuid: %i", closest_object->ui_name.c_str(), closest_object->uuid);
+				}
+				else 
+				{
+					App->scene_intro->selected_go = nullptr;
+					LOG("No GameObject selected now!");
+				}
 			}
 			else if (closest_object == nullptr)
 			{
-				LOG("Closest gameobject is nullptr");
+				App->scene_intro->selected_go = nullptr;
+				LOG("No GameObject selected now!");
 			}
 
-			
-
+			DebugPickingRay(picking);
 		}
 	}
 
@@ -203,6 +214,67 @@ void ModuleCamera3D::TestAABBIntersection(LineSegment ray, GameObject* game_obje
 			LOG("map size: %i", intersected_objects.size());
 		}
 	}
+}
+
+bool ModuleCamera3D::TestTriIntersection(LineSegment ray, GameObject *& game_object, map<GameObject*, float>& intersected_objects)
+{
+	bool ret = false;
+
+	modelData mesh_info = modelData();
+	GOMesh* mesh = nullptr;
+	float min_distance = FLOAT_INF;
+
+	for (map<GameObject*, float>::iterator i = intersected_objects.begin(); i != intersected_objects.end(); i++)
+	{
+		Triangle tri;
+		LineSegment local_ray = ray;
+		local_ray.Transform((i)->first->transform->GlobalMatrix().Inverted());
+		mesh = (i)->first->mesh;
+
+		if (mesh != nullptr) 
+		{
+			mesh_info = mesh->mesh_info;
+
+			for (int j = 0; j < mesh_info.num_index; ++j)
+			{
+
+				tri.a = { mesh_info.vertices[mesh_info.indices[j] * 3], mesh_info.vertices[mesh_info.indices[j] * 3 + 1], mesh_info.vertices[mesh_info.indices[j] * 3 + 2] };
+				tri.b = { mesh_info.vertices[mesh_info.indices[j] * 3 + 2], mesh_info.vertices[mesh_info.indices[j] * 3 + 3], mesh_info.vertices[mesh_info.indices[j] * 3 + 4] };
+				tri.c = { mesh_info.vertices[mesh_info.indices[j] * 3 + 3], mesh_info.vertices[mesh_info.indices[j] * 3 + 4], mesh_info.vertices[mesh_info.indices[j] * 3 + 5] };
+
+				float distance;
+				float3 hit_point;
+
+				if (local_ray.Intersects(tri, &distance, &hit_point)) 
+				{
+					ret = true;
+
+					if (distance < min_distance)
+					{
+						min_distance = distance;
+						game_object = (i)->first;
+					}
+				}
+			}
+		}	
+	}
+
+	return ret;
+}
+
+void ModuleCamera3D::DebugPickingRay(LineSegment ray)
+{
+	glColor4f(255, 20, 147, 1);
+
+	GLfloat a[3] = { ray.a.x, ray.a.y, ray.a.z };
+	GLfloat b[3] = { ray.b.x, ray.b.y, ray.b.z };
+
+	glBegin(GL_LINES);
+	glVertex3fv(a);
+	glVertex3fv(b);
+	glEnd();
+
+	glColor4f(1, 1, 1, 1);
 }
 
 void ModuleCamera3D::FocusOnTarget(const float3& focus, const float& distance)
