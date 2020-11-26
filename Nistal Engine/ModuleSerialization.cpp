@@ -23,8 +23,11 @@ bool ModuleSerialization::SaveScene(const char* scene_name)
 
 	std::string extension = ".json";
 	std::string final_name = scene_name + extension;
+	std::string path = LIBRARY_SCENE_FOLDER + final_name;
 
-	json_serialize_to_file_pretty(json_value, final_name.c_str());
+	LOG("Saving scene %s in %s", final_name.c_str(), path.c_str());
+
+	json_serialize_to_file_pretty(json_value, path.c_str());
 	return ret;
 }
 
@@ -52,7 +55,6 @@ bool ModuleSerialization::SaveGameObjects(JSON_Array* json_array)
 	for (std::vector<GameObject*>::const_iterator iterator = App->scene_intro->game_objects.begin() + 1; iterator != App->scene_intro->game_objects.end(); iterator++)
 	{
 		(*iterator)->SaveInfoGameObject((*iterator), json_array);
-
 	}
 
 	//TODO: Save vector list OwnGameObjects

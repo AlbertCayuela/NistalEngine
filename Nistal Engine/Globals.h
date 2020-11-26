@@ -46,7 +46,7 @@ enum update_status
 #define LIBRARY_TEXTURES_FOLDER "/Library/Textures/"
 #define LIBRARY_MESH_FOLDER "/Library/Meshes/"
 #define LIBRARY_ANIMATION_FOLDER "/Library/Animations/"
-#define LIBRARY_SCENE_FOLDER "/Library/Scenes/"
+#define LIBRARY_SCENE_FOLDER "Library/Scenes/"
 #define LIBRARY_MODEL_FOLDER "/Library/Models/"
 #define LIBRARY_MATERIAL_FOLDER "/Library/Materials/"
 #define LIBRARY_STATE_MACHINE_FOLDER "/Library/StateMachines/"

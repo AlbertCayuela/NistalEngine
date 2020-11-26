@@ -41,6 +41,7 @@ void UISave::Draw()
 		if(Button("Save"))
 		{
 			App->serialization->SaveScene(name);
+			is_on = false;
 		}
 	}
 
