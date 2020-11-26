@@ -162,6 +162,8 @@ update_status ModuleCamera3D::Update(float dt)
 				App->scene_intro->selected_go = nullptr;
 				LOG("No GameObject selected now!");
 			}
+
+			DebugPickingRay(picking);
 		}
 	}
 
@@ -258,6 +260,21 @@ bool ModuleCamera3D::TestTriIntersection(LineSegment ray, GameObject *& game_obj
 	}
 
 	return ret;
+}
+
+void ModuleCamera3D::DebugPickingRay(LineSegment ray)
+{
+	glColor4f(255, 20, 147, 1);
+
+	GLfloat a[3] = { ray.a.x, ray.a.y, ray.a.z };
+	GLfloat b[3] = { ray.b.x, ray.b.y, ray.b.z };
+
+	glBegin(GL_LINES);
+	glVertex3fv(a);
+	glVertex3fv(b);
+	glEnd();
+
+	glColor4f(1, 1, 1, 1);
 }
 
 void ModuleCamera3D::FocusOnTarget(const float3& focus, const float& distance)
