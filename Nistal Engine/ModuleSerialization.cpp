@@ -1,5 +1,6 @@
 #include "Application.h"
 #include "ModuleSerialization.h"
+#include "GOTransform.h"
 
 ModuleSerialization::ModuleSerialization(Application* app, bool start_enabled) : Module(app, start_enabled)
 {}
@@ -15,8 +16,8 @@ update_status ModuleSerialization::Update(float dt)
 bool ModuleSerialization::SaveScene(const char* scene_name)
 {
 	bool ret = false;
-	JSON_Value* json_value = json_value_init_array();
-	JSON_Array* json_array = json_value_get_array(json_value);
+	json_value = json_value_init_array();
+	json_array = json_value_get_array(json_value);
 
 	SaveGameObjects(json_array);
 
@@ -27,6 +28,25 @@ bool ModuleSerialization::SaveScene(const char* scene_name)
 	return ret;
 }
 
+bool ModuleSerialization::LoadScene(string file_name)
+{
+	bool ret = true;
+
+	new_go = App->scene_intro->CreateSavedGameObject(App->scene_intro->root, "hullo");;
+
+	JSON_Value* component = json_value_init_object();
+	JSON_Object* componentObj = json_value_get_object(component);
+	
+	new_go->uuid = json_object_get_number(componentObj, "UID");
+	new_go->transform->position.y = json_object_get_number(componentObj, "PositionY");
+
+	//Before the next lines, save new game objects into new vector<GameObject*> list that I created
+
+	LoadSceneGameObjects();
+
+	return ret;
+}
+
 bool ModuleSerialization::SaveGameObjects(JSON_Array* json_array)
 {
 	for (std::vector<GameObject*>::const_iterator iterator = App->scene_intro->game_objects.begin() + 1; iterator != App->scene_intro->game_objects.end(); iterator++)
@@ -34,5 +54,17 @@ bool ModuleSerialization::SaveGameObjects(JSON_Array* json_array)
 		(*iterator)->SaveInfoGameObject((*iterator), json_array);
 
 	}
+
+	//TODO: Save vector list OwnGameObjects
+	return true;
+}
+
+bool ModuleSerialization::LoadSceneGameObjects()
+{
+	for (std::vector<GameObject*>::const_iterator iterator = App->scene_intro->saved_scene_game_object.begin(); iterator != App->scene_intro->saved_scene_game_object.end(); iterator++)
+	{
+		(*iterator)->LoadInfoGameObject((*iterator));
+	}
+
 	return true;
 }

@@ -22,9 +22,12 @@ public:
 
     GameObject* CreateGameObject(GameObject* parent, const char* name);
     GameObject* CreateOWNGameObject(GameObject* parent, const char* name);
+    GameObject* CreateSavedGameObject(GameObject* parent, const char* name);
 
     vector<GameObject*> game_objects;
     vector<GameObject*> own_game_objects;
+    vector<GameObject*> saved_scene_game_object;
+
     GameObject* root = nullptr;
     GameObject* camera = nullptr;
     GameObject* street = nullptr;

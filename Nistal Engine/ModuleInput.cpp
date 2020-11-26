@@ -139,6 +139,12 @@ update_status ModuleInput::PreUpdate(float dt)
 				App->importer->LoadOwnFormat("mymesh");
 			}
 
+			if (extension == "scene" || extension == "json")
+			{
+				LOG("Loading saved Scene");
+				App->serialization->LoadScene(dropped_path);
+			}
+
 			if (extension == "dds" || extension == "DDS" || extension == "png" || extension == "PNG" || extension == "jpg" || extension == "JPG" || extension == "tga") 
 			{
 				LOG("dropped a texture file");

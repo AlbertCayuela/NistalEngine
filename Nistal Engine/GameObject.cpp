@@ -153,8 +153,8 @@ void GameObject::SaveInfoGameObject(GameObject* go, JSON_Array* json_array)
 		json_object_set_number(object_json, "Parent UUID:", go->parent->uuid);*/
 
 		//COMPONENTS INFO
-	JSON_Value* components = json_value_init_array();
-	JSON_Array* componentsObj = json_value_get_array(components);
+	components = json_value_init_array();
+	componentsObj = json_value_get_array(components);
 
 	if (go->transform != nullptr)
 		go->transform->JsonSaveTransform(componentsObj, go);
@@ -162,4 +162,13 @@ void GameObject::SaveInfoGameObject(GameObject* go, JSON_Array* json_array)
 	json_object_set_value(object_json, "Components:", components);
 
 	json_array_append_value(json_array, value_json);
+}
+
+void GameObject::LoadInfoGameObject(GameObject* go)
+{
+	//BASIC INFO
+	JSON_Value* value_json = json_value_init_object();
+	JSON_Object* object_json = json_value_get_object(value_json);
+
+	json_object_get_value(object_json, "Components:");
 }

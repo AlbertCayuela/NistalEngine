@@ -128,6 +128,8 @@ update_status ModuleSceneIntro::Update(float dt)
         }
     }
 
+
+
     if (App->input->GetKey(SDL_SCANCODE_O) == KEY_REPEAT)
         App->serialization->SaveScene("New Scene");
 
@@ -172,5 +174,15 @@ GameObject* ModuleSceneIntro::CreateOWNGameObject(GameObject* parent, const char
 
     return game_object;
 }
+
+GameObject* ModuleSceneIntro::CreateSavedGameObject(GameObject* parent, const char* name)
+{
+    GameObject* game_object = new GameObject(parent, name);
+    saved_scene_game_object.push_back(game_object);
+
+    return game_object;
+}
+
+
 
 
