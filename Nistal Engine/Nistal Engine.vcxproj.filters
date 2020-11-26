@@ -411,6 +411,9 @@
     <ClInclude Include="UISave.h">
       <Filter>Sources\Modules\UI</Filter>
     </ClInclude>
+    <ClInclude Include="ImGui\ImGuizmo.h">
+      <Filter>Sources\Libs\ImGui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -628,6 +631,9 @@
     </ClCompile>
     <ClCompile Include="UISave.cpp">
       <Filter>Sources\Modules\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\ImGuizmo.cpp">
+      <Filter>Sources\Libs\ImGui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -24,6 +24,8 @@ public:
 	void LoadInspectoData(GameObject* GO);
 	void SetPos();
 
+	void UseGuizmo(GameObject* selected_go);
+
 	bool mesh_exists = false;
 
 private:

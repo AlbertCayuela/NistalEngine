@@ -51,6 +51,24 @@ void GOTransform::NewScale(float3 new_scale)
 	scale = new_scale;
 }
 
+void GOTransform::NewMatrix(float4x4& global_matrix)
+{
+	float4x4 mat;
+
+	if (parent->parent != nullptr) 
+	{
+		float4x4 parent_mat = parent->parent->transform->GlobalMatrix().Inverted();
+		mat = parent_mat * global_matrix;
+	}
+	else 
+	{
+		mat = global_matrix;
+	}
+
+	transform_matrix.Set(GlobalMatrix());
+	mat.Decompose(position, rotation, scale);
+}
+
 void GOTransform::SaveSceneTransform(JSON_Array* componentsObj, GameObject* game_object)
 {
 	JSON_Value* component = json_value_init_object();

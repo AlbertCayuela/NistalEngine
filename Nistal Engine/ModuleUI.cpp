@@ -13,6 +13,7 @@
 
 #include "ImGui/imgui_impl_sdl.h"
 #include "ImGui/imgui_impl_opengl3.h"
+#include "ImGui/ImGuizmo.h"
 
 #include "Glew/include/glew.h"
 
@@ -67,7 +68,8 @@ update_status ModuleUI::PreUpdate(float dt)
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplSDL2_NewFrame(App->window->window);
 	NewFrame();
- 
+	ImGuizmo::BeginFrame();
+
 	return UPDATE_CONTINUE;
 }
 

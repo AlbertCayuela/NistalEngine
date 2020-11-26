@@ -21,6 +21,7 @@ public:
 	void NewPosition(float3 new_position);
 	void NewRotation(float3 new_rotation);
 	void NewScale(float3 new_scale);
+	void NewMatrix(float4x4& global_matrix);
 
 	//JSON data saving
 	void SaveSceneTransform(JSON_Array* componentsObj, GameObject* game_object);
@@ -30,6 +31,7 @@ public:
 
 	float4x4 local_matrix = math::float4x4::identity;
 	float4x4 global_matrix = math::float4x4::identity;
+	float4x4 transform_matrix = math::float4x4::identity;
 
 	float3 position = math::float3::zero;
 	Quat rotation = math::Quat::identity;

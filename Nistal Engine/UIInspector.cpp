@@ -13,6 +13,7 @@
 #include "ImGui/imgui.h"
 #include "ImGui/imgui_impl_sdl.h"
 #include "ImGui/imgui_impl_opengl3.h"
+#include "ImGui/ImGuizmo.h"
 #include "Glew/include/glew.h"
 
 
@@ -107,6 +108,9 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 			static int local = 0;
 			RadioButton("local", &local, 2);
 		}
+
+		UseGuizmo(GO);
+
 		if (CollapsingHeader("Geometry Mesh"))
 		{
 			if (App->scene_intro->selected_go != nullptr)
@@ -198,4 +202,46 @@ void UIInspector::SetPos()
 	SetWindowPos(ImVec2((App->window->width / 8.0f) * 6.0f, 18), ImGuiCond_Always);
 	SetWindowSize(ImVec2((App->window->width / 8.0f) * 2.0f, (App->window->height / 0.6f) * 4.5f));
 	SDL_GetWindowSize(App->window->window, &App->window->width, &App->window->height);
+}
+
+void UIInspector::UseGuizmo(GameObject* selected_go)
+{
+	ImGuizmo::Enable(true);
+
+	static ImGuizmo::OPERATION operation(ImGuizmo::TRANSLATE);
+	static ImGuizmo::MODE mode(ImGuizmo::WORLD);
+
+	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN)
+		operation = ImGuizmo::TRANSLATE;
+
+	if (App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
+		operation = ImGuizmo::ROTATE;
+
+	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
+		operation = ImGuizmo::SCALE;
+
+	if (RadioButton("Translate", operation == ImGuizmo::TRANSLATE))
+		operation = ImGuizmo::TRANSLATE;
+
+	SameLine();
+
+	if (RadioButton("Rotate", operation == ImGuizmo::ROTATE))
+		operation = ImGuizmo::ROTATE;
+
+	SameLine();
+
+	if (RadioButton("Scale", operation == ImGuizmo::SCALE))
+		operation = ImGuizmo::SCALE;
+
+	ImGuiIO& io = GetIO();
+	ImGuizmo::SetRect(0, 0, io.DisplaySize.x, io.DisplaySize.y);
+	float4x4 mat = selected_go->transform->GlobalMatrix().Transposed();
+	ImGuizmo::Manipulate(App->camera->camera->GetViewMatrix().ptr(), App->camera->camera->GetProjectionMatrix().ptr(), operation, mode, mat.ptr());
+
+	if (ImGuizmo::IsUsing()) 
+	{
+		mat = mat.Transposed();
+		selected_go->transform->NewMatrix(mat);
+	}
+
 }
