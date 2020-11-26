@@ -68,7 +68,9 @@ update_status ModuleUI::PreUpdate(float dt)
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplSDL2_NewFrame(App->window->window);
 	NewFrame();
-	ImGuizmo::BeginFrame();
+
+	if(App->scene_intro->selected_go != nullptr)
+		ImGuizmo::BeginFrame();
 
 	return UPDATE_CONTINUE;
 }

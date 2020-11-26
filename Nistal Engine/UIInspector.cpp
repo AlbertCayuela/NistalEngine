@@ -75,41 +75,44 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 
 		if (CollapsingHeader("Transform"))
 		{
-			/*static float col1[3] = { 1.0f, 0.0f, 0.2f };
-			static float col2[4] = { 0.4f, 0.7f, 0.0f, 0.5f };
-			ImGui::ColorEdit3("color 1", col1);
-			ImGui::ColorEdit4("color 2", col2);	*/
-
-			Text("Game Object name: %s", GO->ui_name.c_str());
-			Separator();
-
-			rot = GO->transform->rotation.ToEulerXYZ() * RADTODEG;
-
-			if (DragFloat3("Position", &GO->transform->position[0], 0.1f, 0.0f, 0.0f, "%.3f"))
+			if (App->scene_intro->selected_go != nullptr) 
 			{
-				GO->transform->NewPosition(GO->transform->position);
-				GO->AddBoundingBox();
-			}
+				/*static float col1[3] = { 1.0f, 0.0f, 0.2f };
+				static float col2[4] = { 0.4f, 0.7f, 0.0f, 0.5f };
+				ImGui::ColorEdit3("color 1", col1);
+				ImGui::ColorEdit4("color 2", col2);	*/
 
-			if (DragFloat3("Rotation", &rot[0], 0.1f, 0.0f, 0.0f, "%.3f"))
-			{
-				GO->transform->NewRotation(rot);
-				GO->AddBoundingBox();
-			}
+				Text("Game Object name: %s", GO->ui_name.c_str());
+				Separator();
 
-			if (DragFloat3("Scale", &GO->transform->scale[0], 0.1f, 0.0f, 0.0f, "%.3f"))
-			{
-				GO->transform->NewScale(GO->transform->scale);
-				GO->AddBoundingBox();
-			}
+				rot = GO->transform->rotation.ToEulerXYZ() * RADTODEG;
 
-			static int world = 0;
-			RadioButton("world", &world, 2); ImGui::SameLine();
-			static int local = 0;
-			RadioButton("local", &local, 2);
+				if (DragFloat3("Position", &GO->transform->position[0], 0.1f, 0.0f, 0.0f, "%.3f"))
+				{
+					GO->transform->NewPosition(GO->transform->position);
+					GO->AddBoundingBox();
+				}
+
+				if (DragFloat3("Rotation", &rot[0], 0.1f, 0.0f, 0.0f, "%.3f"))
+				{
+					GO->transform->NewRotation(rot);
+					GO->AddBoundingBox();
+				}
+
+				if (DragFloat3("Scale", &GO->transform->scale[0], 0.1f, 0.0f, 0.0f, "%.3f"))
+				{
+					GO->transform->NewScale(GO->transform->scale);
+					GO->AddBoundingBox();
+				}
+
+				static int world = 0;
+				RadioButton("world", &world, 2); ImGui::SameLine();
+				static int local = 0;
+				RadioButton("local", &local, 2);
+
+				UseGuizmo(GO);
+			}
 		}
-
-		UseGuizmo(GO);
 
 		if (CollapsingHeader("Geometry Mesh"))
 		{
@@ -242,6 +245,7 @@ void UIInspector::UseGuizmo(GameObject* selected_go)
 	{
 		mat = mat.Transposed();
 		selected_go->transform->NewMatrix(mat);
+		selected_go->AddBoundingBox();
 	}
 
 }
