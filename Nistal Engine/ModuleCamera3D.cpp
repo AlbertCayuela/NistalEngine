@@ -133,10 +133,25 @@ update_status ModuleCamera3D::Update(float dt)
 
 			LineSegment picking = camera->frustum.UnProjectLineSegment(n_mouse_x, n_mouse_y);
 
+			GameObject* closest_object = nullptr;
+
 			for (std::vector<GameObject*>::iterator i = App->scene_intro->game_objects.begin(); i != App->scene_intro->game_objects.end(); i++)
 			{
-				TestAABBIntersection(picking, (*i), intersected_objects);
+				TestAABBIntersection(picking, (*i), intersected_objects); //check intersections and store objects them in a map
 			}
+
+			closest_object = intersected_objects.begin()->first;
+
+			if (closest_object != nullptr)
+			{
+				LOG("Closest gameobject: %s", closest_object->ui_name.c_str());
+			}
+			else if (closest_object == nullptr)
+			{
+				LOG("Closest gameobject is nullptr");
+			}
+
+			
 
 		}
 	}
@@ -175,7 +190,7 @@ void ModuleCamera3D::Move(const float3 &Movement)
 	camera->frustum.Translate(Movement);
 }
 
-void ModuleCamera3D::TestAABBIntersection(LineSegment ray, GameObject* game_object, map<GameObject*, float> intersected_objects)
+void ModuleCamera3D::TestAABBIntersection(LineSegment ray, GameObject* game_object, map<GameObject*, float> &intersected_objects)
 {
 	if (game_object->bbox.IsFinite())
 	{
@@ -185,6 +200,7 @@ void ModuleCamera3D::TestAABBIntersection(LineSegment ray, GameObject* game_obje
 			distance = game_object->bbox.Distance(ray.a);
 			LOG("GameObject: %s intersected, distance: %f", game_object->ui_name.c_str(), distance);
 			intersected_objects.insert({ game_object, distance });
+			LOG("map size: %i", intersected_objects.size());
 		}
 	}
 }

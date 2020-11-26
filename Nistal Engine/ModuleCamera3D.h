@@ -22,7 +22,7 @@ public:
 	void LookAt(const float3 &Spot);
 	void Move(const float3 &Movement);
 
-	void TestAABBIntersection(LineSegment ray, GameObject* game_object, map<GameObject*, float> intersected_objects);
+	void TestAABBIntersection(LineSegment ray, GameObject* game_object, map<GameObject*, float> &intersected_objects);
 
 private:
 
