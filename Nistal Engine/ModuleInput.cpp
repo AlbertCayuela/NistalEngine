@@ -142,7 +142,7 @@ update_status ModuleInput::PreUpdate(float dt)
 			if (extension == "scene" || extension == "json")
 			{
 				LOG("Loading saved Scene");
-				App->serialization->LoadScene(dropped_path);
+				App->serialization->LoadScene("New Scene.json");
 			}
 
 			if (extension == "dds" || extension == "DDS" || extension == "png" || extension == "PNG" || extension == "jpg" || extension == "JPG" || extension == "tga") 

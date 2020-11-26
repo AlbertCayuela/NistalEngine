@@ -24,6 +24,7 @@ public:
 
 	//JSON data saving
 	void JsonSaveTransform(JSON_Array* componentsObj, GameObject* game_object);
+	void JsonLoadTransform(JSON_Object* obj);
 
 public:
 

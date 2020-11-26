@@ -28,23 +28,22 @@ bool ModuleSerialization::SaveScene(const char* scene_name)
 	return ret;
 }
 
-bool ModuleSerialization::LoadScene(string file_name)
+bool ModuleSerialization::LoadScene(const char* name_scene)
 {
-	bool ret = true;
+	JSON_Value* scene = json_parse_file(name_scene);
+	JSON_Array* Array = json_value_get_array(scene);
+	JSON_Object* obj = nullptr;
 
-	new_go = App->scene_intro->CreateSavedGameObject(App->scene_intro->root, "hullo");;
+	int size = json_array_get_count(Array);
 
-	JSON_Value* component = json_value_init_object();
-	JSON_Object* componentObj = json_value_get_object(component);
-	
-	new_go->uuid = json_object_get_number(componentObj, "UID");
-	new_go->transform->position.y = json_object_get_number(componentObj, "PositionY");
+	for (int i = 0; i < size; i++)
+	{
+		obj = json_array_get_object(Array, i);
+		GameObject* go = App->scene_intro->CreateSavedGameObject(App->scene_intro->root, "load saved name here");
+		go->LoadInfoGameObject(obj);
+	}
 
-	//Before the next lines, save new game objects into new vector<GameObject*> list that I created
-
-	LoadSceneGameObjects();
-
-	return ret;
+	return true;
 }
 
 bool ModuleSerialization::SaveGameObjects(JSON_Array* json_array)
@@ -59,12 +58,12 @@ bool ModuleSerialization::SaveGameObjects(JSON_Array* json_array)
 	return true;
 }
 
-bool ModuleSerialization::LoadSceneGameObjects()
-{
-	for (std::vector<GameObject*>::const_iterator iterator = App->scene_intro->saved_scene_game_object.begin(); iterator != App->scene_intro->saved_scene_game_object.end(); iterator++)
-	{
-		(*iterator)->LoadInfoGameObject((*iterator));
-	}
-
-	return true;
-}
+//bool ModuleSerialization::LoadSceneGameObjects()
+//{
+//	for (std::vector<GameObject*>::const_iterator iterator = App->scene_intro->saved_scene_game_object.begin(); iterator != App->scene_intro->saved_scene_game_object.end(); iterator++)
+//	{
+//		(*iterator)->LoadInfoGameObject((*iterator));
+//	}
+//
+//	return true;
+//}

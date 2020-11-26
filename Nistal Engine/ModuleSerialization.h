@@ -12,9 +12,9 @@ public:
 	update_status Update(float dt);
 
 	bool SaveScene(const char* name_scene);
-	bool LoadScene(string file_name);
+	bool LoadScene(const char* scene);
 	bool SaveGameObjects(JSON_Array* json_array);
-	bool LoadSceneGameObjects();
+	//bool LoadSceneGameObjects();
 
 	GameObject* new_go = nullptr;
 	JSON_Value* json_value = nullptr;

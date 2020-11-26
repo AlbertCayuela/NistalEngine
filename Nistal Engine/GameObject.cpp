@@ -164,11 +164,21 @@ void GameObject::SaveInfoGameObject(GameObject* go, JSON_Array* json_array)
 	json_array_append_value(json_array, value_json);
 }
 
-void GameObject::LoadInfoGameObject(GameObject* go)
+void GameObject::LoadInfoGameObject(JSON_Object* obj)
 {
-	//BASIC INFO
-	JSON_Value* value_json = json_value_init_object();
-	JSON_Object* object_json = json_value_get_object(value_json);
+	JSON_Array* Array = json_object_get_array(obj, "Components:");
+	JSON_Object* type;
+	int size = json_array_get_count(Array);
 
-	json_object_get_value(object_json, "Components:");
+	for (int i = 0; i < size; i++)
+	{
+		type = json_array_get_object(Array, i);
+		int num_type = json_object_get_number(type, "Type:");
+
+		if (num_type == 1)
+		{
+			transform->JsonLoadTransform(type);
+		}
+	}
+	uuid = json_object_get_number(obj, "UID:");
 }
