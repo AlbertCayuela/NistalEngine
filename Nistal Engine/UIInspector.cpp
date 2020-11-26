@@ -105,10 +105,10 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 					GO->AddBoundingBox();
 				}
 
-				static int world = 0;
+				/*static int world = 0;
 				RadioButton("world", &world, 2); ImGui::SameLine();
 				static int local = 0;
-				RadioButton("local", &local, 2);
+				RadioButton("local", &local, 2);*/
 
 				UseGuizmo(GO);
 			}

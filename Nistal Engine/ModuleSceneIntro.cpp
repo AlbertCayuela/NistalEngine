@@ -5,6 +5,7 @@
 #include "GOMesh.h"
 #include "GOMaterial.h"
 #include "GOTransform.h"
+#include "GOCamera.h"
 #include "GameObject.h"
 #include "ModuleSerialization.h"
 
@@ -30,7 +31,8 @@ bool ModuleSceneIntro::Start()
 
     camera = CreateGameObject(root, "camera");
     camera->AddComponent(GOCOMPONENT_TYPE::CAMERA, "camera");
-    camera->transform->NewPosition(float3(0.0f, 3.0f, -15.0f));
+    camera->transform->NewPosition(float3(0.0f, 19.0f, -70.0f));
+    camera->camera->SetFarPlane(200.0f);
 
     street = CreateGameObject(root, "Street");
     street->transform->NewRotation(float3(-90.0f, 0.0f, 0.0f));
