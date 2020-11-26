@@ -112,6 +112,50 @@ update_status ModuleCamera3D::Update(float dt)
 			FocusOnTarget(float3(0.0f, 0.0f, 0.0f), 7.0f);
 	}
 
+	//MOUSE PICKING
+	if (!ImGui::GetIO().WantCaptureMouse) 
+	{
+		if (App->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN && App->input->GetKey(SDL_SCANCODE_LALT) == KEY_IDLE)
+		{
+			LOG("Mouse Picking");
+
+			map<GameObject*, float> intersected_objects; //map to store intersected gameobjects
+
+			int mouse_x = App->input->GetMouseX(); //mouse position
+			int mouse_y = App->input->GetMouseY();
+			float screen_w = App->window->width; // window size
+			float screen_h = App->window->height;
+
+			float n_mouse_x = -(1.0f - 2.0f * ((float)mouse_x) / (screen_w)); //normalized mouse positions
+			float n_mouse_y = 1.0f - (2.0f * ((float)mouse_y) / (screen_h));
+
+			LOG("mouse x: %i mouse y: %i screen w: %.2f screen h: %.2f norm mouse x: %.2f norm mouse y: %.2f", mouse_x, mouse_y, screen_w, screen_h, n_mouse_x, n_mouse_y);
+
+			LineSegment picking = camera->frustum.UnProjectLineSegment(n_mouse_x, n_mouse_y);
+
+			GameObject* closest_object = nullptr;
+
+			for (std::vector<GameObject*>::iterator i = App->scene_intro->game_objects.begin(); i != App->scene_intro->game_objects.end(); i++)
+			{
+				TestAABBIntersection(picking, (*i), intersected_objects); //check intersections and store objects them in a map
+			}
+
+			closest_object = intersected_objects.begin()->first;
+
+			if (closest_object != nullptr)
+			{
+				LOG("Closest gameobject: %s", closest_object->ui_name.c_str());
+			}
+			else if (closest_object == nullptr)
+			{
+				LOG("Closest gameobject is nullptr");
+			}
+
+			
+
+		}
+	}
+
 	//ROTATE AROUND OBJECT
 	if (App->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_LALT) == KEY_REPEAT)
 	{
@@ -144,6 +188,21 @@ void ModuleCamera3D::LookAt(const float3& Spot)
 void ModuleCamera3D::Move(const float3 &Movement)
 {
 	camera->frustum.Translate(Movement);
+}
+
+void ModuleCamera3D::TestAABBIntersection(LineSegment ray, GameObject* game_object, map<GameObject*, float> &intersected_objects)
+{
+	if (game_object->bbox.IsFinite())
+	{
+		if (ray.Intersects(game_object->bbox)) 
+		{
+			float distance;
+			distance = game_object->bbox.Distance(ray.a);
+			LOG("GameObject: %s intersected, distance: %f", game_object->ui_name.c_str(), distance);
+			intersected_objects.insert({ game_object, distance });
+			LOG("map size: %i", intersected_objects.size());
+		}
+	}
 }
 
 void ModuleCamera3D::FocusOnTarget(const float3& focus, const float& distance)

@@ -67,8 +67,8 @@ void UIHierarchy::SetHierarchy(GameObject* root)
 			{
 				if (Button("Selected"))
 				{
-					App->scene_intro->selected_go = root;
-					LOG("GO SELECTED: %s", App->scene_intro->selected_go->ui_name.c_str());
+					App->scene_intro->selected_go = nullptr;
+					LOG("NO GAMEOBJECT SELECTED");
 				}
 			}
 			if (App->scene_intro->selected_go != root) 

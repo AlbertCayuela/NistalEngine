@@ -3,6 +3,7 @@
 #include "Globals.h"
 #include "glmath.h"
 #include "MathGeoLib/include/Math/float3.h"
+#include <map>
 
 class GameObject;
 class GOCamera;
@@ -20,6 +21,8 @@ public:
 	void Look(const float3 &Position, const float3 &Reference, bool RotateAroundReference = false);
 	void LookAt(const float3 &Spot);
 	void Move(const float3 &Movement);
+
+	void TestAABBIntersection(LineSegment ray, GameObject* game_object, map<GameObject*, float> &intersected_objects);
 
 private:
 
