@@ -23,6 +23,7 @@ public:
 	void Move(const float3 &Movement);
 
 	void TestAABBIntersection(LineSegment ray, GameObject* game_object, map<GameObject*, float> &intersected_objects);
+	bool TestTriIntersection(LineSegment ray, GameObject *& game_object, map<GameObject*, float>& intersected_objects);
 
 private:
 
