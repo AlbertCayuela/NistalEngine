@@ -4,6 +4,7 @@
 #include "GameObject.h"
 #include "GOCamera.h"
 #include "GOTransform.h"
+#include <map>
 
 ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -110,6 +111,32 @@ update_status ModuleCamera3D::Update(float dt)
 			FocusOnTarget(App->scene_intro->selected_go->transform->position, 7.0f);
 		else if (App->scene_intro->selected_go == nullptr)
 			FocusOnTarget(float3(0.0f, 0.0f, 0.0f), 7.0f);
+	}
+
+	//MOUSE PICKING
+	if (!ImGui::GetIO().WantCaptureMouse) 
+	{
+		if (App->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN && App->input->GetKey(SDL_SCANCODE_LALT) == KEY_IDLE)
+		{
+			LOG("Mouse Picking");
+
+			map<GameObject*, float> intersected_objects;
+
+			int mouse_x = App->input->GetMouseX(); //mouse position
+			int mouse_y = App->input->GetMouseY();
+			float screen_w = App->window->width; // window size
+			float screen_h = App->window->height;
+
+			float n_mouse_x = -(1.0f - 2.0f * ((float)mouse_x) / (screen_w));
+			float n_mouse_y = 1.0f - (2.0f * ((float)mouse_y) / (screen_h));
+
+			LOG("mouse x: %i mouse y: %i screen w: %f screen h: %f norm mouse x: %f norm mouse y: %f", mouse_x, mouse_y, screen_w, screen_h, n_mouse_x, n_mouse_y);
+
+			LineSegment picking = camera->frustum.UnProjectLineSegment(n_mouse_x, n_mouse_y);
+
+
+
+		}
 	}
 
 	//ROTATE AROUND OBJECT
