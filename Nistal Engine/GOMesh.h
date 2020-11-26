@@ -15,6 +15,8 @@ public:
 
 	bool DrawOwnMesh(modelData model);
 
+	void SaveSceneMesh(JSON_Array* componentsObj, GameObject* game_object);
+
 	modelData mesh_info;
 	std::string name;
 };

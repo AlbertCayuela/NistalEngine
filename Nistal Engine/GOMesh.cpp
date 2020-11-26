@@ -6,6 +6,7 @@
 GOMesh::GOMesh(GameObject* game_object, const char* name) : GOComponent(game_object)
 {
     this->name = name;
+	this->type = GOCOMPONENT_TYPE::MESH;
 
 	LOG("Mesh added to gameobject: %s", game_object->name.c_str());
 }
@@ -104,4 +105,15 @@ bool GOMesh::DrawOwnMesh(modelData model)
 	}
 
 	return ret;
+}
+
+void GOMesh::SaveSceneMesh(JSON_Array* componentsObj, GameObject* game_object)
+{
+	JSON_Value* component = json_value_init_object();
+	JSON_Object* componentObj = json_value_get_object(component);
+
+	json_object_set_number(componentObj, "Type:", this->type);
+	json_object_set_string(componentObj, "path", game_object->path.c_str());
+
+	json_array_append_value(componentsObj, component);
 }

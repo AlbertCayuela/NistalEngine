@@ -4,7 +4,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 1464676655,
+                "UID": 2005544375,
                 "PositionX": 0,
                 "PositionY": 3,
                 "PositionZ": -15,
@@ -22,7 +22,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 1580317136,
+                "UID": 1479988,
                 "PositionX": 0,
                 "PositionY": 0,
                 "PositionZ": 0,
@@ -40,7 +40,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 300888816,
+                "UID": 1694428825,
                 "PositionX": -41.47589111328125,
                 "PositionY": 21.01409912109375,
                 "PositionZ": 0,
@@ -50,6 +50,10 @@
                 "ScaleX": 1,
                 "ScaleY": 1,
                 "ScaleZ": 1
+            },
+            {
+                "Type:": 2,
+                "path": "Models\/Street environment_V01.fbx"
             }
         ]
     },
@@ -58,7 +62,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 1307405717,
+                "UID": 1471160382,
                 "PositionX": 17.707164764404297,
                 "PositionY": 20.053276062011719,
                 "PositionZ": 2.1210729528320371e-07,
@@ -68,6 +72,10 @@
                 "ScaleX": 1,
                 "ScaleY": 1,
                 "ScaleZ": 1
+            },
+            {
+                "Type:": 2,
+                "path": "Models\/Street environment_V01.fbx"
             }
         ]
     },
@@ -76,7 +84,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 2037878556,
+                "UID": 1899617323,
                 "PositionX": 16.010492324829102,
                 "PositionY": 37.4932861328125,
                 "PositionZ": -1.5106878663573298e-06,
@@ -86,6 +94,10 @@
                 "ScaleX": 1,
                 "ScaleY": 1,
                 "ScaleZ": 1
+            },
+            {
+                "Type:": 2,
+                "path": "Models\/Street environment_V01.fbx"
             }
         ]
     },
@@ -94,7 +106,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 410481426,
+                "UID": 950700740,
                 "PositionX": 40.979995727539063,
                 "PositionY": 18.270824432373047,
                 "PositionZ": -2.0522466002148576e-06,
@@ -104,6 +116,10 @@
                 "ScaleX": 1,
                 "ScaleY": 1,
                 "ScaleZ": 1
+            },
+            {
+                "Type:": 2,
+                "path": "Models\/Street environment_V01.fbx"
             }
         ]
     },
@@ -112,7 +128,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 1475213026,
+                "UID": 2006823238,
                 "PositionX": -2.1597719192504883,
                 "PositionY": 1.8538382053375244,
                 "PositionZ": 0,
@@ -122,6 +138,10 @@
                 "ScaleX": 1,
                 "ScaleY": 1,
                 "ScaleZ": 1
+            },
+            {
+                "Type:": 2,
+                "path": "Models\/Street environment_V01.fbx"
             }
         ]
     },
@@ -130,7 +150,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 1893750576,
+                "UID": 16171802,
                 "PositionX": -0.02860260009765625,
                 "PositionY": 0.026032090187072754,
                 "PositionZ": 0,
@@ -140,6 +160,10 @@
                 "ScaleX": 0.99663525819778442,
                 "ScaleY": 0.99663525819778442,
                 "ScaleZ": 0.99663525819778442
+            },
+            {
+                "Type:": 2,
+                "path": "Models\/Street environment_V01.fbx"
             }
         ]
     },
@@ -148,7 +172,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 1818466373,
+                "UID": 64812979,
                 "PositionX": 25.154010772705078,
                 "PositionY": -39.153720855712891,
                 "PositionZ": 8.5538641769744572e-07,
@@ -158,6 +182,10 @@
                 "ScaleX": 1,
                 "ScaleY": 1,
                 "ScaleZ": 1
+            },
+            {
+                "Type:": 2,
+                "path": "Models\/Street environment_V01.fbx"
             }
         ]
     },
@@ -166,7 +194,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 58710264,
+                "UID": 1341276484,
                 "PositionX": 30.134540557861328,
                 "PositionY": 37.4932861328125,
                 "PositionZ": -1.5106878663573298e-06,
@@ -176,6 +204,10 @@
                 "ScaleX": 1,
                 "ScaleY": 1,
                 "ScaleZ": 1
+            },
+            {
+                "Type:": 2,
+                "path": "Models\/Street environment_V01.fbx"
             }
         ]
     },
@@ -184,7 +216,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 1350639089,
+                "UID": 2136807579,
                 "PositionX": -42.288055419921875,
                 "PositionY": 33.201576232910156,
                 "PositionZ": 5.0146070407208754e-07,
@@ -194,6 +226,10 @@
                 "ScaleX": 1,
                 "ScaleY": 1,
                 "ScaleZ": 1
+            },
+            {
+                "Type:": 2,
+                "path": "Models\/Street environment_V01.fbx"
             }
         ]
     },
@@ -202,7 +238,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 189671384,
+                "UID": 310796180,
                 "PositionX": -19.439706802368164,
                 "PositionY": 32.061729431152344,
                 "PositionZ": 0,
@@ -212,6 +248,10 @@
                 "ScaleX": 1,
                 "ScaleY": 1,
                 "ScaleZ": 1
+            },
+            {
+                "Type:": 2,
+                "path": "Models\/Street environment_V01.fbx"
             }
         ]
     },
@@ -220,7 +260,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 699211770,
+                "UID": 1376862938,
                 "PositionX": 34.270423889160156,
                 "PositionY": -41.972747802734375,
                 "PositionZ": 8.5538641769744572e-07,
@@ -230,6 +270,10 @@
                 "ScaleX": 1,
                 "ScaleY": 1,
                 "ScaleZ": 1
+            },
+            {
+                "Type:": 2,
+                "path": "Models\/Street environment_V01.fbx"
             }
         ]
     },
@@ -238,7 +282,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 1569506361,
+                "UID": 421460059,
                 "PositionX": 44.260082244873047,
                 "PositionY": -39.153720855712891,
                 "PositionZ": 8.5538641769744572e-07,
@@ -248,6 +292,10 @@
                 "ScaleX": 1,
                 "ScaleY": 1,
                 "ScaleZ": 1
+            },
+            {
+                "Type:": 2,
+                "path": "Models\/Street environment_V01.fbx"
             }
         ]
     },
@@ -256,7 +304,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 1817389212,
+                "UID": 34653972,
                 "PositionX": -20.831323623657227,
                 "PositionY": -27.426488876342773,
                 "PositionZ": 0,
@@ -266,6 +314,10 @@
                 "ScaleX": 1,
                 "ScaleY": 1,
                 "ScaleZ": 1
+            },
+            {
+                "Type:": 2,
+                "path": "Models\/Street environment_V01.fbx"
             }
         ]
     },
@@ -274,7 +326,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 159140521,
+                "UID": 1516962872,
                 "PositionX": 42.130641937255859,
                 "PositionY": 37.4932861328125,
                 "PositionZ": -1.5106878663573298e-06,
@@ -284,6 +336,10 @@
                 "ScaleX": 1,
                 "ScaleY": 1,
                 "ScaleZ": 1
+            },
+            {
+                "Type:": 2,
+                "path": "Models\/Street environment_V01.fbx"
             }
         ]
     },
@@ -292,7 +348,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 1505606491,
+                "UID": 1952414155,
                 "PositionX": -20.572771072387695,
                 "PositionY": 43.060829162597656,
                 "PositionZ": -0.069194458425045013,
@@ -302,6 +358,10 @@
                 "ScaleX": 1,
                 "ScaleY": 1,
                 "ScaleZ": 1
+            },
+            {
+                "Type:": 2,
+                "path": "Models\/Street environment_V01.fbx"
             }
         ]
     },
@@ -310,7 +370,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 1400659572,
+                "UID": 1707668268,
                 "PositionX": 31.51188850402832,
                 "PositionY": -16.446016311645508,
                 "PositionZ": 0,
@@ -320,6 +380,10 @@
                 "ScaleX": 1,
                 "ScaleY": 1,
                 "ScaleZ": 1
+            },
+            {
+                "Type:": 2,
+                "path": "Models\/Street environment_V01.fbx"
             }
         ]
     },
@@ -328,7 +392,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 1195633916,
+                "UID": 861478921,
                 "PositionX": 13.38798999786377,
                 "PositionY": -33.755039215087891,
                 "PositionZ": -9.3834518111179932e-07,
@@ -338,6 +402,10 @@
                 "ScaleX": 1,
                 "ScaleY": 1,
                 "ScaleZ": 1
+            },
+            {
+                "Type:": 2,
+                "path": "Models\/Street environment_V01.fbx"
             }
         ]
     },
@@ -346,7 +414,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 2408904,
+                "UID": 469800482,
                 "PositionX": -2.5033531188964844,
                 "PositionY": 15.800846099853516,
                 "PositionZ": 0,
@@ -356,6 +424,10 @@
                 "ScaleX": 1,
                 "ScaleY": 1,
                 "ScaleZ": 1
+            },
+            {
+                "Type:": 2,
+                "path": "Models\/Street environment_V01.fbx"
             }
         ]
     },
@@ -364,7 +436,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 757261603,
+                "UID": 1227298779,
                 "PositionX": -42.807239532470703,
                 "PositionY": -41.835563659667969,
                 "PositionZ": -9.3834518111179932e-07,
@@ -374,6 +446,10 @@
                 "ScaleX": 1,
                 "ScaleY": 1,
                 "ScaleZ": 1
+            },
+            {
+                "Type:": 2,
+                "path": "Models\/Street environment_V01.fbx"
             }
         ]
     },
@@ -382,7 +458,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 1319832492,
+                "UID": 1460283854,
                 "PositionX": -34.679481506347656,
                 "PositionY": -41.835563659667969,
                 "PositionZ": -9.3834518111179932e-07,
@@ -392,6 +468,10 @@
                 "ScaleX": 1,
                 "ScaleY": 1,
                 "ScaleZ": 1
+            },
+            {
+                "Type:": 2,
+                "path": "Models\/Street environment_V01.fbx"
             }
         ]
     },
@@ -400,7 +480,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 270653329,
+                "UID": 1534811533,
                 "PositionX": -29.478403091430664,
                 "PositionY": 21.01409912109375,
                 "PositionZ": 0,
@@ -410,6 +490,10 @@
                 "ScaleX": 1,
                 "ScaleY": 1,
                 "ScaleZ": 1
+            },
+            {
+                "Type:": 2,
+                "path": "Models\/Street environment_V01.fbx"
             }
         ]
     },
@@ -418,7 +502,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 472817000,
+                "UID": 644412851,
                 "PositionX": -32.361495971679688,
                 "PositionY": 42.37042236328125,
                 "PositionZ": 5.0146070407208754e-07,
@@ -428,6 +512,10 @@
                 "ScaleX": 1,
                 "ScaleY": 1,
                 "ScaleZ": 1
+            },
+            {
+                "Type:": 2,
+                "path": "Models\/Street environment_V01.fbx"
             }
         ]
     },
@@ -436,7 +524,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 1671189645,
+                "UID": 271902971,
                 "PositionX": 16.049516677856445,
                 "PositionY": -16.696884155273438,
                 "PositionZ": 0,
@@ -446,6 +534,10 @@
                 "ScaleX": 1,
                 "ScaleY": 1,
                 "ScaleZ": 1
+            },
+            {
+                "Type:": 2,
+                "path": "Models\/Street environment_V01.fbx"
             }
         ]
     },
@@ -454,7 +546,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 525769240,
+                "UID": 763435420,
                 "PositionX": 13.38798999786377,
                 "PositionY": -40.802516937255859,
                 "PositionZ": -9.3834518111179932e-07,
@@ -464,6 +556,10 @@
                 "ScaleX": 1,
                 "ScaleY": 1,
                 "ScaleZ": 1
+            },
+            {
+                "Type:": 2,
+                "path": "Models\/Street environment_V01.fbx"
             }
         ]
     },
@@ -472,7 +568,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 699274079,
+                "UID": 2143496091,
                 "PositionX": -31.216331481933594,
                 "PositionY": 33.201576232910156,
                 "PositionZ": 5.0146070407208754e-07,
@@ -482,6 +578,10 @@
                 "ScaleX": 1,
                 "ScaleY": 1,
                 "ScaleZ": 1
+            },
+            {
+                "Type:": 2,
+                "path": "Models\/Street environment_V01.fbx"
             }
         ]
     },
@@ -490,7 +590,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 217737713,
+                "UID": 277685382,
                 "PositionX": -20.317693710327148,
                 "PositionY": -16.163608551025391,
                 "PositionZ": 0,
@@ -500,6 +600,10 @@
                 "ScaleX": 1,
                 "ScaleY": 1,
                 "ScaleZ": 1
+            },
+            {
+                "Type:": 2,
+                "path": "Models\/Street environment_V01.fbx"
             }
         ]
     },
@@ -508,7 +612,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 60193579,
+                "UID": 983650511,
                 "PositionX": -41.649002075195313,
                 "PositionY": -16.495393753051758,
                 "PositionZ": 0,
@@ -518,6 +622,10 @@
                 "ScaleX": 1,
                 "ScaleY": 1,
                 "ScaleZ": 1
+            },
+            {
+                "Type:": 2,
+                "path": "Models\/Street environment_V01.fbx"
             }
         ]
     },
@@ -526,7 +634,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 116734020,
+                "UID": 372083934,
                 "PositionX": -42.807239532470703,
                 "PositionY": -30.643888473510742,
                 "PositionZ": -9.3834518111179932e-07,
@@ -536,6 +644,10 @@
                 "ScaleX": 1,
                 "ScaleY": 1,
                 "ScaleZ": 1
+            },
+            {
+                "Type:": 2,
+                "path": "Models\/Street environment_V01.fbx"
             }
         ]
     },
@@ -544,7 +656,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 527948855,
+                "UID": 1942001072,
                 "PositionX": -34.679481506347656,
                 "PositionY": -30.643888473510742,
                 "PositionZ": -9.3834518111179932e-07,
@@ -554,6 +666,10 @@
                 "ScaleX": 1,
                 "ScaleY": 1,
                 "ScaleZ": 1
+            },
+            {
+                "Type:": 2,
+                "path": "Models\/Street environment_V01.fbx"
             }
         ]
     },
@@ -562,7 +678,7 @@
         "Components:": [
             {
                 "Type:": 1,
-                "UID": 1797729862,
+                "UID": 289695186,
                 "PositionX": 30.695278167724609,
                 "PositionY": 21.612646102905273,
                 "PositionZ": 2.1210729528320371e-07,
@@ -572,6 +688,10 @@
                 "ScaleX": 1,
                 "ScaleY": 1,
                 "ScaleZ": 1
+            },
+            {
+                "Type:": 2,
+                "path": "Models\/Street environment_V01.fbx"
             }
         ]
     }

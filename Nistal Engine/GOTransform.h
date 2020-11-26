@@ -23,8 +23,8 @@ public:
 	void NewScale(float3 new_scale);
 
 	//JSON data saving
-	void JsonSaveTransform(JSON_Array* componentsObj, GameObject* game_object);
-	void JsonLoadTransform(JSON_Object* obj);
+	void SaveSceneTransform(JSON_Array* componentsObj, GameObject* game_object);
+	void LoadSceneTransform(JSON_Object* obj);
 
 public:
 

@@ -1,6 +1,7 @@
 #include "Application.h"
 #include "ModuleSerialization.h"
 #include "GOTransform.h"
+#include "GOMesh.h"
 
 ModuleSerialization::ModuleSerialization(Application* app, bool start_enabled) : Module(app, start_enabled)
 {}
@@ -43,6 +44,8 @@ bool ModuleSerialization::LoadScene(const char* name_scene)
 	{
 		obj = json_array_get_object(Array, i);
 		GameObject* go = App->scene_intro->CreateSavedGameObject(App->scene_intro->root, "load saved name here");
+		
+		
 		go->LoadInfoGameObject(obj);
 	}
 
@@ -55,17 +58,5 @@ bool ModuleSerialization::SaveGameObjects(JSON_Array* json_array)
 	{
 		(*iterator)->SaveInfoGameObject((*iterator), json_array);
 	}
-
-	//TODO: Save vector list OwnGameObjects
 	return true;
 }
-
-//bool ModuleSerialization::LoadSceneGameObjects()
-//{
-//	for (std::vector<GameObject*>::const_iterator iterator = App->scene_intro->saved_scene_game_object.begin(); iterator != App->scene_intro->saved_scene_game_object.end(); iterator++)
-//	{
-//		(*iterator)->LoadInfoGameObject((*iterator));
-//	}
-//
-//	return true;
-//}

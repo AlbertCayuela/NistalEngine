@@ -157,7 +157,10 @@ void GameObject::SaveInfoGameObject(GameObject* go, JSON_Array* json_array)
 	componentsObj = json_value_get_array(components);
 
 	if (go->transform != nullptr)
-		go->transform->JsonSaveTransform(componentsObj, go);
+		go->transform->SaveSceneTransform(componentsObj, go);
+
+	if (go->mesh != nullptr)
+		go->mesh->SaveSceneMesh(componentsObj, go);
 
 	json_object_set_value(object_json, "Components:", components);
 
@@ -177,7 +180,11 @@ void GameObject::LoadInfoGameObject(JSON_Object* obj)
 
 		if (num_type == 1)
 		{
-			transform->JsonLoadTransform(type);
+			transform->LoadSceneTransform(type);
+		}
+		if (num_type == 2)
+		{
+			//LoadMesh
 		}
 	}
 	uuid = json_object_get_number(obj, "UID:");
