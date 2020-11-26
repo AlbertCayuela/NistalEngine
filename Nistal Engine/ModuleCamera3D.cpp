@@ -20,7 +20,7 @@ ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(ap
 	camera = new GOCamera(nullptr);
 	camera->SetNearPlane(0.1f);
 	camera->SetFarPlane(1000.0f);
-	Move({ 5.0f,5.0f,5.0f });
+	Move({ 50.0f,50.0f,100.0f });
 	LookAt({ 0.0f,0.0f,0.0f });
 
 }
