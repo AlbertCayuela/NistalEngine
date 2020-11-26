@@ -4,7 +4,6 @@
 #include "GameObject.h"
 #include "GOCamera.h"
 #include "GOTransform.h"
-#include <map>
 
 ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -120,21 +119,24 @@ update_status ModuleCamera3D::Update(float dt)
 		{
 			LOG("Mouse Picking");
 
-			map<GameObject*, float> intersected_objects;
+			map<GameObject*, float> intersected_objects; //map to store intersected gameobjects
 
 			int mouse_x = App->input->GetMouseX(); //mouse position
 			int mouse_y = App->input->GetMouseY();
 			float screen_w = App->window->width; // window size
 			float screen_h = App->window->height;
 
-			float n_mouse_x = -(1.0f - 2.0f * ((float)mouse_x) / (screen_w));
+			float n_mouse_x = -(1.0f - 2.0f * ((float)mouse_x) / (screen_w)); //normalized mouse positions
 			float n_mouse_y = 1.0f - (2.0f * ((float)mouse_y) / (screen_h));
 
-			LOG("mouse x: %i mouse y: %i screen w: %f screen h: %f norm mouse x: %f norm mouse y: %f", mouse_x, mouse_y, screen_w, screen_h, n_mouse_x, n_mouse_y);
+			LOG("mouse x: %i mouse y: %i screen w: %.2f screen h: %.2f norm mouse x: %.2f norm mouse y: %.2f", mouse_x, mouse_y, screen_w, screen_h, n_mouse_x, n_mouse_y);
 
 			LineSegment picking = camera->frustum.UnProjectLineSegment(n_mouse_x, n_mouse_y);
 
-
+			for (std::vector<GameObject*>::iterator i = App->scene_intro->game_objects.begin(); i != App->scene_intro->game_objects.end(); i++)
+			{
+				TestAABBIntersection(picking, (*i), intersected_objects);
+			}
 
 		}
 	}
@@ -171,6 +173,20 @@ void ModuleCamera3D::LookAt(const float3& Spot)
 void ModuleCamera3D::Move(const float3 &Movement)
 {
 	camera->frustum.Translate(Movement);
+}
+
+void ModuleCamera3D::TestAABBIntersection(LineSegment ray, GameObject* game_object, map<GameObject*, float> intersected_objects)
+{
+	if (game_object->bbox.IsFinite())
+	{
+		if (ray.Intersects(game_object->bbox)) 
+		{
+			float distance;
+			distance = game_object->bbox.Distance(ray.a);
+			LOG("GameObject: %s intersected, distance: %f", game_object->ui_name.c_str(), distance);
+			intersected_objects.insert({ game_object, distance });
+		}
+	}
 }
 
 void ModuleCamera3D::FocusOnTarget(const float3& focus, const float& distance)
