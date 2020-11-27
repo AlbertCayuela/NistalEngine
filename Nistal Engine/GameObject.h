@@ -37,6 +37,8 @@ public:
 	void AddBoundingBox();
 	void DrawBoundingBox();
 
+	void DeleteGameObjects();
+
 	std::string name;
 	std::string path;
 	std::string ui_name;

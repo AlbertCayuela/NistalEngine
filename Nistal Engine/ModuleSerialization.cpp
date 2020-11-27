@@ -34,20 +34,23 @@ bool ModuleSerialization::SaveScene(const char* scene_name)
 
 bool ModuleSerialization::LoadScene(const char* name_scene)
 {
-	JSON_Value* scene = json_parse_file(name_scene);
-	JSON_Array* Array = json_value_get_array(scene);
-	JSON_Object* obj = nullptr;
 
-	int size = json_array_get_count(Array);
+	App->scene_intro->root->DeleteGameObjects();
 
-	for (int i = 0; i < size; i++)
-	{
-		obj = json_array_get_object(Array, i);
-		GameObject* go = App->scene_intro->CreateSavedGameObject(App->scene_intro->root, "load saved name here");
-		
-		
-		go->LoadInfoGameObject(obj);
-	}
+	//JSON_Value* scene = json_parse_file(name_scene);
+	//JSON_Array* Array = json_value_get_array(scene);
+	//JSON_Object* obj = nullptr;
+
+	//int size = json_array_get_count(Array);
+
+	//for (int i = 0; i < size; i++)
+	//{
+	//	obj = json_array_get_object(Array, i);
+	//	GameObject* go = App->scene_intro->CreateSavedGameObject(App->scene_intro->root, "load saved name here");
+	//	
+	//	
+	//	go->LoadInfoGameObject(obj);
+	//}
 
 	return true;
 }

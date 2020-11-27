@@ -187,11 +187,6 @@ GameObject* ModuleSceneIntro::CreateSavedGameObject(GameObject* parent, const ch
     return game_object;
 }
 
-void ModuleSceneIntro::DeleteScene()
-{
-
-}
-
 
 
 

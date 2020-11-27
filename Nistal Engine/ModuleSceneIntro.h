@@ -25,8 +25,6 @@ public:
     GameObject* CreateOWNGameObject(GameObject* parent, const char* name);
     GameObject* CreateSavedGameObject(GameObject* parent, const char* name);
 
-    void DeleteScene();
-
     vector<GameObject*> game_objects;
     vector<GameObject*> own_game_objects;
     vector<GameObject*> saved_scene_game_object;

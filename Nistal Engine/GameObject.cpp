@@ -141,6 +141,13 @@ void GameObject::DrawBoundingBox()
 
 }
 
+void GameObject::DeleteGameObjects()
+{
+	App->scene_intro->game_objects.clear();
+	children.clear();
+	go_components.clear();
+}
+
 void GameObject::SaveInfoGameObject(GameObject* go, JSON_Array* json_array)
 {
 	//BASIC INFO

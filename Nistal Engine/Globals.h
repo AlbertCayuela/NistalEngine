@@ -50,3 +50,21 @@ enum update_status
 #define LIBRARY_MODEL_FOLDER "/Library/Models/"
 #define LIBRARY_MATERIAL_FOLDER "/Library/Materials/"
 #define LIBRARY_STATE_MACHINE_FOLDER "/Library/StateMachines/"
+
+#define RELEASE(x)\
+{\
+   if(x != nullptr)\
+	{\
+	  delete x;\
+	  x = nullptr;\
+    }\
+}
+
+#define RELEASE_ARRAY(x)\
+{\
+   if(x != nullptr)\
+	{\
+      delete[] x;\
+	  x = nullptr;\
+	}\
+}
