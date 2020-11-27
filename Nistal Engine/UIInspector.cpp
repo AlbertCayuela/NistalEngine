@@ -132,16 +132,16 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 
 			Separator();
 
-			if (App->importer->loadOwnFormat)
-			{
-				Text("Number of vertices: %i", App->importer->modelOwnFormat.num_vertex);
-				Text("Number of indices: %i", App->importer->modelOwnFormat.num_index);
-				Text("Number of faces: %i", App->importer->modelOwnFormat.num_vertex / 3);
-				Text("Number of normals: %i", App->importer->modelOwnFormat.num_normals);
-				Text("Number of UVs: %i", App->importer->modelOwnFormat.num_uvs);
-			}
+			//if (App->importer->loadOwnFormat)
+			//{
+			//	Text("Number of vertices: %i", App->importer->modelOwnFormat.num_vertex);
+			//	Text("Number of indices: %i", App->importer->modelOwnFormat.num_index);
+			//	Text("Number of faces: %i", App->importer->modelOwnFormat.num_vertex / 3);
+			//	Text("Number of normals: %i", App->importer->modelOwnFormat.num_normals);
+			//	Text("Number of UVs: %i", App->importer->modelOwnFormat.num_uvs);
+			//}
 
-			else if (mesh_exists || GO != App->scene_intro->root)
+			if (mesh_exists || GO != App->scene_intro->root)
 			{
 				Text("Number of vertices: %i", GO->mesh->mesh_info.num_vertex);
 				Text("Number of indices: %i", GO->mesh->mesh_info.num_index);
