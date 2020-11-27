@@ -37,6 +37,11 @@ void UILoad::Draw()
 
 	SetPos();
 
+	if (Button("Load Scene")) 
+	{
+
+	}
+
 	End();
 }
 

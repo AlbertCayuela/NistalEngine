@@ -16,6 +16,9 @@ public:
 	bool CleanUp();
 
 	void SetPos();
+
+public: 
+
 };
 
 #endif // !__UILOAD_H__

@@ -11,6 +11,10 @@ GOTransform::GOTransform(GameObject* game_object, const char* name):GOComponent(
 
 GOTransform::~GOTransform()
 {
+	if (parent != nullptr) 
+	{
+		parent->transform = nullptr;
+	}
 }
 
 math::float4x4& GOTransform::LocalMatrix() const

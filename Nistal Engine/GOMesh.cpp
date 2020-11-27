@@ -13,6 +13,11 @@ GOMesh::GOMesh(GameObject* game_object, const char* name) : GOComponent(game_obj
 
 GOMesh::~GOMesh()
 {
+    if (parent != nullptr) 
+    {
+        parent->has_mesh = false;
+        parent->mesh = nullptr;
+    }
 }
 
 void GOMesh::DrawMesh(uint texture_id)

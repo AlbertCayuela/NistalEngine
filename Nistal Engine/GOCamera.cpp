@@ -19,6 +19,12 @@ GOCamera::GOCamera(GameObject* parent) : GOComponent(parent)
 
 GOCamera::~GOCamera()
 {
+	if (parent != nullptr) 
+	{
+		parent->has_camera = false;
+		parent->camera = nullptr;
+	}
+
 }
 
 void GOCamera::Update(float dt)

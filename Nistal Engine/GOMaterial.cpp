@@ -9,6 +9,11 @@ GOMaterial::GOMaterial(GameObject* game_object, const char* name) : GOComponent(
 
 GOMaterial::~GOMaterial()
 {
+	if (parent != nullptr) 
+	{
+		parent->has_material = false;
+		parent->material = nullptr;
+	}
 }
 
 void GOMaterial::LoadThisTex(const char* texture_path)
