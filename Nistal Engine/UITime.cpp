@@ -37,24 +37,53 @@ void UITime::Draw()
 
 	if (Button("Play")) 
 	{
+		LOG("Playing");
 		timer.Start();
+		App->scene_intro->playing = true;
+		App->renderer3D->using_engine_camera = false;
 	}
 	
 	SameLine();
 
 	if (Button("Stop"))
 	{
+		LOG("Stopping")
 		timer.Stop();
+		App->scene_intro->playing = false;
+		App->renderer3D->using_engine_camera = true;
 	}
 
 	SameLine();
 
-	float seconds;
-	seconds = timer.Read();
+	if (App->scene_intro->playing) 
+	{
+		if (Button("Change camera"))
+		{
+			LOG("Changing camera");
+			App->renderer3D->using_engine_camera = !App->renderer3D->using_engine_camera;
+		}
+	}
+	
+	SameLine();
 
-	Text("Game Time: %.2f", seconds/1000);
+	float game_seconds;
+	game_seconds = timer.Read();
 
+	Text("Game Time: %.2f", game_seconds/1000);
 
+	SameLine();
+
+	float engine_seconds;
+	engine_seconds = App->startup_time.Read();
+
+	Text("Application Time: %.2f", engine_seconds/1000);
+
+	//SameLine();
+
+	if (SliderFloat("TimeScale", &time_scale, 0.0f, 2.0f)) 
+	{
+
+	}
 
 	End();
 

@@ -111,13 +111,18 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 	glLoadIdentity();
 
 	glMatrixMode(GL_MODELVIEW);
-	if (!App->ui->use_camera) 
+
+	if (App->scene_intro->playing && using_engine_camera)
 	{
 		glLoadMatrixf(App->camera->camera->GetViewMatrix().ptr());
 	}
-	else if (App->ui->use_camera) 
+	else if (App->scene_intro->playing && !using_engine_camera)
 	{
 		glLoadMatrixf(App->scene_intro->camera->camera->GetViewMatrix().ptr());
+	}
+	else if (!App->scene_intro->playing) 
+	{
+		glLoadMatrixf(App->camera->camera->GetViewMatrix().ptr());
 	}
 
 	// light 0 on cam pos

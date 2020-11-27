@@ -34,5 +34,6 @@ public:
     GameObject* street = nullptr;
     GameObject* selected_go = nullptr;
 
+    bool playing = false;
     bool render_street = false;
 };
