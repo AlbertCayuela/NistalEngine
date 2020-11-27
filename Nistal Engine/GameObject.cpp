@@ -182,7 +182,8 @@ void GameObject::SaveInfoGameObject(GameObject* go, JSON_Array* json_array)
 void GameObject::LoadInfoGameObject(GameObject* game_object, JSON_Object* obj)
 {
 	game_object->GetNames(json_object_get_string(obj, "Name:"));
-	game_object->uuid = json_object_get_number(obj, "");
+	game_object->uuid = json_object_get_number(obj, "UUID");
+	game_object->parent_uuid = json_object_get_number(obj, "Parent UUID");
 
 	JSON_Array* Array = json_object_get_array(obj, "Components:");
 	JSON_Object* type;
@@ -195,11 +196,16 @@ void GameObject::LoadInfoGameObject(GameObject* game_object, JSON_Object* obj)
 
 		if (num_type == 1)
 		{
-			transform->LoadSceneTransform(type);
+			game_object->transform->LoadSceneTransform(type);
 		}
 		if (num_type == 2)
 		{
-			//LoadMesh
+			game_object->AddComponent(GOCOMPONENT_TYPE::MESH, "mesh");
+			game_object->mesh->LoadSceneMesh(type, game_object);
+		}
+		if (num_type == 3) 
+		{
+			game_object->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "material");
 		}
 	}
 	uuid = json_object_get_number(obj, "UID:");

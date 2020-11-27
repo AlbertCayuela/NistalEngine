@@ -14,6 +14,7 @@ public:
 	void SetMesh(const char* path);
 
 	void SaveSceneMesh(JSON_Array* componentsObj, GameObject* game_object);
+	void LoadSceneMesh(JSON_Object* obj, GameObject* game_object);
 
 	modelData mesh_info;
 

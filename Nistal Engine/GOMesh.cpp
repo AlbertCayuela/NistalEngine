@@ -76,3 +76,12 @@ void GOMesh::SaveSceneMesh(JSON_Array* componentsObj, GameObject* game_object)
 
 	json_array_append_value(componentsObj, component);
 }
+
+void GOMesh::LoadSceneMesh(JSON_Object* obj, GameObject* game_object)
+{
+    game_object->mesh->name = json_object_get_string(obj, "path");
+
+    string full_path(LIBRARY_MESH_FOLDER + string(name) + string(".mesh"));
+
+    App->importer->LoadOwnFormat(game_object->mesh->name, game_object);
+}

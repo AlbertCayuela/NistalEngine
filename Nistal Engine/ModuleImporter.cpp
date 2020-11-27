@@ -91,19 +91,19 @@ bool ModuleImporter::SaveOwnFormat(modelData model, string name_to_file)
 	return ret;
 }
 
-bool ModuleImporter::LoadOwnFormat(string file_name)
+bool ModuleImporter::LoadOwnFormat(string file_name, GameObject* new_go)
 {
 	bool ret = true;
 
 	string full_path(LIBRARY_MESH_FOLDER + string(file_name) + string(".mesh"));
 	string name;
 	App->file_system->SplitFilePath(file_name.c_str(), nullptr, &name);
-	if (createOwnGameObject)
-	{
-		new_go = App->scene_intro->CreateOWNGameObject(App->scene_intro->root, name.c_str());
-		new_go->AddComponent(GOCOMPONENT_TYPE::MESH, "ownMesh");
-	}
-	createOwnGameObject = false;
+	//if (createOwnGameObject)
+	//{
+	//	new_go = App->scene_intro->CreateOWNGameObject(App->scene_intro->root, name.c_str());
+	//	new_go->AddComponent(GOCOMPONENT_TYPE::MESH, "ownMesh");
+	//}
+	//createOwnGameObject = false;
 
 	char* data;
 	App->file_system->Load(full_path.c_str(), &data);

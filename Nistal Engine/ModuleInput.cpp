@@ -136,7 +136,7 @@ update_status ModuleInput::PreUpdate(float dt)
 			{
 				LOG("Loading mesh from library");
 				App->importer->loadOwnFormat = true;
-				App->importer->LoadOwnFormat("mymesh");
+				//App->importer->LoadOwnFormat("mymesh");
 			}
 
 			if (extension == "scene" || extension == "json")

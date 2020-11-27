@@ -16,7 +16,7 @@ public:
 
 	//import function is our current LoadMeshes
 	bool SaveOwnFormat(modelData model, string name_to_file);
-	bool LoadOwnFormat(string file_name);
+	bool LoadOwnFormat(string file_name, GameObject* new_go);
 
 	bool TextureSaving(string texture_name, const char* folder);
 

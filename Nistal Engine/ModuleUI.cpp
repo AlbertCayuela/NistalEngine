@@ -101,7 +101,7 @@ update_status ModuleUI::Update(float dt)
 			}
 			if (MenuItem("Load Own Format Model", "L"))
 			{
-				App->importer->LoadOwnFormat("mymesh");
+				//App->importer->LoadOwnFormat("mymesh");
 			}
 			if (MenuItem("Exit", "Alt+F4"))
 			{

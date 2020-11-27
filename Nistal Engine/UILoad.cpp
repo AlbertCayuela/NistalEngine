@@ -39,7 +39,7 @@ void UILoad::Draw()
 
 	if (Button("Load Scene")) 
 	{
-		App->serialization->LoadScene("something");
+		App->serialization->LoadScene("Library/Scenes/testscene.json");
 		is_on = false;
 	}
 
