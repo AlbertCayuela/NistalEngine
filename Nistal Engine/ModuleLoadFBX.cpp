@@ -105,9 +105,10 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene,aiNode* node, GameObject* ga
 {
     if (node->mNumMeshes > 0) 
     {
-        new_go = App->scene_intro->CreateGameObject(game_object, file_path);
         mesh = scene->mMeshes[node->mMeshes[0]];
         model = modelData();
+        go_name = node->mName.C_Str();
+        new_go = App->scene_intro->CreateGameObject(game_object, go_name.c_str());
 
         //LOADING MATERIAL
         LoadMaterial(new_go);

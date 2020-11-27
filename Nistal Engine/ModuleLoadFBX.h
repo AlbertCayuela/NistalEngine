@@ -84,20 +84,12 @@ public:
 	int texture_height;
 	int texture_width;
 	uint textures_num;
+	std::string go_name;
 
 	GLubyte* image = nullptr;
 	GLint LOD = 0; //level of detail
 
 	GameObject* new_go;
-
-	//aiVector3D translation;
-	//aiVector3D scaling;
-	//aiQuaternion rotation;
-	//float3 position;
-	//float3 scale;
-	//Quat rot;
-	//aiMatrix3x3 rot_mat;
-	//aiVector3D rot_euler;
 
 	uint texture_id;
 
