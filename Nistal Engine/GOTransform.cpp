@@ -80,8 +80,6 @@ void GOTransform::SaveSceneTransform(JSON_Array* componentsObj, GameObject* game
 
 	json_object_set_number(componentObj, "Type:", this->type);
 
-	json_object_set_number(componentObj, "UID", game_object->uuid);
-	json_object_set_number(componentObj, "Parent UID", game_object->parent_uuid);
 	json_object_set_number(componentObj, "PositionX", position.x);
 	json_object_set_number(componentObj, "PositionY", position.y);
 	json_object_set_number(componentObj, "PositionZ", position.z);

@@ -63,7 +63,7 @@ public:
 
 public:
 	void SaveInfoGameObject(GameObject* go, JSON_Array* json_array);
-	void LoadInfoGameObject(JSON_Object* obj);
+	void LoadInfoGameObject(GameObject* game_object, JSON_Object* obj);
 
 	JSON_Value* components;
 	JSON_Array* componentsObj;

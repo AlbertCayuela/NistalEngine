@@ -155,9 +155,8 @@ void GameObject::SaveInfoGameObject(GameObject* go, JSON_Array* json_array)
 	JSON_Object* object_json = json_value_get_object(value_json);
 
 	json_object_set_string(object_json, "Name:", go->name.c_str());
-	/*json_object_set_number(object_json, "UUID:", go->uuid);
-	if (go->parent != nullptr)
-		json_object_set_number(object_json, "Parent UUID:", go->parent->uuid);*/
+	json_object_set_number(object_json, "UUID", go->uuid);
+	json_object_set_number(object_json, "Parent UUID", go->parent_uuid);
 
 		//COMPONENTS INFO
 	components = json_value_init_array();
@@ -180,8 +179,11 @@ void GameObject::SaveInfoGameObject(GameObject* go, JSON_Array* json_array)
 	json_array_append_value(json_array, value_json);
 }
 
-void GameObject::LoadInfoGameObject(JSON_Object* obj)
+void GameObject::LoadInfoGameObject(GameObject* game_object, JSON_Object* obj)
 {
+	game_object->GetNames(json_object_get_string(obj, "Name:"));
+	game_object->uuid = json_object_get_number(obj, "");
+
 	JSON_Array* Array = json_object_get_array(obj, "Components:");
 	JSON_Object* type;
 	int size = json_array_get_count(Array);
