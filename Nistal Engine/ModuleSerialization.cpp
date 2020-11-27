@@ -48,7 +48,7 @@ bool ModuleSerialization::LoadScene(const char* name_scene)
 	for (int i = 0; i < size; i++)
 	{
 		obj = json_array_get_object(Array, i);
-		GameObject* new_go = App->scene_intro->CreateSavedGameObject(App->scene_intro->root, "load saved name here");
+		GameObject* new_go = App->scene_intro->CreateGameObject(App->scene_intro->root, "load saved name here");
 		
 		new_go->LoadInfoGameObject(new_go, obj);
 	}
