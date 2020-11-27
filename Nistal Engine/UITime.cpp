@@ -9,7 +9,7 @@ using namespace ImGui;
 
 UITime::UITime() : UIWindow()
 {
-	is_on = false;
+	is_on = true;
 }
 
 UITime::~UITime()
@@ -31,4 +31,16 @@ bool UITime::CleanUp()
 
 void UITime::Draw()
 {
+	Begin("Time Management", &is_on, ImGuiWindowFlags_HorizontalScrollbar | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
+
+	SetPos();
+
+	End();
+
+}
+
+void UITime::SetPos()
+{
+	SetWindowPos(ImVec2((App->window->width / 8.0f) * 1.5f, 18.0f), ImGuiCond_Always);
+	SetWindowSize(ImVec2((App->window->width / 8.0f) * 4.5f, 60), ImGuiCond_Always);
 }

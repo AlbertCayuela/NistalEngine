@@ -15,6 +15,7 @@ public:
 	void Draw();
 	bool CleanUp();
 
+	void SetPos();
 };
 
 #endif // !__UITIME_H__

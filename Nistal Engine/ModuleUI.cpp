@@ -9,6 +9,7 @@
 #include "UIInspector.h"
 #include "UIHierarchy.h"
 #include "UISave.h"
+#include "UITime.h"
 #include <vector>
 
 #include "ImGui/imgui_impl_sdl.h"
@@ -37,6 +38,7 @@ ModuleUI::ModuleUI(Application* app, bool start_enabled) : Module(app, start_ena
 	ui_windows.push_back(ui_inspector = new UIInspector());
 	ui_windows.push_back(ui_hierarchy = new UIHierarchy());
 	ui_windows.push_back(ui_save = new UISave());
+	ui_windows.push_back(ui_time = new UITime());
 }
 
 ModuleUI::~ModuleUI()
@@ -59,6 +61,7 @@ bool ModuleUI::Start()
 	ui_inspector->Start();
 	ui_hierarchy->Start();
 	ui_save->Start();
+	ui_time->Start();
 
 	return ret;
 }

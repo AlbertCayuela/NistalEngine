@@ -11,6 +11,7 @@ class UIConsole;
 class UIInspector;
 class UIHierarchy;
 class UISave;
+class UITime;
 
 class ModuleUI : public Module
 {
@@ -60,6 +61,8 @@ private:
 	UIInspector* ui_inspector = nullptr;
 	UIHierarchy* ui_hierarchy = nullptr;
 	UISave* ui_save = nullptr;
+	UITime* ui_time = nullptr;
+
 
 	JSON_Object* UI_node = nullptr;
 
