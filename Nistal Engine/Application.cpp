@@ -168,3 +168,20 @@ float Application::GetFPS()
 {
 	return last_FPS;
 }
+
+void Application::TimeManager()
+{
+
+	total_frames++;
+	mydt = dt;
+
+	if (App->scene_intro->playing) 
+	{
+		dt = mydt * time_scale;
+	}
+	else if (!App->scene_intro->playing)
+	{
+		time_scale = 1.0f;
+	}
+
+}

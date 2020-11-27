@@ -20,7 +20,6 @@ public:
 
 public:
 
-	Timer timer;
 	float time_scale = 1.0f;
 };
 

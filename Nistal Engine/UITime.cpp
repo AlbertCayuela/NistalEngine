@@ -38,8 +38,9 @@ void UITime::Draw()
 	if (Button("Play")) 
 	{
 		LOG("Playing");
-		timer.Start();
+		App->playing_timer.Start();
 		App->scene_intro->playing = true;
+		App->scene_intro->paused = false;
 		App->renderer3D->using_engine_camera = false;
 	}
 	
@@ -47,9 +48,10 @@ void UITime::Draw()
 
 	if (Button("Stop"))
 	{
-		LOG("Stopping")
-		timer.Stop();
+		LOG("Stopping");
+		App->playing_timer.Stop();
 		App->scene_intro->playing = false;
+		App->scene_intro->paused = true;
 		App->renderer3D->using_engine_camera = true;
 	}
 
@@ -67,7 +69,7 @@ void UITime::Draw()
 	SameLine();
 
 	float game_seconds;
-	game_seconds = timer.Read();
+	game_seconds = App->playing_timer.Read();
 
 	Text("Game Time: %.2f", game_seconds/1000);
 

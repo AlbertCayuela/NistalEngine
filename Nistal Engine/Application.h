@@ -37,6 +37,12 @@ public:
 
 	Timer startup_time;
 
+	uint total_frames = 0;
+	Timer playing_timer;
+	float time_scale = 1.0f;
+	float mydt;
+	float newdt = 0.0f;
+
 private:
 
 	Timer	ms_timer;
@@ -60,6 +66,8 @@ public:
 	void RequestBrowser(const char* url);
 	float GetMS();
 	float GetFPS();
+
+	void TimeManager();
 
 private:
 

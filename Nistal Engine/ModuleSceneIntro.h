@@ -35,5 +35,6 @@ public:
     GameObject* selected_go = nullptr;
 
     bool playing = false;
+    bool paused = false;
     bool render_street = false;
 };

@@ -13,11 +13,10 @@ public:
 	void DrawMesh(uint texture_id = NULL);
 	void SetMesh(const char* path);
 
-	bool DrawOwnMesh(modelData model);
-
 	void SaveSceneMesh(JSON_Array* componentsObj, GameObject* game_object);
 
 	modelData mesh_info;
+
 	std::string name;
 };
 

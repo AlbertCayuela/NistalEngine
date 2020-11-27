@@ -103,7 +103,10 @@ update_status ModuleSceneIntro::Update(float dt)
     {
         if ((*i)->has_mesh)
         {
-            (*i)->mesh->DrawOwnMesh((*i)->mesh->mesh_info);
+            if((*i)->has_material)
+                (*i)->mesh->DrawMesh((*i)->material->texture_id);
+            else
+                (*i)->mesh->DrawMesh(NULL);
         }
         if ((*i)->parent != nullptr)
         {
@@ -118,8 +121,7 @@ update_status ModuleSceneIntro::Update(float dt)
     {
         if ((*i)->has_mesh)
         {
-            (*i)->mesh->DrawMesh((*i)->material->texture_id);
-                
+            (*i)->mesh->DrawMesh((*i)->material->texture_id);          
         }
         if ((*i)->parent != nullptr) 
         {
