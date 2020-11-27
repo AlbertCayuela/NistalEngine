@@ -35,6 +35,27 @@ void UITime::Draw()
 
 	SetPos();
 
+	if (Button("Play")) 
+	{
+		timer.Start();
+	}
+	
+	SameLine();
+
+	if (Button("Stop"))
+	{
+		timer.Stop();
+	}
+
+	SameLine();
+
+	float seconds;
+	seconds = timer.Read();
+
+	Text("Game Time: %.2f", seconds/1000);
+
+
+
 	End();
 
 }

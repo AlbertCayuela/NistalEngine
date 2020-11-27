@@ -4,6 +4,7 @@
 #include "Module.h"
 #include "Application.h"
 #include "UIWindow.h"
+#include "Timer.h"
 
 class UITime : public UIWindow
 {
@@ -16,6 +17,10 @@ public:
 	bool CleanUp();
 
 	void SetPos();
+
+public:
+
+	Timer timer;
 };
 
 #endif // !__UITIME_H__
