@@ -34,6 +34,8 @@ public:
 	float4x4 GetViewMatrix() const;
 	float4x4 GetProjectionMatrix() const;
 
+	void SaveSceneCamera(JSON_Array* componentsObj);
+
 public:
 
 	math::Frustum frustum;

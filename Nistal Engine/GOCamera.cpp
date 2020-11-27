@@ -3,6 +3,8 @@
 
 GOCamera::GOCamera(GameObject* parent) : GOComponent(parent)
 {
+	this->type = GOCOMPONENT_TYPE::CAMERA;
+	
 	aspect_ratio = 1.7778f;
 
 	frustum.type = FrustumType::PerspectiveFrustum;
@@ -143,4 +145,18 @@ float4x4 GOCamera::GetProjectionMatrix() const
 {
 	math::float4x4 projection_matrix = frustum.ProjectionMatrix();
 	return projection_matrix.Transposed();
+}
+
+void GOCamera::SaveSceneCamera(JSON_Array* componentsObj)
+{
+	JSON_Value* component = json_value_init_object();
+	JSON_Object* componentObj = json_value_get_object(component);
+
+	json_object_set_number(componentObj, "Type:", this->type);
+	json_object_set_number(componentObj, "Near Distance:", frustum.nearPlaneDistance);
+	json_object_set_number(componentObj, "Far Distance:", frustum.farPlaneDistance);
+	json_object_set_number(componentObj, "Frustum Vertical FOV:", frustum.verticalFov);
+	json_object_set_number(componentObj, "Frustum Horizontal FOV:", frustum.horizontalFov);
+
+	json_array_append_value(componentsObj, component);
 }

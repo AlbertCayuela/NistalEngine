@@ -165,6 +165,9 @@ void GameObject::SaveInfoGameObject(GameObject* go, JSON_Array* json_array)
 	if (go->material != nullptr)
 		go->material->SaveSceneMaterial(componentsObj);
 
+	if (go->camera != nullptr)
+		go->camera->SaveSceneCamera(componentsObj);
+
 	json_object_set_value(object_json, "Components:", components);
 
 	json_array_append_value(json_array, value_json);
