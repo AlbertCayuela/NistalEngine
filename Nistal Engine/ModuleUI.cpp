@@ -9,6 +9,7 @@
 #include "UIInspector.h"
 #include "UIHierarchy.h"
 #include "UISave.h"
+#include "UILoad.h"
 #include "UITime.h"
 #include <vector>
 
@@ -38,6 +39,7 @@ ModuleUI::ModuleUI(Application* app, bool start_enabled) : Module(app, start_ena
 	ui_windows.push_back(ui_inspector = new UIInspector());
 	ui_windows.push_back(ui_hierarchy = new UIHierarchy());
 	ui_windows.push_back(ui_save = new UISave());
+	ui_windows.push_back(ui_load = new UILoad());
 	ui_windows.push_back(ui_time = new UITime());
 }
 
@@ -61,6 +63,7 @@ bool ModuleUI::Start()
 	ui_inspector->Start();
 	ui_hierarchy->Start();
 	ui_save->Start();
+	ui_load->Start();
 	ui_time->Start();
 
 	return ret;
@@ -91,6 +94,10 @@ update_status ModuleUI::Update(float dt)
 			if (MenuItem("Save scene")) 
 			{
 				ui_save->is_on = !ui_save->is_on;
+			}
+			if (MenuItem("Load Scene")) 
+			{
+				ui_load->is_on = !ui_load->is_on;
 			}
 			if (MenuItem("Load Own Format Model", "L"))
 			{

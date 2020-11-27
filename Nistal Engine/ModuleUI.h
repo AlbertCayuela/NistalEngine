@@ -11,6 +11,7 @@ class UIConsole;
 class UIInspector;
 class UIHierarchy;
 class UISave;
+class UILoad;
 class UITime;
 
 class ModuleUI : public Module
@@ -61,6 +62,7 @@ private:
 	UIInspector* ui_inspector = nullptr;
 	UIHierarchy* ui_hierarchy = nullptr;
 	UISave* ui_save = nullptr;
+	UILoad* ui_load = nullptr;
 	UITime* ui_time = nullptr;
 
 

@@ -115,6 +115,7 @@
     <ClInclude Include="UIConsole.h" />
     <ClInclude Include="UIHierarchy.h" />
     <ClInclude Include="UIInspector.h" />
+    <ClInclude Include="UILoad.h" />
     <ClInclude Include="UISave.h" />
     <ClInclude Include="UITime.h" />
     <ClInclude Include="UIWindow.h" />
@@ -272,6 +273,7 @@
     <ClCompile Include="UIConsole.cpp" />
     <ClCompile Include="UIHierarchy.cpp" />
     <ClCompile Include="UIInspector.cpp" />
+    <ClCompile Include="UILoad.cpp" />
     <ClCompile Include="UISave.cpp" />
     <ClCompile Include="UITime.cpp" />
     <ClCompile Include="UIWindow.cpp" />
