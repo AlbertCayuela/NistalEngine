@@ -54,7 +54,7 @@ bool ModuleSerialization::LoadScene(const char* name_scene)
 
 bool ModuleSerialization::SaveGameObjects(JSON_Array* json_array)
 {
-	for (std::vector<GameObject*>::const_iterator iterator = App->scene_intro->game_objects.begin() + 1; iterator != App->scene_intro->game_objects.end(); iterator++)
+	for (std::vector<GameObject*>::const_iterator iterator = App->scene_intro->game_objects.begin(); iterator != App->scene_intro->game_objects.end(); iterator++)
 	{
 		(*iterator)->SaveInfoGameObject((*iterator), json_array);
 	}

@@ -4,6 +4,7 @@
 GOMaterial::GOMaterial(GameObject* game_object, const char* name) : GOComponent(game_object)
 {
 	this->name = name;
+	this->type = GOCOMPONENT_TYPE::MATERIAL;
 }
 
 GOMaterial::~GOMaterial()
@@ -37,5 +38,18 @@ void GOMaterial::GetNewMaterial(std::string new_material_path)
 	std::string path = (new_material_path + extension).c_str();
 	std::string final_path = (dest_folder + path).c_str();
 	LoadThisTex(final_path.c_str());
+}
+
+void GOMaterial::SaveSceneMaterial(JSON_Array* componentsObj)
+{
+
+	JSON_Value* component = json_value_init_object();
+	JSON_Object* componentObj = json_value_get_object(component);
+
+	json_object_set_number(componentObj, "Type:", this->type);
+	json_object_set_number(componentObj, "TextureID", texture_id);
+	json_object_set_string(componentObj, "TexturePath", this->name.c_str());
+
+	json_array_append_value(componentsObj, component);
 }
 

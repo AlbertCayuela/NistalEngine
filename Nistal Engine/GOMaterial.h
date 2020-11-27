@@ -13,6 +13,8 @@ public:
 	void LoadThisTex(const char* texture_path);
 	void GetNewMaterial(std::string new_material_path);
 
+	void SaveSceneMaterial(JSON_Array* componentsObj);
+
 	uint texture_id;
 	std::string name;
 
