@@ -78,14 +78,15 @@ void GOTransform::SaveSceneTransform(JSON_Array* componentsObj, GameObject* game
 	JSON_Value* component = json_value_init_object();
 	JSON_Object* componentObj = json_value_get_object(component);
 
-	json_object_set_number(componentObj, "Type:", this->type);
+	float3 save_rot = this->rotation.ToEulerXYZ() * RADTODEG;
 
+	json_object_set_number(componentObj, "Type:", this->type);
 	json_object_set_number(componentObj, "PositionX", position.x);
 	json_object_set_number(componentObj, "PositionY", position.y);
 	json_object_set_number(componentObj, "PositionZ", position.z);
-	json_object_set_number(componentObj, "RotationX", rotation.x);
-	json_object_set_number(componentObj, "RotationY", rotation.y);
-	json_object_set_number(componentObj, "RotationZ", rotation.z);
+	json_object_set_number(componentObj, "RotationX", save_rot.x);
+	json_object_set_number(componentObj, "RotationY", save_rot.y);
+	json_object_set_number(componentObj, "RotationZ", save_rot.z);
 	json_object_set_number(componentObj, "ScaleX", scale.x);
 	json_object_set_number(componentObj, "ScaleY", scale.x);
 	json_object_set_number(componentObj, "ScaleZ", scale.x);
@@ -95,13 +96,17 @@ void GOTransform::SaveSceneTransform(JSON_Array* componentsObj, GameObject* game
 
 void GOTransform::LoadSceneTransform(JSON_Object* obj)
 {
+	float3 load_rot;
+
 	position.x = json_object_get_number(obj, "PositionX");
 	position.y = json_object_get_number(obj, "PositionY");
 	position.z = json_object_get_number(obj, "PositionZ");
-	rotation.x = json_object_get_number(obj, "RotationX");
-	rotation.y = json_object_get_number(obj, "RotationY");
-	rotation.z = json_object_get_number(obj, "RotationZ");
+	load_rot.x = json_object_get_number(obj, "RotationX");
+	load_rot.y = json_object_get_number(obj, "RotationY");
+	load_rot.z = json_object_get_number(obj, "RotationZ");
 	scale.x = json_object_get_number(obj, "ScaleX");
 	scale.y = json_object_get_number(obj, "ScaleY");
 	scale.z = json_object_get_number(obj, "ScaleZ");
+
+	rotation = Quat::FromEulerXYZ(load_rot.x * DEGTORAD, load_rot.y * DEGTORAD, load_rot.z * DEGTORAD);
 }
