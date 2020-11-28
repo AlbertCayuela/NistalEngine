@@ -159,10 +159,18 @@ void GOCamera::SaveSceneCamera(JSON_Array* componentsObj)
 	JSON_Object* componentObj = json_value_get_object(component);
 
 	json_object_set_number(componentObj, "Type:", this->type);
-	json_object_set_number(componentObj, "Near Distance:", frustum.nearPlaneDistance);
-	json_object_set_number(componentObj, "Far Distance:", frustum.farPlaneDistance);
-	json_object_set_number(componentObj, "Frustum Vertical FOV:", frustum.verticalFov);
-	json_object_set_number(componentObj, "Frustum Horizontal FOV:", frustum.horizontalFov);
+	json_object_set_number(componentObj, "NearDistance", frustum.nearPlaneDistance);
+	json_object_set_number(componentObj, "FarDistance", frustum.farPlaneDistance);
+	json_object_set_number(componentObj, "FrustumVerticalFOV", frustum.verticalFov);
+	json_object_set_number(componentObj, "FrustumHorizontalFOV", frustum.horizontalFov);
 
 	json_array_append_value(componentsObj, component);
+}
+
+void GOCamera::LoadSceneCamera(JSON_Object* obj, GameObject* game_object)
+{
+	game_object->camera->frustum.nearPlaneDistance = json_object_get_number(obj, "NearDistance");
+	game_object->camera->frustum.farPlaneDistance = json_object_get_number(obj, "FarDistance");
+	game_object->camera->frustum.verticalFov = json_object_get_number(obj, "FrustumVerticalFOV");
+	game_object->camera->frustum.horizontalFov = json_object_get_number(obj, "FrustumHorizontalFOV");
 }

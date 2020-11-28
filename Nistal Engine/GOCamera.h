@@ -35,6 +35,7 @@ public:
 	float4x4 GetProjectionMatrix() const;
 
 	void SaveSceneCamera(JSON_Array* componentsObj);
+	void LoadSceneCamera(JSON_Object* obj, GameObject* game_object);
 
 public:
 
