@@ -45,12 +45,16 @@ bool ModuleSerialization::LoadScene(const char* name_scene)
 
 	int size = json_array_get_count(Array);
 
-	for (int i = 0; i < size; i++)
+	for (uint i = 0; i < size; i++)
 	{
 		obj = json_array_get_object(Array, i);
-		GameObject* new_go = App->scene_intro->CreateGameObject(App->scene_intro->root, "load saved name here");
-		
+		GameObject* new_go = App->scene_intro->CreateGameObject(App->scene_intro->root, "load saved name here");	
 		new_go->LoadInfoGameObject(new_go, obj);
+	}
+
+	for (std::vector<GameObject* >::iterator i = App->scene_intro->game_objects.begin(); i != App->scene_intro->game_objects.end(); i++) 
+	{
+		SetChildren((*i));
 	}
 
 	return true;
@@ -63,4 +67,20 @@ bool ModuleSerialization::SaveGameObjects(JSON_Array* json_array)
 		(*iterator)->SaveInfoGameObject((*iterator), json_array);
 	}
 	return true;
+}
+
+void ModuleSerialization::SetChildren(GameObject* game_object)
+{
+	for (std::vector<GameObject*>::iterator i = App->scene_intro->game_objects.begin(); i != App->scene_intro->game_objects.end(); i++)
+	{
+		if ((*i)->parent_uuid == 0) 
+		{
+			(*i)->parent = nullptr;
+		}
+		else if ((*i)->parent_uuid == game_object->uuid)
+		{
+			(*i)->parent = game_object;
+			game_object->children.push_back((*i));
+		}
+	}
 }
