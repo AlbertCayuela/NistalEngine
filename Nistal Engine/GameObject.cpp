@@ -208,6 +208,11 @@ void GameObject::LoadInfoGameObject(GameObject* game_object, JSON_Object* obj)
 			game_object->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "material");
 			game_object->material->LoadSceneMaterial(type, game_object);
 		}
+		if (num_type == 4)
+		{
+			game_object->AddComponent(GOCOMPONENT_TYPE::CAMERA, "camera");
+			game_object->camera->LoadSceneCamera(type, game_object);
+		}
 	}
 	uuid = json_object_get_number(obj, "UID:");
 }
