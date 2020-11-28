@@ -14,6 +14,7 @@ public:
 	void GetNewMaterial(std::string new_material_path);
 
 	void SaveSceneMaterial(JSON_Array* componentsObj);
+	void LoadSceneMaterial(JSON_Object* obj, GameObject* game_object);
 
 	uint texture_id;
 	std::string name;

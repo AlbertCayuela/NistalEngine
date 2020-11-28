@@ -58,3 +58,14 @@ void GOMaterial::SaveSceneMaterial(JSON_Array* componentsObj)
 	json_array_append_value(componentsObj, component);
 }
 
+void GOMaterial::LoadSceneMaterial(JSON_Object* obj, GameObject* game_object)
+{
+
+	json_object_get_number(obj, "Type:");
+	game_object->material->texture_id = json_object_get_number(obj, "TextureID");
+	game_object->material->name = json_object_get_string(obj, "TexturePath");
+
+	//LoadThisTex(name.c_str());
+
+}
+
