@@ -18,7 +18,10 @@ public:
 	void SetPos();
 
 public: 
-
+	
+	bool files_checked = false;
+	std::vector<std::string> files_list;
+	std::vector<std::string> dir_list;
 };
 
 #endif // !__UILOAD_H__

@@ -37,6 +37,12 @@ void UILoad::Draw()
 
 	SetPos();
 
+	if (!files_checked) 
+	{
+		App->file_system->DiscoverFiles("Library/Scenes/", files_list, dir_list);
+		files_checked = true;
+	}
+
 	if (Button("Load Scene")) 
 	{
 		App->serialization->LoadScene("Library/Scenes/testscene.json");
