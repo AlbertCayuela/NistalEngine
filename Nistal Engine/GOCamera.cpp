@@ -1,4 +1,5 @@
 #include "GOCamera.h"
+#include "GOTransform.h"
 #include "Application.h"
 
 GOCamera::GOCamera(GameObject* parent) : GOComponent(parent)
@@ -173,4 +174,5 @@ void GOCamera::LoadSceneCamera(JSON_Object* obj, GameObject* game_object)
 	game_object->camera->frustum.farPlaneDistance = json_object_get_number(obj, "FarDistance");
 	game_object->camera->frustum.verticalFov = json_object_get_number(obj, "FrustumVerticalFOV");
 	game_object->camera->frustum.horizontalFov = json_object_get_number(obj, "FrustumHorizontalFOV");
+	game_object->transform->NewPosition(game_object->transform->position);
 }
