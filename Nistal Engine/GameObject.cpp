@@ -21,7 +21,8 @@ GameObject::GameObject(GameObject* parent, const char* name)
 
 	uuid = GenerateUUID();
 
-	GetNames(name);
+	if(name != nullptr)
+		GetNames(name);
 
 	AddComponent(GOCOMPONENT_TYPE::TRANSFORM, "transform");
 
@@ -214,5 +215,10 @@ void GameObject::LoadInfoGameObject(GameObject* game_object, JSON_Object* obj)
 			game_object->camera->LoadSceneCamera(type, game_object);
 		}
 	}
-	uuid = json_object_get_number(obj, "UID:");
+	//uuid = json_object_get_number(obj, "UID:");
+
+	LOG("Loading object info:");
+	LOG("NAME: %s", ui_name.c_str());
+	LOG("uuid: %i", uuid);
+	LOG("parent uuid: %i", parent_uuid);
 }

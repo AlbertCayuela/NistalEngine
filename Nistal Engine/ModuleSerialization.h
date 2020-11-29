@@ -14,7 +14,7 @@ public:
 	bool SaveScene(const char* name_scene);
 	bool LoadScene(const char* scene);
 	bool SaveGameObjects(JSON_Array* json_array);
-	void SetChildren(GameObject* game_object);
+	void SetChildren(GameObject* game_object) const;
 
 	GameObject* new_go = nullptr;
 	JSON_Value* json_value = nullptr;
