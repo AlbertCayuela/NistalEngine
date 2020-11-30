@@ -107,6 +107,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="ModuleImporter.h" />
     <ClInclude Include="ModuleLoadFBX.h" />
+    <ClInclude Include="ModuleResourceManager.h" />
     <ClInclude Include="ModuleSerialization.h" />
     <ClInclude Include="Parson\parson.h" />
     <ClInclude Include="sphereEngine.h" />
@@ -260,6 +261,7 @@
     <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModuleLoadFBX.cpp" />
     <ClCompile Include="ModuleRenderer3D.cpp" />
+    <ClCompile Include="ModuleResourceManager.cpp" />
     <ClCompile Include="ModuleSceneIntro.cpp" />
     <ClCompile Include="ModuleSerialization.cpp" />
     <ClCompile Include="ModuleUI.cpp" />

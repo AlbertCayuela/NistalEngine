@@ -13,6 +13,7 @@
 #include "ModuleFS.h"
 #include "ModuleImporter.h"
 #include "ModuleSerialization.h"
+#include "ModuleResourceManager.h"
 #include <list>
 
 class Application
@@ -28,6 +29,7 @@ public:
 	ModuleFS* file_system;
 	ModuleImporter* importer;
 	ModuleSerialization* serialization;
+	ModuleResourceManager* resource_manager;
 
 	std::string engine_title;
 

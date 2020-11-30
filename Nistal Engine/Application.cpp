@@ -11,6 +11,7 @@ Application::Application()
 	ui = new ModuleUI(this);
 	load_fbx = new ModuleLoadFBX(this);
 	file_system = new ModuleFS(this, ASSETS_FOLDER);
+	resource_manager = new ModuleResourceManager(this);
 	importer = new ModuleImporter(this);
 	serialization = new ModuleSerialization(this);
 	
@@ -23,6 +24,7 @@ Application::Application()
 	AddModule(window);
 	AddModule(camera);
 	AddModule(input);
+	AddModule(resource_manager);
 	AddModule(file_system);
 	AddModule(load_fbx);
 	AddModule(serialization);
