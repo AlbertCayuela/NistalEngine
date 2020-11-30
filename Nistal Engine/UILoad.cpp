@@ -39,13 +39,51 @@ void UILoad::Draw()
 
 	if (!files_checked) 
 	{
-		App->file_system->DiscoverFiles("Library/Scenes/", files_list, dir_list);
+		App->file_system->DiscoverFiles(LIBRARY_SCENE_FOLDER, files_list, dir_list);
 		files_checked = true;
 	}
 
+	if (CollapsingHeader("Scenes"))
+	{
+		ImGuiTreeNodeFlags node_flags = ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen | ImGuiTreeNodeFlags_Selected;
+		for (std::vector<std::string>::iterator i = files_list.begin(); i != files_list.end(); i++) 
+		{
+			if (TreeNodeEx((*i).c_str()))
+			{
+				if (IsItemHovered())
+				{
+					if (App->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN)
+					{
+						scene_selected = (*i);
+					}
+				}
+				if (scene_selected == (*i))
+				{
+					if (Button("Selected"))
+					{
+						scene_selected = nullptr;
+						LOG("NO SCENE SELECTED");
+					}
+				}
+				if (scene_selected != (*i))
+				{
+					if (Button("Select"))
+					{
+						scene_selected = (*i);
+						LOG("SCENE SELECTED: %s", (*i).c_str());
+					}
+				}
+
+				TreePop();
+			}
+		}
+	}
+
+
 	if (Button("Load Scene")) 
 	{
-		App->serialization->LoadScene("Library/Scenes/testscene.json");
+		scene_selected = LIBRARY_SCENE_FOLDER + scene_selected;
+		App->serialization->LoadScene(scene_selected.c_str());
 		is_on = false;
 	}
 
@@ -55,6 +93,6 @@ void UILoad::Draw()
 void UILoad::SetPos()
 {
 	SetWindowPos(ImVec2(App->window->width / 2 - GetWindowSize().x / 2, (App->window->height / 20.0f) * 4.6f), ImGuiCond_Always);
-	SetWindowSize(ImVec2(App->window->width / 4, 100), ImGuiCond_Always);
+	SetWindowSize(ImVec2(App->window->width / 4, 250), ImGuiCond_Always);
 	SDL_GetWindowSize(App->window->window, &App->window->width, &App->window->height);
 }
