@@ -69,6 +69,8 @@ public:
 	void DrawNormals(modelData model);
 	void DrawVertexNormals(modelData model);
 
+	void Unparent();
+
 public:
 
 	const char* model_path;
@@ -94,5 +96,7 @@ public:
 	uint texture_id;
 
 	bool all_fbx_loaded = false;
+	GameObject* new_parent = nullptr;
+	bool parent = false;
 
 };

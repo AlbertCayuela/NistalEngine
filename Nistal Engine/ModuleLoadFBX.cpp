@@ -54,26 +54,33 @@ update_status ModuleLoadFBX::PreUpdate(float dt)
 
 update_status ModuleLoadFBX::Update(float dt)
 {
-    if (App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_P) == KEY_REPEAT)
+    if (App->input->GetKey(SDL_SCANCODE_U) == KEY_REPEAT)
     {
-        LOG("Reparent to root");
-        App->scene_intro->selected_go->parent->active = false;
+        Unparent();
+    }
 
-        //bucle for con todos los gameobjects, y si es igual al selected_go object -> LoadMeshes con el parent root
+    if (App->input->GetKey(SDL_SCANCODE_P) == KEY_REPEAT && !parent)
+    {
+        LOG("Parent GO");
+
         for (std::vector<GameObject*>::iterator i = App->scene_intro->game_objects.begin(); i != App->scene_intro->game_objects.end(); ++i)
         {
             if ((*i) == App->scene_intro->selected_go)
             {
-                (*i)->parent = App->scene_intro->root;
+                parent = true;
+                new_parent = (*i);
             }
         }
+    }
 
-        for (std::vector<GameObject*>::iterator i = App->scene_intro->own_game_objects.begin(); i != App->scene_intro->own_game_objects.end(); ++i)
+    if (App->input->GetKey(SDL_SCANCODE_L) == KEY_REPEAT && parent)
+    {
+        for (std::vector<GameObject*>::iterator i = App->scene_intro->game_objects.begin(); i != App->scene_intro->game_objects.end(); ++i)
         {
             if ((*i) == App->scene_intro->selected_go)
             {
-                (*i)->parent = App->scene_intro->root;
-                //LoadMeshes(scene, scene->mRootNode, App->scene_intro->root, App->input->dropped_path);
+                (*i)->parent = new_parent;
+                parent = false;
             }
         }
     }
@@ -354,4 +361,26 @@ void ModuleLoadFBX::LoadVertices()
     model.num_vertex = mesh->mNumVertices;
     model.vertices = new float[mesh->mNumVertices * 3];
     memcpy(model.vertices, mesh->mVertices, sizeof(float) * model.num_vertex * 3);
+}
+
+void ModuleLoadFBX::Unparent()
+{
+    LOG("Reparent to root");
+    App->scene_intro->selected_go->parent->active = false;
+
+    for (std::vector<GameObject*>::iterator i = App->scene_intro->game_objects.begin(); i != App->scene_intro->game_objects.end(); ++i)
+    {
+        if ((*i) == App->scene_intro->selected_go)
+        {
+            (*i)->parent = App->scene_intro->root;
+        }
+    }
+
+    for (std::vector<GameObject*>::iterator i = App->scene_intro->own_game_objects.begin(); i != App->scene_intro->own_game_objects.end(); ++i)
+    {
+        if ((*i) == App->scene_intro->selected_go)
+        {
+            (*i)->parent = App->scene_intro->root;
+        }
+    }
 }
