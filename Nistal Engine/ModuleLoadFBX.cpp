@@ -54,6 +54,29 @@ update_status ModuleLoadFBX::PreUpdate(float dt)
 
 update_status ModuleLoadFBX::Update(float dt)
 {
+    if (App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_P) == KEY_REPEAT)
+    {
+        LOG("Reparent to root");
+        App->scene_intro->selected_go->parent->active = false;
+
+        //bucle for con todos los gameobjects, y si es igual al selected_go object -> LoadMeshes con el parent root
+        for (std::vector<GameObject*>::iterator i = App->scene_intro->game_objects.begin(); i != App->scene_intro->game_objects.end(); ++i)
+        {
+            if ((*i) == App->scene_intro->selected_go)
+            {
+                (*i)->parent = App->scene_intro->root;
+            }
+        }
+
+        for (std::vector<GameObject*>::iterator i = App->scene_intro->own_game_objects.begin(); i != App->scene_intro->own_game_objects.end(); ++i)
+        {
+            if ((*i) == App->scene_intro->selected_go)
+            {
+                (*i)->parent = App->scene_intro->root;
+                //LoadMeshes(scene, scene->mRootNode, App->scene_intro->root, App->input->dropped_path);
+            }
+        }
+    }
 
 	return UPDATE_CONTINUE;
 }
