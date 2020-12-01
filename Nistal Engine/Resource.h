@@ -25,6 +25,11 @@ public:
 	bool UnloadToMemory();
 	uint CountReferences() const;
 
+protected:
+
+	uint uuid = 0;
+	RESOURCE_TYPE type = RESOURCE_UNKNOWN;
+
 };
 
 #endif
