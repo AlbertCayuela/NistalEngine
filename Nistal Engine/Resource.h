@@ -18,6 +18,13 @@ public:
 	Resource(uint uuid, RESOURCE_TYPE type);
 	virtual ~Resource();
 
+	RESOURCE_TYPE GetResourceType() const;
+	uint GetUUID() const;
+	bool IsLoadedToMemory() const;
+	bool LoadToMemory();
+	bool UnloadToMemory();
+	uint CountReferences() const;
+
 };
 
 #endif
