@@ -13,8 +13,16 @@ public:
 
 	void Start();
 	void Stop();
+	void UpdateTimer();
 
 	Uint32 Read();
+
+	bool	paused = false;
+	float	frame_count;
+	float	time_scale = 1.0f;
+	float	time;
+	float	dt;
+	float	real_dt;
 
 private:
 

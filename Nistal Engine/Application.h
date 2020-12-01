@@ -49,7 +49,7 @@ private:
 
 	Timer	ms_timer;
 
-	float	dt;
+	float dt;
 	float last_FPS = 0.0f;
 	float last_ms = 0.0f;
 	std::list<Module*> list_modules;
@@ -70,6 +70,7 @@ public:
 	float GetFPS();
 
 	void TimeManager();
+	float GetDT() const;
 
 private:
 

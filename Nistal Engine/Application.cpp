@@ -187,3 +187,8 @@ void Application::TimeManager()
 	}
 
 }
+
+float Application::GetDT() const
+{
+	return dt;
+}

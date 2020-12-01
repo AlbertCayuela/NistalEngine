@@ -43,6 +43,7 @@ bool ModuleSceneIntro::Start()
 
 update_status ModuleSceneIntro::PreUpdate(float dt)
 {
+    App->playing_timer.UpdateTimer();
     return UPDATE_CONTINUE;
 }
 

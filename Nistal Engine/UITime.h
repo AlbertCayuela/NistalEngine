@@ -20,7 +20,12 @@ public:
 
 public:
 
+	float frame_count;
 	float time_scale = 1.0f;
+	float time;
+	float dt;
+	float real_dt;
+
 };
 
 #endif // !__UITIME_H__

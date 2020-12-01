@@ -85,9 +85,7 @@ void UITime::Draw()
 	//SameLine();
 
 	if (SliderFloat("TimeScale", &time_scale, 0.0f, 2.0f)) 
-	{
-
-	}
+	{}
 
 	End();
 
