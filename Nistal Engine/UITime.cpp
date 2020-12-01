@@ -38,6 +38,7 @@ void UITime::Draw()
 	if (Button("Play")) 
 	{
 		LOG("Playing");
+		App->serialization->SaveScene("current_scene");
 		App->playing_timer.Start();
 		App->scene_intro->playing = true;
 		App->scene_intro->paused = false;
@@ -49,6 +50,7 @@ void UITime::Draw()
 	if (Button("Stop"))
 	{
 		LOG("Stopping");
+		App->serialization->LoadScene("Library/Scenes/current_scene.json");
 		App->playing_timer.Stop();
 		App->scene_intro->playing = false;
 		App->scene_intro->paused = true;
