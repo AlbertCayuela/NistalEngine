@@ -127,10 +127,16 @@ void ModuleFS::DiscoverFiles(const char* directory, vector<string>& file_list, v
 
 	for (i = rc; *i != nullptr; i++)
 	{
+		std::string ext(*i);
+		ext = App->file_system->GetExtension(ext.c_str());
 		if (PHYSFS_isDirectory((dir + *i).c_str()))
-			dir_list.push_back(*i);
+		{
+			if(ext != "meta")
+				dir_list.push_back(*i);
+		}
 		else
-			file_list.push_back(*i);
+			if(ext != "meta")
+				file_list.push_back(*i);
 	}
 
 	PHYSFS_freeList(rc);

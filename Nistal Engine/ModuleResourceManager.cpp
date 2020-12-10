@@ -85,6 +85,8 @@ void ModuleResourceManager::GenerateMeta(const char* path, RESOURCE_TYPE type)
 
 	if (!App->file_system->Exists(meta_path.c_str())) 
 	{
+		LOG("Generating metafile from: %s", path);
+
 		JSON_Value* root = json_value_init_object();
 		JSON_Object* obj = json_value_get_object(root);
 
@@ -95,26 +97,28 @@ void ModuleResourceManager::GenerateMeta(const char* path, RESOURCE_TYPE type)
 		json_serialize_to_file_pretty(root, meta_path.c_str());
 		json_value_free(root);
 	}
-
+	else 
+	{
+		LOG("NOT Generating Metafile: %s already exists", meta_path.c_str());
+	}
 }
 
 void ModuleResourceManager::GenerateMissingMetas()
 {
 	for (int i = 0; i < mesh_files.size(); i++) 
 	{
-		if (i < mesh_files.size()-1) 
-		{
-			if (mesh_files.at(i) == mesh_files.at(i + 1) + ".meta")
-			{
-				//nothing for now
-			}
-			else if (mesh_files.at(i) != mesh_files.at(i + 1) + ".meta")
-			{
-				std::string path = mesh_files.at(i);
-				path = "Models/" + path;
-				GenerateMeta(path.c_str(), RESOURCE_TYPE::RESOURCE_MESH);
-			}
-		}
+		std::string mesh_path = mesh_files.at(i);
+		mesh_path = "Models/" + mesh_path;
+		
+		GenerateMeta(mesh_path.c_str(), RESOURCE_TYPE::RESOURCE_MESH);			
+	}
+
+	for (int j = 0; j < material_files.size(); j++) 
+	{
+		std::string material_path = material_files.at(j);
+		material_path = "textures/" + material_path;
+
+		GenerateMeta(material_path.c_str(), RESOURCE_TYPE::RESOURCE_MATERIAL);
 	}
 }
 
