@@ -8,7 +8,7 @@ class ResourceMaterial : public Resource
 	
 public:
 
-	ResourceMaterial(uint uuid, RESOURCE_TYPE type);
+	ResourceMaterial(uint uuid);
 	~ResourceMaterial();
 
 	bool LoadToMemory();
