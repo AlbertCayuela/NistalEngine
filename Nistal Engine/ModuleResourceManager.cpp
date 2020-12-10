@@ -16,12 +16,19 @@ ModuleResourceManager::~ModuleResourceManager()
 bool ModuleResourceManager::Start()
 {
 	App->file_system->DiscoverFiles("Models/", mesh_files, mesh_dirs);
+	App->file_system->DiscoverFiles("textures/", material_files, material_dirs);
 
 	for (std::vector<string>::iterator i = mesh_files.begin(); i != mesh_files.end(); i++) 
 	{
 		LOG("mesh detected: %s", (*i).c_str());
 	}
 
+	for (std::vector<string>::iterator i = material_files.begin(); i != material_files.end(); i++)
+	{
+		LOG("material detected: %s", (*i).c_str());
+	}
+
+	GenerateMissingMetas();
 
 	return true;
 }
@@ -86,7 +93,31 @@ void ModuleResourceManager::GenerateMeta(const char* path, RESOURCE_TYPE type)
 		json_object_set_number(obj, "Time", 0); //TODO set correct time
 
 		json_serialize_to_file_pretty(root, meta_path.c_str());
+		json_value_free(root);
 	}
 
 }
+
+void ModuleResourceManager::GenerateMissingMetas()
+{
+	for (int i = 0; i < mesh_files.size(); i++) 
+	{
+		if (i < mesh_files.size()-1) 
+		{
+			if (mesh_files.at(i) == mesh_files.at(i + 1) + ".meta")
+			{
+				//nothing for now
+			}
+			else if (mesh_files.at(i) != mesh_files.at(i + 1) + ".meta")
+			{
+				std::string path = mesh_files.at(i);
+				path = "Models/" + path;
+				GenerateMeta(path.c_str(), RESOURCE_TYPE::RESOURCE_MESH);
+			}
+		}
+	}
+}
+
+
+
 
