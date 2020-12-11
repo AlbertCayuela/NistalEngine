@@ -23,7 +23,8 @@ public:
 	Resource* CreateNewResource(RESOURCE_TYPE type, const char* path);
 
 	void GenerateMeta(const char* path, RESOURCE_TYPE type);
-	void GenerateMissingMetas();;
+	void GenerateMissingMetas();
+	void GenerateLibaryResources();
 
 
 public:

@@ -43,6 +43,8 @@ bool ModuleResourceManager::Start()
 
 	GenerateMissingMetas();
 
+	GenerateLibaryResources();
+
 	return true;
 }
 
@@ -77,10 +79,9 @@ Resource* ModuleResourceManager::RequestResource(uint uuid)
 	return nullptr;
 }
 
-Resource* ModuleResourceManager::CreateNewResource(RESOURCE_TYPE type, const char* path)
+Resource* ModuleResourceManager::CreateNewResource(RESOURCE_TYPE type, uint uuid)
 {
 	Resource* ret = nullptr;
-	uint uuid = GenerateNewUUID();
 
 	switch (type) 
 	{
@@ -92,8 +93,10 @@ Resource* ModuleResourceManager::CreateNewResource(RESOURCE_TYPE type, const cha
 		break;
 	}
 
-	if (ret != nullptr)
-		resources[uuid] = ret;
+	if (ret != nullptr) 
+	{
+		resources.insert({ uuid, ret });
+	}
 
 	return ret;
 }
@@ -144,6 +147,41 @@ void ModuleResourceManager::GenerateMissingMetas()
 		material_path = "textures/" + material_path;
 
 		GenerateMeta(material_path.c_str(), RESOURCE_TYPE::RESOURCE_MATERIAL);
+	}
+}
+
+void ModuleResourceManager::GenerateLibaryResources()
+{
+	for (std::vector<string>::iterator i = mesh_files.begin(); i != mesh_files.end(); i++) 
+	{
+		uint meta_uuid;
+
+		std::string path;
+		path = "Models/" + (*i) + ".meta";
+		JSON_Value* value = json_parse_file(path.c_str());
+		JSON_Object* obj = json_value_get_object(value);
+
+		meta_uuid = json_object_get_number(obj, "UUID");
+
+		bool resource_exists = false;
+
+		for (std::vector<string>::iterator j = library_mesh_files.begin(); j != library_mesh_files.end(); j++) 
+		{
+			std::string s_uuid;
+			std::string::size_type const p((*j).find_last_of('.'));
+			s_uuid = (*j).substr(0, p);
+			std::string uuid = to_string(meta_uuid);
+
+			if (s_uuid == uuid)
+			{
+				resource_exists = true;
+			}
+		}
+
+		if (!resource_exists)
+		{
+			CreateNewResource(RESOURCE_TYPE::RESOURCE_MESH, meta_uuid);
+		}
 	}
 }
 
