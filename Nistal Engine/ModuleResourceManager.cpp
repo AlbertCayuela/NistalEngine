@@ -79,17 +79,17 @@ Resource* ModuleResourceManager::RequestResource(uint uuid)
 	return nullptr;
 }
 
-Resource* ModuleResourceManager::CreateNewResource(RESOURCE_TYPE type, uint uuid)
+Resource* ModuleResourceManager::CreateNewResource(RESOURCE_TYPE type, uint uuid, std::string meta_path)
 {
 	Resource* ret = nullptr;
 
 	switch (type) 
 	{
 	case RESOURCE_MESH:
-		ret = (Resource*) new ResourceMesh(uuid);
+		ret = (Resource*) new ResourceMesh(uuid, meta_path);
 		break;
 	case RESOURCE_MATERIAL:
-		ret = (Resource*) new ResourceMaterial(uuid);
+		ret = (Resource*) new ResourceMaterial(uuid, meta_path);
 		break;
 	}
 
@@ -180,7 +180,7 @@ void ModuleResourceManager::GenerateLibaryResources()
 
 		if (!resource_exists)
 		{
-			CreateNewResource(RESOURCE_TYPE::RESOURCE_MESH, meta_uuid);
+			CreateNewResource(RESOURCE_TYPE::RESOURCE_MESH, meta_uuid, path);
 		}
 	}
 }

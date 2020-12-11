@@ -1,11 +1,11 @@
 #include "Resource.h"
+#include <string>
 
 Resource::Resource(uint uuid, RESOURCE_TYPE type)
 {
 
     this->type = type;
     this->uuid = uuid;
-
 }
 
 Resource::~Resource()

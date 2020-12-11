@@ -2,13 +2,14 @@
 #define __RESOURCEMATERIAL_H__
 
 #include "Resource.h"
+#include <string>
 
 class ResourceMaterial : public Resource 
 {
 	
 public:
 
-	ResourceMaterial(uint uuid);
+	ResourceMaterial(uint uuid, std::string meta_path);
 	~ResourceMaterial();
 
 	bool LoadToMemory();

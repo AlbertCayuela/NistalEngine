@@ -20,7 +20,7 @@ public:
 	uint GenerateNewUUID();
 	uint GenerateTimeStamp();
 	Resource* RequestResource(uint uuid);
-	Resource* CreateNewResource(RESOURCE_TYPE type, const char* path);
+	Resource* CreateNewResource(RESOURCE_TYPE type, uint uuid, std::string meta_path);
 
 	void GenerateMeta(const char* path, RESOURCE_TYPE type);
 	void GenerateMissingMetas();
