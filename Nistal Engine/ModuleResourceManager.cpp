@@ -95,6 +95,8 @@ void ModuleResourceManager::GenerateMeta(const char* path, RESOURCE_TYPE type)
 	std::string meta_path = path;
 	meta_path = meta_path + ".meta";
 
+	uint uuid = GenerateNewUUID();
+
 	if (!App->file_system->Exists(meta_path.c_str())) 
 	{
 
@@ -104,7 +106,7 @@ void ModuleResourceManager::GenerateMeta(const char* path, RESOURCE_TYPE type)
 		JSON_Object* obj = json_value_get_object(root);
 
 		json_object_set_number(obj, "Type", type);
-		json_object_set_number(obj, "UUID", 0); //TODO set correct uuid
+		json_object_set_number(obj, "UUID", uuid); //TODO set correct uuid --> done
 		json_object_set_number(obj, "Time", 0); //TODO set correct time
 
 		json_serialize_to_file_pretty(root, meta_path.c_str());
