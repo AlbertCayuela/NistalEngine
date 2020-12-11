@@ -22,7 +22,7 @@ public:
 	Resource* CreateNewResource(RESOURCE_TYPE type, const char* path);
 
 	void GenerateMeta(const char* path, RESOURCE_TYPE type);
-	void GenerateMissingMetas();
+	void GenerateMissingMetas();;
 
 
 public:
@@ -31,6 +31,10 @@ public:
 	std::vector<std::string> mesh_dirs;
 	std::vector<std::string> material_files;
 	std::vector<std::string> material_dirs;
+	std::vector<std::string> library_mesh_files;
+	std::vector<std::string> library_mesh_dirs;
+	std::vector<std::string> library_material_files;
+	std::vector<std::string> library_material_dirs;
 
 private:
 

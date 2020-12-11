@@ -17,6 +17,8 @@ bool ModuleResourceManager::Start()
 {
 	App->file_system->DiscoverFiles("Models/", mesh_files, mesh_dirs);
 	App->file_system->DiscoverFiles("textures/", material_files, material_dirs);
+	App->file_system->DiscoverFiles(LIBRARY_MESH_FOLDER, library_mesh_files, library_mesh_dirs);
+	App->file_system->DiscoverFiles(LIBRARY_TEXTURES_FOLDER, library_material_files, library_material_dirs);
 
 	for (std::vector<string>::iterator i = mesh_files.begin(); i != mesh_files.end(); i++) 
 	{
@@ -26,6 +28,16 @@ bool ModuleResourceManager::Start()
 	for (std::vector<string>::iterator i = material_files.begin(); i != material_files.end(); i++)
 	{
 		LOG("material detected: %s", (*i).c_str());
+	}
+
+	for (std::vector<string>::iterator i = library_mesh_files.begin(); i != library_mesh_files.end(); i++)
+	{
+		LOG("mesh resource detected: %s", (*i).c_str());
+	}
+
+	for (std::vector<string>::iterator i = library_material_files.begin(); i != library_material_files.end(); i++)
+	{
+		LOG("material resource detected: %s", (*i).c_str());
 	}
 
 	GenerateMissingMetas();
@@ -85,6 +97,7 @@ void ModuleResourceManager::GenerateMeta(const char* path, RESOURCE_TYPE type)
 
 	if (!App->file_system->Exists(meta_path.c_str())) 
 	{
+
 		LOG("Generating metafile from: %s", path);
 
 		JSON_Value* root = json_value_init_object();
@@ -121,6 +134,7 @@ void ModuleResourceManager::GenerateMissingMetas()
 		GenerateMeta(material_path.c_str(), RESOURCE_TYPE::RESOURCE_MATERIAL);
 	}
 }
+
 
 
 
