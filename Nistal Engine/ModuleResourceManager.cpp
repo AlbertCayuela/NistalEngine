@@ -3,6 +3,7 @@
 #include "Resource.h"
 #include "ResourceMesh.h"
 #include "ResourceMaterial.h"
+#include <ctime>
 
 
 ModuleResourceManager::ModuleResourceManager(Application* app, bool start_enabled) : Module(app, start_enabled)
@@ -64,6 +65,13 @@ uint ModuleResourceManager::GenerateNewUUID()
 	return lcg.Int();
 }
 
+uint ModuleResourceManager::GenerateTimeStamp()
+{
+	std::time_t time_stamp = std::time(0);
+
+	return time_stamp;
+}
+
 Resource* ModuleResourceManager::RequestResource(uint uuid)
 {
 	return nullptr;
@@ -97,6 +105,8 @@ void ModuleResourceManager::GenerateMeta(const char* path, RESOURCE_TYPE type)
 
 	uint uuid = GenerateNewUUID();
 
+	uint time_stamp = GenerateTimeStamp();
+
 	if (!App->file_system->Exists(meta_path.c_str())) 
 	{
 
@@ -107,7 +117,7 @@ void ModuleResourceManager::GenerateMeta(const char* path, RESOURCE_TYPE type)
 
 		json_object_set_number(obj, "Type", type);
 		json_object_set_number(obj, "UUID", uuid); //TODO set correct uuid --> done
-		json_object_set_number(obj, "Time", 0); //TODO set correct time
+		json_object_set_number(obj, "Time", time_stamp); //TODO set correct time --> done
 
 		json_serialize_to_file_pretty(root, meta_path.c_str());
 		json_value_free(root);

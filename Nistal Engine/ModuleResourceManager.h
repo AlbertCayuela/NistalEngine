@@ -18,6 +18,7 @@ public:
 	uint Find(const char* file_in_assets) const;
 	uint ImportFile(const char* new_file_in_assets);
 	uint GenerateNewUUID();
+	uint GenerateTimeStamp();
 	Resource* RequestResource(uint uuid);
 	Resource* CreateNewResource(RESOURCE_TYPE type, const char* path);
 
