@@ -58,7 +58,7 @@ update_status ModuleCamera3D::Update(float dt)
 	if(App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
 		speed = 8.0f * dt;
 
-	if(App->input->GetKey(SDL_SCANCODE_E) == KEY_REPEAT && App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT) newPos.y += speed;
+	if (App->input->GetKey(SDL_SCANCODE_E) == KEY_REPEAT && App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT) newPos.y += speed;
 	if(App->input->GetKey(SDL_SCANCODE_R) == KEY_REPEAT && App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT) newPos.y -= speed;
 
 	if(App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT && App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT) newPos += camera->frustum.front * speed;
@@ -88,6 +88,10 @@ update_status ModuleCamera3D::Update(float dt)
 		{
 			Quat quat = Quat::RotateAxisAngle(camera->frustum.WorldRight(), dy * sensitivity);
 			float3 up = quat.Mul(camera->frustum.up).Normalized();
+
+			Quat quatX = Quat::RotateX(dy * sensitivity);
+			camera->frustum.up = quat.Mul(camera->frustum.up).Normalized();
+			camera->frustum.front = quat.Mul(camera->frustum.front).Normalized();
 
 			if(up.y < 0.0f)
 			{
