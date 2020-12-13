@@ -12,6 +12,7 @@
 #include "UILoad.h"
 #include "UITime.h"
 #include "UIAssets.h"
+#include "UIResources.h"
 #include <vector>
 
 #include "ImGui/imgui_impl_sdl.h"
@@ -43,6 +44,7 @@ ModuleUI::ModuleUI(Application* app, bool start_enabled) : Module(app, start_ena
 	ui_windows.push_back(ui_load = new UILoad());
 	ui_windows.push_back(ui_time = new UITime());
 	ui_windows.push_back(ui_assets = new UIAssets());
+	ui_windows.push_back(ui_resources = new UIResources());
 }
 
 ModuleUI::~ModuleUI()
@@ -68,6 +70,7 @@ bool ModuleUI::Start()
 	ui_load->Start();
 	ui_time->Start();
 	ui_assets->Start();
+	ui_resources->Start();
 
 	return ret;
 }
@@ -134,6 +137,10 @@ update_status ModuleUI::Update(float dt)
 			if (MenuItem("Assets"))
 			{
 				ui_assets->is_on = !ui_assets->is_on;
+			}
+			if (MenuItem("Resources"))
+			{
+				ui_resources->is_on = !ui_resources->is_on;
 			}
 			if (MenuItem("Console"))
 			{

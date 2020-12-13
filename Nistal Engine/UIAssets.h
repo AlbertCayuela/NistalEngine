@@ -19,7 +19,6 @@ public:
 	bool Start();
 	void Draw();
 	bool CleanUp();
-	void SetHierarchy(GameObject* root);
 	void SetPos();
 
 private:

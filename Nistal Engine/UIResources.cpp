@@ -33,7 +33,7 @@ bool UIResources::CleanUp()
 void UIResources::Draw()
 {
 	ImGuiWindowFlags flags = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove;
-	if (Begin("Assets"), &is_on, flags)
+	if (Begin("Resources"), &is_on, flags)
 	{
 		SetPos();
 	}

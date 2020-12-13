@@ -1,3 +1,8 @@
+#ifndef __UIRESOURCES_H__
+#define __UIRESOURCES_H__
+
+#include "Module.h"
+#include "Application.h"	
 #include "Globals.h"
 #include "UIWindow.h"
 
@@ -14,7 +19,6 @@ public:
 	bool Start();
 	void Draw();
 	bool CleanUp();
-	void SetHierarchy(GameObject* root);
 	void SetPos();
 
 private:
