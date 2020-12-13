@@ -21,6 +21,18 @@ bool ModuleResourceManager::Start()
 	App->file_system->DiscoverFiles(LIBRARY_MESH_FOLDER, library_mesh_files, library_mesh_dirs);
 	App->file_system->DiscoverFiles(LIBRARY_TEXTURES_FOLDER, library_material_files, library_material_dirs);
 
+	for (std::vector<std::string>::iterator i = library_mesh_files.begin(); i != library_mesh_files.end(); i++)
+	{
+		(*i) = LIBRARY_MESH_FOLDER + (*i);
+		App->file_system->Remove((*i).c_str());
+	}
+
+	for (std::vector<std::string>::iterator i = library_material_files.begin(); i != library_material_files.end(); i++)
+	{
+		(*i) = LIBRARY_TEXTURES_FOLDER + (*i);
+		App->file_system->Remove((*i).c_str());
+	}
+
 	for (std::vector<string>::iterator i = mesh_files.begin(); i != mesh_files.end(); i++) 
 	{
 		LOG("mesh detected: %s", (*i).c_str());
