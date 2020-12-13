@@ -36,6 +36,21 @@ void UIAssets::Draw()
 	if (Begin("Assets"), &is_on, flags)
 	{
 		SetPos();
+
+		if (CollapsingHeader("Meshes")) 
+		{
+			for (std::vector<string>::iterator i = App->resource_manager->mesh_files.begin(); i != App->resource_manager->mesh_files.end(); i++)
+			{
+				Text((*i).c_str());
+			}
+		}
+		if (CollapsingHeader("Textures"))
+		{
+			for (std::vector<string>::iterator i = App->resource_manager->material_files.begin(); i != App->resource_manager->material_files.end(); i++)
+			{
+				Text((*i).c_str());
+			}
+		}
 	}
 	End();
 }
