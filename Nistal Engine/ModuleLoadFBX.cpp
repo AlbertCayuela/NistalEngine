@@ -359,7 +359,7 @@ void ModuleLoadFBX::LoadMaterial(GameObject* game_object)
         std::string texture_path;
         texture_path = tex_path.data;
         LOG("Texture detected: %s", texture_path.c_str());
-        App->importer->TextureSaving(texture_path, "textures/");
+        //App->importer->TextureSaving(texture_path, "textures/");
         game_object->AddComponent(GOCOMPONENT_TYPE::MATERIAL, texture_path.c_str());
         game_object->material->GetNewMaterial(texture_path);
     }

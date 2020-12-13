@@ -15,6 +15,10 @@ public:
 	bool LoadToMemory();
 	bool UnloadFromMemory();
 
+	Resource* parent;
+	std::string meta_path;
+	std::string texture_path;
+
 };
 
 #endif

@@ -5,7 +5,6 @@
 #include "ResourceMaterial.h"
 #include <ctime>
 
-
 ModuleResourceManager::ModuleResourceManager(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 }
@@ -200,6 +199,38 @@ void ModuleResourceManager::GenerateLibaryResources()
 		if (!resource_exists)
 		{
 			CreateNewResource(RESOURCE_TYPE::RESOURCE_MESH, meta_uuid, path);
+		}
+	}
+
+	for (std::vector<string>::iterator i = material_files.begin(); i != material_files.end(); i++)
+	{
+		uint meta_uuid;
+
+		std::string path;
+		path = "textures/" + (*i) + ".meta";
+		JSON_Value* value = json_parse_file(path.c_str());
+		JSON_Object* obj = json_value_get_object(value);
+
+		meta_uuid = json_object_get_number(obj, "UUID");
+
+		bool resource_exists = false;
+
+		for (std::vector<string>::iterator j = library_material_files.begin(); j != library_material_files.end(); j++)
+		{
+			std::string s_uuid;
+			std::string::size_type const p((*j).find_last_of('.'));
+			s_uuid = (*j).substr(0, p);
+			std::string uuid = to_string(meta_uuid);
+
+			if (s_uuid == uuid)
+			{
+				resource_exists = true;
+			}
+		}
+
+		if (!resource_exists)
+		{
+			CreateNewResource(RESOURCE_TYPE::RESOURCE_MATERIAL, meta_uuid, path);
 		}
 	}
 }

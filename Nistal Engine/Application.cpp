@@ -24,9 +24,9 @@ Application::Application()
 	AddModule(window);
 	AddModule(camera);
 	AddModule(input);
-	AddModule(resource_manager);
 	AddModule(file_system);
 	AddModule(load_fbx);
+	AddModule(resource_manager);
 	AddModule(serialization);
 	AddModule(importer);
 		
