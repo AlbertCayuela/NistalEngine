@@ -218,6 +218,8 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene,aiNode* node, GameObject* ga
         float3 scale(scaling.x, scaling.y, scaling.z);
         Quat rot(rotation.x, rotation.y, rotation.z, rotation.w);
 
+        new_resource = App->resource_manager->CreateNewResource(RESOURCE_TYPE::RESOURCE_MESH, App->resource_manager->GenerateNewUUID(), "");
+
         new_go->AddComponent(GOCOMPONENT_TYPE::MESH, "mesh");
         new_go->mesh->mesh_info = model;
 

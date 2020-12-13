@@ -2,6 +2,7 @@
 #include "Module.h"
 #include "Globals.h"
 #include "GameObject.h"
+#include "Resource.h"
 #include "Glew/include/glew.h"
 #include <vector>
 #include "MathGeoLib/include/Math/float3.h"
@@ -10,6 +11,7 @@
 
 
 class GameObject;
+class Resource;
 class aiScene;
 class aiMesh;
 class aiNode;
@@ -98,5 +100,7 @@ public:
 	bool all_fbx_loaded = false;
 	GameObject* new_parent = nullptr;
 	bool parent = false;
+
+	Resource* new_resource = nullptr;
 
 };

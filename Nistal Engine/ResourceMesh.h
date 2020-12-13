@@ -9,7 +9,7 @@ class ResourceMesh : public Resource
 
 public:
 
-	ResourceMesh(uint uuid, std::string meta_path);
+	ResourceMesh(uint uuid, std::string meta_path, Resource* parent);
 	~ResourceMesh();
 
 	bool LoadToMemory();

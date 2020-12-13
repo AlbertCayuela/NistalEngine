@@ -86,7 +86,8 @@ Resource* ModuleResourceManager::CreateNewResource(RESOURCE_TYPE type, uint uuid
 	switch (type) 
 	{
 	case RESOURCE_MESH:
-		ret = (Resource*) new ResourceMesh(uuid, meta_path);
+		ret = new Resource(uuid, type);
+		ret->resource_mesh = new ResourceMesh(uuid, meta_path, ret);
 		break;
 	case RESOURCE_MATERIAL:
 		ret = (Resource*) new ResourceMaterial(uuid, meta_path);

@@ -19,6 +19,8 @@ public:
 	modelData mesh_info;
 
 	std::string name;
+
+	uint mesh_uuid = 0;
 };
 
 #endif

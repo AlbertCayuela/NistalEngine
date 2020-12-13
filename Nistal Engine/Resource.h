@@ -11,6 +11,7 @@ enum RESOURCE_TYPE {
 
 };
 
+class ResourceMesh;
 class Resource
 {
 public:
@@ -25,11 +26,11 @@ public:
 	bool UnloadToMemory();
 	uint CountReferences() const;
 
-protected:
+public:
 
 	uint uuid = 0;
 	RESOURCE_TYPE type = RESOURCE_UNKNOWN;
-
+	ResourceMesh* resource_mesh = nullptr;
 };
 
 #endif
