@@ -14,6 +14,7 @@ public:
 	~ModuleResourceManager();
 
 	bool Start();
+	update_status Update(float dt);
 
 	uint Find(const char* file_in_assets) const;
 	uint ImportFile(const char* new_file_in_assets);
@@ -37,6 +38,7 @@ public:
 	std::vector<std::string> library_mesh_dirs;
 	std::vector<std::string> library_material_files;
 	std::vector<std::string> library_material_dirs;
+	Timer timer;
 
 private:
 

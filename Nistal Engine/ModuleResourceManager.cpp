@@ -56,7 +56,24 @@ bool ModuleResourceManager::Start()
 
 	GenerateLibaryResources();
 
+	timer.Start();
+
 	return true;
+}
+
+update_status ModuleResourceManager::Update(float dt)
+{
+
+	if (timer.Read() >= 1500) 
+	{
+		mesh_files.clear();
+		material_files.clear();
+		App->file_system->DiscoverFiles("Models/", mesh_files, mesh_dirs);
+		App->file_system->DiscoverFiles("textures/", material_files, material_dirs);
+		timer.Start();
+	}
+
+	return UPDATE_CONTINUE;
 }
 
 uint ModuleResourceManager::Find(const char* file_in_assets) const
