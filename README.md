@@ -11,7 +11,9 @@ Nistal Engine v.0.1
 Drag an FBX from the "Models" folder to the engine viewport to create the hirearchy of gameobjects that represents it. If there's no gameobject selected, it will be son of the sceene. But if you have selected any gameobject and import a model, it will be son of this.
 Gameobjects can be hidden through the inspector window.
 ### Mouse picking
-Deploy any gameobject in the hierarchy and click "select".
+Deploy any gameobject in the hierarchy and click "select" or click on the object.
+
+In order to move an object select it and open the transform in the inspector.
 ## Controls
 ### General controls
 - ESC: Quit
@@ -28,10 +30,6 @@ Deploy any gameobject in the hierarchy and click "select".
 1. Download the latest release from: https://github.com/AlbertCayuela/NistalEngine/releases
 2. Unzip de file
 3. Execute Nistal Engine.exe
-
-### Innovations!
-- Face Normals: We load model vertices normals. But we can load face normals too. 
-- Selective gamobject parent: You can select any gameobject in the scene and drop a model into the viewport. This gameobject will be its parent.
 
 ### Credits
 - Albert Cayuela: https://github.com/AlbertCayuela
