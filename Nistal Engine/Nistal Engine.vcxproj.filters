@@ -435,6 +435,9 @@
     <ClInclude Include="ResourceMaterial.h">
       <Filter>Sources\Modules\Resources</Filter>
     </ClInclude>
+    <ClInclude Include="UIAssets.h">
+      <Filter>Sources\Modules\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -673,6 +676,9 @@
     </ClCompile>
     <ClCompile Include="ResourceMaterial.cpp">
       <Filter>Sources\Modules\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="UIAssets.cpp">
+      <Filter>Sources\Modules\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -13,6 +13,7 @@ class UIHierarchy;
 class UISave;
 class UILoad;
 class UITime;
+class UIAssets;
 
 class ModuleUI : public Module
 {
@@ -64,6 +65,7 @@ private:
 	UISave* ui_save = nullptr;
 	UILoad* ui_load = nullptr;
 	UITime* ui_time = nullptr;
+	UIAssets* ui_assets = nullptr;
 
 
 	JSON_Object* UI_node = nullptr;
