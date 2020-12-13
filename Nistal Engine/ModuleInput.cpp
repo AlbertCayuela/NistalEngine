@@ -114,53 +114,58 @@ update_status ModuleInput::PreUpdate(float dt)
 
 			case SDL_DROPFILE:
 			//LOG("file dropped on screen!");
-			dropped_path = e.drop.file;
-			extension = App->file_system->GetExtension(dropped_path);
-			if (extension == "fbx" || extension == "FBX")
-			{
-				LOG("dropped file extension:.fbx");
-				if (App->scene_intro->selected_go != nullptr) 
+			
+				if (!App->scene_intro->game_running) 
 				{
-					App->load_fbx->LoadFBX(dropped_path, App->scene_intro->selected_go);
-					App->importer->SaveOwnFormat(App->load_fbx->model, "mymesh");
-				}
-				else 
-				{
-					App->load_fbx->LoadFBX(dropped_path);
-					App->importer->SaveOwnFormat(App->load_fbx->model, "mymesh");
-				}
-					
-			}
+					dropped_path = e.drop.file;
+					extension = App->file_system->GetExtension(dropped_path);
+					if (extension == "fbx" || extension == "FBX")
+					{
+						LOG("dropped file extension:.fbx");
+						if (App->scene_intro->selected_go != nullptr)
+						{
+							App->load_fbx->LoadFBX(dropped_path, App->scene_intro->selected_go);
+							App->importer->SaveOwnFormat(App->load_fbx->model, "mymesh");
+						}
+						else
+						{
+							App->load_fbx->LoadFBX(dropped_path);
+							App->importer->SaveOwnFormat(App->load_fbx->model, "mymesh");
+						}
 
-			if (extension == "mesh")
-			{
-				LOG("Loading mesh from library");
-				App->importer->loadOwnFormat = true;
-				//App->importer->LoadOwnFormat("mymesh");
-			}
+					}
 
-			if (extension == "scene" || extension == "json")
-			{
-				LOG("Loading saved Scene");
-				App->serialization->LoadScene("Library/Scenes/testscene.json");
-			}
+					if (extension == "mesh")
+					{
+						LOG("Loading mesh from library");
+						App->importer->loadOwnFormat = true;
+						//App->importer->LoadOwnFormat("mymesh");
+					}
 
-			if (extension == "dds" || extension == "DDS" || extension == "png" || extension == "PNG" || extension == "jpg" || extension == "JPG" || extension == "tga") 
-			{
-				LOG("dropped a texture file");
-				if (App->scene_intro->selected_go != nullptr) 
-				{
-					App->scene_intro->selected_go->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "texture");
-					App->scene_intro->selected_go->material->LoadThisTex(dropped_path);
-					//custom format
-					App->importer->TextureSaving(dropped_path, "textures/");
+					if (extension == "scene" || extension == "json")
+					{
+						LOG("Loading saved Scene");
+						App->serialization->LoadScene("Library/Scenes/testscene.json");
+					}
+
+					if (extension == "dds" || extension == "DDS" || extension == "png" || extension == "PNG" || extension == "jpg" || extension == "JPG" || extension == "tga")
+					{
+						LOG("dropped a texture file");
+						if (App->scene_intro->selected_go != nullptr)
+						{
+							App->scene_intro->selected_go->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "texture");
+							App->scene_intro->selected_go->material->LoadThisTex(dropped_path);
+							//custom format
+							App->importer->TextureSaving(dropped_path, "textures/");
+						}
+						else
+						{
+							App->load_fbx->LoadTexture(dropped_path);
+							App->importer->TextureSaving(dropped_path, "textures/");
+						}
+					}
 				}
-				else
-				{
-					App->load_fbx->LoadTexture(dropped_path);
-					App->importer->TextureSaving(dropped_path, "textures/");
-				}
-			}
+			
 			break;
 
 			case SDL_QUIT:

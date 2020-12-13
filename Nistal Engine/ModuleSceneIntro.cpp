@@ -100,24 +100,6 @@ update_status ModuleSceneIntro::Update(float dt)
 
     root->Update(dt);
 
-    //for (std::vector<GameObject*>::iterator i = own_game_objects.begin(); i != own_game_objects.end(); ++i)
-    //{
-    //    if ((*i)->has_mesh)
-    //    {
-    //        if((*i)->has_material)
-    //            (*i)->mesh->DrawMesh((*i)->material->texture_id);
-    //        else
-    //            (*i)->mesh->DrawMesh(NULL);
-    //    }
-    //    if ((*i)->parent != nullptr)
-    //    {
-    //        if (!(*i)->parent->active)
-    //        {
-    //            (*i)->active = false;
-    //        }
-    //    }
-    //}
-
     for (std::vector<GameObject*>::iterator i = game_objects.begin(); i != game_objects.end(); ++i)
     {
         if ((*i)->has_mesh)
@@ -164,22 +146,6 @@ GameObject* ModuleSceneIntro::CreateGameObject(GameObject* parent, const char* n
     GameObject* game_object = new GameObject(parent, name);
     game_objects.push_back(game_object);
     
-    return game_object;
-}
-
-GameObject* ModuleSceneIntro::CreateOWNGameObject(GameObject* parent, const char* name)
-{
-    GameObject* game_object = new GameObject(parent, name);
-    own_game_objects.push_back(game_object);
-
-    return game_object;
-}
-
-GameObject* ModuleSceneIntro::CreateSavedGameObject(GameObject* parent, const char* name)
-{
-    GameObject* game_object = new GameObject(parent, name);
-    saved_scene_game_object.push_back(game_object);
-
     return game_object;
 }
 
