@@ -46,10 +46,10 @@ void Timer::UpdateTimer()
 	real_dt = App->GetDT();
 	//realTimeSinceStartup += realTimeDeltaTime;
 
-	if (App->scene_intro->game_running == false) {
+	if (App->scene_intro->playing == false) {
 		time = 0.0f;
 	}
-	else if (App->scene_intro->game_running == true && App->playing_timer.paused == false) {
+	else if (App->scene_intro->playing == true && App->playing_timer.paused == false) {
 		time += real_dt * time_scale;
 		dt = real_dt * time_scale;
 	}

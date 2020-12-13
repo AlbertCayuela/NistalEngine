@@ -52,7 +52,11 @@ void GameObject::Update(float dt)
 	if (camera != nullptr)
 		camera->Update(dt);
 
-	DrawBoundingBox();
+
+	if (!App->scene_intro->playing) 
+	{
+		DrawBoundingBox();
+	}
 }
 
 GOComponent* GameObject::AddComponent(GOCOMPONENT_TYPE type, const char* name)

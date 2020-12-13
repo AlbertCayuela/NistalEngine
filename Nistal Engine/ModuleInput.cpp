@@ -113,9 +113,7 @@ update_status ModuleInput::PreUpdate(float dt)
 			break;
 
 			case SDL_DROPFILE:
-			//LOG("file dropped on screen!");
-			
-				if (!App->scene_intro->game_running) 
+				if (!App->scene_intro->playing)
 				{
 					dropped_path = e.drop.file;
 					extension = App->file_system->GetExtension(dropped_path);
@@ -165,7 +163,6 @@ update_status ModuleInput::PreUpdate(float dt)
 						}
 					}
 				}
-			
 			break;
 
 			case SDL_QUIT:
