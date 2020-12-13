@@ -223,7 +223,7 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene,aiNode* node, GameObject* ga
 
         uint resource_uuid = App->resource_manager->GenerateNewUUID();
 
-        new_resource = App->resource_manager->CreateNewResource(RESOURCE_TYPE::RESOURCE_MESH, resource_uuid, "");
+        new_resource = App->resource_manager->CreateNewResource(RESOURCE_TYPE::RESOURCE_MESH, resource_uuid, new_go->ui_name);
 
         new_go->AddComponent(GOCOMPONENT_TYPE::MESH, "mesh");
         new_go->mesh->mesh_uuid = new_resource->uuid;
@@ -237,7 +237,7 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene,aiNode* node, GameObject* ga
 
         //---------------------------------------------------------------------------
 
-        //App->importer->SaveOwnFormat(model, to_string(new_resource->uuid));
+        App->importer->SaveOwnFormat(model, new_go->ui_name);
         
   
         //OUTPUT
