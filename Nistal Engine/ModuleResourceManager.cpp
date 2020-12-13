@@ -68,8 +68,12 @@ update_status ModuleResourceManager::Update(float dt)
 	{
 		mesh_files.clear();
 		material_files.clear();
+		library_mesh_files.clear();
+		library_material_files.clear();
 		App->file_system->DiscoverFiles("Models/", mesh_files, mesh_dirs);
 		App->file_system->DiscoverFiles("textures/", material_files, material_dirs);
+		App->file_system->DiscoverFiles(LIBRARY_MESH_FOLDER, library_mesh_files, library_mesh_dirs);
+		App->file_system->DiscoverFiles(LIBRARY_TEXTURES_FOLDER, library_material_files, library_material_dirs);
 		timer.Start();
 	}
 

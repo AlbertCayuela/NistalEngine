@@ -36,6 +36,21 @@ void UIResources::Draw()
 	if (Begin("Resources"), &is_on, flags)
 	{
 		SetPos();
+
+		if (CollapsingHeader("Meshes")) 
+		{
+			for (std::vector<std::string>::iterator i = App->resource_manager->library_mesh_files.begin(); i != App->resource_manager->library_mesh_files.end(); i++) 
+			{
+				Text((*i).c_str());
+			}
+		}
+		if (CollapsingHeader("Textures")) 
+		{
+			for (std::vector<std::string>::iterator i = App->resource_manager->library_material_files.begin(); i != App->resource_manager->library_material_files.end(); i++)
+			{
+				Text((*i).c_str());
+			}
+		}
 	}
 	End();
 }
