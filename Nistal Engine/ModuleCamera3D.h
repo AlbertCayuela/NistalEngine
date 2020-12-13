@@ -26,6 +26,8 @@ public:
 	bool TestTriIntersection(LineSegment ray, GameObject *& game_object, map<GameObject*, float>& intersected_objects); 
 	void DebugPickingRay(LineSegment ray);
 
+	GOCamera* GetCurrentCamera() const;
+
 private:
 
 	void FocusOnTarget(const float3& focus,const float& distance);

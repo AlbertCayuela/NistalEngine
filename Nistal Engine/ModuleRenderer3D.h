@@ -18,7 +18,7 @@ public:
 	bool CleanUp();
 
 	void OnResize(int width, int height);
-
+	void SetAmbientLight(const bool& enabled, const float color[4]) const;
 
 public:
 
@@ -27,4 +27,5 @@ public:
 	mat3x3 NormalMatrix;
 	mat4x4 ModelMatrix, ViewMatrix, ProjectionMatrix;
 	bool using_engine_camera = true;
+	int refresh_rate = 0;
 };

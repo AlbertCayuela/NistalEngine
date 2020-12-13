@@ -5,6 +5,7 @@
 #include "SDL\include\SDL_opengl.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
+#include "ImGui/ImGuizmo.h"
 
 #pragma comment (lib, "glu32.lib")    /* link OpenGL Utility lib     */
 #pragma comment (lib, "opengl32.lib") /* link Microsoft OpenGL lib   */
@@ -99,7 +100,23 @@ bool ModuleRenderer3D::Init(JSON_Object* node)
 	}
 
 	// Projection matrix for
-	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
+	OnResize(App->window->GetWidth(), App->window->GetHeight());
+	ImGuizmo::SetRect(0, 0, App->window->GetWidth(), App->window->GetHeight());
+	
+	//To get the refresh of the display
+	int display_count = 0, display_index = 0, mode_index = 0;
+	SDL_DisplayMode mode = { SDL_PIXELFORMAT_UNKNOWN, 0, 0, 0, 0 };
+	if (SDL_GetDisplayMode(display_index, mode_index, &mode) != 0) {
+		LOG("SDL_GetDisplayMode failed: %s", SDL_GetError());
+		return 1;
+	}
+	else
+	{
+		refresh_rate = mode.refresh_rate;
+	}
+
+	float light[4] = { 255, 255, 255, 255 };
+	SetAmbientLight(true, light);
 
 	return ret;
 }
@@ -155,13 +172,25 @@ bool ModuleRenderer3D::CleanUp()
 
 void ModuleRenderer3D::OnResize(int width, int height)
 {
+	App->camera->GetCurrentCamera()->SetAspectRatio((float)width / (float)height);
+
 	glViewport(0, 0, width, height);
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	ProjectionMatrix = perspective(60.0f, (float)width / (float)height, 0.125f, 512.0f);
-	glLoadMatrixf(&ProjectionMatrix);
+
+	glLoadMatrixf(App->camera->GetCurrentCamera()->GetProjectionMatrix().ptr());
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
+}
+
+void ModuleRenderer3D::SetAmbientLight(const bool& enabled, const float color[4]) const
+{
+	glLightfv(GL_LIGHT0, GL_AMBIENT, color);
+
+	if (enabled)
+		glEnable(GL_LIGHT0);
+	else
+		glDisable(GL_LIGHT0);
 }
