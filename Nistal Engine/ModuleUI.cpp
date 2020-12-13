@@ -131,6 +131,10 @@ update_status ModuleUI::Update(float dt)
 			{
 				ui_inspector->is_on = !ui_inspector->is_on;
 			}
+			if (MenuItem("Assets"))
+			{
+				ui_assets->is_on = !ui_assets->is_on;
+			}
 			if (MenuItem("Console"))
 			{
 				ui_console->is_on = !ui_console->is_on;

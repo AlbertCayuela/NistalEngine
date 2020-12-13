@@ -9,7 +9,7 @@ using namespace ImGui;
 
 UIAssets::UIAssets() : UIWindow()
 {
-	is_on = true;
+	is_on = false;
 }
 
 UIAssets::~UIAssets()
