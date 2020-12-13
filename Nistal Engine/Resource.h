@@ -12,6 +12,7 @@ enum RESOURCE_TYPE {
 };
 
 class ResourceMesh;
+class ResourceMaterial;
 class Resource
 {
 public:
@@ -31,6 +32,7 @@ public:
 	uint uuid = 0;
 	RESOURCE_TYPE type = RESOURCE_UNKNOWN;
 	ResourceMesh* resource_mesh = nullptr;
+	ResourceMaterial* resource_material = nullptr;
 };
 
 #endif

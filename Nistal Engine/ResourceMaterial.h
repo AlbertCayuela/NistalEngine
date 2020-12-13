@@ -9,7 +9,7 @@ class ResourceMaterial : public Resource
 	
 public:
 
-	ResourceMaterial(uint uuid, std::string meta_path);
+	ResourceMaterial(uint uuid, std::string meta_path, Resource* parent);
 	~ResourceMaterial();
 
 	bool LoadToMemory();

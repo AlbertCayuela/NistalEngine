@@ -1,7 +1,7 @@
 #include "ResourceMaterial.h"
 #include <string>
 
-ResourceMaterial::ResourceMaterial(uint uuid, std::string meta_path) : Resource(uuid, type)
+ResourceMaterial::ResourceMaterial(uint uuid, std::string meta_path, Resource* parent) : Resource(uuid, type)
 {
 }
 
