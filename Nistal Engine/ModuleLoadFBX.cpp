@@ -4,6 +4,7 @@
 #include "GOMesh.h"
 #include "GOMaterial.h"
 #include "GOTransform.h"
+#include "ResourceMesh.h"
 #include "ModuleImporter.h"
 
 #include "Assimp/include/scene.h"
@@ -221,6 +222,7 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene,aiNode* node, GameObject* ga
         new_resource = App->resource_manager->CreateNewResource(RESOURCE_TYPE::RESOURCE_MESH, App->resource_manager->GenerateNewUUID(), "");
 
         new_go->AddComponent(GOCOMPONENT_TYPE::MESH, "mesh");
+        new_go->mesh->mesh_uuid = new_resource->resource_mesh->GetUUID();
         new_go->mesh->mesh_info = model;
 
         new_go->transform->position = pos;
