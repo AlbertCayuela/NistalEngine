@@ -3,6 +3,7 @@
 
 #include "GOComponent.h"
 #include "ModuleLoadFBX.h"
+#include "Resource.h"
 
 class GOMesh : public GOComponent
 {
@@ -21,6 +22,9 @@ public:
 	std::string name;
 
 	uint mesh_uuid = 0;
+
+	ResourceMesh* this_resource;
+
 };
 
 #endif

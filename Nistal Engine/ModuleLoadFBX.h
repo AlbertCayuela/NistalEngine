@@ -102,5 +102,6 @@ public:
 	bool parent = false;
 
 	Resource* new_resource = nullptr;
+	std::vector<std::string> imported_meshes;
 
 };

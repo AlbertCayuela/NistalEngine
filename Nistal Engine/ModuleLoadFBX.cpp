@@ -141,6 +141,8 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene,aiNode* node, GameObject* ga
         go_name = node->mName.C_Str();
         new_go = App->scene_intro->CreateGameObject(game_object, go_name.c_str());
 
+        //imported_meshes.push_back(go_name);
+
         //LOADING MATERIAL
         LoadMaterial(new_go);
        
@@ -219,22 +221,25 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene,aiNode* node, GameObject* ga
         float3 scale(scaling.x, scaling.y, scaling.z);
         Quat rot(rotation.x, rotation.y, rotation.z, rotation.w);
 
-        new_resource = App->resource_manager->CreateNewResource(RESOURCE_TYPE::RESOURCE_MESH, App->resource_manager->GenerateNewUUID(), "");
+        uint resource_uuid = App->resource_manager->GenerateNewUUID();
+
+        new_resource = App->resource_manager->CreateNewResource(RESOURCE_TYPE::RESOURCE_MESH, resource_uuid, "");
 
         new_go->AddComponent(GOCOMPONENT_TYPE::MESH, "mesh");
-        new_go->mesh->mesh_uuid = new_resource->resource_mesh->GetUUID();
-        new_go->mesh->mesh_info = model;
+        new_go->mesh->mesh_uuid = new_resource->uuid;
+
+        new_resource->resource_mesh->model_info = model;
+        //new_go->mesh->mesh_info = model;
 
         new_go->transform->position = pos;
         new_go->transform->rotation = rot;
         new_go->transform->scale = scale;
 
-        //LOG("GameObject Position: %f , %f , %f", pos.x, pos.y, pos.z);
-
         //---------------------------------------------------------------------------
 
-        App->importer->SaveOwnFormat(model, new_go->ui_name);
-
+        App->importer->SaveOwnFormat(model, to_string(new_resource->uuid));
+        
+  
         //OUTPUT
         LOG("Loaded mesh with %i vertices.", model.num_vertex);
         LOG("Loaded mesh with %i indices.", model.num_index);

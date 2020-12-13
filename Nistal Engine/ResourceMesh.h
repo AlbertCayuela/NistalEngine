@@ -3,6 +3,7 @@
 
 #include <string>
 #include "Resource.h"
+#include "ModuleLoadFBX.h"
 
 class ResourceMesh : public Resource
 {
@@ -15,9 +16,10 @@ public:
 	bool LoadToMemory();
 	bool UnloadFromMemory();
 
-protected:
+public:
 
 	std::string meta_path;
+	modelData model_info;
 
 };
 
