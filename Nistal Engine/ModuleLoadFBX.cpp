@@ -237,7 +237,7 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene,aiNode* node, GameObject* ga
 
         //---------------------------------------------------------------------------
 
-        App->importer->SaveOwnFormat(model, to_string(new_resource->uuid));
+        //App->importer->SaveOwnFormat(model, to_string(new_resource->uuid));
         
   
         //OUTPUT

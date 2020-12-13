@@ -33,6 +33,7 @@ public:
 	RESOURCE_TYPE type = RESOURCE_UNKNOWN;
 	ResourceMesh* resource_mesh = nullptr;
 	ResourceMaterial* resource_material = nullptr;
+
 };
 
 #endif

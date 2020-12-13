@@ -18,6 +18,7 @@ public:
 
 public:
 
+	Resource* parent;
 	std::string meta_path;
 	modelData model_info;
 
