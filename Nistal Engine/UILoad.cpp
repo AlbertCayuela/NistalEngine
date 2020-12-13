@@ -55,6 +55,7 @@ void UILoad::Draw()
 					if (App->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN)
 					{
 						scene_selected = (*i);
+						scene_select = true;
 					}
 				}
 				if (scene_selected == (*i))
@@ -62,6 +63,7 @@ void UILoad::Draw()
 					if (Button("Selected"))
 					{
 						scene_selected = nullptr;
+						scene_select = false;
 						LOG("NO SCENE SELECTED");
 					}
 				}
@@ -70,6 +72,7 @@ void UILoad::Draw()
 					if (Button("Select"))
 					{
 						scene_selected = (*i);
+						scene_select = true;
 						LOG("SCENE SELECTED: %s", (*i).c_str());
 					}
 				}
@@ -82,9 +85,12 @@ void UILoad::Draw()
 
 	if (Button("Load Scene")) 
 	{
-		scene_selected = LIBRARY_SCENE_FOLDER + scene_selected;
-		App->serialization->LoadScene(scene_selected.c_str());
-		is_on = false;
+		if (scene_select) 
+		{
+			scene_selected = LIBRARY_SCENE_FOLDER + scene_selected;
+			App->serialization->LoadScene(scene_selected.c_str());
+			is_on = false;
+		}	
 	}
 
 	End();

@@ -24,6 +24,7 @@ public:
 	std::vector<std::string> dir_list;
 
 	std::string scene_selected;
+	bool scene_select = false;
 };
 
 #endif // !__UILOAD_H__

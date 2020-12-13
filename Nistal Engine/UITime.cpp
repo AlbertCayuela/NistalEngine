@@ -50,11 +50,14 @@ void UITime::Draw()
 	if (Button("Stop"))
 	{
 		LOG("Stopping");
-		App->serialization->LoadScene("Library/Scenes/current_scene.json");
-		App->playing_timer.Stop();
-		App->scene_intro->playing = false;
-		App->scene_intro->paused = true;
-		App->renderer3D->using_engine_camera = true;
+		if (App->scene_intro->playing) 
+		{
+			App->serialization->LoadScene("Library/Scenes/current_scene.json");
+			App->playing_timer.Stop();
+			App->scene_intro->playing = false;
+			App->scene_intro->paused = true;
+			App->renderer3D->using_engine_camera = true;
+		}		
 	}
 
 	SameLine();
