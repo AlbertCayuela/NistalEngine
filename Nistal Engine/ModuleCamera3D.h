@@ -36,6 +36,7 @@ private:
 public:
 	
 	GOCamera* camera = nullptr;
+	map<GameObject*, float> intersected_objects; //map to store intersected gameobjects
 
 private:
 

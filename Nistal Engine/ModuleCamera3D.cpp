@@ -125,7 +125,7 @@ update_status ModuleCamera3D::Update(float dt)
 		{
 			LOG("Mouse Picking");
 
-			map<GameObject*, float> intersected_objects; //map to store intersected gameobjects
+			
 
 			int mouse_x = App->input->GetMouseX(); //mouse position
 			int mouse_y = App->input->GetMouseY();
@@ -141,9 +141,11 @@ update_status ModuleCamera3D::Update(float dt)
 
 			GameObject* closest_object = nullptr;
 
-			for (std::vector<GameObject*>::iterator i = App->scene_intro->game_objects.begin(); i != App->scene_intro->game_objects.end(); i++)
+			//for (std::vector<GameObject*>::iterator i = App->scene_intro->game_objects.begin(); i != App->scene_intro->game_objects.end(); ++i)
+			for(int i=0; i < App->scene_intro->game_objects.size() - 1; ++i)
 			{
-				TestAABBIntersection(picking, (*i), intersected_objects); //check intersections and store objects in a map
+				//TestAABBIntersection(picking, (*i), intersected_objects); //check intersections and store objects in a map
+				TestAABBIntersection(picking, App->scene_intro->game_objects[i], intersected_objects);
 			}
 
 			if(!intersected_objects.empty())
@@ -208,7 +210,7 @@ void ModuleCamera3D::Move(const float3 &Movement)
 
 void ModuleCamera3D::TestAABBIntersection(LineSegment ray, GameObject* game_object, map<GameObject*, float> &intersected_objects)
 {
-	if (game_object->bbox.IsFinite())
+	if (game_object->bbox.IsFinite() && game_object->has_bbox)
 	{
 		if (ray.Intersects(game_object->bbox)) 
 		{
@@ -229,7 +231,7 @@ bool ModuleCamera3D::TestTriIntersection(LineSegment ray, GameObject *& game_obj
 	GOMesh* mesh = nullptr;
 	float min_distance = FLOAT_INF;
 
-	for (map<GameObject*, float>::iterator i = intersected_objects.begin(); i != intersected_objects.end(); i++)
+	for (map<GameObject*, float>::iterator i = intersected_objects.begin(); i != intersected_objects.end(); ++i)
 	{
 		Triangle tri;
 		LineSegment local_ray = ray;
