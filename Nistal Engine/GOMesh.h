@@ -23,7 +23,8 @@ public:
 
 	uint mesh_uuid = 0;
 
-	ResourceMesh* this_resource;
+	Resource* this_resource;
+	bool resource_requested = false;
 
 };
 

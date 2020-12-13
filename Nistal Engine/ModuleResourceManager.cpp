@@ -76,7 +76,12 @@ uint ModuleResourceManager::GenerateTimeStamp()
 
 Resource* ModuleResourceManager::RequestResource(uint uuid)
 {
-	return nullptr;
+	std::map<uint, Resource*>::iterator i = resources.find(uuid);
+
+	if (i != resources.end())
+		return i->second;
+	else
+		return nullptr;
 }
 
 Resource* ModuleResourceManager::CreateNewResource(RESOURCE_TYPE type, uint uuid, std::string meta_path)

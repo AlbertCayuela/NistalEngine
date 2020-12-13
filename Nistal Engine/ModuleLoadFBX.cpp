@@ -229,7 +229,7 @@ void ModuleLoadFBX::LoadMeshes(const aiScene* scene,aiNode* node, GameObject* ga
         new_go->mesh->mesh_uuid = new_resource->uuid;
 
         new_resource->resource_mesh->model_info = model;
-        //new_go->mesh->mesh_info = model;
+        new_go->mesh->mesh_info = model;
 
         new_go->transform->position = pos;
         new_go->transform->rotation = rot;

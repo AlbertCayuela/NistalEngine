@@ -2,6 +2,7 @@
 #include "GOMaterial.h"
 #include "GOTransform.h"
 #include "Application.h"
+#include "ResourceMesh.h"
 
 GOMesh::GOMesh(GameObject* game_object, const char* name) : GOComponent(game_object)
 {
@@ -22,6 +23,13 @@ GOMesh::~GOMesh()
 
 void GOMesh::DrawMesh(uint texture_id)
 {
+    if (!resource_requested) 
+    {
+       this_resource = App->resource_manager->RequestResource(mesh_uuid);
+       mesh_info = this_resource->resource_mesh->model_info;
+       resource_requested = true;
+    }
+
     if (parent->active)
     {
         glPushMatrix();
