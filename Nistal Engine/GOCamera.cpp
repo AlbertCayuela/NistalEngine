@@ -150,8 +150,7 @@ float4x4 GOCamera::GetViewMatrix() const
 
 float4x4 GOCamera::GetProjectionMatrix() const
 {
-	math::float4x4 projection_matrix = frustum.ProjectionMatrix();
-	return projection_matrix.Transposed();
+	return frustum.ProjectionMatrix().Transposed();
 }
 
 void GOCamera::SaveSceneCamera(JSON_Array* componentsObj)

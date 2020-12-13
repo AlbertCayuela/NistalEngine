@@ -5,6 +5,7 @@
 #include "GOCamera.h"
 #include "GOTransform.h"
 #include "GOMesh.h"
+#include "GOCamera.h"
 
 ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -305,4 +306,9 @@ void ModuleCamera3D::RotateAroundTarget()
 		Quat quat = Quat::RotateAxisAngle(camera->frustum.WorldRight(), dy * sensitivity);
 		float3 up = quat.Mul(camera->frustum.up).Normalized();
 	}
+}
+
+GOCamera* ModuleCamera3D::GetCurrentCamera() const
+{
+	return camera;
 }

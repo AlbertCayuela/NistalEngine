@@ -20,6 +20,9 @@ public:
 
 	void SetTitle(const char* title);
 
+	int GetWidth() const;
+	int GetHeight() const;
+
 public:
 	//The window we'll be rendering to
 	SDL_Window* window;
@@ -35,8 +38,6 @@ public:
 	bool resizable = false;
 	bool borderless = false;
 	bool fullscreen_desktop = false;
-
-
 };
 
 #endif // __ModuleWindow_H__

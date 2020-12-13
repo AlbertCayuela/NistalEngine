@@ -133,11 +133,6 @@ update_status ModuleSceneIntro::Update(float dt)
         }
     }
 
-
-
-    if (App->input->GetKey(SDL_SCANCODE_O) == KEY_REPEAT)
-        App->serialization->SaveScene("New Scene");
-
     if (App->ui->render_face_normals)
     {
          App->load_fbx->DrawNormals(selected_go->mesh->mesh_info);
