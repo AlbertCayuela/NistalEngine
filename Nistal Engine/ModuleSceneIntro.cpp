@@ -34,8 +34,8 @@ bool ModuleSceneIntro::Start()
     camera->transform->NewPosition(float3(0.0f, 19.0f, -70.0f));
     camera->camera->SetFarPlane(200.0f);
 
-    street = CreateGameObject(root, "Street");
-    street->transform->NewRotation(float3(-90.0f, 0.0f, 0.0f));
+    //street = CreateGameObject(root, "Street");
+    //street->transform->NewRotation(float3(-90.0f, 0.0f, 0.0f));
 
 
     return ret;
@@ -55,15 +55,11 @@ update_status ModuleSceneIntro::Update(float dt)
     //to change size see p.innerrender() -> variable d(now its 10 it was 200 before)
     p.Render();
 
-    if (!render_street)
-    {
-        App->load_fbx->LoadFBX("Models/Street environment_V01.fbx", street);
-        //game_objects.at(2)->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "texture");
-        //game_objects.at(2)->material->LoadThisTex(App->load_fbx->texture_path);
-        //game_objects.at(3)->AddComponent(GOCOMPONENT_TYPE::MATERIAL, "texture");
-        //game_objects.at(3)->material->LoadThisTex(App->load_fbx->texture_path);
-        render_street = true;
-    }
+    //if (!render_street)
+    //{
+    //    //App->load_fbx->LoadFBX("Models/Street environment_V01.fbx", street);
+    //    render_street = true;
+    //}
 
     //PRIMITIVES
     if (App->ui->cube)
