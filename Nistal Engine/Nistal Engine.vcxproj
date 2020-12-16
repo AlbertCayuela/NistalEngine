@@ -103,6 +103,7 @@
     <ClInclude Include="GOMesh.h" />
     <ClInclude Include="GOTransform.h" />
     <ClInclude Include="ImGui\ImGuizmo.h" />
+    <ClInclude Include="ModuleAudio.h" />
     <ClInclude Include="ModuleFS.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="ModuleImporter.h" />
@@ -259,6 +260,7 @@
     <ClCompile Include="MathGeoLib\include\Math\SSEMath.cpp" />
     <ClCompile Include="MathGeoLib\include\Math\TransformOps.cpp" />
     <ClCompile Include="MathGeoLib\include\Time\Clock.cpp" />
+    <ClCompile Include="ModuleAudio.cpp" />
     <ClCompile Include="ModuleCamera3D.cpp" />
     <ClCompile Include="ModuleFS.cpp" />
     <ClCompile Include="GameObject.cpp" />

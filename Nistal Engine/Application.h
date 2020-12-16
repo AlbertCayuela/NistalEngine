@@ -14,6 +14,7 @@
 #include "ModuleImporter.h"
 #include "ModuleSerialization.h"
 #include "ModuleResourceManager.h"
+#include "ModuleAudio.h"
 #include <list>
 
 class Application
@@ -30,6 +31,7 @@ public:
 	ModuleImporter* importer;
 	ModuleSerialization* serialization;
 	ModuleResourceManager* resource_manager;
+	ModuleAudio* audio;
 
 	std::string engine_title;
 

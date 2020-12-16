@@ -14,6 +14,7 @@ Application::Application()
 	resource_manager = new ModuleResourceManager(this);
 	importer = new ModuleImporter(this);
 	serialization = new ModuleSerialization(this);
+	audio = new ModuleAudio(this);
 	
 
 	// The order of calls is very important!
@@ -31,6 +32,7 @@ Application::Application()
 	AddModule(importer);
 		
 	// Scenes
+	AddModule(audio);
 	AddModule(scene_intro);
 	AddModule(ui);
 
