@@ -447,6 +447,9 @@
     <ClInclude Include="GOAudioSource.h">
       <Filter>Sources\Modules\GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="GOAudioListener.h">
+      <Filter>Sources\Modules\GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -696,6 +699,9 @@
       <Filter>Sources\Modules</Filter>
     </ClCompile>
     <ClCompile Include="GOAudioSource.cpp">
+      <Filter>Sources\Modules\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="GOAudioListener.cpp">
       <Filter>Sources\Modules\GameObject</Filter>
     </ClCompile>
   </ItemGroup>
