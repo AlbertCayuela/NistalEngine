@@ -97,6 +97,7 @@
     <ClInclude Include="Glew\include\wglew.h" />
     <ClInclude Include="glmath.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="GOAudioSource.h" />
     <ClInclude Include="GOCamera.h" />
     <ClInclude Include="GOComponent.h" />
     <ClInclude Include="GOMaterial.h" />
@@ -213,6 +214,7 @@
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="cubeEngine.cpp" />
     <ClCompile Include="glmath.cpp" />
+    <ClCompile Include="GOAudioSource.cpp" />
     <ClCompile Include="GOCamera.cpp" />
     <ClCompile Include="GOComponent.cpp" />
     <ClCompile Include="GOMaterial.cpp" />
