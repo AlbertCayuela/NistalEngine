@@ -4,6 +4,8 @@
 #include "GOMesh.h"
 #include "GOTransform.h"
 #include "GOCamera.h"
+#include "GOAudioSource.h"
+#include "GOAudioListener.h"
 
 GameObject::GameObject(GameObject* parent, const char* name)
 {
@@ -83,6 +85,16 @@ GOComponent* GameObject::AddComponent(GOCOMPONENT_TYPE type, const char* name)
 		camera = new GOCamera(this);
 		component = camera;
 		has_camera = true;
+		break;
+	case(GOCOMPONENT_TYPE::AUDIO_SOURCE):
+		audio_source = new GOAudioSource(this);
+		component = audio_source;
+		has_audio_source = true;
+		break;
+	case(GOCOMPONENT_TYPE::AUDIO_LISTENER):
+		audio_listener = new GOAudioListener(this);
+		component = audio_listener;
+		has_audio_listener = true;
 		break;
 	default:
 		break;

@@ -13,7 +13,9 @@ enum GOCOMPONENT_TYPE
 	TRANSFORM,
 	MESH,
 	MATERIAL,
-	CAMERA
+	CAMERA,
+	AUDIO_SOURCE,
+	AUDIO_LISTENER,
 };
 
 class GOComponent;
@@ -21,6 +23,8 @@ class GOMaterial;
 class GOMesh;
 class GOTransform;
 class GOCamera;
+class GOAudioSource;
+class GOAudioListener;
 
 class GameObject 
 {
@@ -46,10 +50,14 @@ public:
 	GOMesh* mesh = nullptr;
 	GOTransform* transform = nullptr;
 	GOCamera* camera = nullptr;
+	GOAudioSource* audio_source = nullptr;
+	GOAudioListener* audio_listener = nullptr;
 	bool has_mesh = false;
 	bool has_material = false;
 	bool has_bbox = false;
 	bool has_camera = false;
+	bool has_audio_source = false;
+	bool has_audio_listener = false;
 	bool active = true;
 	bool selected = false;
 	std::vector<GOComponent*> go_components;
