@@ -194,3 +194,8 @@ float Application::GetDT() const
 {
 	return dt;
 }
+
+uint Application::GenerateRandomNumber()
+{
+	return lcg.Int();
+}

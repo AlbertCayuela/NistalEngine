@@ -74,6 +74,10 @@ public:
 	void TimeManager();
 	float GetDT() const;
 
+	uint GenerateRandomNumber();
+
+	LCG lcg;
+
 private:
 
 	void AddModule(Module* mod);
