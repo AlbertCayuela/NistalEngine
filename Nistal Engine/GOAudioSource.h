@@ -14,8 +14,12 @@ public:
 	~GOAudioSource();
 
 	void Update(float dt);
+	float SetVolume(float volume);
+	
 
 public:
+
+	float volume = 0.0f;
 
 	AudioSource* source = nullptr;
 };

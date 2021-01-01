@@ -7,6 +7,8 @@
 #include "GOMesh.h"
 #include "GOMaterial.h"
 #include "GOCamera.h"
+#include "GOAudioSource.h"
+#include "GOAudioListener.h"
 #include "ModuleSceneIntro.h"
 
 #include "ImGui/imconfig.h"
@@ -185,6 +187,17 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 					GO->camera->SetFOV(fov);
 				}
 			}		
+		}
+		if (GO->has_audio_source)
+		{
+			if (CollapsingHeader("Audio Source")) 
+			{
+				float volume = GO->audio_source->volume;
+				if (SliderFloat("Volume", &volume, 0.0f, 100.0f)) 
+				{
+					GO->audio_source->SetVolume(volume);
+				}
+			}
 		}
 
 	}
