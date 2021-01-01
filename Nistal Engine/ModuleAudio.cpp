@@ -22,12 +22,14 @@ bool ModuleAudio::Start()
 	source = CreateSoundSource("mysource");
 	SetListener(source);
 
+	source->PlayEventByName("PlaySong1");
+
 	return true;
 }
 
 update_status ModuleAudio::Update(float dt)
 {
-	source->PlayEventByName("PlaySong1");
+
 
 	ProcessAudio();
 
