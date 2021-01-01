@@ -54,6 +54,9 @@ void GameObject::Update(float dt)
 	if (camera != nullptr)
 		camera->Update(dt);
 
+	if (audio_source != nullptr)
+		audio_source->Update(dt);
+
 
 	if (!App->scene_intro->playing) 
 	{

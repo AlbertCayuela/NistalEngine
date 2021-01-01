@@ -27,11 +27,11 @@
 			<IncludedMemoryFiles>
 				<File Id="272702562" Language="SFX">
 					<ShortName>song2.wav</ShortName>
-					<Path>SFX\song2_1C9C67B2.wem</Path>
+					<Path>SFX\song2_F17FB28C.wem</Path>
 				</File>
 				<File Id="981103580" Language="SFX">
 					<ShortName>song1.wav</ShortName>
-					<Path>SFX\song1_1C9C67B2.wem</Path>
+					<Path>SFX\song1_F17FB28C.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>

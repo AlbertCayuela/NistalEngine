@@ -6,7 +6,9 @@ using namespace WwiseT;
 GOAudioSource::GOAudioSource(GameObject* parent) : GOComponent(parent)
 {
 	source = App->audio->CreateSoundSource("MyAudioSource");
-	source->PlayEventByName("PlaySong2");
+	source->PlayEventByName("PlaySong1");
+
+	timer.Start();
 }
 
 GOAudioSource::~GOAudioSource()
@@ -15,6 +17,7 @@ GOAudioSource::~GOAudioSource()
 
 void GOAudioSource::Update(float dt)
 {
+	SwapMusic(swap_time);
 }
 
 float GOAudioSource::SetVolume(float volume)
@@ -42,4 +45,27 @@ bool GOAudioSource::MuteSound()
 		return false;
 	}
 
+}
+
+void GOAudioSource::SwapMusic(float swap_time)
+{
+	if (timer.Read() / 1000 >= swap_time)
+	{
+		if (current_song == 1) 
+		{
+			LOG("Swap to song 2");
+			source->StopEventByName("PlaySong1");
+			source->PlayEventByName("PlaySong2");
+			current_song = 2;
+		}
+		else if (current_song == 2)
+		{
+			LOG("Swap to song 1");
+			source->StopEventByName("PlaySong2");
+			source->PlayEventByName("PlaySong1");
+			current_song = 1;
+		}
+
+		timer.Start();
+	}
 }
