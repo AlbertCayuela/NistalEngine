@@ -1,0 +1,6 @@
+Event	ID	Name			Wwise Object Path	Notes
+	2559659533	PlaySong1			\Default Work Unit\PlaySong1	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	82232639	song1	C:\Users\alber\Desktop\Engines3\.cache\Windows\SFX\song1_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\song1		6143508
+
