@@ -10,7 +10,7 @@ ModuleAudio::ModuleAudio(Application* app, bool start_enabled) : Module(app, sta
 
 ModuleAudio::~ModuleAudio()
 {
-	
+	CloseSoundEngine();
 }
 
 bool ModuleAudio::Start()
@@ -36,8 +36,6 @@ update_status ModuleAudio::Update(float dt)
 
 bool ModuleAudio::CleanUp()
 {
-	CloseSoundEngine();
-
 	return true;
 }
 
