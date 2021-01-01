@@ -15,11 +15,13 @@ public:
 
 	void Update(float dt);
 	float SetVolume(float volume);
+	bool MuteSound();
 	
 
 public:
 
-	float volume = 0.0f;
+	float volume = 50.0f;
+	bool muted = false;
 
 	AudioSource* source = nullptr;
 };

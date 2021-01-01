@@ -197,6 +197,10 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 				{
 					GO->audio_source->SetVolume(volume);
 				}
+				if (Checkbox("Mute", &GO->audio_source->muted)) 
+				{
+					GO->audio_source->MuteSound();
+				}
 			}
 		}
 

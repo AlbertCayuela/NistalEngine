@@ -25,3 +25,19 @@ float GOAudioSource::SetVolume(float volume)
 
 	return this->volume;
 }
+
+bool GOAudioSource::MuteSound()
+{
+
+	if (muted) 
+	{
+		source->SetVolume(0.0f);
+		return true;
+	}
+	else if (!muted) 
+	{
+		source->SetVolume(volume);
+		return false;
+	}
+
+}
