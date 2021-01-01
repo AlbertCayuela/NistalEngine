@@ -19,10 +19,12 @@ void GOAudioSource::Update(float dt)
 
 float GOAudioSource::SetVolume(float volume)
 {
-	this->volume = volume;
-
-	source->SetVolume(this->volume);
-
+	if (!muted) 
+	{
+		this->volume = volume;
+		source->SetVolume(this->volume);
+	}
+	
 	return this->volume;
 }
 
