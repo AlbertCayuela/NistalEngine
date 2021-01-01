@@ -19,18 +19,16 @@ bool ModuleAudio::Start()
 
 	LoadBank("Engines3.bnk");
 
-	source = CreateSoundSource("mysource");
-	SetListener(source);
+	//source = CreateSoundSource("mysource");
+	//SetListener(source);
 
-	source->PlayEventByName("PlaySong1");
+	//source->PlayEventByName("PlaySong1");
 
 	return true;
 }
 
 update_status ModuleAudio::Update(float dt)
 {
-
-
 	ProcessAudio();
 
 	return UPDATE_CONTINUE;
