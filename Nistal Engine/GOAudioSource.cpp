@@ -6,7 +6,7 @@ using namespace WwiseT;
 GOAudioSource::GOAudioSource(GameObject* parent) : GOComponent(parent)
 {
 	source = App->audio->CreateSoundSource("MyAudioSource");
-	source->PlayEventByName("PlaySong1");
+	source->PlayEventByName("PlaySong2");
 }
 
 GOAudioSource::~GOAudioSource()
