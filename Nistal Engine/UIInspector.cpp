@@ -193,6 +193,7 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 			if (CollapsingHeader("Audio Source")) 
 			{
 				float volume = GO->audio_source->volume;
+				float swap_secs = GO->audio_source->swap_time;
 				if (SliderFloat("Volume", &volume, 0.0f, 100.0f)) 
 				{
 					GO->audio_source->SetVolume(volume);
@@ -200,6 +201,10 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 				if (Checkbox("Mute", &GO->audio_source->muted)) 
 				{
 					GO->audio_source->MuteSound();
+				}
+				if (SliderFloat("Time to swap songs", &swap_secs, 2.0f, 35.0f))
+				{
+					GO->audio_source->swap_time = swap_secs;
 				}
 			}
 		}
