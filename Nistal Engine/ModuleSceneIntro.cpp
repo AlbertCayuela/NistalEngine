@@ -24,7 +24,7 @@ bool ModuleSceneIntro::Start()
     LOG("Loading Intro assets");
     bool ret = true;
 
-    App->camera->Move(float3(-25.0f, 10.0f, -10.0f));
+    App->camera->Move(float3(-50.0f, -20.0f, -80.0f));
     App->camera->LookAt(float3(0, 0, 0));
 
     root = CreateGameObject(nullptr, "root");
@@ -38,7 +38,7 @@ bool ModuleSceneIntro::Start()
 
     camera = CreateGameObject(root, "camera");
     camera->AddComponent(GOCOMPONENT_TYPE::CAMERA, "camera");
-    camera->transform->NewPosition(float3(0.0f, 19.0f, -70.0f));
+    camera->transform->NewPosition(float3(0.0f, 7.2f, -22.50f));
     camera->camera->SetFarPlane(200.0f);
 
 
