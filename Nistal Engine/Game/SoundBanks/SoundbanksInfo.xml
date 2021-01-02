@@ -21,10 +21,15 @@
 			<ShortName>Engines3</ShortName>
 			<Path>Engines3.bnk</Path>
 			<IncludedEvents>
+				<Event Id="2607038380" Name="PlayMotorcycle" ObjectPath="\Events\Default Work Unit\PlayMotorcycle"/>
 				<Event Id="2559659533" Name="PlaySong1" ObjectPath="\Events\Default Work Unit\PlaySong1"/>
 				<Event Id="2559659534" Name="PlaySong2" ObjectPath="\Events\Default Work Unit\PlaySong2"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
+				<File Id="194018862" Language="SFX">
+					<ShortName>Motorcycle.wav</ShortName>
+					<Path>SFX\Motorcycle_F17FB28C.wem</Path>
+				</File>
 				<File Id="272702562" Language="SFX">
 					<ShortName>song2.wav</ShortName>
 					<Path>SFX\song2_F17FB28C.wem</Path>

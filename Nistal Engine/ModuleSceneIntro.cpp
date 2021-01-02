@@ -7,6 +7,7 @@
 #include "GOTransform.h"
 #include "GOCamera.h"
 #include "GameObject.h"
+#include "GOAudioSource.h"
 #include "ModuleSerialization.h"
 
 #include "SDL/include/SDL_opengl.h"
@@ -32,9 +33,14 @@ bool ModuleSceneIntro::Start()
     sound_go = CreateGameObject(root, "Sound");
     sound_go->AddComponent(GOCOMPONENT_TYPE::AUDIO_SOURCE, "AudioSource");
     sound_go->AddComponent(GOCOMPONENT_TYPE::AUDIO_LISTENER, "AudioListener");
+    sound_go->audio_source->PlayEvent("PlaySong1");
+
+
+    //sound_go->audio_source->muted = true;
 
     moving_sound_go = CreateGameObject(root, "MyMovingSound");
     moving_sound_go->AddComponent(GOCOMPONENT_TYPE::AUDIO_SOURCE, "AudioSource");
+    //moving_sound_go->audio_source->muted = true;
 
     camera = CreateGameObject(root, "camera");
     camera->AddComponent(GOCOMPONENT_TYPE::CAMERA, "camera");

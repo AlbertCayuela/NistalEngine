@@ -13,7 +13,6 @@ public:
 
 	GOAudioSource(GameObject* parent);
 	~GOAudioSource();
-
 	void Update(float dt);
 	void PlayEvent(const char* event_name);
 	void PlayASound(const char* event_name);

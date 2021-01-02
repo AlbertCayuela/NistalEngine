@@ -1,8 +1,10 @@
 Event	ID	Name			Wwise Object Path	Notes
 	2559659533	PlaySong1			\Default Work Unit\PlaySong1	
 	2559659534	PlaySong2			\Default Work Unit\PlaySong2	
+	2607038380	PlayMotorcycle			\Default Work Unit\PlayMotorcycle	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	194018862	Motorcycle	C:\Users\alber\Desktop\Engines3\.cache\Windows\SFX\Motorcycle_F17FB28C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Motorcycle		7748472
 	272702562	song2	C:\Users\alber\Desktop\Engines3\.cache\Windows\SFX\song2_F17FB28C.wem		\Actor-Mixer Hierarchy\Default Work Unit\song2		6049884
 	981103580	song1	C:\Users\alber\Desktop\Engines3\.cache\Windows\SFX\song1_F17FB28C.wem		\Actor-Mixer Hierarchy\Default Work Unit\song1		6143508
 

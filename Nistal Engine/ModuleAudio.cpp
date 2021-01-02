@@ -19,11 +19,6 @@ bool ModuleAudio::Start()
 
 	LoadBank("Engines3.bnk");
 
-	//source = CreateSoundSource("mysource");
-	//SetListener(source);
-
-	//source->PlayEventByName("PlaySong1");
-
 	return true;
 }
 
