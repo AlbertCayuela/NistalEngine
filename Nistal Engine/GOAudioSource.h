@@ -15,6 +15,8 @@ public:
 	~GOAudioSource();
 
 	void Update(float dt);
+	void PlayEvent(const char* event_name);
+	void PlaySound(const char* event_name);
 	float SetVolume(float volume);
 	bool MuteSound();
 	void SwapMusic(float swap_time);
@@ -28,6 +30,7 @@ public:
 	float swap_time = 30.0f;
 	uint current_song = 1;
 
+	std::string current_event;
 	AudioSource* source = nullptr;
 	Timer timer;
 };

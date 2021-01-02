@@ -6,7 +6,7 @@ using namespace WwiseT;
 GOAudioSource::GOAudioSource(GameObject* parent) : GOComponent(parent)
 {
 	source = App->audio->CreateSoundSource("MyAudioSource");
-	source->PlayEventByName("PlaySong1");
+	PlayEvent("PlaySong1");
 
 	timer.Start();
 }
@@ -18,6 +18,17 @@ GOAudioSource::~GOAudioSource()
 void GOAudioSource::Update(float dt)
 {
 	SwapMusic(swap_time);
+}
+
+void GOAudioSource::PlayEvent(const char* event_name)
+{
+	current_event = event_name;
+	source->PlayEventByName(event_name);
+}
+
+void GOAudioSource::PlaySound(const char* event_name)
+{
+
 }
 
 float GOAudioSource::SetVolume(float volume)
@@ -71,5 +82,5 @@ void GOAudioSource::SwapMusic(float swap_time)
 void GOAudioSource::HandleEvents(const char* stop_event, const char* play_event)
 {
 	source->StopEventByName(stop_event);
-	source->PlayEventByName(play_event);
+	PlayEvent(play_event);
 }
