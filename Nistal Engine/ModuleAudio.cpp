@@ -56,8 +56,9 @@ bool ModuleAudio::SetListener(AudioSource* listener)
 	return ret;
 }
 
-void ModuleAudio::PlayAudio(GOAudioSource* audio_source)
+void ModuleAudio::PlayAudio(GOAudioSource* audio_source, const char* event_name)
 {
+	audio_source->PlayASound(event_name);
 }
 
 void ModuleAudio::PauseAudio(GOAudioSource* audio_source)

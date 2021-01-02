@@ -28,7 +28,11 @@ void GOAudioSource::PlayEvent(const char* event_name)
 
 void GOAudioSource::PlaySound(const char* event_name)
 {
-
+	if (current_event.c_str() != nullptr)
+	{
+		source->StopEventByName(current_event.c_str());
+	}
+	PlayEvent(event_name);
 }
 
 float GOAudioSource::SetVolume(float volume)
