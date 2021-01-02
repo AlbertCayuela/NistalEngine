@@ -21,6 +21,12 @@ public:
 
 	void PlayAudio(GOAudioSource* audio_source, const char* event_name);
 	void PauseAudio(GOAudioSource* audio_source, const char* event_name);
+	void PauseAll();
+	void StopAll();
+
+public:
+
+	std::vector<GOAudioSource*> audio_sources;
 
 protected:
 

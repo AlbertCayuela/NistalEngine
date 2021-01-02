@@ -65,3 +65,13 @@ void ModuleAudio::PauseAudio(GOAudioSource* audio_source, const char* event_name
 {
 	audio_source->PauseASound(event_name);
 }
+
+void ModuleAudio::PauseAll()
+{
+	WwiseT::PauseAll();
+}
+
+void ModuleAudio::StopAll()
+{
+	StopAllEvents();
+}
