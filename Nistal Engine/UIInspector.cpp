@@ -208,6 +208,13 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 				}
 			}
 		}
+		if (GO->audio_listener != nullptr)
+		{
+			if (CollapsingHeader("Audio Listener")) 
+			{
+				Text("This object has an audio listener");
+			}
+		}
 
 	}
 	End();

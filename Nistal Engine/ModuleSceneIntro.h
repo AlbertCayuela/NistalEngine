@@ -39,5 +39,6 @@ public:
     bool playing = false;
     bool paused = false;
     bool render_street = false;
+    bool objects_created = false;
     //bool game_running = false;
 };

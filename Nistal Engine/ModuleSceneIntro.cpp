@@ -41,6 +41,7 @@ bool ModuleSceneIntro::Start()
     camera->transform->NewPosition(float3(0.0f, 19.0f, -70.0f));
     camera->camera->SetFarPlane(200.0f);
 
+
     //street = CreateGameObject(root, "Street");
     //street->transform->NewRotation(float3(-90.0f, 0.0f, 0.0f));
 
@@ -61,6 +62,13 @@ update_status ModuleSceneIntro::Update(float dt)
     p.axis = true;
     //to change size see p.innerrender() -> variable d(now its 10 it was 200 before)
     p.Render();
+
+    if (!objects_created) 
+    {
+        App->load_fbx->LoadFBX("Primitives/Cube.fbx", sound_go);
+        App->load_fbx->LoadFBX("Primitives/Cube.fbx", moving_sound_go);
+        objects_created = true;
+    }
 
     //if (!render_street)
     //{
