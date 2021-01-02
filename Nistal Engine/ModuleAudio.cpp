@@ -55,3 +55,15 @@ bool ModuleAudio::SetListener(AudioSource* listener)
 
 	return ret;
 }
+
+void ModuleAudio::PlayAudio(GOAudioSource* audio_source)
+{
+}
+
+void ModuleAudio::PauseAudio(GOAudioSource* audio_source)
+{
+}
+
+void ModuleAudio::StopAudio(GOAudioSource* audio_source)
+{
+}

@@ -1,3 +1,11 @@
+State Group	ID	Name			Wwise Object Path	Notes
+	4145428215	MusicSwap			\Default Work Unit\MusicSwap	
+
+State	ID	Name	State Group			Notes
+	0	None	MusicSwap			
+	778469036	Song2	MusicSwap			
+	778469039	Song1	MusicSwap			
+
 Game Parameter	ID	Name			Wwise Object Path	Notes
 	504532776	Brick			\Factory Reflect Acoustic Textures\Textures\Brick	
 	513139656	Mountain			\Factory Reflect Acoustic Textures\Textures\Mountain	

@@ -2,6 +2,7 @@
 #include "Module.h"
 #include "Globals.h"
 #include "WwiseT.h"
+#include "GOAudioSource.h"
 
 using namespace WwiseT;
 
@@ -17,6 +18,10 @@ public:
 
 	AudioSource* CreateSoundSource(const char* source_name);
 	bool SetListener(AudioSource* listener);
+
+	void PlayAudio(GOAudioSource* audio_source);
+	void PauseAudio(GOAudioSource* audio_source);
+	void StopAudio(GOAudioSource* audio_source);
 
 protected:
 

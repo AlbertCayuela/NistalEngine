@@ -33,6 +33,9 @@ bool ModuleSceneIntro::Start()
     sound_go->AddComponent(GOCOMPONENT_TYPE::AUDIO_SOURCE, "AudioSource");
     sound_go->AddComponent(GOCOMPONENT_TYPE::AUDIO_LISTENER, "AudioListener");
 
+    moving_sound_go = CreateGameObject(root, "MyMovingSound");
+    moving_sound_go->AddComponent(GOCOMPONENT_TYPE::AUDIO_SOURCE, "AudioSource");
+
     camera = CreateGameObject(root, "camera");
     camera->AddComponent(GOCOMPONENT_TYPE::CAMERA, "camera");
     camera->transform->NewPosition(float3(0.0f, 19.0f, -70.0f));

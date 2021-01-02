@@ -31,9 +31,10 @@ public:
 
     GameObject* root = nullptr;
     GameObject* camera = nullptr;
-    GameObject* street = nullptr;
+    //GameObject* street = nullptr;
     GameObject* selected_go = nullptr;
     GameObject* sound_go = nullptr;
+    GameObject* moving_sound_go = nullptr;
 
     bool playing = false;
     bool paused = false;
