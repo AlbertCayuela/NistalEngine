@@ -39,8 +39,8 @@ void GOAudioSource::PauseASound(const char* event_name)
 {
 	if (current_event.c_str() != nullptr) 
 	{
-		source->StopEventByName(current_event.c_str());
-		LOG("Pausing event %s", current_event.c_str());
+		source->StopEventByName(event_name);
+		LOG("Pausing event %s", event_name);
 	}
 	else 
 	{

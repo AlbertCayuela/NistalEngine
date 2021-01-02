@@ -21,7 +21,6 @@ public:
 
 	void PlayAudio(GOAudioSource* audio_source, const char* event_name);
 	void PauseAudio(GOAudioSource* audio_source, const char* event_name);
-	void StopAudio(GOAudioSource* audio_source);
 
 protected:
 
