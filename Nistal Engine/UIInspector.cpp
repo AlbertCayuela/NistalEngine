@@ -202,7 +202,7 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 				{
 					GO->audio_source->MuteSound();
 				}
-				if (SliderFloat("Time to swap songs", &swap_secs, 2.0f, 35.0f))
+				if (SliderFloat("Time to swap", &swap_secs, 2.0f, 35.0f))
 				{
 					GO->audio_source->swap_time = swap_secs;
 				}

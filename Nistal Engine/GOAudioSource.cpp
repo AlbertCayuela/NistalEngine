@@ -54,18 +54,22 @@ void GOAudioSource::SwapMusic(float swap_time)
 		if (current_song == 1) 
 		{
 			LOG("Swap to song 2");
-			source->StopEventByName("PlaySong1");
-			source->PlayEventByName("PlaySong2");
+			HandleEvents("PlaySong1", "PlaySong2");
 			current_song = 2;
 		}
 		else if (current_song == 2)
 		{
 			LOG("Swap to song 1");
-			source->StopEventByName("PlaySong2");
-			source->PlayEventByName("PlaySong1");
+			HandleEvents("PlaySong2", "PlaySong1");
 			current_song = 1;
 		}
 
 		timer.Start();
 	}
+}
+
+void GOAudioSource::HandleEvents(const char* stop_event, const char* play_event)
+{
+	source->StopEventByName(stop_event);
+	source->PlayEventByName(play_event);
 }
