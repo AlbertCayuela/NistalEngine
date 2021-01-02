@@ -14,6 +14,7 @@ public:
 	GOAudioSource(GameObject* parent);
 	~GOAudioSource();
 	void Update(float dt);
+	bool AudioSourcePosition();
 	void PlayEvent(const char* event_name);
 	void PlayASound(const char* event_name);
 	void PauseASound(const char* event_name);
@@ -27,6 +28,7 @@ public:
 
 	float volume = 50.0f;
 	bool muted = false;
+	bool is_music = false;
 	float swap_time = 30.0f;
 	uint current_song = 1;
 

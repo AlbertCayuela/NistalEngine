@@ -1,5 +1,6 @@
 #include "GOAudioSource.h"
 #include "Application.h"
+#include "GOTransform.h"
 
 using namespace WwiseT;
 
@@ -18,7 +19,33 @@ GOAudioSource::~GOAudioSource()
 
 void GOAudioSource::Update(float dt)
 {
-	SwapMusic(swap_time);
+	if(is_music)
+		SwapMusic(swap_time);
+
+	AudioSourcePosition();
+}
+
+bool GOAudioSource::AudioSourcePosition()
+{  
+	bool ret;
+
+	if (parent != nullptr) 
+	{
+		math::Quat rotation = parent->transform->rotation;
+		math::float3 position = parent->transform->position;
+		math::float3 front = rotation.Transform(math::float3(0, 0, 1));
+		math::float3 up = rotation.Transform(math::float3(0, 1, 0));
+
+		source->SetSourcePos(position.x, position.y, position.z, front.x, front.y, front.z, up.x, up.y, up.z);
+
+		ret = true;
+	}
+	else
+	{
+		ret = false;
+	}
+
+	return ret;
 }
 
 void GOAudioSource::PlayEvent(const char* event_name)
