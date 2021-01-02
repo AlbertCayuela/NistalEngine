@@ -61,8 +61,9 @@ void ModuleAudio::PlayAudio(GOAudioSource* audio_source, const char* event_name)
 	audio_source->PlayASound(event_name);
 }
 
-void ModuleAudio::PauseAudio(GOAudioSource* audio_source)
+void ModuleAudio::PauseAudio(GOAudioSource* audio_source, const char* event_name)
 {
+	audio_source->PauseASound(event_name);
 }
 
 void ModuleAudio::StopAudio(GOAudioSource* audio_source)

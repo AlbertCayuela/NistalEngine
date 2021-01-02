@@ -19,8 +19,8 @@ public:
 	AudioSource* CreateSoundSource(const char* source_name);
 	bool SetListener(AudioSource* listener);
 
-	void PlayAudio(GOAudioSource* audio_source);
-	void PauseAudio(GOAudioSource* audio_source);
+	void PlayAudio(GOAudioSource* audio_source, const char* event_name);
+	void PauseAudio(GOAudioSource* audio_source, const char* event_name);
 	void StopAudio(GOAudioSource* audio_source);
 
 protected:

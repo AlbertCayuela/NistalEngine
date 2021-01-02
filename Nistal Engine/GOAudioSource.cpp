@@ -26,13 +26,26 @@ void GOAudioSource::PlayEvent(const char* event_name)
 	source->PlayEventByName(event_name);
 }
 
-void GOAudioSource::PlaySound(const char* event_name)
+void GOAudioSource::PlayASound(const char* event_name)
 {
 	if (current_event.c_str() != nullptr)
 	{
 		source->StopEventByName(current_event.c_str());
 	}
 	PlayEvent(event_name);
+}
+
+void GOAudioSource::PauseASound(const char* event_name)
+{
+	if (current_event.c_str() != nullptr) 
+	{
+		source->StopEventByName(current_event.c_str());
+		LOG("Pausing event %s", current_event.c_str());
+	}
+	else 
+	{
+		LOG("Couldn't pause the event, current event is nullptr");
+	}
 }
 
 float GOAudioSource::SetVolume(float volume)

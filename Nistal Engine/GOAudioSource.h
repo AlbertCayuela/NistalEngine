@@ -16,7 +16,8 @@ public:
 
 	void Update(float dt);
 	void PlayEvent(const char* event_name);
-	void PlaySound(const char* event_name);
+	void PlayASound(const char* event_name);
+	void PauseASound(const char* event_name);
 	float SetVolume(float volume);
 	bool MuteSound();
 	void SwapMusic(float swap_time);
