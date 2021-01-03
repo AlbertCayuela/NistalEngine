@@ -25,7 +25,7 @@ bool ModuleSceneIntro::Start()
     LOG("Loading Intro assets");
     bool ret = true;
 
-    App->camera->Move(float3(-50.0f, -20.0f, -80.0f));
+    App->camera->Move(float3(-50.0f, -20.0f, -150.0f));
     App->camera->LookAt(float3(0, 0, 0));
 
     root = CreateGameObject(nullptr, "root");

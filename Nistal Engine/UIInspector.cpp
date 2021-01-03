@@ -134,7 +134,7 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 
 			Separator();
 
-			if (mesh_exists || GO != App->scene_intro->root)
+			if (mesh_exists && GO != App->scene_intro->root && GO->has_mesh)
 			{
 				Text("Number of vertices: %i", GO->mesh->mesh_info.num_vertex);
 				Text("Number of indices: %i", GO->mesh->mesh_info.num_index);
@@ -161,7 +161,7 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 			ImVec2 uv_max = ImVec2(0.0f, 0.0f);                 // Lower-right
 			ImVec4 tint_col = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);   // No tint
 			ImVec4 border_col = ImVec4(1.0f, 1.0f, 1.0f, 0.5f); // 50% opaque white
-			if (App->scene_intro->selected_go != nullptr)
+			if (App->scene_intro->selected_go != nullptr && GO->has_material)
 				Image((ImTextureID)GO->material->texture_id, ImVec2(100.0f, 100.0f), uv_min, uv_max, tint_col, border_col);
 		}
 		if (GO->has_camera)
