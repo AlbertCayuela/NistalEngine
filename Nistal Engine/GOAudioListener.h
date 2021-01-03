@@ -13,6 +13,8 @@ public:
 	GOAudioListener(GameObject* parent);
 	~GOAudioListener();
 
+	bool AudioListenerPosition();
+
 public:
 
 	AudioSource* listener = nullptr;

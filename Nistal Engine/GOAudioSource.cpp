@@ -36,7 +36,7 @@ bool GOAudioSource::AudioSourcePosition()
 		math::float3 front = rotation.Transform(math::float3(0, 0, 1));
 		math::float3 up = rotation.Transform(math::float3(0, 1, 0));
 
-		source->SetSourcePos(position.x, position.y, position.z, front.x, front.y, front.z, up.x, up.y, up.z);
+		source->SetSourcePos(-position.x, position.y, -position.z, front.x, front.y, front.z, up.x, up.y, up.z);
 
 		ret = true;
 	}
