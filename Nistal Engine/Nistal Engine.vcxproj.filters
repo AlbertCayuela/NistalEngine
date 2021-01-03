@@ -735,6 +735,9 @@
     <ClInclude Include="AK\AkPlatforms.h">
       <Filter>Sources\Libs\Wwise</Filter>
     </ClInclude>
+    <ClInclude Include="GOReverbZone.h">
+      <Filter>Sources\Modules\GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -1009,6 +1012,9 @@
     </ClCompile>
     <ClCompile Include="AK\Win32\AkFilePackage.cpp">
       <Filter>Sources\Libs\Wwise\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="GOReverbZone.cpp">
+      <Filter>Sources\Modules\GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -179,6 +179,7 @@
     <ClInclude Include="GOComponent.h" />
     <ClInclude Include="GOMaterial.h" />
     <ClInclude Include="GOMesh.h" />
+    <ClInclude Include="GOReverbZone.h" />
     <ClInclude Include="GOTransform.h" />
     <ClInclude Include="ImGui\ImGuizmo.h" />
     <ClInclude Include="ModuleAudio.h" />
@@ -304,6 +305,7 @@
     <ClCompile Include="GOComponent.cpp" />
     <ClCompile Include="GOMaterial.cpp" />
     <ClCompile Include="GOMesh.cpp" />
+    <ClCompile Include="GOReverbZone.cpp" />
     <ClCompile Include="GOTransform.cpp" />
     <ClCompile Include="ImGui\imgui.cpp" />
     <ClCompile Include="ImGui\ImGuizmo.cpp" />
