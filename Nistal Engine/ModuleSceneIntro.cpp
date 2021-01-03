@@ -38,6 +38,7 @@ bool ModuleSceneIntro::Start()
     sound_go = CreateGameObject(root, "Music and listener");
     sound_go->AddComponent(GOCOMPONENT_TYPE::AUDIO_SOURCE, "AudioSource");
     sound_go->AddComponent(GOCOMPONENT_TYPE::AUDIO_LISTENER, "AudioListener");
+    sound_go->AddComponent(GOCOMPONENT_TYPE::REVERB_ZONE, "ReverbZone");
     sound_go->audio_source->PlayEvent("PlaySong1");
     sound_go->audio_source->is_music = true;
 

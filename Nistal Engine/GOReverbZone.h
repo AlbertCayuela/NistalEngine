@@ -7,8 +7,14 @@ class GOReverbZone : public GOComponent
 {
 public:
 
-	GOReverbZone(GameObject* game_object, const char* name);
+	GOReverbZone(GameObject* game_object);
 	~GOReverbZone();
+
+	void Update(float dt);
+
+public:
+	
+	
 };
 
 #endif

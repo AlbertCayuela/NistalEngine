@@ -6,6 +6,7 @@
 #include "GOCamera.h"
 #include "GOAudioSource.h"
 #include "GOAudioListener.h"
+#include "GOReverbZone.h"
 
 GameObject::GameObject(GameObject* parent, const char* name)
 {
@@ -57,6 +58,8 @@ void GameObject::Update(float dt)
 	if (audio_source != nullptr)
 		audio_source->Update(dt);
 
+	if (reverb_zone != nullptr)
+		reverb_zone->Update(dt);
 
 	if (!App->scene_intro->playing) 
 	{
@@ -99,6 +102,10 @@ GOComponent* GameObject::AddComponent(GOCOMPONENT_TYPE type, const char* name)
 		component = audio_listener;
 		has_audio_listener = true;
 		break;
+	case(GOCOMPONENT_TYPE::REVERB_ZONE):
+		reverb_zone = new GOReverbZone(this);
+		component = reverb_zone;
+		has_reverb_zone = true;
 	default:
 		break;
 	}

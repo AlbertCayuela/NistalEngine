@@ -16,6 +16,7 @@ enum GOCOMPONENT_TYPE
 	CAMERA,
 	AUDIO_SOURCE,
 	AUDIO_LISTENER,
+	REVERB_ZONE,
 };
 
 class GOComponent;
@@ -25,6 +26,7 @@ class GOTransform;
 class GOCamera;
 class GOAudioSource;
 class GOAudioListener;
+class GOReverbZone;
 
 class GameObject 
 {
@@ -52,12 +54,14 @@ public:
 	GOCamera* camera = nullptr;
 	GOAudioSource* audio_source = nullptr;
 	GOAudioListener* audio_listener = nullptr;
+	GOReverbZone* reverb_zone = nullptr;
 	bool has_mesh = false;
 	bool has_material = false;
 	bool has_bbox = false;
 	bool has_camera = false;
 	bool has_audio_source = false;
 	bool has_audio_listener = false;
+	bool has_reverb_zone = false;
 	bool active = true;
 	bool selected = false;
 	std::vector<GOComponent*> go_components;
