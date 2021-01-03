@@ -35,6 +35,7 @@ public:
     GameObject* selected_go = nullptr;
     GameObject* sound_go = nullptr;
     GameObject* moving_sound_go = nullptr;
+    GameObject* listener_go = nullptr;
 
     bool playing = false;
     bool paused = false;
