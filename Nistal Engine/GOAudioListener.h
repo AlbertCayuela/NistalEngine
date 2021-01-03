@@ -3,6 +3,7 @@
 
 #include "GOComponent.h"
 #include "WwiseT.h"
+#include "MathGeoLib/include/Geometry/Polyhedron.h"
 
 using namespace WwiseT;
 
@@ -13,6 +14,7 @@ public:
 	GOAudioListener(GameObject* parent);
 	~GOAudioListener();
 
+	void Update(float dt);
 	bool AudioListenerPosition();
 
 public:

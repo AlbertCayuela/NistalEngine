@@ -58,6 +58,9 @@ void GameObject::Update(float dt)
 	if (audio_source != nullptr)
 		audio_source->Update(dt);
 
+	if (audio_listener != nullptr)
+		audio_listener->Update(dt);
+
 	if (reverb_zone != nullptr)
 		reverb_zone->Update(dt);
 
