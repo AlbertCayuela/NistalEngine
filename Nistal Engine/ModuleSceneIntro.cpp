@@ -35,16 +35,18 @@ bool ModuleSceneIntro::Start()
     camera->transform->NewPosition(float3(0.0f, 7.2f, -22.50f));
     camera->camera->SetFarPlane(200.0f);
 
-    sound_go = CreateGameObject(root, "Music and listener");
+    sound_go = CreateGameObject(root, "Music");
     sound_go->AddComponent(GOCOMPONENT_TYPE::AUDIO_SOURCE, "AudioSource");
-    sound_go->AddComponent(GOCOMPONENT_TYPE::AUDIO_LISTENER, "AudioListener");
-    sound_go->AddComponent(GOCOMPONENT_TYPE::REVERB_ZONE, "ReverbZone");
+    //sound_go->AddComponent(GOCOMPONENT_TYPE::REVERB_ZONE, "ReverbZone");
     sound_go->audio_source->PlayEvent("PlaySong1");
     sound_go->audio_source->is_music = true;
 
     moving_sound_go = CreateGameObject(root, "MovingMotorcycle");
     moving_sound_go->AddComponent(GOCOMPONENT_TYPE::AUDIO_SOURCE, "AudioSource");
     moving_sound_go->audio_source->PlayEvent("PlayMotorcycle");
+
+    listener_go = CreateGameObject(root, "Listener");
+    listener_go->AddComponent(GOCOMPONENT_TYPE::AUDIO_LISTENER, "AudioListener");
 
     return ret;
 }
@@ -65,8 +67,9 @@ update_status ModuleSceneIntro::Update(float dt)
 
     if (!objects_created) 
     {
-        App->load_fbx->LoadFBX("Primitives/Sphere.fbx", sound_go);
+        App->load_fbx->LoadFBX("Primitives/Cube.fbx", sound_go);
         App->load_fbx->LoadFBX("Primitives/Cube.fbx", moving_sound_go);
+        App->load_fbx->LoadFBX("Primitives/Sphere.fbx", listener_go);
         objects_created = true;
     }
 
