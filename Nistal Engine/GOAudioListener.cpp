@@ -7,7 +7,7 @@ using namespace WwiseT;
 GOAudioListener::GOAudioListener(GameObject* parent) : GOComponent(parent)
 {
 	listener = App->audio->CreateSoundSource("MyAudioListener");
-	SetDefaultListener(listener->GetID());
+	App->audio->SetListener(listener);
 }
 
 GOAudioListener::~GOAudioListener()

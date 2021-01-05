@@ -37,6 +37,7 @@ bool ModuleSceneIntro::Start()
 
     sound_go = CreateGameObject(root, "Music");
     sound_go->AddComponent(GOCOMPONENT_TYPE::AUDIO_SOURCE, "AudioSource");
+    sound_go->AddComponent(GOCOMPONENT_TYPE::AUDIO_LISTENER, "AudioListener");
     //sound_go->AddComponent(GOCOMPONENT_TYPE::REVERB_ZONE, "ReverbZone");
     sound_go->audio_source->PlayEvent("PlaySong1");
     sound_go->audio_source->is_music = true;
@@ -45,8 +46,11 @@ bool ModuleSceneIntro::Start()
     moving_sound_go->AddComponent(GOCOMPONENT_TYPE::AUDIO_SOURCE, "AudioSource");
     moving_sound_go->audio_source->PlayEvent("PlayMotorcycle");
 
-    listener_go = CreateGameObject(root, "Listener");
-    listener_go->AddComponent(GOCOMPONENT_TYPE::AUDIO_LISTENER, "AudioListener");
+    reverb_zone_go = CreateGameObject(root, "ReverbZone");
+    reverb_zone_go->AddComponent(GOCOMPONENT_TYPE::REVERB_ZONE, "ReverbZone");
+
+    //listener_go = CreateGameObject(root, "Listener");
+    //listener_go->AddComponent(GOCOMPONENT_TYPE::AUDIO_LISTENER, "AudioListener");
 
     return ret;
 }
@@ -69,7 +73,7 @@ update_status ModuleSceneIntro::Update(float dt)
     {
         App->load_fbx->LoadFBX("Primitives/Cube.fbx", sound_go);
         App->load_fbx->LoadFBX("Primitives/Cube.fbx", moving_sound_go);
-        App->load_fbx->LoadFBX("Primitives/Sphere.fbx", listener_go);
+        App->load_fbx->LoadFBX("Primitives/Sphere.fbx", reverb_zone_go);
         objects_created = true;
     }
 
