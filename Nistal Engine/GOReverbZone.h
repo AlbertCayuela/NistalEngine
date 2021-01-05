@@ -13,6 +13,7 @@ public:
 	~GOReverbZone();
 
 	void Update(float dt);
+	bool CheckIntersection(GOAudioSource* source);
 	void ZoneSphere();
 	void DrawZone();
 	void NewRadius(float new_radius);

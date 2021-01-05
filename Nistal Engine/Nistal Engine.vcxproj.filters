@@ -22,6 +22,12 @@
     <Filter Include="Sources\PrimitivesEngine">
       <UniqueIdentifier>{3aab1dc2-5ad4-494a-908f-f2a4890af2f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Modules\GameObject">
+      <UniqueIdentifier>{9b88ce1a-2925-4bdf-8555-254b06aea180}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Modules\Resources">
+      <UniqueIdentifier>{2f46180d-b3d8-452c-8157-5ffc86e4265d}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Sources\Libs">
       <UniqueIdentifier>{700f33a1-db4b-4822-9de9-893da3b8d293}</UniqueIdentifier>
     </Filter>
@@ -42,12 +48,6 @@
     </Filter>
     <Filter Include="Sources\Libs\Devil">
       <UniqueIdentifier>{36f2ebce-0163-41eb-9b4b-c93f072423de}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sources\Modules\GameObject">
-      <UniqueIdentifier>{9b88ce1a-2925-4bdf-8555-254b06aea180}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sources\Modules\Resources">
-      <UniqueIdentifier>{2f46180d-b3d8-452c-8157-5ffc86e4265d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Sources\Libs\Wwise">
       <UniqueIdentifier>{c26b8914-762f-4211-91b6-01fab7941461}</UniqueIdentifier>

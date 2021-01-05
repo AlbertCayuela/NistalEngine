@@ -25,9 +25,35 @@ void GOReverbZone::Update(float dt)
 		GOAudioSource* aux = (*i)->audio_source;
 		if (aux != nullptr) 
 		{
-			aux->source->ApplyEnvReverb(12, "reverb");
+			if (CheckIntersection(aux) == true) 
+			{
+				//reverb --> something is wrong
+				//aux->source->ApplyEnvReverb(float something but 0, target);???
+				LOG("gameobject %s intersecting with reverb zone", aux->parent->ui_name.c_str());
+			}
+			else 
+			{
+				//aux->source->ApplyEnvReverb(0, target);
+				LOG("gameobject %s NOT intersecting with reverb zone", aux->parent->ui_name.c_str());
+			}
 		}
 	}
+}
+
+bool GOReverbZone::CheckIntersection(GOAudioSource* source)
+{
+	bool ret = false;
+
+	if (reverb_sphere.Intersects(source->parent->bbox) == true)
+	{
+		ret = true;
+	}
+	else
+	{
+		ret = false;
+	}
+
+	return ret;
 }
 
 void GOReverbZone::ZoneSphere()
