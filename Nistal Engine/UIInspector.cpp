@@ -217,6 +217,13 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 				Text("This object has an audio listener");
 			}
 		}
+		if (GO->reverb_zone != nullptr) 
+		{
+			if (CollapsingHeader("Reverb Zone"))
+			{
+
+			}
+		}
 
 	}
 	End();
