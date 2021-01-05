@@ -9,6 +9,7 @@
 #include "GOCamera.h"
 #include "GOAudioSource.h"
 #include "GOAudioListener.h"
+#include "GOReverbZone.h"
 #include "ModuleSceneIntro.h"
 
 #include "ImGui/imconfig.h"
@@ -219,9 +220,13 @@ void UIInspector::LoadInspectoData(GameObject* GO)
 		}
 		if (GO->reverb_zone != nullptr) 
 		{
+			float radius = GO->reverb_zone->reverb_radius;
 			if (CollapsingHeader("Reverb Zone"))
 			{
-
+				if(SliderFloat("Reverb Zone Radius", &radius, 0.1f, 10.0f))
+				{
+					GO->reverb_zone->NewRadius(radius);
+				}
 			}
 		}
 

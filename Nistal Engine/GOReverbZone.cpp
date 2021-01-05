@@ -38,6 +38,11 @@ void GOReverbZone::ZoneSphere()
 	box.Transform(parent->transform->transform_matrix);
 }
 
+void GOReverbZone::NewRadius(float new_radius)
+{
+	reverb_radius = new_radius;
+}
+
 void GOReverbZone::DrawZone()
 {
 	glLineWidth(1.0f);
@@ -72,5 +77,7 @@ void GOReverbZone::DrawZone()
 
 	glLineWidth(1.0f);
 }
+
+
 
 

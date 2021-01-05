@@ -3,6 +3,7 @@
 
 #include "GOComponent.h"
 #include "GameObject.h"
+#include <DirectXMath.h>
 
 class GOReverbZone : public GOComponent 
 {
@@ -14,6 +15,7 @@ public:
 	void Update(float dt);
 	void ZoneSphere();
 	void DrawZone();
+	void NewRadius(float new_radius);
 
 public:
 	
