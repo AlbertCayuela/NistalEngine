@@ -22,7 +22,7 @@ public:
 	math::Sphere reverb_sphere;
 	math::AABB box;
 
-	float reverb_radius = 10.0f;
+	float reverb_radius = 5.0f;
 };
 
 #endif
