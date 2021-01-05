@@ -29,12 +29,12 @@ void GOReverbZone::Update(float dt)
 			{
 				//reverb --> something is wrong
 				//aux->source->ApplyEnvReverb(float something but 0, target);???
-				LOG("gameobject %s intersecting with reverb zone", aux->parent->ui_name.c_str());
+				//LOG("gameobject %s intersecting with reverb zone", aux->parent->ui_name.c_str());
 			}
 			else 
 			{
 				//aux->source->ApplyEnvReverb(0, target);
-				LOG("gameobject %s NOT intersecting with reverb zone", aux->parent->ui_name.c_str());
+				//LOG("gameobject %s NOT intersecting with reverb zone", aux->parent->ui_name.c_str());
 			}
 		}
 	}

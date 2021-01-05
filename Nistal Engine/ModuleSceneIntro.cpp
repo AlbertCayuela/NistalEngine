@@ -35,7 +35,7 @@ bool ModuleSceneIntro::Start()
     camera->transform->NewPosition(float3(0.0f, 7.2f, -22.50f));
     camera->camera->SetFarPlane(200.0f);
 
-    sound_go = CreateGameObject(root, "Music");
+    sound_go = CreateGameObject(root, "Music and listener");
     sound_go->AddComponent(GOCOMPONENT_TYPE::AUDIO_SOURCE, "AudioSource");
     sound_go->AddComponent(GOCOMPONENT_TYPE::AUDIO_LISTENER, "AudioListener");
     sound_go->audio_source->PlayEvent("PlaySong1");
