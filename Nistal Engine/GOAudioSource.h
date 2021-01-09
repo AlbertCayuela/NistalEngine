@@ -22,6 +22,8 @@ public:
 	bool MuteSound();
 	void SwapMusic(float swap_time);
 	void HandleEvents(const char* stop_event, const char* play_event);
+
+	void SaveSceneAudioSource(JSON_Array* componentsObj);
 	
 
 public:

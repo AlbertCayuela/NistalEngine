@@ -6,6 +6,8 @@ using namespace WwiseT;
 
 GOAudioSource::GOAudioSource(GameObject* parent) : GOComponent(parent)
 {
+	this->type = GOCOMPONENT_TYPE::AUDIO_SOURCE;
+
 	source = App->audio->CreateSoundSource("MyAudioSource");
 
 	App->audio->audio_sources.push_back(this);
@@ -128,4 +130,19 @@ void GOAudioSource::HandleEvents(const char* stop_event, const char* play_event)
 {
 	source->StopEventByName(stop_event);
 	PlayEvent(play_event);
+}
+
+void GOAudioSource::SaveSceneAudioSource(JSON_Array* componentsObj)
+{
+	JSON_Value* component = json_value_init_object();
+	JSON_Object* componentObj = json_value_get_object(component);
+
+	json_object_set_number(componentObj, "Type:", this->type);
+	json_object_set_number(componentObj, "Volume", volume);
+	json_object_set_boolean(componentObj, "Muted", muted);
+	json_object_set_boolean(componentObj, "IsMusic", is_music);
+	json_object_set_number(componentObj, "SwapTime", swap_time);
+
+	json_array_append_value(componentsObj, component);
+
 }
