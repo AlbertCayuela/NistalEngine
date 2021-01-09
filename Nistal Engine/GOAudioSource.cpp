@@ -146,3 +146,13 @@ void GOAudioSource::SaveSceneAudioSource(JSON_Array* componentsObj)
 	json_array_append_value(componentsObj, component);
 
 }
+
+void GOAudioSource::LoadSceneAudioSource(JSON_Object* componentsObj, GameObject* go)
+{
+	App->scene_intro->sound_go = nullptr;
+	App->scene_intro->moving_sound_go = nullptr;
+	go->audio_source->volume = json_object_get_number(componentsObj, "Volume");
+	go->audio_source->muted = json_object_get_boolean(componentsObj, "Muted");
+	go->audio_source->is_music = json_object_get_boolean(componentsObj, "IsMusic");
+	go->audio_source->swap_time = json_object_get_number(componentsObj, "SwapTime");
+}

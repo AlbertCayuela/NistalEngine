@@ -24,6 +24,7 @@ public:
 	void HandleEvents(const char* stop_event, const char* play_event);
 
 	void SaveSceneAudioSource(JSON_Array* componentsObj);
+	void LoadSceneAudioSource(JSON_Object* compoentsObj, GameObject* go);
 	
 
 public:

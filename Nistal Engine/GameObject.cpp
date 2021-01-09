@@ -251,7 +251,8 @@ void GameObject::LoadInfoGameObject(GameObject* game_object, JSON_Object* obj)
 		}
 		if (num_type == 5) 
 		{
-
+			game_object->AddComponent(GOCOMPONENT_TYPE::AUDIO_SOURCE, "listener");
+			game_object->audio_source->LoadSceneAudioSource(type, game_object);
 		}
 		if (num_type == 6)
 		{
