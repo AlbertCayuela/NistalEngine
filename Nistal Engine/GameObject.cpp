@@ -246,6 +246,14 @@ void GameObject::LoadInfoGameObject(GameObject* game_object, JSON_Object* obj)
 			game_object->AddComponent(GOCOMPONENT_TYPE::CAMERA, "camera");
 			game_object->camera->LoadSceneCamera(type, game_object);
 		}
+		if (num_type == 5) 
+		{
+
+		}
+		if (num_type == 6)
+		{
+			game_object->AddComponent(GOCOMPONENT_TYPE::AUDIO_LISTENER, "listener");
+		}
 	}
 	//uuid = json_object_get_number(obj, "UID:");
 
