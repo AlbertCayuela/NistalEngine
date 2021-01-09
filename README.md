@@ -59,12 +59,12 @@ We have used the ImGui library for our Engine UI. We have been able to do all th
 - RightClick + E: move camera up
 - RightClick + R: move camera down
 
-### Instructions to execute
+## Instructions to execute
 1. Download the latest release from: https://github.com/AlbertCayuela/NistalEngine/releases
 2. Unzip de file
 3. Execute Nistal Engine.exe
 
-### Team Members
+## Team Members
 ### - Albert Cayuela: https://github.com/AlbertCayuela
 - Hierarchy
 - Time Manager
