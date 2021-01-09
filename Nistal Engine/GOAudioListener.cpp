@@ -6,6 +6,8 @@ using namespace WwiseT;
 
 GOAudioListener::GOAudioListener(GameObject* parent) : GOComponent(parent)
 {
+	this->type = GOCOMPONENT_TYPE::AUDIO_LISTENER;
+
 	listener = App->audio->CreateSoundSource("MyAudioListener");
 	App->audio->SetListener(listener);
 }
@@ -40,4 +42,16 @@ bool GOAudioListener::AudioListenerPosition()
 	}
 
 	return ret;
+}
+
+void GOAudioListener::SaveSceneAudioListener(JSON_Array* componentsObj)
+{
+	JSON_Value* component = json_value_init_object();
+	JSON_Object* componentObj = json_value_get_object(component);
+	json_object_set_number(componentObj, "Type:", this->type);
+	json_array_append_value(componentsObj, component);
+}
+
+void GOAudioListener::LoadSceneAudioListener(JSON_Object* obj)
+{
 }

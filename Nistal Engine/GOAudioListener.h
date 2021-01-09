@@ -17,6 +17,9 @@ public:
 	void Update(float dt);
 	bool AudioListenerPosition();
 
+	void SaveSceneAudioListener(JSON_Array* componentsObj);
+	void LoadSceneAudioListener(JSON_Object* obj);
+
 public:
 
 	AudioSource* listener = nullptr;
