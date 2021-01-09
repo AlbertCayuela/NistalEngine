@@ -1,10 +1,27 @@
 # NistalEngine
 Nistal Engine is a 3D Engine created in the third year of our Videogame Design and Development degree. It's mainly created using OPEN-GL.
+In our Engine you will find an audio system too, that allows you to control audio sources, audio listeners, etc. We used Wwise system for the audio part.
 
 You can check our GitHub repository here: https://github.com/AlbertCayuela/NistalEngine
 
 ### Version
-Nistal Engine v.0.1
+Nistal Engine v.1.0
+
+## Main Core Sub-Systems
+### 3D Renderer
+We mainly used OpenGL for the Engine Graphics. We use indices from OpenGL Arrays to draw everything.
+(The primitives that you can load on the top menu they are all FBX pre-loaded).
+
+## Geometry Loader
+We load all the FBX information and we store it into buffers. Then we load this info and we use Assimp to get a 3D rendered object from this loaded data.
+
+## Mouse Picking
+
+## GameObjects System
+
+## Serialization
+
+## Time Management
 
 ## Instructions:
 ### Adding models
@@ -31,9 +48,37 @@ In order to move an object select it and open the transform in the inspector.
 2. Unzip de file
 3. Execute Nistal Engine.exe
 
-### Credits
-- Albert Cayuela: https://github.com/AlbertCayuela
-- Nadine Gutiérrez: https://github.com/Nadine044
+### Team Members
+### - Albert Cayuela: https://github.com/AlbertCayuela
+- Hierarchy
+- Time Manager
+- Game Objects System
+- Inspector
+- Audio Part
+- Frustum Culling
+- Camera Component
+- Mouse Picking
+- Textures Loading
+### - Nadine Gutiérrez: https://github.com/Nadine044
+- Serialization
+- Json Integration
+- Save & Load Scenes
+- Inspector
+- Load FBX data (vertices, normals, textures...)
+- Own File Format
+- Parent/Unparent GameObjects
+
+## Tools Used
+- Visual Studio 2019
+- OpenGL
+- Assimp
+- SDL
+- Glew
+- DeviL
+- ImGui
+- MathGeoLib
+- Parson
+- PhysFS
 
 ### License
 MIT License
