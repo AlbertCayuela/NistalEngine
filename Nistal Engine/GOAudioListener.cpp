@@ -51,8 +51,3 @@ void GOAudioListener::SaveSceneAudioListener(JSON_Array* componentsObj)
 	json_object_set_number(componentObj, "Type:", this->type);
 	json_array_append_value(componentsObj, component);
 }
-
-void GOAudioListener::LoadSceneAudioListener(JSON_Object* obj)
-{
-
-}

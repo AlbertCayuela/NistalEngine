@@ -18,7 +18,6 @@ public:
 	bool AudioListenerPosition();
 
 	void SaveSceneAudioListener(JSON_Array* componentsObj);
-	void LoadSceneAudioListener(JSON_Object* obj);
 
 public:
 
