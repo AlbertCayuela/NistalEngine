@@ -7,6 +7,8 @@ You can check our GitHub repository here: https://github.com/AlbertCayuela/Nista
 ### Version
 Nistal Engine v.1.0
 
+[![NISTAL ENGINE](https://img.youtube.com/vi/S8jmj7fV04c/0.jpg)](https://www.youtube.com/watch?v=S8jmj7fV04c)
+
 ## Core Sub-Systems
 ### 3D Renderer
 Our engine has a module renderer that handles all the drawing of the program. We don’t use shaders. Instead we use OpenGL Vertex Arrays with indices (except for the debug draw of the primitives which are rendered in direct mode). Everything is drawn in the post update of the module. There, the gameobjects are filtered and we only render the ones that are inside the fustrum.
