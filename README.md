@@ -67,6 +67,9 @@ We have used the ImGui library for our Engine UI. We have been able to do all th
 3. Execute Nistal Engine.exe
 
 ## Team Members
+
+<img height="450" src="https://github.com/AlbertCayuela/NistalEngine/blob/master/Team/AlbertCayuela.jpeg?raw=true"/>
+
 ### - Albert Cayuela: https://github.com/AlbertCayuela
 - Hierarchy
 - Time Manager
