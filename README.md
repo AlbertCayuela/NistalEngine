@@ -62,6 +62,8 @@ With this component we reproduce audio, depending on the side you can hear the a
 ### Audio Listener
 With this component we reproduce audio, depending on the side you can hear the audio from the right or left part of the headphones
 
+<img height="500" src="https://github.com/AlbertCayuela/NistalEngine/blob/master/gif/Audio%20System.gif?raw=true"/>
+
 ## Controls
 ### General controls
 - ESC: Quit
