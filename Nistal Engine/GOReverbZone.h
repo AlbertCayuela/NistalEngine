@@ -18,6 +18,8 @@ public:
 	void DrawZone();
 	void NewRadius(float new_radius);
 
+	void SaveSceneReverbZone(JSON_Array* componentsObj);
+
 public:
 	
 	math::Sphere reverb_sphere;

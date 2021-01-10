@@ -5,6 +5,7 @@
 
 GOReverbZone::GOReverbZone(GameObject* game_object) : GOComponent(game_object)
 {
+	this->type = GOCOMPONENT_TYPE::REVERB_ZONE;
 }
 
 GOReverbZone::~GOReverbZone()
@@ -104,6 +105,17 @@ void GOReverbZone::DrawZone()
 	glLineWidth(1.0f);
 }
 
+
+void GOReverbZone::SaveSceneReverbZone(JSON_Array* componentsObj)
+{
+	JSON_Value* component = json_value_init_object();
+	JSON_Object* componentObj = json_value_get_object(component);
+
+	json_object_set_number(componentObj, "Type:", this->type);
+	json_object_set_number(componentObj, "Radius", reverb_radius);
+
+	json_array_append_value(componentsObj, component);
+}
 
 
 
