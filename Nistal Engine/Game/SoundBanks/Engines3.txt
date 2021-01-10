@@ -1,9 +1,7 @@
 Event	ID	Name			Wwise Object Path	Notes
-	348963605	Reverb			\Default Work Unit\Reverb	
 	2559659533	PlaySong1			\Default Work Unit\PlaySong1	
 	2559659534	PlaySong2			\Default Work Unit\PlaySong2	
 	2607038380	PlayMotorcycle			\Default Work Unit\PlayMotorcycle	
-	2767947223	enable_reverb			\Default Work Unit\enable_reverb	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	194018862	Motorcycle	C:\Users\alber\Desktop\Engines3\.cache\Windows\SFX\Motorcycle_F17FB28C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Motorcycle		7748472
