@@ -261,6 +261,11 @@ void GameObject::LoadInfoGameObject(GameObject* game_object, JSON_Object* obj)
 		{
 			game_object->AddComponent(GOCOMPONENT_TYPE::AUDIO_LISTENER, "listener");
 		}
+		if (num_type == 7) 
+		{
+			game_object->AddComponent(GOCOMPONENT_TYPE::REVERB_ZONE, "reverb_zone");
+			game_object->reverb_zone->LoadSceneReverbZone(type, game_object);
+		}
 	}
 	//uuid = json_object_get_number(obj, "UID:");
 

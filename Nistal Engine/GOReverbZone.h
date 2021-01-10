@@ -13,12 +13,12 @@ public:
 	~GOReverbZone();
 
 	void Update(float dt);
-	bool CheckIntersection(GOAudioSource* source);
 	void ZoneSphere();
 	void DrawZone();
 	void NewRadius(float new_radius);
 
 	void SaveSceneReverbZone(JSON_Array* componentsObj);
+	void LoadSceneReverbZone(JSON_Object* obj, GameObject* game_object);
 
 public:
 	

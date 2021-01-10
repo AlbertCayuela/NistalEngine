@@ -21,9 +21,11 @@
 			<ShortName>Engines3</ShortName>
 			<Path>Engines3.bnk</Path>
 			<IncludedEvents>
+				<Event Id="2767947223" Name="enable_reverb" ObjectPath="\Events\Default Work Unit\enable_reverb"/>
 				<Event Id="2607038380" Name="PlayMotorcycle" ObjectPath="\Events\Default Work Unit\PlayMotorcycle"/>
 				<Event Id="2559659533" Name="PlaySong1" ObjectPath="\Events\Default Work Unit\PlaySong1"/>
 				<Event Id="2559659534" Name="PlaySong2" ObjectPath="\Events\Default Work Unit\PlaySong2"/>
+				<Event Id="348963605" Name="Reverb" ObjectPath="\Events\Default Work Unit\Reverb"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
 				<File Id="194018862" Language="SFX">
