@@ -78,7 +78,7 @@ We have used the ImGui library for our Engine UI. We have been able to do all th
 - Mouse Picking
 - Textures Loading
 
-<img height="450" src="https://github.com/AlbertCayuela/NistalEngine/blob/master/Team/NadineGuti%C3%A9rrez.jpg"/>
+<img height="450" src="https://github.com/AlbertCayuela/NistalEngine/blob/master/Team/NadineGuti%C3%A9rrez.jpg?raw=true"/>
 
 ### - Nadine Gutiérrez: https://github.com/Nadine044
 - Serialization
