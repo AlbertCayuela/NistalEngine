@@ -9,7 +9,7 @@ Nistal Engine v.1.0
 
 [![NISTAL ENGINE](https://img.youtube.com/vi/S8jmj7fV04c/0.jpg)](https://www.youtube.com/watch?v=S8jmj7fV04c)
 
-## Core Sub-Systems
+## Main Core Sub-Systems
 ### 3D Renderer
 Our engine has a module renderer that handles all the drawing of the program. We don’t use shaders. Instead we use OpenGL Vertex Arrays with indices (except for the debug draw of the primitives which are rendered in direct mode). Everything is drawn in the post update of the module. There, the gameobjects are filtered and we only render the ones that are inside the fustrum.
 
@@ -49,9 +49,23 @@ User can play, pause and tick and even modify the speed of the time in game. To 
 ### User Interface
 We have used the ImGui library for our Engine UI. We have been able to do all the menus, hierarchy window, buttons and texts. It has helped us with all the Engine UI options
 
+## Audio Sub-System
+For the audio sub-system we use Wwise to use audio banks in the engine. We have implemented 2 audio components:
+
+### Audio Source
+With this component we reproduce audio, depending on the side you can hear the audio from the right or left part of the headphones
+
+- Option for mute de audio source.
+
+- Change the volume with this slider.
+
+### Audio Listener
+With this component we reproduce audio, depending on the side you can hear the audio from the right or left part of the headphones
+
 ## Controls
 ### General controls
 - ESC: Quit
+
 ### Camera controls
 - Movement: RightClick + WASD keys
 - Pan / Zoom: Mouse wheel
