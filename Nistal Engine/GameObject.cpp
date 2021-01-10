@@ -210,6 +210,9 @@ void GameObject::SaveInfoGameObject(GameObject* go, JSON_Array* json_array)
 	if (go->audio_listener != nullptr)
 		go->audio_listener->SaveSceneAudioListener(componentsObj);
 
+	if (go->reverb_zone != nullptr)
+		go->reverb_zone->SaveSceneReverbZone(componentsObj);
+
 	json_object_set_value(object_json, "Components:", components);
 
 	json_array_append_value(json_array, value_json);
